@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Vinay.dev - Portfolio</title>
+        <title>Vinay - Portfolio</title>
         <meta
           name="description"
           content="Portfolio of Vinay Kushwah — Developer, Creator, and Problem Solver."

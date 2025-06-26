@@ -7,3 +7,9 @@ html {
 body {
   @apply bg-gradient-to-br from-indigo-100 via-white to-purple-100;
 }
+/* styles.css or global.css */
+.text-gradient {
+  background-image: linear-gradient(to right, #6366f1, #9333ea, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

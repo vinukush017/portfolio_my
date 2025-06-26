@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import TextScrambler from "./TextScrambler";
 
 const HeroSection = () => {
   return (
@@ -16,9 +17,19 @@ const HeroSection = () => {
         <h1 className="text-5xl sm:text-6xl font-extrabold mb-2 leading-tight">
           Vinay Kushwah
         </h1>
+        <TextScrambler
+          texts={[
+            "Full Stack MERN Developer",
+            "Backend Developer",
+            "Software Enginner",
+          ]}
+          speed={50}
+          interval={3000}
+          className="text-2xl md:text-4xl font-bold"
+        />
 
         <h2 className="text-2xl sm:text-3xl font-medium text-indigo-600 mb-6">
-          Full Stack MERN Developer · Pune, India
+          Pune, India
         </h2>
 
         <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-10 text-balance">
