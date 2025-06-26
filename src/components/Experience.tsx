@@ -7,30 +7,33 @@ const experiences = [
     title: 'Software Engineer (MERN Stack)',
     date: 'Nov 2024 – Present',
     description: [
-      'Improved server response time by 30% using Node.js and Express.js.',
-      'Optimized MongoDB queries to reduce latency by 25%.',
-      'Built reusable React components and integrated Redux for state management.',
-      'Deployed file storage securely on AWS S3.',
+      'Boosted server response speed by 30% with optimized Express.js routes.',
+      'Reduced MongoDB latency by 25% using indexes and aggregation.',
+      'Built scalable React components and implemented Redux for global state.',
+      'Handled secure media uploads via AWS S3 integration.',
     ],
+    stack: ['Node.js', 'Express.js', 'MongoDB', 'React', 'Redux', 'AWS S3'],
   },
   {
     company: 'ARIPRA Infotech, Indore',
     title: 'Full Stack Developer (MERN)',
     date: 'Feb 2022 – May 2024',
     description: [
-      'Accelerated API speeds by 35% with optimized Node.js backends.',
-      'Used PostgreSQL with Knex.js to cut data retrieval time by 40%.',
-      'Improved UI responsiveness and reduced bugs by 20%.',
+      'Engineered RESTful APIs with Express.js, improving performance by 35%.',
+      'Implemented efficient SQL queries with PostgreSQL + Knex.js.',
+      'Reduced bugs by 20% through unit testing and PR reviews.',
     ],
+    stack: ['Node.js', 'Redux', 'React', 'MongoDB', 'Express.js'],
   },
   {
     company: 'JERK Trend, Pune',
     title: 'Junior Node.js Developer',
     date: 'Jan 2021 – Feb 2022',
     description: [
-      'Built core Node/Express logic and improved performance by 20%.',
-      'Revamped frontend for better mobile experience, boosting retention.',
+      'Built scalable backend using Node.js and Express with 20% faster load time.',
+      'Redesigned responsive UIs with React, improving mobile retention by 25%.',
     ],
+    stack: ['Node.js', 'Express.js', 'React', 'MongoDB'],
   },
 ];
 
@@ -65,6 +68,16 @@ const Experience = () => (
               <li key={i}>{line}</li>
             ))}
           </ul>
+          <div className="flex flex-wrap gap-2 mt-4">
+            {exp.stack.map((tech, i) => (
+              <span
+                key={i}
+                className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 text-xs px-3 py-1 rounded-full"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </motion.div>
       ))}
     </div>

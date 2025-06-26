@@ -1,18 +1,24 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const projects = [
   {
-    title: 'Car Daddy CRM',
+    title: "Car Daddy CRM",
     description:
-      'Built scalable car registration & CRM app with JWT auth, AWS S3, WhatsApp/email integration, and frontend in React.js.',
-    link: '#',
+      "Built a scalable car registration and customer management system with secure JWT authentication, AWS S3 file storage, and real-time WhatsApp/email integrations. Frontend built in React.js with 99.9% uptime.",
+    link: "#",
   },
   {
-    title: 'DropChat AI',
+    title: "DropChat AI",
     description:
-      'Created chatbot builder with OpenAI API, file training, user plans, and embed features — improved UX by 40%.',
-    link: '#',
+      "Developed an AI-powered chatbot builder with OpenAI APIs, document upload training, user plans, and embeddable bots. Boosted user engagement by 40% through a clean React.js interface and fast backend.",
+    link: "#",
+  },
+  {
+    title: 'FactGully',
+    description:
+      'Launched FactGully, a modern fact-sharing platform featuring daily themes in science, history, tech, and myths. Built with React and Tailwind, deployed on Vercel with fast load performance and SEO/social sharing optimization.',
+    link: 'https://fact-gully.vercel.app',
   },
 ];
 
@@ -36,17 +42,60 @@ const Projects = () => (
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: idx * 0.2 }}
           viewport={{ once: true }}
-          className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow hover:shadow-md transition"
+          className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 transition-transform"
         >
-          <h3 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-white">{proj.title}</h3>
-          <p className="text-gray-700 dark:text-gray-300 mb-4">{proj.description}</p>
+          <h3 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-white">
+            {proj.title}
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300 mb-4">
+            {proj.description}
+          </p>
+
+          {/* Optional Tags (manually define or attach in project object) */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {proj.title === "Car Daddy CRM" && (
+              <>
+                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
+                  React
+                </span>
+                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
+                  Node.js
+                </span>
+                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
+                  AWS
+                </span>
+              </>
+            )}
+            {proj.title === "DropChat AI" && (
+              <>
+                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
+                  OpenAI
+                </span>
+                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
+                  React
+                </span>
+                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
+                  MongoDB
+                </span>
+              </>
+            )}
+            {proj.title === "FactGully" && (
+              <>
+                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">React</span>
+                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">Tailwind CSS</span>
+                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">Vercel</span>
+                <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">SEO</span>
+              </>
+            )}
+          </div>
+
           <a
             href={proj.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block mt-2 text-sm font-medium text-indigo-600 hover:text-indigo-800 transition"
+            className="inline-block text-sm font-medium text-indigo-600 hover:text-indigo-800 transition"
           >
-            🔗 View Project
+            View Project →
           </a>
         </motion.div>
       ))}

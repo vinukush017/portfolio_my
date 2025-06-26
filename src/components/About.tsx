@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
@@ -19,28 +19,45 @@ const About = () => {
         </h2>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-          I'm <span className="font-semibold">Vinay Kushwah</span>, a Full Stack MERN Developer based in Pune, India,
-          with <strong>4+ years of professional experience</strong> building fast, scalable, and user-friendly web applications.
+          I’m <span className="font-semibold">Vinay Kushwah</span>, a full stack
+          developer based in Pune with <strong>4+ years of experience</strong>{" "}
+          crafting scalable, high-performance web applications using the MERN
+          stack.
         </p>
 
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-          I specialize in <strong>React.js, Node.js, MongoDB, PostgreSQL,</strong> and modern frontend practices using
-          <strong> Tailwind CSS</strong>. Whether it's designing reusable components, optimizing APIs (cutting server response by 30%),
-          or integrating AWS, I bring clean architecture and real-world problem-solving to every project.
+          I specialize in building fast, user-focused frontends with{" "}
+          <strong>React.js</strong> and scalable backend systems using{" "}
+          <strong>Node.js</strong> and <strong>Express</strong>. I'm also
+          experienced with <strong>MongoDB</strong>, <strong>PostgreSQL</strong>
+          , and DevOps tools like <strong>AWS S3</strong> and GitHub Actions.
+        </p>
+
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+          From architecting APIs that reduce load time to designing reusable UI
+          components with <strong>Tailwind CSS</strong>, I aim to write clean,
+          maintainable code that delivers real business value.
         </p>
 
         <p className="text-gray-600 dark:text-gray-400 mb-4">
-          I’m passionate about continuous learning, shipping products users love, and writing maintainable code that teams can rely on.
+          I’m a strong believer in lifelong learning, team collaboration, and
+          building products that users genuinely enjoy using.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 mt-8">
-          {["MERN Stack", "Clean Code", "Performance Driven", "Reusable UI"].map((tag, idx) => (
-            <span
+          {[
+            "MERN Stack",
+            "Clean Code",
+            "Performance Driven",
+            "Reusable UI",
+          ].map((tag, idx) => (
+            <motion.span
               key={idx}
+              whileHover={{ scale: 1.05 }}
               className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-4 py-2 rounded-full text-sm font-medium"
             >
               {tag}
-            </span>
+            </motion.span>
           ))}
         </div>
       </motion.div>

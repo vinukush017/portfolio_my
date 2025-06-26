@@ -20,7 +20,7 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md text-gray-900 dark:text-white py-4 px-6 shadow-md"
+      className="fixed top-0 left-0 right-0 z-50  dark:bg-slate-800/80 backdrop-blur-md text-gray-900 dark:text-white py-4 px-6 shadow-md"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Left: Logo */}
@@ -31,7 +31,7 @@ const Navbar = () => {
         </div>
 
         {/* Center: Nav Links */}
-        <nav className="hidden md:flex items-center space-x-6 bg-white dark:bg-gray-700 px-6 py-2 rounded-full shadow space-x-4">
+        <nav aria-label="Main Navigation" className="hidden md:flex items-center bg-white dark:bg-gray-700 px-6 py-2 rounded-full shadow space-x-4">
           {links.map((link, idx) => (
             <a
               key={idx}
@@ -52,8 +52,9 @@ const Navbar = () => {
             Email us
           </a>
           <button
+            aria-label="Toggle Dark Mode"
             onClick={() => setIsDark(!isDark)}
-            className="px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-600 font-medium"
+            className="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600 transition"
           >
             {isDark ? "☀️ Light" : "🌙 Dark"}
           </button>

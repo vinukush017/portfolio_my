@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Contact = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitted(true);
+
+    // Optionally integrate with Formspree, EmailJS, or backend here.
+  };
+
   return (
     <section className="py-20 px-6 bg-white dark:bg-slate-800" id="contact">
       <motion.h2
@@ -15,6 +24,7 @@ const Contact = () => {
       </motion.h2>
 
       <motion.form
+        onSubmit={handleSubmit}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -24,23 +34,23 @@ const Contact = () => {
         <input
           type="text"
           name="name"
-          aria-label="Your Name"
           placeholder="Name"
+          aria-label="Your Name"
           className="w-full p-3 border rounded bg-gray-100 dark:bg-slate-900 dark:text-white dark:border-slate-700"
           required
         />
         <input
           type="email"
           name="email"
-          aria-label="Your Email"
           placeholder="Email"
+          aria-label="Your Email"
           className="w-full p-3 border rounded bg-gray-100 dark:bg-slate-900 dark:text-white dark:border-slate-700"
           required
         />
         <textarea
           name="message"
-          aria-label="Your Message"
           placeholder="Message"
+          aria-label="Your Message"
           rows={5}
           className="w-full p-3 border rounded bg-gray-100 dark:bg-slate-900 dark:text-white dark:border-slate-700"
           required
@@ -49,8 +59,13 @@ const Contact = () => {
           type="submit"
           className="w-full bg-indigo-600 text-white py-3 rounded hover:bg-indigo-700 transition"
         >
-          Send Message
+          {submitted ? 'Message Sent ✔' : 'Send Message'}
         </button>
+        {submitted && (
+          <p className="text-green-600 text-sm mt-2 text-center">
+            Thank you for reaching out! I'll get back to you soon.
+          </p>
+        )}
       </motion.form>
     </section>
   );
