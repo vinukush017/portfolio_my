@@ -7,6 +7,7 @@ import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { Helmet } from "react-helmet";
+import GalaxyBackground from "./components/DotBackground";
 
 function App() {
   return (
@@ -21,10 +22,9 @@ function App() {
         <meta name="author" content="Vinay Kushwah" />
         <link rel="icon" href="/favicon.ico" />
       </Helmet>
-
-      <div className="bg-gradient-to-br from-white via-indigo-50 to-indigo-100 text-gray-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:text-white min-h-screen">
-        <Navbar />
-        <main className="scroll-smooth snap-y snap-mandatory">
+      <div className="relative min-h-screen bg-white text-gray-900 dark:bg-black dark:text-white">
+        <GalaxyBackground />
+        <main className="relative z-10 scroll-smooth snap-y snap-mandatory">
           <section id="home" className="snap-start">
             <HeroSection />
           </section>

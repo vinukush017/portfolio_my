@@ -15,7 +15,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Vinay Kushwah GitHub"
-          className="hover:underline transition"
+          className="hover:underline hover:text-gray-200 transition"
         >
           GitHub
         </a>
@@ -24,14 +24,14 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Vinay Kushwah LinkedIn"
-          className="hover:underline transition"
+          className="hover:underline hover:text-gray-200 transition"
         >
           LinkedIn
         </a>
         <a
           href="#home"
-          className="hover:underline transition"
           aria-label="Back to Top"
+          className="hover:underline hover:text-gray-200 transition"
         >
           Back to Top ↑
         </a>

@@ -5,7 +5,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="scroll-mt-24 py-20 px-6 sm:px-12 md:px-20 bg-gray-50 dark:bg-slate-800 text-gray-800 dark:text-gray-100 flex items-center"
+      className="scroll-mt-24 py-20 px-6 sm:px-12 md:px-20 bg-white dark:bg-black text-gray-900 dark:text-white flex items-center"
     >
       <motion.div
         className="max-w-4xl mx-auto text-center"

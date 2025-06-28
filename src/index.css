@@ -1,13 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
-  @apply bg-gradient-to-br from-indigo-100 via-white to-purple-100;
+  /* Removed gradient background */
+  @apply bg-white text-gray-900 dark:bg-black dark:text-white;
 }
-/* styles.css or global.css */
+
+/* Optional: keep this only if you're using gradient text somewhere */
 .text-gradient {
   background-image: linear-gradient(to right, #6366f1, #9333ea, #ec4899);
   -webkit-background-clip: text;

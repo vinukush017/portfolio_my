@@ -28,7 +28,6 @@ const projects = [
 const Projects = () => {
   const [previewImg, setPreviewImg] = useState<string | null>(null);
 
-  // Close modal on ESC
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setPreviewImg(null);
@@ -36,12 +35,10 @@ const Projects = () => {
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
+
   return (
     <>
-      <section
-        className="py-20 px-6 bg-gray-100 dark:bg-slate-900"
-        id="projects"
-      >
+      <section id="projects" className="py-20 px-6 bg-white dark:bg-black">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,13 +57,13 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.2 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 transition-transform"
+              className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 transition-transform"
             >
               {proj.image && (
                 <img
                   src={proj.image}
                   alt={`${proj.title} screenshot`}
-                  className="w-full h-48 object-cover rounded-md mb-4 border dark:border-slate-700"
+                  className="w-full h-48 object-cover rounded-md mb-4 border dark:border-gray-700"
                   onClick={() => setPreviewImg(proj.image)}
                 />
               )}
@@ -78,54 +75,43 @@ const Projects = () => {
                 {proj.description}
               </p>
 
-              {/* Optional Tags (manually define or attach in project object) */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {proj.title === "Car Daddy CRM" && (
                   <>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      React
-                    </span>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      Node.js
-                    </span>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      Express.js
-                    </span>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      MongoDB
-                    </span>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      AWS
-                    </span>
+                    {["React", "Node.js", "Express.js", "MongoDB", "AWS"].map(
+                      (tech) => (
+                        <span
+                          key={tech}
+                          className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      )
+                    )}
                   </>
                 )}
                 {proj.title === "DropChat AI" && (
                   <>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      OpenAI
-                    </span>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      React
-                    </span>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      MongoDB
-                    </span>
+                    {["OpenAI", "React", "MongoDB"].map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </>
                 )}
                 {proj.title === "FactGully" && (
                   <>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      React
-                    </span>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      Tailwind CSS
-                    </span>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      Vercel
-                    </span>
-                    <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full">
-                      SEO
-                    </span>
+                    {["React", "Tailwind CSS", "Vercel", "SEO"].map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 px-3 py-1 text-xs rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </>
                 )}
               </div>
@@ -134,7 +120,7 @@ const Projects = () => {
                 href={proj.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-sm font-medium text-indigo-600 hover:text-indigo-800 transition"
+                className="inline-block text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition"
               >
                 View Project →
               </a>
@@ -148,7 +134,7 @@ const Projects = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50"
           onClick={() => setPreviewImg(null)}
         >
           <motion.img
@@ -157,8 +143,8 @@ const Projects = () => {
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.9 }}
-            className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white dark:border-slate-800"
-            onClick={(e) => e.stopPropagation()} // prevent closing when clicking image
+            className="max-w-[90%] max-h-[90%] rounded-lg shadow-lg border-4 border-white dark:border-gray-800"
+            onClick={(e) => e.stopPropagation()}
           />
         </motion.div>
       )}

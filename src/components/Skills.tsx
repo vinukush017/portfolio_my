@@ -2,20 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const skillGroups = {
-  Frontend: [
-    "React.js",
-    "JavaScript",
-    "TypeScript",
-    "HTML",
-    "CSS"
-  ],
+  Frontend: ["React.js", "JavaScript", "TypeScript", "HTML", "CSS"],
   Backend: ["Node.js", "Express.js", "REST APIs"],
   Databases: ["MongoDB", "PostgreSQL"],
   "DevOps & Tools": ["AWS S3", "Git"],
 };
 
 const Skills = () => (
-  <section className="py-20 px-6 bg-white dark:bg-slate-800" id="skills">
+  <section className="py-20 px-6 bg-white dark:bg-black" id="skills">
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -42,7 +36,7 @@ const Skills = () => (
             {techs.map((skill, idx) => (
               <motion.span
                 key={idx}
-                className="px-5 py-2 bg-gray-200 dark:bg-slate-700 rounded-full text-sm font-medium text-gray-800 dark:text-white"
+                className="px-5 py-2 bg-gray-200 dark:bg-gray-800 rounded-full text-sm font-medium text-gray-800 dark:text-white"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >

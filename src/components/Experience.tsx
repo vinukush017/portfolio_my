@@ -38,7 +38,7 @@ const experiences = [
 ];
 
 const Experience = () => (
-  <section className="py-20 px-6 bg-white dark:bg-slate-900" id="experience">
+  <section className="py-20 px-6 bg-white dark:bg-black" id="experience">
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -57,13 +57,13 @@ const Experience = () => (
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: idx * 0.2 }}
           viewport={{ once: true }}
-          className="bg-gray-50 dark:bg-slate-800 p-6 rounded-lg shadow hover:shadow-md transition"
+          className="bg-gray-100 dark:bg-gray-900 p-6 rounded-lg shadow hover:shadow-md transition"
         >
-          <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{exp.title}</h3>
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{exp.title}</h3>
           <p className="text-sm text-gray-600 dark:text-gray-400 italic mb-2">
             {exp.company} — {exp.date}
           </p>
-          <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+          <ul className="list-disc list-inside space-y-1 text-gray-800 dark:text-gray-300 text-sm">
             {exp.description.map((line, i) => (
               <li key={i}>{line}</li>
             ))}

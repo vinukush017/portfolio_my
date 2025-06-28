@@ -12,7 +12,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-20 px-6 bg-white dark:bg-slate-800" id="contact">
+    <section className="py-20 px-6 bg-white dark:bg-black" id="contact">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ const Contact = () => {
           name="name"
           placeholder="Name"
           aria-label="Your Name"
-          className="w-full p-3 border rounded bg-gray-100 dark:bg-slate-900 dark:text-white dark:border-slate-700"
+          className="w-full p-3 border rounded bg-gray-100 dark:bg-gray-900 dark:text-white dark:border-gray-700"
           required
         />
         <input
@@ -44,7 +44,7 @@ const Contact = () => {
           name="email"
           placeholder="Email"
           aria-label="Your Email"
-          className="w-full p-3 border rounded bg-gray-100 dark:bg-slate-900 dark:text-white dark:border-slate-700"
+          className="w-full p-3 border rounded bg-gray-100 dark:bg-gray-900 dark:text-white dark:border-gray-700"
           required
         />
         <textarea
@@ -52,7 +52,7 @@ const Contact = () => {
           placeholder="Message"
           aria-label="Your Message"
           rows={5}
-          className="w-full p-3 border rounded bg-gray-100 dark:bg-slate-900 dark:text-white dark:border-slate-700"
+          className="w-full p-3 border rounded bg-gray-100 dark:bg-gray-900 dark:text-white dark:border-gray-700"
           required
         ></textarea>
         <button
