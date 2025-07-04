@@ -44,8 +44,6 @@ const OrbitingCanvas = () => {
       color: "#ffffff",
     }));
 
-    
-
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
 
@@ -97,13 +95,19 @@ const OrbitingCanvas = () => {
 
       for (const dot of smallDots) {
         const red = redDots[dot.parentIndex];
+
+        // Update the red dot's position (center of this mini solar system)
         const redX = centerX() + red.distance * Math.cos(red.angle);
         const redY = centerY() + red.distance * Math.sin(red.angle);
 
+        // Advance the small dot's angle to simulate orbit
         dot.angle += dot.speed;
+
+        // Position the white dot relative to its red dot
         const x = redX + dot.distance * Math.cos(dot.angle);
         const y = redY + dot.distance * Math.sin(dot.angle);
 
+        // Draw the white orbiting dot (planet)
         ctx.beginPath();
         ctx.arc(x, y, dot.radius, 0, Math.PI * 2);
         ctx.fillStyle = dot.color;

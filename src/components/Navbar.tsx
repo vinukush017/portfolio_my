@@ -64,7 +64,7 @@ const Navbar = () => {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden mt-4 px-6 pb-4 space-y-2 bg-white dark:bg-black shadow rounded-lg">
+        <div className="md:hidden mt-4 px-6 pb-4 space-y-2 bg-transparent shadow rounded-lg">
           {links.map((link, idx) => (
             <a
               key={idx}
