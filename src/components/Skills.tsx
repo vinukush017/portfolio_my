@@ -1,5 +1,35 @@
 import React from "react";
 import { motion } from "framer-motion";
+import {
+  FaReact,
+  FaNodeJs,
+  FaAws,
+  FaGitAlt,
+  FaJs,
+  FaHtml5,
+  FaCss3Alt,
+} from "react-icons/fa";
+import {
+  SiTypescript,
+  SiPostgresql,
+  SiMongodb,
+  SiExpress,
+} from "react-icons/si";
+
+const skillIcons: Record<string, JSX.Element> = {
+  "React.js": <FaReact />,
+  JavaScript: <FaJs />,
+  TypeScript: <SiTypescript />,
+  HTML: <FaHtml5 />,
+  CSS: <FaCss3Alt />,
+  "Node.js": <FaNodeJs />,
+  "Express.js": <SiExpress />,
+  "REST APIs": <SiExpress />,
+  MongoDB: <SiMongodb />,
+  PostgreSQL: <SiPostgresql />,
+  "AWS S3": <FaAws />,
+  Git: <FaGitAlt />,
+};
 
 const skillGroups = {
   Frontend: ["React.js", "JavaScript", "TypeScript", "HTML", "CSS"],
@@ -40,7 +70,12 @@ const Skills = () => (
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                {skill}
+                <span className="flex items-center gap-2">
+                  <span className="text-lg">{skillIcons[skill]}</span>
+                  <span className="font-semibold text-indigo-700 dark:text-indigo-300">
+                    {skill}
+                  </span>
+                </span>
               </motion.span>
             ))}
           </div>

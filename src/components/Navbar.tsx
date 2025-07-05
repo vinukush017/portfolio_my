@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
@@ -44,7 +44,7 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4 md:gap-2 text-sm">
+        <div className="flex items-center gap-4 md:gap-2 text-sm relative z-50">
           <button
             aria-label="Toggle Dark Mode"
             onClick={() => setIsDark(!isDark)}
@@ -58,25 +58,37 @@ const Navbar = () => {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle Menu"
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? (
+              <X size={24} color={isDark ? "white" : "black"} />
+            ) : (
+              <Menu size={24} color={isDark ? "white" : "black"} />
+            )}
           </button>
         </div>
       </div>
 
-      {menuOpen && (
-        <div className="md:hidden mt-4 px-6 pb-4 space-y-2 bg-transparent shadow rounded-lg">
-          {links.map((link, idx) => (
-            <a
-              key={idx}
-              href={`#${link.toLowerCase()}`}
-              onClick={() => setMenuOpen(false)}
-              className="block text-gray-800 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-semibold"
-            >
-              {link}
-            </a>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 dark:bg-black bg-white dark:text-white text-black flex flex-col items-center justify-center space-y-6 md:hidden"
+            onClick={() => setMenuOpen(false)}
+          >
+            {links.map((link, idx) => (
+              <a
+                key={idx}
+                href={`#${link.toLowerCase()}`}
+                onClick={() => setMenuOpen(false)}
+                className="text-2xl font-semibold hover:text-indigo-400 transition"
+              >
+                {link}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };

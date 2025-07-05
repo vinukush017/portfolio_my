@@ -1,9 +1,7 @@
-import React from "react";
 import { motion } from "framer-motion";
 import TextScrambler from "./TextScrambler";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
-
 
 const HeroSection = () => {
   return (
@@ -14,12 +12,12 @@ const HeroSection = () => {
         className="snap-start flex flex-col justify-center items-center bg-transparent text-gray-900 dark:text-white px-6 sm:px-12 md:px-20 relative"
       >
         <motion.div
-          className="max-w-4xl mx-auto text-center pt-20 pb-44"
+          className="max-w-4xl mx-auto text-center pt-20 pb-40"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-semibold mb-2 leading-snug">
+          <h1 className="text-4xl sm:text-5xl font-semibold mb-4 leading-snug">
             Heya 👋, I'm Vinay
           </h1>
 
@@ -31,7 +29,7 @@ const HeroSection = () => {
             ]}
             speed={50}
             interval={3000}
-            className="text-2xl md:text-4xl font-bold inline-block font-mono min-w-[26ch]"
+            className="text-2xl md:text-4xl font-bold inline-block font-mono min-w-[26ch] pb-2"
           />
 
           <h2 className="text-2xl sm:text-3xl font-medium text-indigo-600 dark:text-indigo-400 mb-6">
@@ -45,7 +43,7 @@ const HeroSection = () => {
             something impactful together.
           </p>
 
-          <div className="flex justify-center gap-4 flex-wrap">
+          <div className="flex justify-center gap-4 flex-wrap pt-4 pb-4">
             <a
               href="/Vinay_Kushwah_Resume_2025.pdf"
               target="_blank"

@@ -67,7 +67,7 @@ const SocialBar = () => {
       {/* <div className="w-px h-10 bg-gray-400" /> */}
 
       {/* Bottom Line */}
-      <div className="w-px h-20 bg-white mt-2" />
+      <div className="w-px h-20 bg-white" />
     </div>
   );
 };
