@@ -28,13 +28,13 @@ const Footer = () => {
         >
           LinkedIn
         </a>
-        <a
+        {/* <a
           href="#home"
           aria-label="Back to Top"
           className="hover:underline hover:text-gray-200 transition"
         >
           Back to Top ↑
-        </a>
+        </a> */}
       </div>
     </footer>
   );

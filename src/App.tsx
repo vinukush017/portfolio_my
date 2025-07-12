@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { Helmet } from "react-helmet";
 import GalaxyBackground from "./components/DotBackground";
+import ScrollToTop from "./components/ScrollToTop"; 
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             <Contact />
           </section>
           <Footer />
+          <ScrollToTop />
         </main>
       </div>
     </>
