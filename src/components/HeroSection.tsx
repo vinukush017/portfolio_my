@@ -12,7 +12,7 @@ const HeroSection = () => {
         className="snap-start flex flex-col justify-center items-center bg-transparent text-gray-900 dark:text-white px-6 sm:px-12 md:px-20 relative"
       >
         <motion.div
-          className="max-w-4xl mx-auto text-center pt-20 pb-40"
+          className="max-w-4xl mx-auto text-center pt-20 pb-32 sm:pb-40"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

@@ -12,7 +12,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-20 px-6 bg-white dark:bg-black" id="contact">
+    <section className="py-20 px-6" id="contact">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

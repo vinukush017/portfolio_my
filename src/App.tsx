@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/About";
 import Projects from "./components/Projects";
@@ -8,12 +7,12 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { Helmet } from "react-helmet";
 import GalaxyBackground from "./components/DotBackground";
-import ScrollToTop from "./components/ScrollToTop"; 
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
-      <Helmet>
+      <Helmet htmlAttributes={{ lang: "en" }}>
         <title>Vinay - Portfolio</title>
         <meta
           name="description"
@@ -29,19 +28,29 @@ function App() {
           <section id="home" className="snap-start">
             <HeroSection />
           </section>
-          <section id="about" className="snap-start">
+          <section id="about" className="snap-start bg-white dark:bg-black">
             <AboutSection />
           </section>
-          <section id="projects" className="snap-start">
+
+          <section
+            id="projects"
+            className="snap-start bg-gray-100 dark:bg-gray-900"
+          >
             <Projects />
           </section>
-          <section id="skills" className="snap-start">
+
+          <section id="skills" className="snap-start bg-white dark:bg-black">
             <Skills />
           </section>
-          <section id="experience" className="snap-start">
+
+          <section
+            id="experience"
+            className="snap-start bg-gray-100 dark:bg-gray-900"
+          >
             <Experience />
           </section>
-          <section id="contact" className="snap-start">
+
+          <section id="contact" className="snap-start bg-white dark:bg-black">
             <Contact />
           </section>
           <Footer />

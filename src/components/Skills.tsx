@@ -39,7 +39,7 @@ const skillGroups = {
 };
 
 const Skills = () => (
-  <section className="py-20 px-6 bg-white dark:bg-black" id="skills">
+  <section className="py-20 px-6" id="skills">
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
