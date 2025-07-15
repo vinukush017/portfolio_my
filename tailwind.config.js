@@ -16,6 +16,12 @@ module.exports = {
       backgroundImage: {
         "text-gradient": "linear-gradient(to right, #6366f1, #9333ea, #ec4899)",
       },
+      animation: {
+        "spin-slow": "spin 8s linear infinite",
+      },
+      boxShadow: {
+        glow: "0 0 10px rgba(99,102,241,0.8), 0 0 20px rgba(99,102,241,0.4)",
+      },
     },
   },
   plugins: [],

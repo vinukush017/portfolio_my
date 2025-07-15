@@ -1,4 +1,3 @@
-// components/ScrollToTop.tsx
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -6,12 +5,12 @@ const ScrollToTop = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
+    const handleScroll = () => {
       setShow(window.scrollY > 300);
     };
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
@@ -22,25 +21,50 @@ const ScrollToTop = () => {
     show && (
       <motion.button
         onClick={scrollToTop}
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.3 }}
-        className="fixed bottom-[50px] right-[50px] h-[45px] w-[45px] p-[5px] 
-  rounded-full z-50 bg-indigo-600 text-white hover:bg-indigo-700 
-  shadow-lg ring-2 ring-white dark:ring-indigo-300 transition"
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        whileHover={{ scale: 1.15 }}
+        whileTap={{ scale: 0.95 }}
+        className="fixed bottom-6 right-6 z-50 group"
         aria-label="Scroll to top"
       >
-        <svg
-          stroke="currentColor"
-          fill="none"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polyline points="18 15 12 9 6 15" />
-        </svg>
+        <div className="relative w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-indigo-500/40 shadow-xl hover:shadow-indigo-400 transition duration-300 ease-in-out overflow-hidden">
+          {/* Orbit Ring */}
+          <div className="absolute inset-0 animate-spin-slow rounded-full border-t-2 border-indigo-500/70 border-opacity-40"></div>
+
+          {/* Center Dot */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-3 h-3 rounded-full bg-indigo-500 shadow-[0_0_12px_4px_rgba(99,102,241,0.6)]"
+            style={{ translateX: "-50%", translateY: "-50%" }}
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut",
+            }}
+          />
+
+          {/* Up Arrow */}
+          <motion.svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 absolute top-1/2 left-1/2 text-indigo-300 group-hover:text-indigo-100 transition"
+            style={{ translateX: "-50%", translateY: "-50%" }}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+            animate={{ y: [0, -4, 0] }}
+            transition={{
+              duration: 1.4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <polyline points="18 15 12 9 6 15" strokeLinecap="round" strokeLinejoin="round" />
+          </motion.svg>
+        </div>
       </motion.button>
     )
   );

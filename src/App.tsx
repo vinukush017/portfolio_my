@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import { Helmet } from "react-helmet";
 import GalaxyBackground from "./components/DotBackground";
 import ScrollToTop from "./components/ScrollToTop";
+import { motion } from "framer-motion";
+import { fadeInUp } from "./components/motionVariants"; // path may vary
 
 function App() {
   return (
@@ -22,37 +24,72 @@ function App() {
         <meta name="author" content="Vinay Kushwah" />
         <link rel="icon" href="/favicon.ico" />
       </Helmet>
+
       <div className="relative min-h-screen bg-white text-gray-900 dark:bg-black dark:text-white">
         <GalaxyBackground />
+
         <main className="relative z-10 scroll-smooth snap-y snap-mandatory">
+          {/* Hero Section (no scroll animation for initial load) */}
           <section id="home" className="snap-start">
             <HeroSection />
           </section>
-          <section id="about" className="snap-start bg-white dark:bg-black">
-            <AboutSection />
-          </section>
 
-          <section
+          {/* Animate each section on scroll */}
+          <motion.section
+            id="about"
+            className="snap-start bg-white dark:bg-black"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <AboutSection />
+          </motion.section>
+
+          <motion.section
             id="projects"
             className="snap-start bg-gray-100 dark:bg-gray-900"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
             <Projects />
-          </section>
+          </motion.section>
 
-          <section id="skills" className="snap-start bg-white dark:bg-black">
+          <motion.section
+            id="skills"
+            className="snap-start bg-white dark:bg-black"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             <Skills />
-          </section>
+          </motion.section>
 
-          <section
+          <motion.section
             id="experience"
             className="snap-start bg-gray-100 dark:bg-gray-900"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
             <Experience />
-          </section>
+          </motion.section>
 
-          <section id="contact" className="snap-start bg-white dark:bg-black">
+          <motion.section
+            id="contact"
+            className="snap-start bg-white dark:bg-black"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             <Contact />
-          </section>
+          </motion.section>
+
           <Footer />
           <ScrollToTop />
         </main>
