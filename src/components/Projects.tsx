@@ -57,7 +57,10 @@ const Projects = () => {
   const navRef = useRef<HTMLDivElement>(null);
   const [focused, setFocused] = useState(0);
   const rotationAmt = 360 / projects.length;
-  const radius = 400 / (2 * Math.sin(Math.PI / projects.length));
+  const isMobile = window.innerWidth < 640;
+  const radius = isMobile
+    ? 250 / (2 * Math.sin(Math.PI / projects.length))
+    : 400 / (2 * Math.sin(Math.PI / projects.length));
   const distToEdge = Math.round(Math.sqrt(radius ** 2 - 200 ** 2) + 30);
 
   const updateCarousel = (index: number) => {
@@ -106,7 +109,7 @@ const Projects = () => {
         Projects
       </h2>
 
-      <div className="project-data-wrapper relative flex justify-center items-center perspective-[100em] min-h-[450px]">
+      <div className="project-data-wrapper relative flex justify-center items-center perspective-[100em] min-h-[450px] overflow-x-hidden px-2">
         <div
           className="project-data absolute left-1/2 h-full flex items-center"
           ref={wrapperRef}
@@ -118,7 +121,7 @@ const Projects = () => {
           {projects.map((proj, i) => (
             <div
               key={i}
-              className="project-card bg-white dark:bg-gray-900 rounded-xl shadow-md p-4 w-[320px] h-[460px] max-w-xs transition-all duration-300 ease-in-out"
+              className="project-card bg-white dark:bg-gray-900 rounded-xl shadow-md p-3 sm:p-4 w-[250px] sm:w-[320px] h-[400px] sm:h-[460px] max-w-xs transition-all duration-300 ease-in-out"
               style={{
                 transform: `translateX(-50%) rotateY(${
                   i * (360 / projects.length)
@@ -164,7 +167,7 @@ const Projects = () => {
 
         {/* Arrows */}
         <div
-          className="arrow-left absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 text-3xl text-green-500 cursor-pointer"
+          className="arrow-left absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 text-2xl sm:text-3xl text-green-500 cursor-pointer"
           onClick={() =>
             setFocused((prev) => (prev - 1 + projects.length) % projects.length)
           }
@@ -172,13 +175,13 @@ const Projects = () => {
           ❮
         </div>
         <div
-          className="arrow-right absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 text-3xl text-green-500 cursor-pointer"
+          className="arrow-right absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 text-2xl sm:text-3xl text-green-500 cursor-pointer"
           onClick={() => setFocused((prev) => (prev + 1) % projects.length)}
         >
           ❯
         </div>
       </div>
-      <div ref={navRef} className="navigation mt-10 flex justify-center gap-3">
+      <div ref={navRef} className="navigation mt-6 sm:mt-10 flex justify-center gap-2 sm:gap-3">
         {projects.map((_, i) => (
           <div
             key={i}

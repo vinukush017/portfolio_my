@@ -64,7 +64,7 @@ const TextScramblerCycler: React.FC<Props> = ({
     <span
       className={`${className} transition-colors duration-700 ${
         revealed ? "text-gradient" : "text-gray-400"
-      }`}
+      } break-words`}
     >
       {displayed}
     </span>

@@ -5,7 +5,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="scroll-mt-24 py-20 px-6 sm:px-12 md:px-20 text-gray-900 dark:text-white flex items-center"
+      className="scroll-mt-24 py-20 px-6 sm:px-8 md:px-20 text-gray-900 dark:text-white flex items-center"
     >
       <motion.div
         className="max-w-4xl mx-auto text-center"
@@ -18,14 +18,14 @@ const About = () => {
           About Me
         </h2>
 
-        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+        <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
           I’m <span className="font-semibold">Vinay Kushwah</span>, a full stack
           developer based in Pune with <strong>4+ years of experience</strong>{" "}
           crafting scalable, high-performance web applications using the MERN
           stack.
         </p>
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+        <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
           I specialize in building fast, user-focused frontends with{" "}
           <strong>React.js</strong> and scalable backend systems using{" "}
           <strong>Node.js</strong> and <strong>Express</strong>. I'm also
@@ -33,13 +33,13 @@ const About = () => {
           , and DevOps tools like <strong>AWS S3</strong> and GitHub Actions.
         </p>
 
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+        <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
           From architecting APIs that reduce load time to designing reusable UI
           components with <strong>Tailwind CSS</strong>, I aim to write clean,
           maintainable code that delivers real business value.
         </p>
 
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-4">
           I’m a strong believer in lifelong learning, team collaboration, and
           building products that users genuinely enjoy using.
         </p>

@@ -10,6 +10,8 @@ html {
 /* Base body styles */
 body {
   @apply bg-white text-gray-900 dark:bg-black dark:text-white;
+  @apply overflow-x-hidden;
+
 }
 
 /* Optional gradient text - keep if used somewhere */
@@ -69,3 +71,8 @@ body {
   border-color: #68d372;
 }
 
+canvas {
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+}

@@ -26,7 +26,7 @@ const ScrollToTop = () => {
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
         whileHover={{ scale: 1.15 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-6 right-6 z-50 group"
+        className="fixed bottom-6 right-6 z-50 group max-w-screen overflow-hidden"
         aria-label="Scroll to top"
       >
         <div className="relative w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-indigo-500/40 shadow-xl hover:shadow-indigo-400 transition duration-300 ease-in-out overflow-hidden">

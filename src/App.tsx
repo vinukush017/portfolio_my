@@ -9,7 +9,8 @@ import { Helmet } from "react-helmet";
 import GalaxyBackground from "./components/DotBackground";
 import ScrollToTop from "./components/ScrollToTop";
 import { motion } from "framer-motion";
-import { fadeInUp } from "./components/motionVariants"; // path may vary
+import { fadeInUp } from "./components/motionVariants";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   return (
@@ -35,63 +36,65 @@ function App() {
           </section>
 
           {/* Animate each section on scroll */}
-          <motion.section
-            id="about"
-            className="snap-start bg-white dark:bg-black"
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <AboutSection />
-          </motion.section>
+          <AnimatePresence>
+            <motion.section
+              id="projects"
+              className="snap-start bg-white dark:bg-black"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Projects />
+            </motion.section>
 
-          <motion.section
-            id="projects"
-            className="snap-start bg-gray-100 dark:bg-gray-900"
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <Projects />
-          </motion.section>
+            <motion.section
+              id="about"
+              className="snap-start bg-gray-100 dark:bg-gray-900"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <AboutSection />
+            </motion.section>
 
-          <motion.section
-            id="skills"
-            className="snap-start bg-white dark:bg-black"
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <Skills />
-          </motion.section>
+            <motion.section
+              id="skills"
+              className="snap-start bg-white dark:bg-black"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Skills />
+            </motion.section>
 
-          <motion.section
-            id="experience"
-            className="snap-start bg-gray-100 dark:bg-gray-900"
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <Experience />
-          </motion.section>
+            <motion.section
+              id="experience"
+              className="snap-start bg-gray-100 dark:bg-gray-900"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Experience />
+            </motion.section>
 
-          <motion.section
-            id="contact"
-            className="snap-start bg-white dark:bg-black"
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <Contact />
-          </motion.section>
+            <motion.section
+              id="contact"
+              className="snap-start bg-white dark:bg-black"
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Contact />
+            </motion.section>
 
-          <Footer />
-          <ScrollToTop />
+            <Footer />
+            <ScrollToTop />
+          </AnimatePresence>
         </main>
       </div>
     </>
