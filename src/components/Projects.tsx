@@ -29,6 +29,18 @@ const projects = [
     stack: ["React", "Tailwind", "Vercel", "Node.js", "MongoDB"],
   },
   {
+    title: "Vinay Kushwah Portfolio",
+    description:
+      "A visually polished and interactive developer portfolio showcasing projects, skills, and experience. Built with React, Tailwind CSS, Framer Motion, and a custom canvas-based galaxy background.",
+    link: "https://vinay-kushwah.vercel.app",
+    image: [
+      "/projects/vinay-kushwah.vercel.app_.png",
+      "/projects/vinay-kushwah.vercel.app_(1).png",
+      "/projects/vinay-kushwah.vercel.app_(2).png",
+    ],
+    stack: ["React", "Tailwind","Framer Motion", "Vercel"],
+  },
+  {
     title: "Car Daddy CRM",
     description:
       "Built a scalable car registration and customer management system with JWT auth, AWS S3, and real-time WhatsApp/email integrations.",
