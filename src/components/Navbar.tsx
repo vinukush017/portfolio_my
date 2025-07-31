@@ -3,7 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
-  const links = ["About", "Skills", "Projects", "Experience", "Contact"];
+  const links = [
+    "About",
+    "Projects",
+    "About",
+    "Skills",
+    "Experience",
+    "Contact",
+  ];
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== "undefined") {
       return localStorage.getItem("theme") === "dark";
@@ -23,7 +30,8 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="z-20 w-full bg-transparent text-gray-900 dark:text-white py-2 sm:py-4 px-4 sm:px-6 md:px-8 shadow-md overflow-x-hidden"
+      // className="z-20 w-full bg-transparent text-gray-900 dark:text-white py-2 sm:py-4 px-4 sm:px-6 md:px-8 shadow-md overflow-x-hidden"
+      className="fixed top-0 left-0 w-full z-30 bg-transparent text-gray-900 dark:text-white py-4 px-6 shadow-md"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}

@@ -9,15 +9,15 @@ const HeroSection = () => {
       <Navbar />
       <section
         id="home"
-        className="snap-start h-screen w-full overflow-hidden flex flex-col justify-center items-center bg-transparent text-gray-900 dark:text-white px-6 sm:px-8 md:px-12 relative"
+        className="snap-start h-screen w-full overflow-hidden flex flex-col justify-center items-center bg-transparent text-gray-900 dark:text-white px-6 sm:px-8 md:px-12 relative "
       >
         <motion.div
-          className="max-w-4xl mx-auto text-center pt-8 sm:pt-20 pb-24 sm:pb-36 px-2 overflow-hidden"
+          className="max-w-4xl mx-auto text-center pt-10 sm:pt-0 pb-24 sm:pb-24 px-2 overflow-hidden"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-3xl sm:text-5xl font-semibold mb-4 leading-snug break-words">
+          <h1 className="text-3xl sm:text-5xl font-semibold mb-4 leading-snug break-words pt-10 md:pt-14 sm:pt-0">
             Heya 👋, I'm Vinay
           </h1>
 
@@ -36,7 +36,7 @@ const HeroSection = () => {
             Pune, India
           </h2>
 
-          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-8 pt-0 md:pt-10">
             Empowering businesses with scalable web applications and clean,
             modern code. I bring 4+ years of real-world MERN stack experience —
             from intuitive frontends to optimized backends. Let’s build
@@ -58,7 +58,7 @@ const HeroSection = () => {
             >
               Contact Me
             </a>
-            <SocialIcons />
+            <SocialIcons/>
           </div>
         </motion.div>
 

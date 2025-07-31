@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -8,11 +8,19 @@ const socialLinks = [
     icon: <FaGithub />,
     link: "https://github.com/vinaykushwah017",
     label: "GitHub",
+    color: "text-gray-800 dark:text-white",
   },
   {
     icon: <FaLinkedin />,
     link: "https://linkedin.com/in/vinaykushwah017",
     label: "LinkedIn",
+    color: "text-blue-600",
+
+  },
+  {
+    icon: <FaInstagram />,
+    link: "https://www.instagram.com/azad__parinda__17",
+    label: "Instagram",
   },
 ];
 
@@ -28,6 +36,8 @@ const contactLinks = [
     label: "Email",
   },
 ];
+
+
 
 const SocialBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -79,7 +89,7 @@ const SocialBar = () => {
 
       {/* 📱 Mobile Floating Button + Panel (Left) */}
       {/* Toggle Button */}
-      <div className="fixed bottom-6 left-6 z-50 md:hidden">
+      {/* <div className="fixed bottom-6 left-6 z-50 md:hidden">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className="bg-indigo-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-indigo-700 transition"
@@ -87,7 +97,7 @@ const SocialBar = () => {
         >
           {isOpen ? "✕" : "+"}
         </button>
-      </div>
+      </div> */}
 
       {/* Panel & Backdrop */}
       <AnimatePresence>
