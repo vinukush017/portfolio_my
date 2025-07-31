@@ -5,7 +5,7 @@ const projects = [
   {
     title: "My Task Board",
     description:
-      "A full-stack productivity app with user authentication, task creation, prioritization, status tracking, and board/list views. Features category filters, due dates, and responsive UI with PostgreSQL and Prisma backend.",
+      "A full-stack productivity app with user authentication (email/password, Google, and GitHub), task creation, prioritization, status tracking, and board/list views. Features category filters, due dates, and a fully responsive UI. Built with PostgreSQL and Prisma backend.",
     link: "https://my-task-board-frontend.vercel.app/",
     image: [
       "/projects/my-task-board-app-login.png",
