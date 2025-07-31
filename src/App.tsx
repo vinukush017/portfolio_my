@@ -39,7 +39,7 @@ function App() {
           <AnimatePresence>
             <motion.section
               id="projects"
-              className="snap-start bg-white dark:bg-black"
+              className="snap-start "
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
@@ -50,7 +50,7 @@ function App() {
 
             <motion.section
               id="about"
-              className="snap-start bg-gray-100 dark:bg-gray-900"
+              className="snap-start "
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
@@ -61,7 +61,7 @@ function App() {
 
             <motion.section
               id="skills"
-              className="snap-start bg-white dark:bg-black"
+              className="snap-start "
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
@@ -72,7 +72,7 @@ function App() {
 
             <motion.section
               id="experience"
-              className="snap-start bg-gray-100 dark:bg-gray-900"
+              className="snap-start "
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
@@ -83,7 +83,7 @@ function App() {
 
             <motion.section
               id="contact"
-              className="snap-start bg-white dark:bg-black"
+              className="snap-start "
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"

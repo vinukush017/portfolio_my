@@ -9,7 +9,7 @@ const HeroSection = () => {
       <Navbar />
       <section
         id="home"
-        className="snap-start w-full overflow-hidden flex flex-col justify-center items-center bg-transparent text-gray-900 dark:text-white px-6 sm:px-8 md:px-12 relative"
+        className="snap-start h-screen w-full overflow-hidden flex flex-col justify-center items-center bg-transparent text-gray-900 dark:text-white px-6 sm:px-8 md:px-12 relative"
       >
         <motion.div
           className="max-w-4xl mx-auto text-center pt-8 sm:pt-20 pb-24 sm:pb-36 px-2 overflow-hidden"

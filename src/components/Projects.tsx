@@ -1,27 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import React from "react";
+import { motion } from "framer-motion";
 
 const projects = [
   {
-    title: "Car Daddy CRM",
+    title: "My Task Board",
     description:
-      "Built a scalable car registration and customer management system with secure JWT authentication, AWS S3 file storage, and real-time WhatsApp/email integrations.",
-    link: "https://www.cardaddys.co.uk/",
-    image: "/projects/fact-gully.png", // Make sure this path is valid
-    stack: ["React", "Node.js", "MongoDB"],
-  },
-  {
-    title: "DropChat AI",
-    description:
-      "Developed an AI chatbot builder with OpenAI APIs, document training, and embeddable bots. Boosted engagement by 40%.",
-    link: "https://app.dropchat.co/",
-    image: "/projects/fact-gully.png",
-    stack: ["OpenAI", "React", "MongoDB"],
+      "A full-stack productivity app with user authentication, task creation, prioritization, status tracking, and board/list views. Features category filters, due dates, and responsive UI with PostgreSQL and Prisma backend.",
+    link: "https://my-task-board-frontend.vercel.app/",
+    image: "/projects/my-task-board-frontend-main-white.png",
+    stack: ["React", "Node.js", "PostgreSQL", "Prisma", "Tailwind"],
   },
   {
     title: "FactGully",
     description:
-      "Launched a fact-sharing platform with daily themes in science, history, and myths. Built in React and Vercel.",
+      "A fact-sharing platform with daily themes in science, history, and myths. Built in React and Vercel.",
     link: "https://fact-gully.vercel.app",
     image: "/projects/fact-gully.png",
     stack: ["React", "Tailwind", "Vercel"],
@@ -29,166 +21,80 @@ const projects = [
   {
     title: "Car Daddy CRM",
     description:
-      "Built a scalable car registration and customer management system with secure JWT authentication, AWS S3 file storage, and real-time WhatsApp/email integrations.",
+      "Built a scalable car registration and customer management system with JWT auth, AWS S3, and real-time WhatsApp/email integrations.",
     link: "https://www.cardaddys.co.uk/",
-    image: "/projects/fact-gully.png", // Make sure this path is valid
+    image: "/projects/fact-gully.png",
     stack: ["React", "Node.js", "MongoDB"],
   },
   {
     title: "DropChat AI",
     description:
-      "Developed an AI chatbot builder with OpenAI APIs, document training, and embeddable bots. Boosted engagement by 40%.",
+      "AI chatbot builder with OpenAI APIs, document training, and embeddable bots. Boosted engagement by 40%.",
     link: "https://app.dropchat.co/",
     image: "/projects/fact-gully.png",
     stack: ["OpenAI", "React", "MongoDB"],
-  },
-  {
-    title: "FactGully",
-    description:
-      "Launched a fact-sharing platform with daily themes in science, history, and myths. Built in React and Vercel.",
-    link: "https://fact-gully.vercel.app",
-    image: "/projects/fact-gully.png",
-    stack: ["React", "Tailwind", "Vercel"],
   },
 ];
 
 const Projects = () => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const navRef = useRef<HTMLDivElement>(null);
-  const [focused, setFocused] = useState(0);
-  const rotationAmt = 360 / projects.length;
-  const isMobile = window.innerWidth < 640;
-  const radius = isMobile
-    ? 250 / (2 * Math.sin(Math.PI / projects.length))
-    : 400 / (2 * Math.sin(Math.PI / projects.length));
-  const distToEdge = Math.round(Math.sqrt(radius ** 2 - 200 ** 2) + 30);
-
-  const updateCarousel = (index: number) => {
-    const wrapper = wrapperRef.current;
-    const navDots = navRef.current?.children;
-
-    if (wrapper) {
-      gsap.to(wrapper, {
-        rotationY: -index * rotationAmt,
-        duration: 1,
-        ease: "power2.inOut",
-      });
-
-      Array.from(wrapper.children).forEach((child, i) => {
-        child.classList.toggle("focused", i === index);
-        if (navDots && navDots[i]) {
-          navDots[i].classList.toggle("focused", i === index);
-        }
-      });
-    }
-  };
-
-  useEffect(() => {
-    if (wrapperRef.current) {
-      wrapperRef.current.style.setProperty("--distance", `${distToEdge}px`);
-    }
-    updateCarousel(focused);
-
-    const interval = setInterval(() => {
-      setFocused((prev) => {
-        const next = (prev + 1) % projects.length;
-        updateCarousel(next);
-        return next;
-      });
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [focused]);
-
   return (
-    <section
-      id="projects"
-      className="py-20 px-4 bg-white dark:bg-gray-950 text-center relative"
-    >
-      <h2 className="text-4xl font-bold mb-12 text-gray-900 dark:text-white">
-        Projects
-      </h2>
+    <section id="projects" className="py-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white">
+          Projects
+        </h2>
 
-      <div className="project-data-wrapper relative flex justify-center items-center perspective-[100em] min-h-[450px] overflow-x-hidden px-2">
-        <div
-          className="project-data absolute left-1/2 h-full flex items-center"
-          ref={wrapperRef}
-          style={{
-            transformStyle: "preserve-3d",
-            transform: "translateZ(calc(var(--distance) * -1))",
-          }}
-        >
-          {projects.map((proj, i) => (
-            <div
-              key={i}
-              className="project-card bg-white dark:bg-gray-900 rounded-xl shadow-md p-3 sm:p-4 w-[250px] sm:w-[320px] h-[400px] sm:h-[460px] max-w-xs transition-all duration-300 ease-in-out"
-              style={{
-                transform: `translateX(-50%) rotateY(${
-                  i * (360 / projects.length)
-                }deg) translateZ(${distToEdge}px)`,
-              }}
+        <div className="grid gap-8 sm:grid-cols-2">
+          {projects.map((proj, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group backdrop-blur-md bg-white/20 dark:bg-white/5 border border-white/10 dark:border-white/10 rounded-xl overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
             >
-              <img
-                src={proj.image}
-                alt={proj.title}
-                className="w-full h-48 object-cover rounded mb-3"
-              />
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-1">
-                {proj.title}
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 max-h-24 overflow-y-auto">
-                {proj.description}
-              </p>
+              <div className="relative overflow-hidden">
+                <img
+                  src={proj.image}
+                  alt={proj.title}
+                  className="w-full h-50 object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-500 ease-in-out"
+                />
+              </div>
 
-              <div className="flex flex-wrap gap-2 justify-center mb-3">
-                {proj.stack.map((tech, index) => (
-                  <span
-                    key={index}
-                    className="bg-gray-700 text-white px-2 py-1 text-xs rounded stack-badge"
+              <div className="p-4 flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white tracking-tight">
+                    {proj.title}
+                  </h3>
+                  <a
+                    href={proj.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline transition"
                   >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+                    Visit →
+                  </a>
+                </div>
 
-              <div className="flex justify-center gap-4">
-                <a
-                  href={proj.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-green-500 text-white px-3 py-1 rounded text-sm font-medium flex items-center gap-1 hover:bg-green-600"
-                >
-                  <i className="fas fa-code"></i> View Demo
-                </a>
+                <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
+                  {proj.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {proj.stack.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-2 py-0.5 rounded-full bg-indigo-200 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-100 font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-
-        {/* Arrows */}
-        <div
-          className="arrow-left absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 text-2xl sm:text-3xl text-green-500 cursor-pointer"
-          onClick={() =>
-            setFocused((prev) => (prev - 1 + projects.length) % projects.length)
-          }
-        >
-          ❮
-        </div>
-        <div
-          className="arrow-right absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 text-2xl sm:text-3xl text-green-500 cursor-pointer"
-          onClick={() => setFocused((prev) => (prev + 1) % projects.length)}
-        >
-          ❯
-        </div>
-      </div>
-      <div ref={navRef} className="navigation mt-6 sm:mt-10 flex justify-center gap-2 sm:gap-3">
-        {projects.map((_, i) => (
-          <div
-            key={i}
-            className="nav-dot w-3 h-3 bg-white border border-gray-400 rounded-full cursor-pointer transition-all duration-300"
-            onClick={() => setFocused(i)}
-          ></div>
-        ))}
       </div>
     </section>
   );

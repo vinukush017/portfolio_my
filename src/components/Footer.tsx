@@ -5,36 +5,27 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-t from-indigo-700 to-indigo-600 dark:from-indigo-800 dark:to-indigo-700 text-white text-center py-10 px-4 rounded-t-2xl shadow-inner">
+    <footer className="bg-gradient-to-t from-indigo-700 to-indigo-600 dark:from-indigo-800 dark:to-indigo-700 text-white text-center py-6 px-3 rounded-t-xl shadow-inner text-xs">
       {/* Copyright */}
-      <p className="text-sm mb-3 text-gray-100">
+      <p className="mb-2 text-gray-100">
         &copy; {year} <span className="font-semibold text-white">Vinay Kushwah</span>. All rights reserved.
       </p>
 
       {/* Navigation Links */}
-      <div className="flex flex-wrap justify-center gap-6 text-sm mb-4">
-        <a href="#home" className="hover:underline hover:text-indigo-200 transition">
-          Home
-        </a>
-        <a href="#about" className="hover:underline hover:text-indigo-200 transition">
-          About
-        </a>
-        <a href="#projects" className="hover:underline hover:text-indigo-200 transition">
-          Projects
-        </a>
-        <a href="#skills" className="hover:underline hover:text-indigo-200 transition">
-          Skills
-        </a>
-        <a href="#experience" className="hover:underline hover:text-indigo-200 transition">
-          Experience
-        </a>
-        <a href="#contact" className="hover:underline hover:text-indigo-200 transition">
-          Contact
-        </a>
+      <div className="flex flex-wrap justify-center gap-4 mb-2">
+        {["home", "about", "projects", "skills", "experience", "contact"].map((section) => (
+          <a
+            key={section}
+            href={`#${section}`}
+            className="hover:underline hover:text-indigo-200 transition"
+          >
+            {section.charAt(0).toUpperCase() + section.slice(1)}
+          </a>
+        ))}
       </div>
 
       {/* Social Icons */}
-      <div className="flex justify-center gap-6 text-xl mb-4">
+      <div className="flex justify-center gap-4 text-lg mb-2">
         <a
           href="https://github.com/vinaykushwah017"
           target="_blank"
@@ -56,8 +47,8 @@ const Footer = () => {
       </div>
 
       {/* Freelance CTA */}
-      <p className="text-sm text-indigo-100">
-        Open to freelance or full-time opportunities —{" "}
+      <p className="text-indigo-100 mb-1">
+        Open to freelance or full-time roles —{" "}
         <a href="#contact" className="underline hover:text-indigo-200">
           let’s connect
         </a>
@@ -65,7 +56,7 @@ const Footer = () => {
       </p>
 
       {/* Stack Message */}
-      <p className="text-xs text-indigo-300 mt-4">
+      <p className="text-[10px] text-indigo-300">
         Built with <span className="font-medium">React + TypeScript</span> and styled with{" "}
         <span className="font-medium">Tailwind CSS</span>.
       </p>

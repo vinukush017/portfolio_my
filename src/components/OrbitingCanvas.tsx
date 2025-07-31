@@ -19,7 +19,7 @@ const OrbitingCanvas = () => {
     const centerX = () => w / 2;
     const centerY = () => h / 2;
 
-    const bigDots = Array.from({ length: 20 }, (_, i) => ({
+    const bigDots = Array.from({ length: 10 }, (_, i) => ({
       radius: 4,
       distance: 70 + i * 40,
       angle: Math.random() * Math.PI * 2,
@@ -27,7 +27,7 @@ const OrbitingCanvas = () => {
       color: "#fff",
     }));
 
-    const redDots = Array.from({ length: 40 }, (_, i) => ({
+    const redDots = Array.from({ length: 20 }, (_, i) => ({
       radius: 2.5,
       distance: 150 + i * 35,
       angle: Math.random() * Math.PI * 2,
@@ -35,7 +35,7 @@ const OrbitingCanvas = () => {
       color: "#ff3b3b",
     }));
 
-    const smallDots = Array.from({ length: 400 }, (_, i) => ({
+    const smallDots = Array.from({ length: 150 }, (_, i) => ({
       radius: 1,
       parentIndex: i % redDots.length,
       distance: 20 + Math.random() * 30,
@@ -50,28 +50,30 @@ const OrbitingCanvas = () => {
       const cx = centerX();
       const cy = centerY();
 
-      ctx.beginPath();
-      ctx.arc(cx, cy, 50, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
-      ctx.shadowColor = "rgba(255, 255, 255, 0.3)";
-      ctx.shadowBlur = 30;
-      ctx.fill();
-      ctx.shadowBlur = 0;
+      // Below are the We can black hole type center circle but remove now 
+
+      // ctx.beginPath();
+      // ctx.arc(cx, cy, 50, 0, Math.PI * 2);
+      // ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+      // ctx.shadowColor = "rgba(255, 255, 255, 0.3)";
+      // ctx.shadowBlur = 30;
+      // ctx.fill();
+      // ctx.shadowBlur = 0;
 
       // Accretion glow ring
-      ctx.beginPath();
-      ctx.arc(cx, cy, 40, 0, Math.PI * 2);
-      const gradient = ctx.createRadialGradient(cx, cy, 5, cx, cy, 14);
-      gradient.addColorStop(0, "rgba(255, 255, 255, 0.3)");
-      gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
-      ctx.fillStyle = gradient;
-      ctx.fill();
+      // ctx.beginPath();
+      // ctx.arc(cx, cy, 40, 0, Math.PI * 2);
+      // const gradient = ctx.createRadialGradient(cx, cy, 5, cx, cy, 14);
+      // gradient.addColorStop(0, "rgba(255, 255, 255, 0.3)");
+      // gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+      // ctx.fillStyle = gradient;
+      // ctx.fill();
 
       // Black core
-      ctx.beginPath();
-      ctx.arc(cx, cy, 20, 0, Math.PI * 2);
-      ctx.fillStyle = "#000000";
-      ctx.fill();
+      // ctx.beginPath();
+      // ctx.arc(cx, cy, 20, 0, Math.PI * 2);
+      // ctx.fillStyle = "#000000";
+      // ctx.fill();
 
       for (const dot of bigDots) {
         dot.angle += dot.speed;
@@ -124,7 +126,7 @@ const OrbitingCanvas = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-screen h-screen max-w-full max-h-screen overflow-hidden z-10 pointer-events-none"
+      className="fixed inset-0 w-screen h-screen max-w-full max-h-screen overflow-hidden z-0 pointer-events-none"
     />
   );
 };

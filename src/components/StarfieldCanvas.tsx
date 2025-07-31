@@ -12,7 +12,7 @@ const StarfieldCanvas = () => {
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      stars = Array.from({ length: 700 }, () => ({
+      stars = Array.from({ length: 400 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         radius: Math.random() * 1.4 + 0.2,
@@ -114,7 +114,7 @@ const StarfieldCanvas = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-screen h-screen max-w-full max-h-screen overflow-hidden z-10 pointer-events-none"
+      className="fixed inset-0 w-screen h-screen max-w-full max-h-screen overflow-hidden z-0 pointer-events-none"
     />
   );
 };
