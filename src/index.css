@@ -76,3 +76,36 @@ canvas {
   max-height: 100vh;
   overflow: hidden;
 }
+@layer utilities {
+  .border-wrapper::before {
+    content: "";
+    position: absolute;
+    width: 5rem;
+    height: 17rem;
+    left: 4.5rem;
+    top: -40%;
+    background: var(--tw-border-color, #4f46e5);
+    animation: rotate-bar 6s linear infinite;
+    border-radius: 10px;
+  }
+
+  .border-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border-radius: 20px;
+    background-color: theme("colors.white");
+    background-color: theme("colors.gray.900") !important;
+    z-index: 0;
+  }
+
+  @keyframes rotate-bar {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
