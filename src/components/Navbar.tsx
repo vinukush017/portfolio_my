@@ -36,9 +36,19 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2 font-bold text-xl whitespace-nowrap">
-          <span className="text-2xl">⇨</span>
-          <span className="w-3 h-3 rounded-full bg-black dark:bg-white"></span>
-          <a href="#home">Vinay</a>
+          <a href="#home">
+            <img
+              src="/V.png"
+              className="h-12 block dark:hidden"
+              alt="Logo"
+            />
+            {/* Dark mode logo */}
+            <img
+              src="/V-2.png"
+              className="h-12 hidden dark:block"
+              alt="Logo (Dark)"
+            />
+          </a>
         </div>
 
         {/* Desktop Nav */}

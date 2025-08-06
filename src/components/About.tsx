@@ -18,7 +18,7 @@ const About = () => {
           About Me
         </h2>
 
-        <div className="bg-gray-100 dark:bg-gray-900 p-8">
+        <div className="bg-gray-100 dark:bg-gray-900 p-8 rounded-lg">
           <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
             I’m <span className="font-semibold">Vinay Kushwah</span>, a full
             stack developer based in Pune with{" "}

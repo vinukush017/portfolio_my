@@ -95,9 +95,13 @@ canvas {
     inset: 5px;
     border-radius: 20px;
     background-color: theme("colors.white");
-    background-color: theme("colors.gray.900") !important;
+    /* background-color: theme("colors.gray.900") !important; */
     z-index: 0;
   }
+  .dark .border-wrapper::after {
+    background-color: theme("colors.gray.900"); /* dark mode */
+  }
+
 
   @keyframes rotate-bar {
     0% {
