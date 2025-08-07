@@ -16,11 +16,14 @@ function App() {
   return (
     <>
       <Helmet htmlAttributes={{ lang: "en" }}>
-        <title>Vinay - Portfolio</title>
+        <title>
+          Vinay Kushwah - Full Stack Developer | Portfolio & Projects
+        </title>
         <meta
           name="description"
-          content="Portfolio of Vinay Kushwah — Developer, Creator, and Problem Solver."
+          content="Official portfolio of Vinay Kushwah, Full Stack Developer specializing in React.js and Node.js. Explore projects, skills, experience, and contact info."
         />
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Vinay Kushwah" />
         <link rel="icon" href="/favicon.ico" />

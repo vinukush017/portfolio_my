@@ -12,13 +12,16 @@ const HeroSection = () => {
         className="snap-start h-screen w-full overflow-hidden flex flex-col justify-center items-center bg-transparent text-gray-900 dark:text-white px-6 sm:px-8 md:px-12 relative "
       >
         <motion.div
-          className="max-w-4xl mx-auto text-center pt-10 sm:pt-0 pb-24 sm:pb-24 px-2 overflow-hidden"
+          className="max-w-4xl mx-auto text-center pt-10 sm:pt-10 pb-20 sm:pb-20 px-2 overflow-hidden"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-3xl sm:text-5xl font-semibold mb-4 leading-snug break-words pt-10 md:pt-14 sm:pt-0">
-            Heya 👋, I'm Vinay
+          <p className="text-3xl sm:text-5xl font-semibold mb-4 leading-snug break-words pt-10 md:pt-14 sm:pt-0">
+            Heya 👋, I'm
+          </p>
+          <h1 className="text-4xl sm:text-6xl font-bold leading-tight text-indigo-600 dark:text-indigo-400 pb-5">
+            Vinay Kushwah
           </h1>
 
           <TextScrambler
@@ -58,7 +61,7 @@ const HeroSection = () => {
             >
               Contact Me
             </a>
-            <SocialIcons/>
+            <SocialIcons />
           </div>
         </motion.div>
 
