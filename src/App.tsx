@@ -28,6 +28,12 @@ function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Vinay Kushwah" />
         <link rel="icon" href="/favicon.ico" />
+        <script
+          defer
+          src="https://speed-insights.vercel.app/script.js"
+          data-sdkn="@vercel/speed-insights"
+          data-auto
+        ></script>
       </Helmet>
       <JsonLd />
 
