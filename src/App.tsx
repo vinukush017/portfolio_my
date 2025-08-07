@@ -11,6 +11,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { motion } from "framer-motion";
 import { fadeInUp } from "./components/motionVariants";
 import { AnimatePresence } from "framer-motion";
+import JsonLd from "./components/seo/JsonLd";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <meta name="author" content="Vinay Kushwah" />
         <link rel="icon" href="/favicon.ico" />
       </Helmet>
+      <JsonLd />
 
       <div className="relative min-h-screen bg-white text-gray-900 dark:bg-black dark:text-white">
         <GalaxyBackground />
