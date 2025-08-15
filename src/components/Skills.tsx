@@ -17,12 +17,12 @@ import {
 } from "react-icons/si";
 
 const skillIcons: Record<string, JSX.Element> = {
+  "Node.js": <FaNodeJs />,
   "React.js": <FaReact />,
   JavaScript: <FaJs />,
   TypeScript: <SiTypescript />,
   HTML: <FaHtml5 />,
   CSS: <FaCss3Alt />,
-  "Node.js": <FaNodeJs />,
   "Express.js": <SiExpress />,
   "REST APIs": <SiExpress />,
   MongoDB: <SiMongodb />,

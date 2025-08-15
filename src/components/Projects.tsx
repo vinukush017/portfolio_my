@@ -1,16 +1,30 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const projects = [
+  {
+    title: "DharmaPath",
+    description:
+      "A spiritual platform providing bhajans, shlokas, chalisas, and divine knowledge in Hindi. Built with React, Tailwind CSS, and a mobile-first responsive design.",
+    link: "https://dharmapath.in",
+    image: [
+      "/projects/dharmapath-main.webp",
+      "/projects/dharmapath-gods.webp",
+      "/projects/dharmapath-divine.webp",
+      "/projects/dharmapath-aarti.webp",
+    ],
+    stack: ["React", "Tailwind CSS"],
+  },
+
   {
     title: "My Task Board",
     description:
       "A full-stack productivity app with user authentication (email/password, Google, and GitHub), task creation, prioritization, status tracking, and board/list views. Features category filters, due dates, and a fully responsive UI. Built with PostgreSQL and Prisma backend.",
     link: "https://my-task-board-frontend.vercel.app/",
     image: [
-      "/projects/my-task-board-app-login.png",
-      "/projects/my-task-board-frontend-main-white.png",
-      "/projects/my-task-board-frontend-main-table.png",
+      "/projects/my-task-board-app-login.webp",
+      "/projects/my-task-board-frontend-main-white.webp",
+      "/projects/my-task-board-frontend-main-table.webp",
     ],
     stack: ["React", "Node.js", "PostgreSQL", "Prisma", "Tailwind"],
   },
@@ -20,11 +34,11 @@ const projects = [
       "A fact-sharing platform with daily themes in science, history, and myths. Built in React and Vercel.",
     link: "https://fact-gully.vercel.app",
     image: [
-      "/projects/fact-gully.png",
-      "/projects/screencapture-fact-gully-vercel-app-filter.png",
-      "/projects/screencapture-fact-gully-vercel-app-contact.png",
-      "/projects/screencapture-fact-gully-vercel-app.png",
-      "/projects/screencapture-fact-gully-vercel-app-about.png",
+      "/projects/fact-gully.webp",
+      "/projects/screencapture-fact-gully-vercel-app-filter.webp",
+      "/projects/screencapture-fact-gully-vercel-app-contact.webp",
+      "/projects/screencapture-fact-gully-vercel-app.webp",
+      "/projects/screencapture-fact-gully-vercel-app-about.webp",
     ],
     stack: ["React", "Tailwind", "Vercel", "Node.js", "MongoDB"],
   },
@@ -34,18 +48,18 @@ const projects = [
       "A visually polished and interactive developer portfolio showcasing projects, skills, and experience. Built with React, Tailwind CSS, Framer Motion, and a custom canvas-based galaxy background.",
     link: "https://vinay-kushwah.vercel.app",
     image: [
-      "/projects/vinay-kushwah.vercel.app_.png",
-      "/projects/vinay-kushwah.vercel.app_(1).png",
-      "/projects/vinay-kushwah.vercel.app_(2).png",
+      "/projects/vinay-kushwah.vercel.app_.webp",
+      "/projects/vinay-kushwah.vercel.app_(1).webp",
+      "/projects/vinay-kushwah.vercel.app_(2).webp",
     ],
-    stack: ["React", "Tailwind","Framer Motion", "Vercel"],
+    stack: ["React", "Tailwind", "Framer Motion", "Vercel"],
   },
   {
     title: "Car Daddy CRM",
     description:
       "Built a scalable car registration and customer management system with JWT auth, AWS S3, and real-time WhatsApp/email integrations.",
     link: "https://www.cardaddys.co.uk/",
-    image: ["/projects/fact-gully.png"],
+    image: ["/projects/fact-gully.webp"],
     stack: ["React", "Node.js", "MongoDB"],
   },
   {
@@ -53,7 +67,7 @@ const projects = [
     description:
       "AI chatbot builder with OpenAI APIs, document training, and embeddable bots. Boosted engagement by 40%.",
     link: "https://app.dropchat.co/",
-    image: ["/projects/fact-gully.png"],
+    image: ["/projects/fact-gully.webp"],
     stack: ["OpenAI", "React", "MongoDB"],
   },
 ];
@@ -90,7 +104,7 @@ const ProjectCard = ({
         <img
           src={proj.image[imgIndex]}
           alt={proj.title}
-          className="w-full h-52 object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-500 ease-in-out"
+          className="w-full h-60 object-cover  group-hover:scale-110 transition duration-500 ease-in-out"
         />
       </div>
 

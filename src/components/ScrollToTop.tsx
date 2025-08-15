@@ -13,10 +13,12 @@ const ScrollToTop = () => {
 
   const scrollToTop = () => {
     setClicked(true);
+
+    // Scroll page
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    // Trigger pulse animation
-    setTimeout(() => setClicked(false), 400);
+    // Reset after animation finishes
+    setTimeout(() => setClicked(false), 1500);
   };
 
   return (
@@ -24,16 +26,42 @@ const ScrollToTop = () => {
       {show && (
         <motion.button
           onClick={scrollToTop}
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.5 }}
+          initial={{ opacity: 0, scale: 0.5, y: 60 }} // start below screen
+          animate={{ opacity: 1, scale: 1, y: 0 }} // rise to normal position
+          exit={{ opacity: 0, scale: 0.5, y: 60 }} // slide down on hide
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
           whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 0.95 }}
           className="fixed bottom-8 right-6 z-50 group"
           aria-label="Scroll to top"
         >
-          <div className="relative w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-indigo-500/40 shadow-xl hover:shadow-indigo-400 transition duration-300 ease-in-out overflow-hidden">
+          <motion.div
+            className="relative w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-indigo-500/40 shadow-xl overflow-hidden"
+            animate={
+              clicked
+                ? {
+                    y: [-0, -window.innerHeight * 1.2], // blast past top
+                    scale: [1, 1.2, 1],
+                    opacity: [1, 1, 0],
+                  }
+                : { y: 0, scale: 1, opacity: 1 }
+            }
+            transition={{
+              duration: 1.3,
+              ease: [0.4, 0, 0.2, 1], // cubic-bezier for "rocket"
+            }}
+          >
+            {/* Rocket Glow Trail */}
+            {clicked && (
+              <motion.div
+                className="absolute -bottom-6 left-1/2 w-2 h-16 bg-gradient-to-t from-yellow-400 via-orange-500 to-transparent rounded-full"
+                style={{ translateX: "-50%" }}
+                initial={{ opacity: 0.8, scaleY: 0.6 }}
+                animate={{ opacity: 0, scaleY: 1.5 }}
+                transition={{ duration: 0.8 }}
+              />
+            )}
+
             {/* Spinning Ring */}
             <div className="absolute inset-0 animate-spin-slow rounded-full border-t-2 border-indigo-500/70"></div>
 
@@ -49,17 +77,6 @@ const ScrollToTop = () => {
                 ease: "easeInOut",
               }}
             />
-
-            {/* Click Pulse */}
-            {clicked && (
-              <motion.div
-                className="absolute top-1/2 left-1/2 w-14 h-14 rounded-full bg-indigo-400/20"
-                style={{ translateX: "-50%", translateY: "-50%" }}
-                initial={{ scale: 0, opacity: 0.8 }}
-                animate={{ scale: 1.8, opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-              />
-            )}
 
             {/* Arrow */}
             <motion.svg
@@ -77,9 +94,13 @@ const ScrollToTop = () => {
                 ease: "easeInOut",
               }}
             >
-              <polyline points="18 15 12 9 6 15" strokeLinecap="round" strokeLinejoin="round" />
+              <polyline
+                points="18 15 12 9 6 15"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </motion.svg>
-          </div>
+          </motion.div>
         </motion.button>
       )}
     </AnimatePresence>

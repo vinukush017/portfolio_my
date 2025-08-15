@@ -35,11 +35,11 @@ const HeroSection = () => {
             className="text-xl sm:text-3xl md:text-4xl font-bold inline-block font-mono break-words"
           />
 
-          <h2 className="text-lg sm:text-2xl font-medium text-indigo-600 dark:text-indigo-400 mb-6">
+          <h2 className="text-lg sm:text-2xl font-medium text-indigo-600 dark:text-indigo-400 my-2">
             Pune, India
           </h2>
 
-          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-8 pt-0 md:pt-10">
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-8 pt-0 md:pt-4">
             Empowering businesses with scalable web applications and clean,
             modern code. I bring 4+ years of real-world MERN stack experience —
             from intuitive frontends to optimized backends. Let’s build
