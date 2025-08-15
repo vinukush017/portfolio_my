@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { fadeInUp } from "./components/motionVariants";
 import { AnimatePresence } from "framer-motion";
 import JsonLd from "./components/seo/JsonLd";
+import SplashCursor from "./components/SplashCursor";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
       <JsonLd />
 
       <div className="relative min-h-screen bg-white text-gray-900 dark:bg-black dark:text-white">
+        <SplashCursor />
         <GalaxyBackground />
 
         <main className="relative z-10 scroll-smooth snap-y snap-mandatory">
