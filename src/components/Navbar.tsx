@@ -59,9 +59,9 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center space-x-2 font-bold text-xl whitespace-nowrap">
           <a href="#home">
-            <img src="/V.png" className="h-12 block dark:hidden" alt="Logo" />
+            <img src="/1.png" className="h-12 block dark:hidden" alt="Logo" />
             <img
-              src="/V-2.png"
+              src="/2.png"
               className="h-12 hidden dark:block"
               alt="Logo (Dark)"
             />
