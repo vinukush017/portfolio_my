@@ -5,8 +5,72 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import {
+  motion,
+  AnimatePresence,
+  useReducedMotion,
+  Variants,
+} from "framer-motion";
+import {
+  MoonIcon,
+  SunIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+
+// --- Framer variants for mobile menu ---
+const dropdownVariants = (reduce: boolean): Variants => ({
+  hidden: reduce ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.98 },
+  visible: reduce
+    ? { opacity: 1, transition: { duration: 0.15 } }
+    : {
+        opacity: 1,
+        y: 6,
+        scale: 1,
+        transition: {
+          duration: 0.22,
+          ease: [0.25, 0.1, 0.25, 1], // easeOut cubic-bezier
+        },
+      },
+  exit: reduce
+    ? { opacity: 0 }
+    : {
+        opacity: 0,
+        y: -6,
+        scale: 0.98,
+        transition: {
+          duration: 0.18,
+          ease: [0.4, 0, 0.2, 1], // easeIn cubic-bezier
+        },
+      },
+});
+
+const listVariants = (reduce: boolean): Variants => ({
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: reduce ? 0 : 0.06,
+      delayChildren: reduce ? 0 : 0.05,
+    },
+  },
+  exit: {
+    transition: { staggerChildren: reduce ? 0 : 0.04, staggerDirection: -1 },
+  },
+});
+
+const itemVariants = (reduce: boolean): Variants => ({
+  hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 8 },
+  visible: reduce
+    ? { opacity: 1, transition: { duration: 0.12 } }
+    : {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.22, ease: [0.25, 0.1, 0.25, 1] },
+      },
+  exit: reduce
+    ? { opacity: 0 }
+    : { opacity: 0, y: -6, transition: { duration: 0.15 } },
+});
 
 const LINKS = [
   "home",
@@ -29,7 +93,9 @@ const getSystemPrefersDark = () =>
   window.matchMedia?.("(prefers-color-scheme: dark)").matches;
 
 const Navbar: React.FC = () => {
-  const reduceMotion = useReducedMotion();
+  // ✅ Normalize to strict boolean
+  const reduceMotionRaw = useReducedMotion();
+  const reduceMotion = !!reduceMotionRaw;
 
   const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
@@ -245,19 +311,18 @@ const Navbar: React.FC = () => {
                 <button
                   aria-label="Toggle theme"
                   onClick={() => setIsDark((d) => !d)}
-                  className={[
-                    "px-3 py-1 rounded-full hover:opacity-90 transition whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500",
-                    isDark
-                      ? "bg-gray-800 text-white"
-                      : "bg-gray-200 text-gray-900",
-                  ].join(" ")}
+                  className="px-3 py-1"
                   type="button"
                 >
-                  {isDark ? "☀️" : "🌙"}
+                  {isDark ? (
+                    <SunIcon className="w-6 h-6 text-yellow-300" />
+                  ) : (
+                    <MoonIcon className="w-6 h-6 text-gray-600" />
+                  )}
                 </button>
 
                 {/* Menu button (mobile only) */}
-                <button
+                <motion.button
                   ref={menuButtonRef}
                   className="md:hidden p-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 hover:bg-black/5 dark:hover:bg-white/10"
                   onClick={() => setMenuOpen((o) => !o)}
@@ -265,9 +330,16 @@ const Navbar: React.FC = () => {
                   aria-expanded={menuOpen}
                   aria-controls="mobile-menu"
                   type="button"
+                  whileTap={{ scale: 0.96 }}
+                  animate={menuOpen ? { rotate: 90 } : { rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
-                  {menuOpen ? <X size={22} /> : <Menu size={22} />}
-                </button>
+                  {menuOpen ? (
+                    <XMarkIcon className="h-6 w-6" />
+                  ) : (
+                    <Bars3Icon className="h-6 w-6" />
+                  )}
+                </motion.button>
               </div>
             </div>
           </motion.div>
@@ -278,36 +350,40 @@ const Navbar: React.FC = () => {
               <motion.nav
                 id="mobile-menu"
                 aria-label="Mobile menu"
-                initial={reduceMotion ? { opacity: 0 } : { y: -6, opacity: 0 }}
-                animate={reduceMotion ? { opacity: 1 } : { y: 6, opacity: 1 }}
-                exit={reduceMotion ? { opacity: 0 } : { y: -6, opacity: 0 }}
-                transition={{ duration: 0.18 }}
-                className="
-                  absolute left-0 right-0 top-full mt-2
-                  rounded-2xl bg-white/85 dark:bg-gray-900/90
-                  backdrop-blur-xl shadow-xl border border-white/15
-                  p-2 md:hidden
-                "
+                className="absolute left-0 right-0 top-full mt-2 rounded-2xl bg-white/85 dark:bg-gray-900/90 backdrop-blur-xl shadow-xl border border-white/15 p-2 md:hidden overflow-hidden"
+                style={{ originY: 0 }} // scale from top
+                variants={dropdownVariants(reduceMotion)}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
               >
-                <ul className="flex flex-col gap-1">
+                <motion.ul
+                  className="flex flex-col gap-1"
+                  variants={listVariants(reduceMotion)}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                >
                   {LINKS.map((link) => (
-                    <li key={link}>
+                    <motion.li key={link} variants={itemVariants(reduceMotion)}>
                       <a
                         href={`#${link}`}
                         onClick={() => setMenuOpen(false)}
                         className="
-                          block w-full text-base font-medium px-4 py-3 rounded-xl
+                          group block w-full text-base font-medium px-4 py-3 rounded-xl
                           hover:bg-gray-100/80 dark:hover:bg-white/10
                           focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500
                           text-gray-900 dark:text-white text-center
                         "
                         aria-current={activeLink === link ? "page" : undefined}
                       >
-                        {linkLabel(link)}
+                        <span className="inline-block transition-transform duration-200 will-change-transform group-hover:translate-x-0.5">
+                          {linkLabel(link)}
+                        </span>
                       </a>
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               </motion.nav>
             )}
           </AnimatePresence>
