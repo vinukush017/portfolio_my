@@ -22,6 +22,11 @@ module.exports = {
       boxShadow: {
         glow: "0 0 10px rgba(99,102,241,0.8), 0 0 20px rgba(99,102,241,0.4)",
       },
+      fontFamily: {
+        sans: ["Inter", "ui-sans-serif", "system-ui"], // body text
+        heading: ["Space Grotesk", "ui-sans-serif"],   // headings
+        mono: ["JetBrains Mono", "ui-monospace"],      // code
+      },
     },
   },
   plugins: [],
