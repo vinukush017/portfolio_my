@@ -30,7 +30,7 @@ const Footer = () => {
       {/* Social Icons */}
       <div className="flex justify-center gap-4 text-lg mb-2">
         <a
-          href="https://github.com/vinaykushwah017"
+          href="https://github.com/vinukush017"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Vinay Kushwah GitHub"

@@ -11,7 +11,7 @@ const JsonLd: React.FC = () => {
     image: "https://vinay-kushwah.vercel.app/VINAY_LOGO.png",
     sameAs: [
       "https://linkedin.com/in/vinaykushwah017",
-      "https://github.com/vinaykushwah017",
+      "https://github.com/vinukush017",
       "https://x.com/Vinay__17",
     ],
     jobTitle: "Full Stack Developer",

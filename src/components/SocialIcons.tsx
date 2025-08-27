@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const socialLinks = [
   {
     icon: <FaGithub />,
-    link: "https://github.com/vinaykushwah017",
+    link: "https://github.com/vinukush017",
     label: "GitHub",
     color: "text-gray-800 dark:text-white",
   },
