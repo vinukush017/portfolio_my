@@ -132,7 +132,7 @@ export default function CodeVisual(props: CodeVisualProps) {
           <span className="w-3 h-3 rounded-full bg-emerald-400 inline-block shadow-sm" />
         </div>
         <div className="ml-2 text-xs text-slate-500 dark:text-slate-400 font-mono select-none">
-          code-snippet.ts
+          Intro.ts
         </div>
       </div>
 
@@ -216,13 +216,10 @@ export default function CodeVisual(props: CodeVisualProps) {
         </div>
       </div>
 
-      {/* small decorative shadow under the card */}
       <div className="mt-2 h-1/4" aria-hidden="true">
         {/* nothing — keeps spacing consistent */}
       </div>
 
-      {/* local styles for blink animation (keeps file self-contained).
-          This is a plain <style> tag (not styled-jsx) so no TS errors. */}
       <style>{`
         @keyframes blink {
           0% { opacity: 1; }
