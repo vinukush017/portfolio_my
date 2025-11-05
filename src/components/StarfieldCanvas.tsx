@@ -12,7 +12,7 @@ const StarfieldCanvas = () => {
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      stars = Array.from({ length: 400 }, () => ({
+      stars = Array.from({ length: 20 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         radius: Math.random() * 1.4 + 0.2,

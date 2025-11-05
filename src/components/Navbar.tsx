@@ -29,7 +29,7 @@ const dropdownVariants = (reduce: boolean): Variants => ({
         scale: 1,
         transition: {
           duration: 0.22,
-          ease: [0.25, 0.1, 0.25, 1], // easeOut cubic-bezier
+          ease: [0.25, 0.1, 0.25, 1],
         },
       },
   exit: reduce
@@ -40,7 +40,7 @@ const dropdownVariants = (reduce: boolean): Variants => ({
         scale: 0.98,
         transition: {
           duration: 0.18,
-          ease: [0.4, 0, 0.2, 1], // easeIn cubic-bezier
+          ease: [0.4, 0, 0.2, 1],
         },
       },
 });
@@ -84,21 +84,22 @@ type LinkKey = (typeof LINKS)[number];
 
 const themeColors = { primary: "#4F46E5", accent: "#A855F7" };
 
-const setHtmlDarkClass = (dark: boolean) => {
+const setHtmlDarkClass = (dark: boolean) =>
   document.documentElement.classList.toggle("dark", dark);
-};
 
 const getSystemPrefersDark = () =>
   typeof window !== "undefined" &&
   window.matchMedia?.("(prefers-color-scheme: dark)").matches;
 
 const Navbar: React.FC = () => {
-  // ✅ Normalize to strict boolean
   const reduceMotionRaw = useReducedMotion();
   const reduceMotion = !!reduceMotionRaw;
 
   const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
+
+  // track whether user manually set theme
+  const userSetThemeRef = useRef<boolean>(false);
 
   useEffect(() => {
     setMounted(true);
@@ -106,70 +107,144 @@ const Navbar: React.FC = () => {
     const initialDark = saved ? saved === "dark" : getSystemPrefersDark();
     setIsDark(initialDark);
     setHtmlDarkClass(initialDark);
+    userSetThemeRef.current = !!saved;
 
-    if (!saved) {
-      const mq = window.matchMedia("(prefers-color-scheme: dark)");
-      const listener = (e: MediaQueryListEvent) => {
-        setIsDark(e.matches);
-        setHtmlDarkClass(e.matches);
-      };
-      mq.addEventListener?.("change", listener);
-      return () => mq.removeEventListener?.("change", listener);
+    // listen to system changes only if user hasn't chosen
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const listener = (e: MediaQueryListEvent | MediaQueryList) => {
+      // If the user did not manually choose, follow system
+      if (!userSetThemeRef.current) {
+        const matches =
+          // MediaQueryListEvent has 'matches', MediaQueryList also has 'matches'
+          (e as MediaQueryListEvent).matches ?? (e as MediaQueryList).matches;
+        setIsDark(!!matches);
+        setHtmlDarkClass(!!matches);
+      }
+    };
+
+    // addEventListener with fallback
+    if (mq.addEventListener) {
+      mq.addEventListener("change", listener as EventListener);
+    } else if ((mq as any).addListener) {
+      (mq as any).addListener(listener);
     }
+
+    return () => {
+      if (mq.removeEventListener) {
+        mq.removeEventListener("change", listener as EventListener);
+      } else if ((mq as any).removeListener) {
+        (mq as any).removeListener(listener);
+      }
+    };
   }, []);
 
   useEffect(() => {
     if (!mounted) return;
     setHtmlDarkClass(isDark);
+    // mark that user explicitly set theme
+    userSetThemeRef.current = true;
     localStorage.setItem("theme", isDark ? "dark" : "light");
   }, [isDark, mounted]);
 
   const [activeLink, setActiveLink] = useState<LinkKey>("home");
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const rafRef = useRef<number | null>(null);
+
+  // Helper: determine section visible at vertical center
+  const updateActiveByCenter = useCallback(() => {
+    // cancel any pending rAF
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    rafRef.current = requestAnimationFrame(() => {
+      const midY = window.innerHeight / 2;
+      let found: LinkKey | null = null;
+      for (const id of LINKS) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= midY && rect.bottom >= midY) {
+          found = id as LinkKey;
+          break;
+        }
+      }
+      if (found && found !== activeLink) setActiveLink(found);
+    });
+  }, [activeLink]);
 
   useEffect(() => {
-    const sections = LINKS.map((id) => document.getElementById(id));
+    // IntersectionObserver for smoother transitions and keyboard/hash navigation
+    const sections = LINKS.map((id) => document.getElementById(id)).filter(
+      Boolean
+    ) as HTMLElement[];
+
     if (observerRef.current) observerRef.current.disconnect();
 
+    // use a simple threshold and slightly narrower rootMargin
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0) {
+          // when a section crosses center-ish area, set active
+          if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
             setActiveLink(entry.target.id as LinkKey);
           }
         });
       },
       {
-        rootMargin: "-45% 0px -45% 0px",
-        threshold: Array.from({ length: 11 }, (_, i) => i / 10),
+        root: null,
+        rootMargin: "-40% 0px -40% 0px",
+        threshold: [0.25, 0.5, 0.75],
       }
     );
 
-    sections.forEach((el) => el && observerRef.current?.observe(el));
+    sections.forEach((el) => observerRef.current?.observe(el));
+
+    // Ensure initial state is correct (on load)
+    updateActiveByCenter();
 
     const onHashChange = () => {
       const id = window.location.hash.replace("#", "") as LinkKey;
       if ((LINKS as readonly string[]).includes(id))
         setActiveLink(id as LinkKey);
     };
+
     window.addEventListener("hashchange", onHashChange);
+    window.addEventListener("scroll", updateActiveByCenter, { passive: true });
+    window.addEventListener("resize", updateActiveByCenter);
 
     return () => {
       observerRef.current?.disconnect();
       window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener("scroll", updateActiveByCenter);
+      window.removeEventListener("resize", updateActiveByCenter);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
     };
-  }, []);
+  }, [updateActiveByCenter]);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
-  // Prevent background scroll only while menu is open (mobile)
+  // Store previous body overflow in a ref to restore reliably
+  const prevBodyOverflowRef = useRef<string>("");
+
   useEffect(() => {
     if (!mounted) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = menuOpen ? "hidden" : prev;
+    if (menuOpen) {
+      // store current overflow only when opening
+      prevBodyOverflowRef.current = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+    } else {
+      // restore when closing
+      document.body.style.overflow = prevBodyOverflowRef.current || "";
+    }
+    // cleanup on unmount
     return () => {
-      document.body.style.overflow = prev;
+      document.body.style.overflow = prevBodyOverflowRef.current || "";
     };
   }, [menuOpen, mounted]);
 
@@ -183,7 +258,6 @@ const Navbar: React.FC = () => {
   }, [menuOpen]);
 
   // Click outside to close (affects the dropdown)
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (!menuOpen) return;
     const onDocClick = (e: MouseEvent) => {
@@ -194,7 +268,7 @@ const Navbar: React.FC = () => {
     return () => document.removeEventListener("mousedown", onDocClick);
   }, [menuOpen]);
 
-  // Focus return
+  // Focus return to button when menu closed
   useEffect(() => {
     if (!menuOpen && menuButtonRef.current) menuButtonRef.current.focus();
   }, [menuOpen]);
@@ -302,7 +376,10 @@ const Navbar: React.FC = () => {
               </a>
 
               {/* Center: Desktop links */}
-              <nav className="hidden md:flex flex-1 justify-center">
+              <nav
+                className="hidden md:flex flex-1 justify-center"
+                aria-label="Primary Navigation"
+              >
                 <ul className="flex items-center gap-1">{desktopLinks}</ul>
               </nav>
 
@@ -351,7 +428,7 @@ const Navbar: React.FC = () => {
                 id="mobile-menu"
                 aria-label="Mobile menu"
                 className="absolute left-0 right-0 top-full mt-2 rounded-2xl bg-white/85 dark:bg-gray-900/90 backdrop-blur-xl shadow-xl border border-white/15 p-2 md:hidden overflow-hidden"
-                style={{ originY: 0 }} // scale from top
+                style={{ originY: 0 }}
                 variants={dropdownVariants(reduceMotion)}
                 initial="hidden"
                 animate="visible"
@@ -368,7 +445,10 @@ const Navbar: React.FC = () => {
                     <motion.li key={link} variants={itemVariants(reduceMotion)}>
                       <a
                         href={`#${link}`}
-                        onClick={() => setMenuOpen(false)}
+                        onClick={() => {
+                          setMenuOpen(false);
+                          setActiveLink(link as LinkKey);
+                        }}
                         className="
                           group block w-full text-base font-medium px-4 py-3 rounded-xl
                           hover:bg-gray-100/80 dark:hover:bg-white/10
@@ -378,7 +458,7 @@ const Navbar: React.FC = () => {
                         aria-current={activeLink === link ? "page" : undefined}
                       >
                         <span className="inline-block transition-transform duration-200 will-change-transform group-hover:translate-x-0.5">
-                          {linkLabel(link)}
+                          {linkLabel(link as LinkKey)}
                         </span>
                       </a>
                     </motion.li>

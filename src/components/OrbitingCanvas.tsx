@@ -19,28 +19,28 @@ const OrbitingCanvas = () => {
     const centerX = () => w / 2;
     const centerY = () => h / 2;
 
-    const bigDots = Array.from({ length: 10 }, (_, i) => ({
-      radius: 4,
-      distance: 70 + i * 40,
+    const bigDots = Array.from({ length:15 }, (_, i) => ({
+      radius: 5,
+      distance: 100 + i * 40,
       angle: Math.random() * Math.PI * 2,
       speed: 0.0005 + i * 0.00005,
       color: "#fff",
     }));
 
-    const redDots = Array.from({ length: 20 }, (_, i) => ({
+    const redDots = Array.from({ length: 30 }, (_, i) => ({
       radius: 2.5,
       distance: 150 + i * 35,
       angle: Math.random() * Math.PI * 2,
-      speed: 0.0007 + i * 0.00005,
+      speed: 0.0007 + i * 0.00009,
       color: "#ff3b3b",
     }));
 
-    const smallDots = Array.from({ length: 150 }, (_, i) => ({
+    const smallDots = Array.from({ length: 90 }, (_, i) => ({
       radius: 1,
       parentIndex: i % redDots.length,
       distance: 20 + Math.random() * 30,
       angle: Math.random() * Math.PI * 2,
-      speed: 0.001 + Math.random() * 0.001,
+      speed: 0.001 + Math.random() * 0.02,
       color: "#ffffff",
     }));
 

@@ -108,7 +108,7 @@ const Experience: React.FC = () => {
       {/* Timeline wrapper */}
       <ol
         className="
-          relative max-w-5xl mx-auto
+          relative max-w-7xl mx-auto
           before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-px
           before:left-4 md:before:left-1/2
           before:bg-gradient-to-b before:from-indigo-300/60 before:to-indigo-500/60

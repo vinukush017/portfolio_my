@@ -22,10 +22,13 @@ const RAW_PROJECTS: Project[] = [
       "A spiritual platform providing bhajans, shlokas, chalisas, and divine knowledge in Hindi. Built with React, Tailwind CSS, and a mobile-first responsive design.",
     link: "https://dharmapath.in",
     image: [
-      "/projects/dharmapath-main.webp",
-      "/projects/dharmapath-gods.webp",
-      "/projects/dharmapath-divine.webp",
-      "/projects/dharmapath-aarti.webp",
+      "/projects/dharmapath-1.webp",
+      "/projects/dharmapath-2.webp",
+      "/projects/dharmapath-3.webp",
+      "/projects/dharmapath-4.webp",
+      "/projects/dharmapath-5.webp",
+      "/projects/dharmapath-6.webp",
+      "/projects/dharmapath-7.webp",
     ],
     stack: ["React", "Tailwind CSS"],
   },
@@ -183,7 +186,7 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.06 }}
-      className="group h-full flex flex-col backdrop-blur-md bg-white/20 dark:bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      className="w-[85%] mx-auto group h-full flex flex-col backdrop-blur-md bg-white/20 dark:bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       aria-label={proj.title}
     >
       {/* Media */}
@@ -270,7 +273,7 @@ const Projects: React.FC = () => {
   const items = useMemo(() => projects, []);
   return (
     <section id="projects" className="py-16" aria-label="Projects">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-[85%] mx-auto">
         <h2 className="text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white">
           Projects
         </h2>

@@ -1,139 +1,136 @@
+// components/HeroSection.tsx
+"use client";
 import React, { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import TextScrambler from "./TextScrambler";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
+import CodeVisual from "./CodeVisual";
 
 const HeroSection: React.FC = () => {
   const reduceMotion = useReducedMotion();
 
-  // Auto-calc years of experience so you don't update copy every year
   const years = useMemo(() => {
-    const startYear = 2021; // adjust if needed
+    const startYear = 2021;
     const now = new Date();
-    const y = now.getFullYear() - startYear;
-    // round to 0.5 steps based on month progress
+    const baseYears = now.getFullYear() - startYear;
     const half = now.getMonth() >= 6 ? 0.5 : 0;
-    return (y + half).toFixed(y + (half % 1) === 0 ? 0 : 1);
+    const value = baseYears + half;
+    return Number.isInteger(value) ? `${value}` : value.toFixed(1);
   }, []);
+
+  const containerMotion = {
+    initial: reduceMotion ? undefined : { opacity: 0, y: 28 },
+    animate: reduceMotion ? undefined : { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: [0.22, 0.61, 0.36, 1] as const },
+  };
+
+  const codeLines = [
+    "const Vinay = {",
+    '  role: "Full Stack Developer",',
+    '  stack: ["React", "Next.js", "Node.js", "Tailwind"],',
+    '  location: "Pune, India",',
+    '  openTo: "frontend & backend roles"',
+    "};",
+    "",
+    "export default Vinay;",
+  ];
 
   return (
     <>
       <Navbar />
-      {/* Match Navbar's skip link target */}
-      <main id="main">
+      <main id="main" className="w-full relative mt-20 md:mt-0">
+        {/* fixed vertical social icons (lg+) */}
+        <aside
+          aria-hidden="false"
+          className="hidden lg:flex fixed left-6 bottom-0 -translate-y-1/2 z-40"
+          style={{ pointerEvents: "auto" }}
+        >
+          <SocialIcons />
+        </aside>
+
         <section
           id="home"
           aria-label="Introduction"
-          className="snap-start h-screen w-full overflow-hidden flex flex-col justify-center items-center bg-transparent text-gray-900 dark:text-white px-6 sm:px-8 md:px-12 relative"
+          className="snap-start min-h-screen w-full flex items-center justify-center bg-transparent text-gray-900 dark:text-white py-12"
         >
-          <motion.div
-            className="max-w-4xl mx-auto text-center pt-10 sm:pt-10 pb-20 sm:pb-20 px-2 overflow-hidden"
-            initial={reduceMotion ? false : { opacity: 0, y: 40 }}
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="text-3xl sm:text-5xl font-semibold mb-4 leading-snug break-words pt-10 md:pt-14 sm:pt-0 font-heading">
-              Heya 👋, I&apos;m
-            </p>
-
-            {/* Keep only one H1 on the page if possible */}
-            <h1 className="text-4xl sm:text-6xl font-bold leading-tight text-indigo-600 dark:text-indigo-400 pb-5 font-mono">
-              Vinay Kushwah
-            </h1>
-
-            {/* Announce changes politely for screen readers */}
-            <div aria-live="polite" aria-atomic="true">
-              <TextScrambler
-                texts={[
-                  "Full Stack Developer",
-                  "Backend Developer",
-                  "Software Engineer",
-                ]}
-                speed={50}
-                interval={3000}
-                className="text-xl sm:text-3xl md:text-4xl font-bold inline-block font-mono break-words"
-              />
-            </div>
-
-            <h2 className="text-lg sm:text-2xl font-medium text-indigo-600 dark:text-indigo-400 my-2">
-              Pune, India
-            </h2>
-
-            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-8 pt-0 md:pt-4">
-              Empowering businesses with scalable web applications and clean,
-              modern code. I bring{" "}
-              <span className="font-semibold">{years}+ years</span> of
-              real-world MERN stack experience — from intuitive frontends to
-              optimized backends. Let’s build something impactful together.
-            </p>
-
-            <div className="flex justify-center gap-4 flex-wrap pt-4 pb-4">
-              <a
-                href="/Vinay_Kushwah_Resume_2025.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View resume as PDF in a new tab"
-                className="bg-indigo-600 text-white px-6 py-3 rounded-full hover:bg-indigo-700 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
-              >
-                View Resume
-              </a>
-
-              <a
-                href="#contact"
-                aria-label="Jump to contact section"
-                className="border border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 px-6 py-3 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
-              >
-                Contact Me
-              </a>
-
-              <SocialIcons />
-            </div>
-          </motion.div>
-
-          {/* Scroll Down Indicator (decorative) */}
-          {!reduceMotion && (
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center text-indigo-600 dark:text-indigo-400"
-              aria-hidden="true"
+              {...containerMotion}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
             >
-              <svg
-                className="w-6 sm:w-7 h-[60px]"
-                viewBox="0 0 24 42"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="1"
-                  y="1"
-                  width="22"
-                  height="38"
-                  rx="11"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                />
-                <motion.rect
-                  x="10"
-                  y="20"
-                  width="4"
-                  height="6"
-                  rx="2"
-                  fill="currentColor"
-                  animate={{ y: [0, 10], opacity: [1, 0] }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    ease: "easeInOut",
-                    repeatDelay: 0.3,
-                  }}
-                />
-              </svg>
+              {/* Left/main content */}
+              <div className="lg:col-span-7 lg:col-start-2 xl:col-start-2 flex flex-col items-start text-left">
+                <p className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 leading-tight break-words pt-2 md:pt-6">
+                  Heya 👋, I&apos;m
+                </p>
+
+                <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-snug text-indigo-600 dark:text-indigo-400 pb-3 font-mono">
+                  Vinay Kushwah
+                </h1>
+
+                <div aria-live="polite" aria-atomic="true" className="mb-2">
+                  <TextScrambler
+                    texts={[
+                      "Full Stack Developer",
+                      "Backend Developer",
+                      "Software Engineer",
+                    ]}
+                    speed={50}
+                    interval={3000}
+                    className="text-lg sm:text-xl md:text-2xl font-semibold inline-block font-mono"
+                  />
+                </div>
+
+                <h2 className="text-sm sm:text-lg md:text-xl font-medium text-indigo-600 dark:text-indigo-400 my-2">
+                  Pune, India
+                </h2>
+
+                <p className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mb-6">
+                  Empowering businesses with scalable web applications and
+                  clean, modern code. I bring{" "}
+                  <span className="font-semibold">{years}+ years</span> of
+                  real-world MERN stack experience — from intuitive frontends to
+                  optimized backends. Let’s build something impactful together.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mt-2">
+                  <a
+                    href="/Vinay_Kushwah_Resume_2025.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View resume as PDF in a new tab"
+                    className="inline-flex items-center justify-center bg-indigo-600 text-white px-4 sm:px-6 py-2.5 rounded-full hover:bg-indigo-700 transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
+                  >
+                    View Resume
+                  </a>
+
+                  <a
+                    href="#contact"
+                    aria-label="Jump to contact section"
+                    className="inline-flex items-center justify-center border border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 px-4 sm:px-6 py-2.5 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
+                  >
+                    Contact Me
+                  </a>
+                </div>
+              </div>
+
+              {/* Right visual: on small screens it will flow below the text */}
+              <div className="lg:col-span-4 lg:col-start-10 flex items-center justify-center">
+                <div className="w-full flex justify-center">
+                  {/* Use responsive width: min(95vw, 520px) ensures it fits phones */}
+                  <CodeVisual
+                    lines={codeLines}
+                    speed={22}
+                    lineDelay={700}
+                    loop={true}
+                    className="w-[min(95vw,520px)]"
+                    maxWidth={520}
+                  />
+                </div>
+              </div>
             </motion.div>
-          )}
+          </div>
         </section>
       </main>
     </>

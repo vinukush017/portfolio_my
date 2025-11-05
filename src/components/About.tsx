@@ -23,7 +23,7 @@ const About = () => {
     <section
       id="about"
       aria-label="About Vinay Kushwah"
-      className="min-h-[calc(100vh-64px)] scroll-mt-24 py-20 px-6 sm:px-8 md:px-20 text-gray-900 dark:text-white flex items-center"
+      className="min-h-[calc(100vh-64px)] w-[85%] mx-auto scroll-mt-24 text-gray-900 dark:text-white flex items-center"
     >
       <motion.div
         className="w-full mx-auto"
@@ -37,7 +37,7 @@ const About = () => {
         </h2>
 
         {/* Content card */}
-        <div className="bg-gradient-to-b from-gray-100/90 to-white/80 dark:from-gray-900/80 dark:to-gray-900/40 border border-white/10 backdrop-blur rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div className="bg-gradient-to-b from-gray-100/90 to-white/80 dark:from-gray-900/80 dark:to-gray-900/40 border border-white/10 backdrop-blur rounded-2xl shadow-sm">
           {/* Two-column on md+ */}
           <div className="grid md:grid-cols-[1fr,1.2fr] gap-8 items-center">
             {/* Portrait / Illustration */}
