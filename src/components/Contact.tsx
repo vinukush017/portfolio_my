@@ -1,18 +1,51 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
-const Contact = () => {
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwpwglna";
+
+const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+    setLoading(true);
 
-    // Optionally integrate with Formspree, EmailJS, or backend here.
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        // Try to read JSON error details from Formspree
+        const data = await res.json().catch(() => null);
+        const msg =
+          (data && (data.error || (data.errors && data.errors[0]?.message))) ||
+          "Failed to send message. Please try again later.";
+        setError(msg);
+      }
+    } catch (err) {
+      console.error("Contact form error:", err);
+      setError("Network error — please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <section className="py-20 px-6" id="contact">
+    <section className="py-4 w-[90%] mx-auto" id="contact">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -29,7 +62,7 @@ const Contact = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="max-w-xl mx-auto space-y-4"
+        className="max-w-3xl mx-auto space-y-4"
       >
         <input
           type="text"
@@ -54,16 +87,26 @@ const Contact = () => {
           rows={5}
           className="w-full p-3 border rounded bg-gray-100 dark:bg-gray-900 dark:text-white dark:border-gray-700"
           required
-        ></textarea>
+        />
+
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white py-3 rounded hover:bg-indigo-700 transition"
+          className="w-full bg-indigo-600 text-white py-3 rounded hover:bg-indigo-700 transition disabled:opacity-60"
+          disabled={loading || submitted}
+          aria-disabled={loading || submitted}
         >
-          {submitted ? 'Message Sent ✔' : 'Send Message'}
+          {loading ? "Sending…" : submitted ? "Message Sent ✔" : "Send Message"}
         </button>
-        {submitted && (
-          <p className="text-green-600 text-sm mt-2 text-center">
-            Thank you for reaching out! I'll get back to you soon.
+
+        {error && (
+          <p className="text-red-600 text-sm mt-2 text-center" role="alert">
+            {error}
+          </p>
+        )}
+
+        {submitted && !error && (
+          <p className="text-green-600 text-sm mt-2 text-center" role="status">
+            Thank you for reaching out! I&apos;ll get back to you soon.
           </p>
         )}
       </motion.form>

@@ -46,7 +46,7 @@ const skillColors: Record<string, { text: string; border: string }> = {
 };
 
 const Skills = () => (
-  <section className="py-20 px-6" id="skills">
+  <section className="mx-auto w-[95%]" id="skills">
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -58,7 +58,7 @@ const Skills = () => (
     </motion.h2>
 
     <motion.div
-      className="grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center max-w-7xl mx-auto"
+      className="grid gap-x-4 gap-y-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center max-w-7xl mx-auto"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -72,7 +72,11 @@ const Skills = () => (
             key={idx}
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
-            className="w-48 h-40 bg-white dark:bg-gray-900 rounded-[25px] relative flex flex-col items-center justify-center overflow-hidden transition-all duration-500 shadow-md border-wrapper"
+            /* <= CHANGED: responsive width so two cards fit on narrow screens
+               - on very small screens: width is 44vw (44% of viewport) -> two cards fit
+               - from sm breakpoint and up: use fixed w-48 (original look)
+            */
+            className="w-[36vw] sm:w-48 h-36 sm:h-40 bg-white dark:bg-gray-900 rounded-[25px] relative flex flex-col items-center justify-center overflow-hidden transition-all duration-500 shadow-md border-wrapper"
             style={{ "--tw-border-color": border } as React.CSSProperties}
           >
             <span className={`z-10 text-7xl ${text}`}>{icon}</span>
@@ -87,3 +91,4 @@ const Skills = () => (
 );
 
 export default Skills;
+

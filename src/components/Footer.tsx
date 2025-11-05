@@ -39,7 +39,7 @@ const Footer = () => {
           <FaGithub size={24} />
         </a>
         <a
-          href="https://www.instagram.com/azad__parinda__17"
+          href="https://www.linkedin.com/in/vinaykushwah017"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Vinay Kushwah LinkedIn"
@@ -48,7 +48,7 @@ const Footer = () => {
           <FaLinkedin size={24} />
         </a>
         <a
-          href="https://www.linkedin.com/in/vinaykushwah017"
+          href="https://www.instagram.com/azad__parinda__17"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Vinay Kushwah Instagram"

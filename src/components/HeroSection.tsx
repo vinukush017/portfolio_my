@@ -39,7 +39,7 @@ const HeroSection: React.FC = () => {
   return (
     <>
       <Navbar />
-      <main id="main" className="w-full relative mt-24 md:mt-0">
+      <main id="main" className="w-full mx-auto w-[95%] relative mt-24 md:mt-0">
         {/* fixed vertical social icons (lg+) */}
         <aside
           aria-hidden="false"

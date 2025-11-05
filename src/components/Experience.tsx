@@ -93,7 +93,7 @@ const Experience: React.FC = () => {
     <section
       id="experience"
       aria-label="Professional experience"
-      className="py-20 px-6 sm:px-8 lg:px-20"
+      className="mt-10"
     >
       <motion.h2
         initial={reduceMotion ? false : { opacity: 0, y: 20 }}
@@ -108,7 +108,7 @@ const Experience: React.FC = () => {
       {/* Timeline wrapper */}
       <ol
         className="
-          relative max-w-7xl mx-auto
+          relative mx-auto w-[85%]
           before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-px
           before:left-4 md:before:left-1/2
           before:bg-gradient-to-b before:from-indigo-300/60 before:to-indigo-500/60
@@ -129,7 +129,7 @@ const Experience: React.FC = () => {
               <span
                 className="
                   absolute left-4 md:left-1/2 md:-translate-x-1/2
-                  top-2 h-3 w-3 rounded-full bg-indigo-600 shadow
+                  top-20 h-3 w-3 rounded-full bg-indigo-600 shadow
                   ring-4 ring-white dark:ring-gray-950
                 "
               />

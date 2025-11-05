@@ -25,7 +25,7 @@ const About: React.FC = () => {
     <section
       id="about"
       aria-label="About Vinay Kushwah"
-      className="min-h-[calc(100vh-64px)] w-[90%] md:w-[85%] mx-auto scroll-mt-24 text-gray-900 dark:text-white flex items-center py-12"
+      className="w-[95%] md:w-[85%] mx-auto scroll-mt-24 text-gray-900 dark:text-white flex items-center py-12"
     >
       <motion.div
         className="w-full mx-auto"

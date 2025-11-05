@@ -186,7 +186,7 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.06 }}
-      className="w-[85%] mx-auto group h-full flex flex-col backdrop-blur-md bg-white/20 dark:bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      className="w-[95%] mx-auto group h-full flex flex-col backdrop-blur-md bg-white/20 dark:bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       aria-label={proj.title}
     >
       {/* Media */}
@@ -272,8 +272,8 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
 const Projects: React.FC = () => {
   const items = useMemo(() => projects, []);
   return (
-    <section id="projects" className="py-16" aria-label="Projects">
-      <div className="w-[85%] mx-auto">
+    <section id="projects" className="py-4" aria-label="Projects">
+      <div className="w-[90%] mx-auto">
         <h2 className="text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white">
           Projects
         </h2>
