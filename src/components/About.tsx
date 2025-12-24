@@ -40,108 +40,232 @@ const About: React.FC = () => {
           description="Passionate full-stack developer crafting exceptional digital experiences with modern technologies and best practices."
         />
 
-        {/* Content card */}
-        <div className="bg-gradient-to-br from-gray-100/95 via-white/90 to-indigo-50/50 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-indigo-900/30 border border-indigo-200/30 dark:border-indigo-800/30 backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-4 sm:p-6 md:p-8">
-          {/* Two-column on md+ */}
-          <div className="grid md:grid-cols-[1fr,1.4fr] gap-6 sm:gap-8 items-start">
-            {/* Portrait / Illustration */}
-            <div className="mx-auto max-w-sm w-full">
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+          {/* Left Column - Profile Image & Stats */}
+          <div className="lg:col-span-1 space-y-6">
+            {/* Profile Image Card */}
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, x: -30 }}
+              whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="group relative"
+            >
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 p-1">
+                <div className="relative h-full w-full rounded-2xl overflow-hidden bg-white dark:bg-gray-900">
+                  <motion.img
+                    src="/avatar.jpg"
+                    alt="Portrait of Vinay Kushwah"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </div>
+              
+              {/* Floating Badge */}
               <motion.div
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.3 }}
-                className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 shadow-lg hover:shadow-2xl transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-white dark:bg-gray-900 rounded-full shadow-lg border border-gray-200 dark:border-gray-800"
               >
-                {/* Replace src with your real headshot if available */}
-                <motion.img
-                  src="/avatar.jpg"
-                  alt="Portrait of Vinay Kushwah"
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-indigo-600/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                <span className="text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                  Full Stack Developer
+                </span>
+              </motion.div>
+            </motion.div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-2 gap-4 pt-8">
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-indigo-200/50 dark:border-indigo-800/50 rounded-xl p-4 text-center shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent mb-1">
+                  {years}+
+                </div>
+                <div className="text-xs text-gray-700 dark:text-gray-400 font-medium">Years Experience</div>
               </motion.div>
 
-              {/* Quick facts */}
-              <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="rounded-lg bg-gradient-to-br from-white/80 to-indigo-50/80 dark:from-white/10 dark:to-indigo-900/20 p-3 border border-indigo-200/50 dark:border-indigo-800/50 shadow-sm hover:shadow-md transition-all duration-300"
-                >
-                  <dt className="text-gray-600 dark:text-gray-400 text-xs">Location</dt>
-                  <dd className="font-semibold text-gray-900 dark:text-white">Pune, India</dd>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="rounded-lg bg-gradient-to-br from-white/80 to-purple-50/80 dark:from-white/10 dark:to-purple-900/20 p-3 border border-purple-200/50 dark:border-purple-800/50 shadow-sm hover:shadow-md transition-all duration-300"
-                >
-                  <dt className="text-gray-600 dark:text-gray-400 text-xs">
-                    Experience
-                  </dt>
-                  <dd className="font-semibold text-gray-900 dark:text-white">{years}+ years</dd>
-                </motion.div>
-              </dl>
-            </div>
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-purple-200/50 dark:border-purple-800/50 rounded-xl p-4 text-center shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-1">
+                  15+
+                </div>
+                <div className="text-xs text-gray-700 dark:text-gray-400 font-medium">Technologies</div>
+              </motion.div>
 
-            <div className="flex flex-col justify-center text-center md:text-left h-full">
-              <div className="flex flex-col justify-center">
-                <p className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-3 sm:mb-4">
-                  I'm <span className="font-semibold text-indigo-600 dark:text-indigo-400">Vinay Kushwah</span>, a
-                  passionate full-stack engineer with {years}+ years of experience crafting scalable, 
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-pink-200/50 dark:border-pink-800/50 rounded-xl p-4 text-center shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 dark:from-pink-400 dark:to-rose-400 bg-clip-text text-transparent mb-1">
+                  6+
+                </div>
+                <div className="text-xs text-gray-700 dark:text-gray-400 font-medium">Projects</div>
+              </motion.div>
+
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-blue-200/50 dark:border-blue-800/50 rounded-xl p-4 text-center shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent mb-1">
+                  Pune
+                </div>
+                <div className="text-xs text-gray-700 dark:text-gray-400 font-medium">Location</div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Right Column - Content */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Main Content Card */}
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, x: 30 }}
+              whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div className="space-y-5">
+                <motion.p
+                  initial={reduceMotion ? false : { opacity: 0 }}
+                  whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                >
+                  I'm <span className="font-bold text-indigo-600 dark:text-indigo-400">Vinay Kushwah</span>, a
+                  passionate full-stack engineer with <span className="font-semibold text-purple-600 dark:text-purple-400">{years}+ years</span> of experience crafting scalable, 
                   high-performance web applications. I specialize in building end-to-end solutions 
                   that combine elegant frontend experiences with robust backend architectures.
-                </p>
+                </motion.p>
 
-                <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                <motion.p
+                  initial={reduceMotion ? false : { opacity: 0 }}
+                  whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                >
                   My journey in software development has been driven by a love for solving complex 
                   problems and creating products that make a real impact. I've worked with startups 
                   and established companies, shipping production-ready features that improve user 
                   experiences and drive business growth.
-                </p>
+                </motion.p>
 
-                <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                  I'm passionate about <strong className="text-indigo-600 dark:text-indigo-400">performance optimization</strong>, 
-                  writing <strong className="text-indigo-600 dark:text-indigo-400">clean, maintainable code</strong>, and 
+                <motion.p
+                  initial={reduceMotion ? false : { opacity: 0 }}
+                  whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                >
+                  I'm passionate about <span className="font-semibold text-indigo-600 dark:text-indigo-400">performance optimization</span>, 
+                  writing <span className="font-semibold text-purple-600 dark:text-purple-400">clean, maintainable code</span>, and 
                   staying current with the latest technologies. My expertise spans the entire development 
                   lifecycle—from initial concept and design to deployment and optimization.
-                </p>
+                </motion.p>
 
-                <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                  When I'm not coding, I enjoy <strong className="text-indigo-600 dark:text-indigo-400">mentoring junior developers</strong>, 
-                  contributing to <strong className="text-indigo-600 dark:text-indigo-400">open-source projects</strong>, and 
+                <motion.p
+                  initial={reduceMotion ? false : { opacity: 0 }}
+                  whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                >
+                  When I'm not coding, I enjoy <span className="font-semibold text-pink-600 dark:text-pink-400">mentoring junior developers</span>, 
+                  contributing to <span className="font-semibold text-indigo-600 dark:text-indigo-400">open-source projects</span>, and 
                   exploring new frameworks and tools. I believe in continuous learning and sharing knowledge 
                   with the developer community.
-                </p>
-
-                <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                  Currently open to exciting opportunities in product-focused roles, contract work, 
-                  and collaborative projects. Let's build something amazing together!
-                </p>
-
-                {/* Tags */}
-                <ul
-                  className="flex flex-wrap justify-center md:justify-start gap-3 mt-6"
-                  aria-hidden="true"
-                >
-                  {tags.map((tag, index) => (
-                    <li key={tag}>
-                      <motion.span
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1, duration: 0.3 }}
-                        whileHover={reduceMotion ? undefined : { scale: 1.1, y: -2 }}
-                        className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 text-indigo-700 dark:text-indigo-200 text-sm font-medium border border-indigo-300/50 dark:border-indigo-700/50 shadow-sm hover:shadow-md transition-all duration-300"
-                      >
-                        {tag}
-                      </motion.span>
-                    </li>
-                  ))}
-                </ul>
+                </motion.p>
               </div>
-            </div>
+            </motion.div>
+
+            {/* Key Focus Areas */}
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="bg-gradient-to-br from-indigo-50/50 to-purple-50/50 dark:from-indigo-900/20 dark:to-purple-900/20 border border-indigo-200/50 dark:border-indigo-800/50 rounded-2xl p-6 sm:p-8"
+            >
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <span className="w-1 h-6 bg-gradient-to-b from-indigo-600 to-purple-600 rounded-full" />
+                Key Focus Areas
+              </h3>
+              <ul className="grid sm:grid-cols-2 gap-3">
+                {[
+                  "Performance Optimization",
+                  "Clean Code Architecture",
+                  "Scalable Solutions",
+                  "User Experience",
+                  "Modern Frameworks",
+                  "Best Practices"
+                ].map((focus, idx) => (
+                  <motion.li
+                    key={focus}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + idx * 0.05 }}
+                    className="flex items-center gap-2 text-sm sm:text-base text-gray-700 dark:text-gray-300"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500" />
+                    {focus}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Tech Stack Tags */}
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+            >
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Technologies I Love</h3>
+              <div className="flex flex-wrap gap-3">
+                {tags.map((tag, index) => (
+                  <motion.span
+                    key={tag}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.7 + index * 0.05, duration: 0.3 }}
+                    whileHover={reduceMotion ? undefined : { scale: 1.1, y: -2 }}
+                    className="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300"
+                  >
+                    {tag}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </motion.div>

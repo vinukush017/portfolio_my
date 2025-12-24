@@ -110,7 +110,7 @@ const Experience: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-12 text-center"
         >
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Over the years, I've had the privilege of working with diverse teams and technologies, 
             consistently delivering high-quality solutions that drive business value. My experience spans 
             from junior roles to senior positions, with a focus on continuous growth and learning.
@@ -170,7 +170,7 @@ const Experience: React.FC = () => {
                           {exp.title}
                         </h3>
                         
-                        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-700 dark:text-gray-400">
                           <span className="font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />

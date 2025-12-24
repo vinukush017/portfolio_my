@@ -284,7 +284,7 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
           </motion.a>
         </div>
 
-        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3 leading-relaxed line-clamp-2">
+        <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-400 mb-3 leading-relaxed line-clamp-2">
           {proj.description}
         </p>
 
@@ -335,7 +335,7 @@ const Projects: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-12 text-center"
         >
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Each project represents a unique challenge solved with modern technologies, 
             best practices, and attention to detail. From spiritual platforms to productivity 
             tools and AI-powered applications, these projects demonstrate my ability to deliver 

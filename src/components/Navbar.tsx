@@ -330,7 +330,7 @@ const Navbar: React.FC = () => {
                 scrollToSection(link);
               }}
               className={[
-                "relative px-4 py-2 font-medium rounded-lg cursor-pointer transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 group",
+                "relative px-3 py-1.5 text-sm font-medium rounded-lg cursor-pointer transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 group",
                 isActive
                   ? "text-white"
                   : isDark
@@ -341,8 +341,8 @@ const Navbar: React.FC = () => {
                 reduceMotion
                   ? undefined
                   : isActive
-                  ? { scale: 1.05, y: -2 }
-                  : { scale: 1.05, y: -2 }
+                  ? { scale: 1.03, y: -1 }
+                  : { scale: 1.03, y: -1 }
               }
               whileTap={reduceMotion ? undefined : { scale: 0.95 }}
               aria-current={isActive ? "page" : undefined}
@@ -356,7 +356,7 @@ const Navbar: React.FC = () => {
                 {isActive && (
                   <motion.span
                     layoutId="activeNav"
-                    className="absolute inset-0 rounded-lg z-0 bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg shadow-indigo-500/50"
+                    className="absolute inset-0 rounded-lg z-0 bg-gradient-to-r from-indigo-600 to-purple-600 shadow-md shadow-indigo-500/30"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -420,15 +420,15 @@ const Navbar: React.FC = () => {
           fixed inset-x-0 top-0 z-50
           transition-all duration-300 ease-in-out
           ${scrolled 
-            ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md border-b border-gray-200/50 dark:border-gray-800/50" 
-            : "bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm"
+            ? "bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg shadow-md border-b border-gray-200/30 dark:border-gray-800/30" 
+            : "bg-white/50 dark:bg-gray-900/50 backdrop-blur-md"
           }
         `}
         role="navigation"
         aria-label="Primary Navigation"
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 gap-4">
+          <div className="flex items-center justify-between h-14 gap-3">
             {/* Left: Logo */}
             <motion.a
               href="#home"
@@ -444,53 +444,53 @@ const Navbar: React.FC = () => {
                   window.history.replaceState(null, "", "#home");
                 }, 100);
               }}
-              className="flex items-center gap-2.5 hover:opacity-80 transition-opacity group"
-              whileHover={reduceMotion ? undefined : { scale: 1.05 }}
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity group"
+              whileHover={reduceMotion ? undefined : { scale: 1.03 }}
               whileTap={reduceMotion ? undefined : { scale: 0.95 }}
             >
               <div className="relative">
                 <img
                   src="/1.png"
-                  className="h-9 w-9 rounded-full block dark:hidden transition-transform group-hover:rotate-6"
+                  className="h-8 w-8 rounded-full block dark:hidden transition-transform group-hover:rotate-6"
                   alt="Logo"
                 />
                 <img
                   src="/2.png"
-                  className="h-9 w-9 rounded-full hidden dark:block transition-transform group-hover:rotate-6"
+                  className="h-8 w-8 rounded-full hidden dark:block transition-transform group-hover:rotate-6"
                   alt="Logo (Dark)"
                 />
               </div>
-              <span className="hidden sm:block text-base font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+              <span className="hidden sm:block text-sm font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
                 Vinay Kushwah
               </span>
             </motion.a>
 
             {/* Center: Desktop links */}
             <div className="hidden md:flex flex-1 justify-center items-center">
-              <ul className="flex items-center gap-1">{desktopLinks}</ul>
+              <ul className="flex items-center gap-0.5">{desktopLinks}</ul>
             </div>
 
             {/* Right: controls */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <motion.button
                 aria-label="Toggle theme"
                 onClick={() => setIsDark((d) => !d)}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
                 type="button"
-                whileHover={reduceMotion ? undefined : { scale: 1.1 }}
+                whileHover={reduceMotion ? undefined : { scale: 1.05 }}
                 whileTap={reduceMotion ? undefined : { scale: 0.9 }}
               >
                 {isDark ? (
-                  <SunIcon className="w-5 h-5 text-yellow-400" />
+                  <SunIcon className="w-4 h-4 text-yellow-400" />
                 ) : (
-                  <MoonIcon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                  <MoonIcon className="w-4 h-4 text-gray-700 dark:text-gray-300" />
                 )}
               </motion.button>
 
               {/* Menu button (mobile only) */}
               <motion.button
                 ref={menuButtonRef}
-                className="md:hidden p-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="md:hidden p-1.5 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 onClick={() => setMenuOpen((o) => !o)}
                 aria-label="Toggle menu"
                 aria-expanded={menuOpen}
@@ -501,9 +501,9 @@ const Navbar: React.FC = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
                 {menuOpen ? (
-                  <XMarkIcon className="h-6 w-6 text-gray-900 dark:text-white" />
+                  <XMarkIcon className="h-5 w-5 text-gray-900 dark:text-white" />
                 ) : (
-                  <Bars3Icon className="h-6 w-6 text-gray-900 dark:text-white" />
+                  <Bars3Icon className="h-5 w-5 text-gray-900 dark:text-white" />
                 )}
               </motion.button>
             </div>
@@ -544,7 +544,7 @@ const Navbar: React.FC = () => {
                           }, 150);
                         }}
                         className={`
-                          group relative block w-full text-base font-medium px-6 py-3
+                          group relative block w-full text-sm font-medium px-5 py-2.5
                           transition-all duration-300 overflow-hidden
                           ${
                             isActive
