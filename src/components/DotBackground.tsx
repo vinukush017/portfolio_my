@@ -96,43 +96,7 @@ const GalaxyBackground = () => {
       ctx.fillStyle = gradient3;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw stars
-      stars.forEach((star) => {
-        // Update position
-        star.x += star.vx;
-        star.y += star.vy;
-
-        // Wrap around edges
-        if (star.x < 0) star.x = canvas.width;
-        if (star.x > canvas.width) star.x = 0;
-        if (star.y < 0) star.y = canvas.height;
-        if (star.y > canvas.height) star.y = 0;
-
-        // Twinkle effect
-        star.twinkle += 0.02;
-        const twinkleOpacity = star.opacity + Math.sin(star.twinkle) * 0.2;
-
-        // Draw star - much more subtle in light mode
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        if (isDark) {
-          ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0, Math.min(1, twinkleOpacity))})`;
-          ctx.fill();
-          // Add glow for larger stars in dark mode
-          if (star.radius > 1) {
-            ctx.shadowBlur = 3;
-            ctx.shadowColor = "rgba(255, 255, 255, 0.5)";
-            ctx.fill();
-            ctx.shadowBlur = 0;
-          }
-        } else {
-          // Very subtle stars in light mode - only show larger ones
-          if (star.radius > 1.2) {
-            ctx.fillStyle = `rgba(99, 102, 241, ${Math.max(0, Math.min(1, twinkleOpacity * 0.15))})`;
-            ctx.fill();
-          }
-        }
-      });
+      // Stars removed - only gradient orbs remain
 
       animationFrameId = requestAnimationFrame(draw);
     };
