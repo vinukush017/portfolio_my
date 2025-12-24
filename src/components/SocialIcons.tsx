@@ -170,8 +170,12 @@ const SocialBar = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
         className="fixed left-4 sm:left-6 lg:left-8 bottom-0 -translate-y-1/2 z-[60] hidden lg:flex flex-col items-center gap-2"
+        style={{ 
+          left: 'calc(1rem + env(safe-area-inset-left))',
+          bottom: 'calc(env(safe-area-inset-bottom))',
+          pointerEvents: "auto"
+        }}
         aria-label="Social media and contact links"
-        style={{ pointerEvents: "auto" }}
       >
         {/* Container with background */}
         <div className="relative">

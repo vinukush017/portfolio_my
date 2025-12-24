@@ -37,13 +37,13 @@ const HeroSection: React.FC = () => {
 
   return (
     <>
-      <div id="main" className="w-full mx-auto relative">
+      <div id="main" className="w-full max-w-full mx-auto relative overflow-x-hidden">
         {/* Social icons sidebar - positioned by component itself */}
         <SocialIcons />
 
         <section
           aria-label="Introduction"
-          className="snap-start min-h-screen w-full flex items-center justify-center bg-transparent text-gray-900 dark:text-white py-16 md:py-20"
+          className="snap-start min-h-screen w-full max-w-full flex items-center justify-center bg-transparent text-gray-900 dark:text-white py-16 md:py-20 overflow-x-hidden"
         >
           <div className="container mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <motion.div

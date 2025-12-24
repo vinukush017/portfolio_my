@@ -31,7 +31,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative mt-20 border-t border-gray-200/50 dark:border-gray-800/50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md">
+    <footer className="relative mt-20 border-t border-gray-200/50 dark:border-gray-800/50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/30 via-purple-50/30 to-pink-50/30 dark:from-indigo-900/10 dark:via-purple-900/10 dark:to-pink-900/10 pointer-events-none" />
       
