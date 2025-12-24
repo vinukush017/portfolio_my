@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import SectionHeader from "./SectionHeader";
 
 type Experience = {
   company: string;
@@ -95,15 +96,26 @@ const Experience: React.FC = () => {
       className="mt-8 sm:mt-10 py-8 sm:py-12 md:py-16"
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
+        <SectionHeader
+          subtitle="Career Journey"
+          title="Professional Experience"
+          description="Building impactful solutions across diverse industries, from startups to established companies, delivering measurable results and driving innovation."
+        />
+
+        {/* Experience Introduction */}
+        <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-12 text-center"
         >
-          Experience
-        </motion.h2>
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Over the years, I've had the privilege of working with diverse teams and technologies, 
+            consistently delivering high-quality solutions that drive business value. My experience spans 
+            from junior roles to senior positions, with a focus on continuous growth and learning.
+          </p>
+        </motion.div>
 
         {/* Timeline wrapper */}
         <ol

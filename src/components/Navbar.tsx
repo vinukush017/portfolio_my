@@ -330,22 +330,33 @@ const Navbar: React.FC = () => {
                 scrollToSection(link);
               }}
               className={[
-                "relative px-4 py-2 font-medium rounded-lg cursor-pointer transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500",
+                "relative px-4 py-2 font-medium rounded-lg cursor-pointer transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 group",
                 isActive
                   ? "text-white"
                   : isDark
-                  ? "text-gray-300 hover:text-white"
-                  : "text-gray-700 hover:text-gray-900",
+                  ? "text-gray-300"
+                  : "text-gray-700",
               ].join(" ")}
-              whileHover={reduceMotion ? undefined : { scale: 1.05 }}
+              whileHover={
+                reduceMotion
+                  ? undefined
+                  : isActive
+                  ? { scale: 1.05, y: -2 }
+                  : { scale: 1.05, y: -2 }
+              }
+              whileTap={reduceMotion ? undefined : { scale: 0.95 }}
               aria-current={isActive ? "page" : undefined}
             >
-              {linkLabel(link)}
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+                {linkLabel(link)}
+              </span>
+              
+              {/* Active state background */}
               <AnimatePresence>
                 {isActive && (
                   <motion.span
                     layoutId="activeNav"
-                    className="absolute inset-0 rounded-lg z-[-1] bg-gradient-to-r from-indigo-600 to-purple-600"
+                    className="absolute inset-0 rounded-lg z-0 bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg shadow-indigo-500/50"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -357,6 +368,30 @@ const Navbar: React.FC = () => {
                   />
                 )}
               </AnimatePresence>
+
+              {/* Hover state background (only when not active) */}
+              {!isActive && (
+                <motion.span
+                  className="absolute inset-0 rounded-lg z-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={false}
+                  whileHover={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          opacity: 1,
+                          scale: 1.02,
+                        }
+                  }
+                />
+              )}
+
+              {/* Hover glow effect */}
+              {!isActive && (
+                <motion.span
+                  className="absolute inset-0 rounded-lg z-0 bg-gradient-to-r from-indigo-400/10 to-purple-400/10 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={false}
+                />
+              )}
             </motion.a>
           </li>
         );
@@ -494,36 +529,90 @@ const Navbar: React.FC = () => {
                 animate="visible"
                 exit="exit"
               >
-                {LINKS.map((link) => (
-                  <motion.li key={link} variants={itemVariants(reduceMotion)}>
-                    <a
-                      href={`#${link}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setMenuOpen(false);
-                        setActiveLink(link as LinkKey);
-                        setTimeout(() => {
-                          scrollToSection(link);
-                        }, 150);
-                      }}
-                      className={`
-                        group block w-full text-base font-medium px-6 py-3
-                        transition-all duration-200
-                        ${
-                          activeLink === link
-                            ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
-                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                {LINKS.map((link) => {
+                  const isActive = activeLink === link;
+                  return (
+                    <motion.li key={link} variants={itemVariants(reduceMotion)}>
+                      <motion.a
+                        href={`#${link}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMenuOpen(false);
+                          setActiveLink(link as LinkKey);
+                          setTimeout(() => {
+                            scrollToSection(link);
+                          }, 150);
+                        }}
+                        className={`
+                          group relative block w-full text-base font-medium px-6 py-3
+                          transition-all duration-300 overflow-hidden
+                          ${
+                            isActive
+                              ? "text-indigo-600 dark:text-indigo-400"
+                              : "text-gray-700 dark:text-gray-300"
+                          }
+                          focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-inset
+                        `}
+                        whileHover={
+                          reduceMotion
+                            ? undefined
+                            : {
+                                x: 4,
+                                transition: { duration: 0.2 },
+                              }
                         }
-                        focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-inset
-                      `}
-                      aria-current={activeLink === link ? "page" : undefined}
-                    >
-                      <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
-                        {linkLabel(link as LinkKey)}
-                      </span>
-                    </a>
-                  </motion.li>
-                ))}
+                        whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                        aria-current={isActive ? "page" : undefined}
+                      >
+                        {/* Active indicator */}
+                        {isActive && (
+                          <motion.span
+                            layoutId="mobileActive"
+                            className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-indigo-600 to-purple-600 rounded-r-full"
+                            initial={{ scaleY: 0 }}
+                            animate={{ scaleY: 1 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        )}
+
+                        {/* Hover background */}
+                        <motion.span
+                          className={`
+                            absolute inset-0 z-0
+                            ${
+                              isActive
+                                ? "bg-indigo-50 dark:bg-indigo-900/30"
+                                : "bg-gray-100 dark:bg-gray-800"
+                            }
+                            opacity-0 group-hover:opacity-100
+                            transition-opacity duration-300
+                          `}
+                          initial={false}
+                        />
+
+                        {/* Hover gradient effect */}
+                        {!isActive && (
+                          <motion.span
+                            className="absolute inset-0 z-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            initial={false}
+                          />
+                        )}
+
+                        <span className="relative z-10 inline-block transition-all duration-300 group-hover:translate-x-1 group-hover:font-semibold">
+                          {linkLabel(link as LinkKey)}
+                        </span>
+
+                        {/* Arrow indicator on hover */}
+                        <motion.span
+                          className="absolute right-6 top-1/2 -translate-y-1/2 z-10 text-indigo-600 dark:text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          initial={false}
+                        >
+                          →
+                        </motion.span>
+                      </motion.a>
+                    </motion.li>
+                  );
+                })}
               </motion.ul>
             </motion.div>
           )}

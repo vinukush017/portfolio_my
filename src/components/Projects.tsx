@@ -6,6 +6,7 @@ import React, {
   useCallback,
 } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
+import SectionHeader from "./SectionHeader";
 
 type Project = {
   title: string;
@@ -103,7 +104,7 @@ const SlideDots = ({
   labelPrefix: string;
 }) => {
   return (
-    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/40 dark:bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
       {Array.from({ length: count }).map((_, i) => (
         <button
           key={i}
@@ -112,8 +113,10 @@ const SlideDots = ({
           aria-current={i === active ? "true" : undefined}
           onClick={() => onSelect(i)}
           className={[
-            "h-2 w-2 rounded-full border border-white/60",
-            i === active ? "bg-white" : "bg-white/20 hover:bg-white/40",
+            "h-1.5 w-1.5 rounded-full transition-all duration-300",
+            i === active 
+              ? "bg-white w-6" 
+              : "bg-white/50 hover:bg-white/70",
           ].join(" ")}
         />
       ))}
@@ -193,32 +196,26 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
   return (
     <motion.article
       ref={cardRef}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay: index * 0.06 }}
-      onMouseMove={handleMouseMove}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => {
         setIsHovering(false);
         setMousePosition({ x: 0, y: 0 });
       }}
-      animate={{
-        rotateX: isHovering ? mousePosition.y * 0.5 : 0,
-        rotateY: isHovering ? mousePosition.x * 0.5 : 0,
-        scale: isHovering ? 1.02 : 1,
-      }}
-      style={{ transformStyle: "preserve-3d" }}
-      className="w-full mx-auto group h-full flex flex-col backdrop-blur-xl bg-gradient-to-br from-white/30 to-indigo-50/20 dark:from-white/10 dark:to-indigo-900/20 border border-indigo-200/30 dark:border-indigo-800/30 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-500"
+      whileHover={{ y: -8 }}
+      className="w-full mx-auto group h-full flex flex-col bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:border-indigo-300/50 dark:hover:border-indigo-700/50 transition-all duration-300"
       aria-label={proj.title}
     >
       {/* Media */}
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden bg-gray-100 dark:bg-gray-800"
         onMouseEnter={() => (hoverRef.current = true)}
         onMouseLeave={() => (hoverRef.current = false)}
       >
-        <div className="aspect-[16/9] w-full bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 overflow-hidden">
+        <div className="aspect-[16/9] w-full overflow-hidden">
           <motion.img
             src={proj.image[imgIndex]}
             alt={`${proj.title} screenshot ${imgIndex + 1}`}
@@ -227,11 +224,11 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
             decoding="async"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
             animate={{
-              scale: isHovering ? 1.1 : 1,
+              scale: isHovering ? 1.05 : 1,
             }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
 
         {proj.image.length > 1 && (
@@ -240,7 +237,7 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
               type="button"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 backdrop-blur-sm text-white px-3 py-2 text-lg opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-black/80 shadow-lg"
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-gray-900 dark:text-white px-2 py-1.5 text-sm opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
               aria-label={`Previous ${proj.title} image`}
               onClick={prev}
             >
@@ -250,7 +247,7 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
               type="button"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 backdrop-blur-sm text-white px-3 py-2 text-lg opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-black/80 shadow-lg"
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-gray-900 dark:text-white px-2 py-1.5 text-sm opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
               aria-label={`Next ${proj.title} image`}
               onClick={next}
             >
@@ -267,44 +264,53 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-grow p-4 sm:p-5 bg-gradient-to-b from-transparent to-white/10 dark:to-gray-900/10">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white tracking-tight bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+      <div className="flex flex-col flex-grow p-4 sm:p-5">
+        <div className="flex items-start justify-between mb-2.5 gap-2">
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 flex-1">
             {proj.title}
           </h3>
           <motion.a
             href={proj.link}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, x: 2 }}
-            className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 rounded flex items-center gap-1"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex-shrink-0 p-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
             aria-label={`Visit ${proj.title} (opens in new tab)`}
           >
-            Visit
-            <span className="text-lg">→</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
           </motion.a>
         </div>
 
-        <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3 leading-relaxed line-clamp-2">
           {proj.description}
         </p>
 
-        <ul className="mt-auto pt-3 flex flex-wrap gap-2">
-          {proj.stack.map((tech, techIndex) => (
-            <motion.li
-              key={tech}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: techIndex * 0.05 }}
-              whileHover={{ scale: 1.1, y: -2 }}
-            >
-              <span className="text-xs px-3 py-1 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-200 font-medium border border-indigo-300/50 dark:border-indigo-700/50 shadow-sm">
-                {tech}
+        <div className="mt-auto pt-1">
+          <ul className="flex flex-wrap gap-1.5">
+            {proj.stack.slice(0, 4).map((tech, techIndex) => (
+              <motion.li
+                key={tech}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: techIndex * 0.03 }}
+                whileHover={{ scale: 1.05, y: -2 }}
+              >
+                <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium border border-gray-200 dark:border-gray-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:border-indigo-300 dark:hover:border-indigo-700 hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors">
+                  {tech}
+                </span>
+              </motion.li>
+            ))}
+            {proj.stack.length > 4 && (
+              <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-500 font-medium border border-gray-200 dark:border-gray-700">
+                +{proj.stack.length - 4}
               </span>
-            </motion.li>
-          ))}
-        </ul>
+            )}
+          </ul>
+        </div>
       </div>
     </motion.article>
   );
@@ -315,17 +321,29 @@ const Projects: React.FC = () => {
   return (
     <section className="py-8 sm:py-12 md:py-16" aria-label="Projects">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
+        <SectionHeader
+          subtitle="Portfolio"
+          title="Featured Projects"
+          description="A collection of innovative web applications and platforms I've built, showcasing my expertise in full-stack development, modern frameworks, and user-centric design."
+        />
+
+        {/* Projects Introduction */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-12 text-center"
         >
-          Projects
-        </motion.h2>
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Each project represents a unique challenge solved with modern technologies, 
+            best practices, and attention to detail. From spiritual platforms to productivity 
+            tools and AI-powered applications, these projects demonstrate my ability to deliver 
+            production-ready solutions that users love.
+          </p>
+        </motion.div>
 
-        <div className="grid gap-6 sm:gap-8 sm:grid-cols-2">
+        <div className="grid gap-4 sm:gap-5 lg:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((proj, index) => (
             <ProjectCard key={proj.title} proj={proj} index={index} />
           ))}

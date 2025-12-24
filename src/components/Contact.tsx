@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import SectionHeader from "./SectionHeader";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwpwglna";
 
@@ -46,15 +47,11 @@ const Contact: React.FC = () => {
 
   return (
     <section className="py-8 sm:py-12 md:py-16 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
-      >
-        Contact
-      </motion.h2>
+      <SectionHeader
+        subtitle="Let's Connect"
+        title="Get In Touch"
+        description="Have a project in mind or want to collaborate? I'd love to hear from you. Whether it's a full-time opportunity, freelance project, or just a friendly chat about technology, feel free to reach out!"
+      />
 
       <motion.form
         onSubmit={handleSubmit}

@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import SectionHeader from "./SectionHeader";
 
 const About: React.FC = () => {
   const reduceMotion = useReducedMotion();
@@ -33,15 +34,11 @@ const About: React.FC = () => {
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.6 }}
       >
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
-        >
-          About Me
-        </motion.h2>
+        <SectionHeader
+          subtitle="Get to Know"
+          title="About Me"
+          description="Passionate full-stack developer crafting exceptional digital experiences with modern technologies and best practices."
+        />
 
         {/* Content card */}
         <div className="bg-gradient-to-br from-gray-100/95 via-white/90 to-indigo-50/50 dark:from-gray-900/90 dark:via-gray-900/80 dark:to-indigo-900/30 border border-indigo-200/30 dark:border-indigo-800/30 backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-4 sm:p-6 md:p-8">
@@ -91,30 +88,36 @@ const About: React.FC = () => {
             <div className="flex flex-col justify-center text-center md:text-left h-full">
               <div className="flex flex-col justify-center">
                 <p className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-3 sm:mb-4">
-                  I’m <span className="font-semibold">Vinay Kushwah</span>, a
-                  full-stack engineer focused on building maintainable and
-                  high-performance web applications. I work across the stack —
-                  from polished React frontends to resilient Node.js backends.
+                  I'm <span className="font-semibold text-indigo-600 dark:text-indigo-400">Vinay Kushwah</span>, a
+                  passionate full-stack engineer with {years}+ years of experience crafting scalable, 
+                  high-performance web applications. I specialize in building end-to-end solutions 
+                  that combine elegant frontend experiences with robust backend architectures.
                 </p>
 
                 <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                  Recent work includes shipping production features for startups
-                  and building internal tools that reduce operational load. I
-                  care about fast load times, clear developer ergonomics, and
-                  code that’s easy to reason about.
+                  My journey in software development has been driven by a love for solving complex 
+                  problems and creating products that make a real impact. I've worked with startups 
+                  and established companies, shipping production-ready features that improve user 
+                  experiences and drive business growth.
                 </p>
 
                 <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                  Tech highlights: <strong>React</strong>,{" "}
-                  <strong>Next.js</strong>, <strong>Node.js</strong>,{" "}
-                  <strong>TypeScript</strong>, <strong>Tailwind</strong>. I pair
-                  pragmatic engineering with product-minded thinking to deliver
-                  measurable impact.
+                  I'm passionate about <strong className="text-indigo-600 dark:text-indigo-400">performance optimization</strong>, 
+                  writing <strong className="text-indigo-600 dark:text-indigo-400">clean, maintainable code</strong>, and 
+                  staying current with the latest technologies. My expertise spans the entire development 
+                  lifecycle—from initial concept and design to deployment and optimization.
+                </p>
+
+                <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                  When I'm not coding, I enjoy <strong className="text-indigo-600 dark:text-indigo-400">mentoring junior developers</strong>, 
+                  contributing to <strong className="text-indigo-600 dark:text-indigo-400">open-source projects</strong>, and 
+                  exploring new frameworks and tools. I believe in continuous learning and sharing knowledge 
+                  with the developer community.
                 </p>
 
                 <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                  Open to product-focused roles and contract work. I mentor
-                  junior engineers and contribute to open-source when possible.
+                  Currently open to exciting opportunities in product-focused roles, contract work, 
+                  and collaborative projects. Let's build something amazing together!
                 </p>
 
                 {/* Tags */}
