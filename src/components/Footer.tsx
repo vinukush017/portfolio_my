@@ -76,7 +76,7 @@ const Footer = () => {
                   whileTap={{ scale: 0.95 }}
                   className={`w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 transition-all duration-300 ${social.color || ""}`}
                 >
-                  {social.isX ? <XIcon size={20} /> : <social.icon size={20} />}
+                  {social.isX ? <XIcon size={20} /> : social.icon && <social.icon size={20} />}
                 </motion.a>
               ))}
             </div>

@@ -43,20 +43,33 @@ const HeroSection: React.FC = () => {
 
         <section
           aria-label="Introduction"
-          className="snap-start min-h-screen w-full flex items-center justify-center bg-transparent text-gray-900 dark:text-white py-8 sm:py-12 md:py-16"
+          className="snap-start min-h-screen w-full flex items-center justify-center bg-transparent text-gray-900 dark:text-white py-16 md:py-20"
         >
           <div className="container mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <motion.div
               {...containerMotion}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-4 items-center"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
             >
               {/* Left/main content */}
-              <div className="lg:col-span-7 lg:col-start-2 xl:col-start-2 flex flex-col items-start text-left px-4 sm:px-0">
-                <motion.p
+              <div className="lg:col-span-7 flex flex-col items-start text-left">
+                {/* Greeting Badge */}
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-base sm:text-lg md:text-xl font-medium mb-2 sm:mb-1 leading-tight text-gray-600 dark:text-gray-300"
+                  className="mb-4"
+                >
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 border border-indigo-200/50 dark:border-indigo-800/50 text-sm font-medium text-indigo-700 dark:text-indigo-300">
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    Available for opportunities
+                  </span>
+                </motion.div>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.15 }}
+                  className="text-lg sm:text-xl md:text-2xl font-medium mb-3 text-gray-600 dark:text-gray-400"
                 >
                   Hi, I'm
                 </motion.p>
@@ -65,12 +78,14 @@ const HeroSection: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight sm:leading-snug bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent pb-2 sm:pb-3 font-mono mb-2 sm:mb-1"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4"
                 >
-                  Vinay Kushwah
+                  <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+                    Vinay Kushwah
+                  </span>
                 </motion.h1>
 
-                <div aria-live="polite" aria-atomic="true" className="mb-3 sm:mb-2 min-h-[1.5rem] sm:min-h-[2rem]">
+                <div aria-live="polite" aria-atomic="true" className="mb-4 min-h-[2rem] sm:min-h-[2.5rem]">
                   <TextScrambler
                     texts={[
                       "Full-Stack Developer",
@@ -80,33 +95,52 @@ const HeroSection: React.FC = () => {
                     ]}
                     speed={50}
                     interval={3000}
-                    className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold inline-block font-mono text-gray-800 dark:text-gray-100"
+                    className="text-xl sm:text-2xl md:text-3xl font-bold inline-block bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent"
                   />
                 </div>
 
-                <motion.h2
+                {/* Info Cards */}
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="text-xs sm:text-sm md:text-base font-medium text-indigo-600 dark:text-indigo-400 mb-3 sm:mb-2"
+                  className="flex flex-wrap gap-3 mb-6"
                 >
-                  📍 Pune, India · {years}+ years experience · Available for opportunities
-                </motion.h2>
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 shadow-sm">
+                    <svg className="w-4 h-4 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Pune, India</span>
+                  </div>
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 shadow-sm">
+                    <svg className="w-4 h-4 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{years}+ Years Experience</span>
+                  </div>
+                </motion.div>
 
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mb-4 sm:mb-6 leading-relaxed"
+                  className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-6 leading-relaxed"
                 >
-                  I'm a passionate <strong>Full-Stack Developer</strong> specializing in building scalable, 
-                  high-performance web applications. With expertise in <strong>React</strong>, <strong>Next.js</strong>, 
-                  <strong>Node.js</strong>, and <strong>TypeScript</strong>, I transform ideas into production-ready 
-                  solutions that deliver exceptional user experiences and measurable business impact.
+                  I'm a passionate <span className="font-semibold text-indigo-600 dark:text-indigo-400">Full-Stack Developer</span> specializing in building scalable, 
+                  high-performance web applications. With expertise in <span className="font-semibold text-purple-600 dark:text-purple-400">React</span>, <span className="font-semibold text-pink-600 dark:text-pink-400">Next.js</span>, 
+                  <span className="font-semibold text-indigo-600 dark:text-indigo-400">Node.js</span>, and <span className="font-semibold text-purple-600 dark:text-purple-400">TypeScript</span>, I transform ideas into production-ready 
+                  solutions that deliver exceptional user experiences.
                 </motion.p>
 
                 {/* Skill chips */}
-                <div className="flex flex-wrap gap-2 mb-4 sm:mb-6" aria-hidden="true">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="flex flex-wrap gap-2 mb-8"
+                  aria-hidden="true"
+                >
                   {[
                     "React",
                     "Next.js",
@@ -121,16 +155,22 @@ const HeroSection: React.FC = () => {
                       key={skill}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.5 + index * 0.05, duration: 0.3 }}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      className="text-xs sm:text-sm inline-flex items-center px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-indigo-200 dark:border-indigo-800 text-gray-700 dark:text-gray-200 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 font-medium"
+                      transition={{ delay: 0.6 + index * 0.05, duration: 0.3 }}
+                      whileHover={{ scale: 1.1, y: -3 }}
+                      className="text-xs sm:text-sm inline-flex items-center px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-indigo-300 dark:hover:border-indigo-700 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all duration-300 font-medium shadow-sm hover:shadow-md"
                     >
                       {skill}
                     </motion.span>
                   ))}
-                </div>
+                </motion.div>
 
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-2 w-full sm:w-auto">
+                {/* CTA Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto"
+                >
                   {/* Primary CTA: Projects */}
                   <motion.a
                     href="#projects"
@@ -148,13 +188,13 @@ const HeroSection: React.FC = () => {
                         });
                       }
                     }}
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-full hover:from-indigo-700 hover:to-purple-700 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-indigo-500/50 font-semibold text-sm sm:text-base w-full sm:w-auto"
+                    whileHover={{ scale: 1.05, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group inline-flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl hover:from-indigo-700 hover:to-purple-700 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-indigo-500/50 font-semibold text-base sm:text-lg w-full sm:w-auto"
                   >
                     View My Projects
                     <motion.span
-                      className="ml-2"
+                      className="ml-2 text-xl"
                       animate={{ x: [0, 4, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                     >
@@ -168,29 +208,42 @@ const HeroSection: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open resume in a new tab"
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center border-2 border-indigo-600 text-indigo-600 dark:text-indigo-300 dark:border-indigo-300 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 font-semibold backdrop-blur-sm bg-white/50 dark:bg-gray-900/50 text-sm sm:text-base w-full sm:w-auto"
+                    whileHover={{ scale: 1.05, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group inline-flex items-center justify-center border-2 border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 font-semibold bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-base sm:text-lg w-full sm:w-auto shadow-sm hover:shadow-md"
                   >
-                    📄 Download Resume
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Download Resume
                   </motion.a>
-                </div>
+                </motion.div>
               </div>
 
-              {/* Right visual: on small screens it will flow below the text */}
-              <div className="lg:col-span-4 lg:col-start-9 flex items-center justify-center mt-8 lg:mt-0">
-                <div className="w-full max-w-full sm:max-w-md lg:max-w-lg flex justify-center">
-                  {/* responsive width: min(95vw, 520px) ensures it fits phones */}
-                  <CodeVisual
-                    lines={codeLines}
-                    speed={22}
-                    lineDelay={700}
-                    loop={true}
-                    className="w-full max-w-[min(100%,520px)] rounded-lg shadow-lg/10"
-                    maxWidth={520}
-                  />
+              {/* Right visual: Code Visual */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="lg:col-span-5 flex items-center justify-center mt-8 lg:mt-0"
+              >
+                <div className="relative w-full max-w-lg">
+                  {/* Decorative Background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl blur-3xl" />
+                  
+                  {/* Code Visual Card */}
+                  <div className="relative bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 rounded-2xl p-4 sm:p-6 shadow-xl">
+                    <CodeVisual
+                      lines={codeLines}
+                      speed={22}
+                      lineDelay={700}
+                      loop={true}
+                      className="w-full rounded-lg"
+                      maxWidth={520}
+                    />
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </section>
