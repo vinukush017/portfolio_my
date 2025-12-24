@@ -48,23 +48,23 @@ function App() {
           </section>
 
           {/* Static sections (no animation) */}
-          <section id="projects" className="scroll-mt-28 sm:scroll-mt-32 py-12">
+          <section id="projects" className="scroll-mt-28 sm:scroll-mt-32 py-6">
             <Projects />
           </section>
 
-          <section id="about" className="scroll-mt-28 sm:scroll-mt-32 py-12">
+          <section id="about" className="scroll-mt-28 sm:scroll-mt-32 py-6">
             <AboutSection />
           </section>
 
-          <section id="skills" className="scroll-mt-28 sm:scroll-mt-32 py-12">
+          <section id="skills" className="scroll-mt-28 sm:scroll-mt-32 py-6">
             <Skills />
           </section>
 
-          <section id="experience" className="scroll-mt-28 sm:scroll-mt-32 py-12">
+          <section id="experience" className="scroll-mt-28 sm:scroll-mt-32 py-6">
             <Experience />
           </section>
 
-          <section id="contact" className="scroll-mt-28 sm:scroll-mt-32 py-12">
+          <section id="contact" className="scroll-mt-28 sm:scroll-mt-32 py-6">
             <Contact />
           </section>
 
