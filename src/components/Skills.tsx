@@ -46,19 +46,19 @@ const skillColors: Record<string, { text: string; border: string }> = {
 };
 
 const Skills = () => (
-  <section className="mx-auto w-[95%]" id="skills">
+  <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white"
+      className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
     >
       Skills
     </motion.h2>
 
     <motion.div
-      className="grid gap-x-4 gap-y-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center max-w-7xl mx-auto"
+      className="grid gap-x-3 sm:gap-x-4 gap-y-6 sm:gap-y-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center max-w-7xl mx-auto"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -70,19 +70,41 @@ const Skills = () => (
         return (
           <motion.div
             key={idx}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            /* <= CHANGED: responsive width so two cards fit on narrow screens
-               - on very small screens: width is 44vw (44% of viewport) -> two cards fit
-               - from sm breakpoint and up: use fixed w-48 (original look)
-            */
-            className="w-[36vw] sm:w-48 h-36 sm:h-40 bg-white dark:bg-gray-900 rounded-[25px] relative flex flex-col items-center justify-center overflow-hidden transition-all duration-500 shadow-md border-wrapper"
-            style={{ "--tw-border-color": border } as React.CSSProperties}
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: idx * 0.05 }}
+            whileHover={{ 
+              scale: 1.1, 
+              y: -8,
+              rotateY: 5,
+              rotateX: 5,
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="w-full max-w-[140px] sm:max-w-[180px] md:w-48 h-32 sm:h-36 md:h-40 bg-gradient-to-br from-white to-indigo-50/50 dark:from-gray-900 dark:to-indigo-900/20 rounded-2xl sm:rounded-[25px] relative flex flex-col items-center justify-center overflow-hidden transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-indigo-500/30 border-wrapper group"
+            style={{ "--tw-border-color": border, transformStyle: "preserve-3d" } as React.CSSProperties}
           >
-            <span className={`z-10 text-7xl ${text}`}>{icon}</span>
-            <span className="mt-2 text-center font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent z-10">
+            <motion.span
+              className={`z-10 text-5xl sm:text-6xl md:text-7xl ${text} transition-transform duration-300 group-hover:scale-110`}
+              animate={{
+                rotate: [0, 5, -5, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatDelay: 2,
+                ease: "easeInOut"
+              }}
+            >
+              {icon}
+            </motion.span>
+            <motion.span
+              className="mt-2 text-center font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent z-10"
+              whileHover={{ scale: 1.1 }}
+            >
               {skill}
-            </span>
+            </motion.span>
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-purple-500/0 group-hover:from-indigo-500/10 group-hover:to-purple-500/10 transition-all duration-500 rounded-[25px]" />
           </motion.div>
         );
       })}

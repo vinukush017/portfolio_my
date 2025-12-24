@@ -87,6 +87,33 @@ const themeColors = { primary: "#4F46E5", accent: "#A855F7" };
 const setHtmlDarkClass = (dark: boolean) =>
   document.documentElement.classList.toggle("dark", dark);
 
+// Helper function for smooth scrolling to section
+const scrollToSection = (sectionId: string) => {
+  requestAnimationFrame(() => {
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+    
+    // Get navbar height dynamically
+    const navbar = document.querySelector('[role="navigation"]');
+    const navbarHeight = navbar ? navbar.getBoundingClientRect().height + 24 : 120;
+    
+    // Calculate scroll position
+    const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = Math.max(0, elementTop - navbarHeight);
+    
+    // Smooth scroll
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+    
+    // Update URL hash after scroll starts
+    setTimeout(() => {
+      window.history.replaceState(null, "", `#${sectionId}`);
+    }, 100);
+  });
+};
+
 const getSystemPrefersDark = () =>
   typeof window !== "undefined" &&
   window.matchMedia?.("(prefers-color-scheme: dark)").matches;
@@ -286,7 +313,11 @@ const Navbar: React.FC = () => {
           <li key={link} className="relative">
             <motion.a
               href={`#${link}`}
-              onClick={() => setActiveLink(link)}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveLink(link);
+                scrollToSection(link);
+              }}
               className={[
                 "relative px-4 py-2 font-heading font-normal rounded-full cursor-pointer transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500",
                 isDark
@@ -337,8 +368,8 @@ const Navbar: React.FC = () => {
       </a>
 
       {/* Floating cylinder with an absolutely-positioned dropdown */}
-      <div className="fixed inset-x-4 top-[calc(env(safe-area-inset-top)+1rem)] z-50">
-        <div ref={wrapperRef} className="relative mx-auto max-w-3xl">
+      <div className="fixed inset-x-0 top-[calc(env(safe-area-inset-top)+1rem)] z-50">
+        <div ref={wrapperRef} className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* CYLINDER (stays same height) */}
           <motion.div
             initial={reduceMotion ? false : { y: -12, opacity: 0 }}
@@ -346,9 +377,9 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.25 }}
             className="
               px-3 py-2 sm:px-4 sm:py-2
-              rounded-full border border-white/15
-              bg-white/70 dark:bg-gray-900/70
-              backdrop-blur-xl shadow-lg
+              rounded-full border border-indigo-200/30 dark:border-indigo-800/30
+              bg-white/80 dark:bg-gray-900/80
+              backdrop-blur-xl shadow-lg hover:shadow-xl transition-shadow duration-300
             "
             role="navigation"
             aria-label="Primary"
@@ -358,7 +389,18 @@ const Navbar: React.FC = () => {
               <a
                 href="#home"
                 aria-label="Go to Home"
-                className="flex items-center gap-2"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveLink("home");
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                  setTimeout(() => {
+                    window.history.replaceState(null, "", "#home");
+                  }, 100);
+                }}
+                className="flex items-center gap-2 hover:opacity-80 transition-opacity"
               >
                 <img
                   src="/1.png"
@@ -445,15 +487,20 @@ const Navbar: React.FC = () => {
                     <motion.li key={link} variants={itemVariants(reduceMotion)}>
                       <a
                         href={`#${link}`}
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.preventDefault();
                           setMenuOpen(false);
                           setActiveLink(link as LinkKey);
+                          // Small delay to allow menu to close smoothly
+                          setTimeout(() => {
+                            scrollToSection(link);
+                          }, 150);
                         }}
                         className="
                           group block w-full text-base font-medium px-4 py-3 rounded-xl
                           hover:bg-gray-100/80 dark:hover:bg-white/10
                           focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500
-                          text-gray-900 dark:text-white text-center
+                          text-gray-900 dark:text-white text-center transition-all duration-200
                         "
                         aria-current={activeLink === link ? "page" : undefined}
                       >

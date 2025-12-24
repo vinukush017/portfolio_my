@@ -36,33 +36,33 @@ function App() {
       <JsonLd />
 
       <div className="relative min-h-screen bg-white text-gray-900 dark:bg-black dark:text-white">
-        <SplashCursor />
+        {/* <SplashCursor /> */}
         <GalaxyBackground />
 
-        <main className="relative z-10 scroll-smooth snap-y snap-mandatory">
+        <main className="relative z-10 scroll-smooth">
           {/* Hero Section */}
-          <section id="home" className="snap-start">
+          <section id="home" className="scroll-mt-28 sm:scroll-mt-32">
             <HeroSection />
           </section>
 
           {/* Static sections (no animation) */}
-          <section id="projects" className="snap-start">
+          <section id="projects" className="scroll-mt-28 sm:scroll-mt-32 py-12">
             <Projects />
           </section>
 
-          <section id="about" className="snap-start">
+          <section id="about" className="scroll-mt-28 sm:scroll-mt-32 py-12">
             <AboutSection />
           </section>
 
-          <section id="skills" className="snap-start">
+          <section id="skills" className="scroll-mt-28 sm:scroll-mt-32 py-12">
             <Skills />
           </section>
 
-          <section id="experience" className="snap-start">
+          <section id="experience" className="scroll-mt-28 sm:scroll-mt-32 py-12">
             <Experience />
           </section>
 
-          <section id="contact" className="snap-start">
+          <section id="contact" className="scroll-mt-28 sm:scroll-mt-32 py-12">
             <Contact />
           </section>
 

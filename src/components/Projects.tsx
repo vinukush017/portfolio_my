@@ -179,6 +179,17 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
     return () => document.removeEventListener("visibilitychange", onVis);
   }, []);
 
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setMousePosition({ x: (x / rect.width - 0.5) * 20, y: (y / rect.height - 0.5) * 20 });
+  };
+
   return (
     <motion.article
       ref={cardRef}
@@ -186,7 +197,19 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.06 }}
-      className="w-[95%] mx-auto group h-full flex flex-col backdrop-blur-md bg-white/20 dark:bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => {
+        setIsHovering(false);
+        setMousePosition({ x: 0, y: 0 });
+      }}
+      animate={{
+        rotateX: isHovering ? mousePosition.y * 0.5 : 0,
+        rotateY: isHovering ? mousePosition.x * 0.5 : 0,
+        scale: isHovering ? 1.02 : 1,
+      }}
+      style={{ transformStyle: "preserve-3d" }}
+      className="w-full mx-auto group h-full flex flex-col backdrop-blur-xl bg-gradient-to-br from-white/30 to-indigo-50/20 dark:from-white/10 dark:to-indigo-900/20 border border-indigo-200/30 dark:border-indigo-800/30 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-500"
       aria-label={proj.title}
     >
       {/* Media */}
@@ -195,35 +218,44 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
         onMouseEnter={() => (hoverRef.current = true)}
         onMouseLeave={() => (hoverRef.current = false)}
       >
-        <div className="aspect-[16/9] w-full bg-black/5 dark:bg-white/5">
-          <img
+        <div className="aspect-[16/9] w-full bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 overflow-hidden">
+          <motion.img
             src={proj.image[imgIndex]}
             alt={`${proj.title} screenshot ${imgIndex + 1}`}
-            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-in-out"
+            className="w-full h-full object-cover"
             loading="lazy"
             decoding="async"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
+            animate={{
+              scale: isHovering ? 1.1 : 1,
+            }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
 
         {proj.image.length > 1 && (
           <>
-            <button
+            <motion.button
               type="button"
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 text-white px-2 py-1 text-sm opacity-0 group-hover:opacity-100 focus:opacity-100 transition"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 backdrop-blur-sm text-white px-3 py-2 text-lg opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-black/80 shadow-lg"
               aria-label={`Previous ${proj.title} image`}
               onClick={prev}
             >
               ‹
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               type="button"
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 text-white px-2 py-1 text-sm opacity-0 group-hover:opacity-100 focus:opacity-100 transition"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 backdrop-blur-sm text-white px-3 py-2 text-lg opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-black/80 shadow-lg"
               aria-label={`Next ${proj.title} image`}
               onClick={next}
             >
               ›
-            </button>
+            </motion.button>
             <SlideDots
               count={proj.image.length}
               active={imgIndex}
@@ -235,33 +267,42 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-grow p-4">
-        <div className="flex items-center justify-between mb-2 gap-2">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white tracking-tight">
+      <div className="flex flex-col flex-grow p-4 sm:p-5 bg-gradient-to-b from-transparent to-white/10 dark:to-gray-900/10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white tracking-tight bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
             {proj.title}
           </h3>
-          <a
+          <motion.a
             href={proj.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 rounded"
+            whileHover={{ scale: 1.1, x: 2 }}
+            className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 rounded flex items-center gap-1"
             aria-label={`Visit ${proj.title} (opens in new tab)`}
           >
-            Visit →
-          </a>
+            Visit
+            <span className="text-lg">→</span>
+          </motion.a>
         </div>
 
         <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
           {proj.description}
         </p>
 
-        <ul className="mt-auto pt-2 flex flex-wrap gap-2">
-          {proj.stack.map((tech) => (
-            <li key={tech}>
-              <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-200 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-100 font-medium">
+        <ul className="mt-auto pt-3 flex flex-wrap gap-2">
+          {proj.stack.map((tech, techIndex) => (
+            <motion.li
+              key={tech}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: techIndex * 0.05 }}
+              whileHover={{ scale: 1.1, y: -2 }}
+            >
+              <span className="text-xs px-3 py-1 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-200 font-medium border border-indigo-300/50 dark:border-indigo-700/50 shadow-sm">
                 {tech}
               </span>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </div>
@@ -272,13 +313,19 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
 const Projects: React.FC = () => {
   const items = useMemo(() => projects, []);
   return (
-    <section id="projects" className="py-4" aria-label="Projects">
-      <div className="w-[90%] mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white">
+    <section className="py-8 sm:py-12 md:py-16" aria-label="Projects">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
+        >
           Projects
-        </h2>
+        </motion.h2>
 
-        <div className="grid gap-8 sm:grid-cols-2">
+        <div className="grid gap-6 sm:gap-8 sm:grid-cols-2">
           {items.map((proj, index) => (
             <ProjectCard key={proj.title} proj={proj} index={index} />
           ))}
