@@ -124,6 +124,7 @@ const Navbar: React.FC = () => {
 
   const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // track whether user manually set theme
   const userSetThemeRef = useRef<boolean>(false);
@@ -172,6 +173,16 @@ const Navbar: React.FC = () => {
     userSetThemeRef.current = true;
     localStorage.setItem("theme", isDark ? "dark" : "light");
   }, [isDark, mounted]);
+
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const [activeLink, setActiveLink] = useState<LinkKey>("home");
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -319,14 +330,12 @@ const Navbar: React.FC = () => {
                 scrollToSection(link);
               }}
               className={[
-                "relative px-4 py-2 font-heading font-normal rounded-full cursor-pointer transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500",
-                isDark
-                  ? isActive
-                    ? "text-white"
-                    : "text-gray-300"
-                  : isActive
+                "relative px-4 py-2 font-medium rounded-lg cursor-pointer transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500",
+                isActive
                   ? "text-white"
-                  : "text-gray-700",
+                  : isDark
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-700 hover:text-gray-900",
               ].join(" ")}
               whileHover={reduceMotion ? undefined : { scale: 1.05 }}
               aria-current={isActive ? "page" : undefined}
@@ -335,15 +344,14 @@ const Navbar: React.FC = () => {
               <AnimatePresence>
                 {isActive && (
                   <motion.span
-                    layoutId="pill"
-                    className="absolute inset-0 rounded-full z-[-1]"
-                    style={{ backgroundColor: themeColors.primary }}
+                    layoutId="activeNav"
+                    className="absolute inset-0 rounded-lg z-[-1] bg-gradient-to-r from-indigo-600 to-purple-600"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={
                       reduceMotion
-                        ? { duration: 0.1 }
+                        ? { duration: 0.15 }
                         : { type: "spring", stiffness: 500, damping: 30 }
                     }
                   />
@@ -367,155 +375,160 @@ const Navbar: React.FC = () => {
         Skip to content
       </a>
 
-      {/* Floating cylinder with an absolutely-positioned dropdown */}
-      <div className="fixed inset-x-0 top-[calc(env(safe-area-inset-top)+1rem)] z-50">
-        <div ref={wrapperRef} className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* CYLINDER (stays same height) */}
-          <motion.div
-            initial={reduceMotion ? false : { y: -12, opacity: 0 }}
-            animate={reduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
-            transition={{ duration: 0.25 }}
-            className="
-              px-3 py-2 sm:px-4 sm:py-2
-              rounded-full border border-indigo-200/30 dark:border-indigo-800/30
-              bg-white/80 dark:bg-gray-900/80
-              backdrop-blur-xl shadow-lg hover:shadow-xl transition-shadow duration-300
-            "
-            role="navigation"
-            aria-label="Primary"
-          >
-            <div className="flex items-center gap-2 md:gap-4">
-              {/* Left: Logo */}
-              <a
-                href="#home"
-                aria-label="Go to Home"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setActiveLink("home");
-                  window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                  });
-                  setTimeout(() => {
-                    window.history.replaceState(null, "", "#home");
-                  }, 100);
-                }}
-                className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-              >
+      {/* Fixed top navbar */}
+      <motion.nav
+        ref={wrapperRef}
+        initial={reduceMotion ? false : { y: -20, opacity: 0 }}
+        animate={reduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
+        transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
+        className={`
+          fixed inset-x-0 top-0 z-50
+          transition-all duration-300 ease-in-out
+          ${scrolled 
+            ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md border-b border-gray-200/50 dark:border-gray-800/50" 
+            : "bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm"
+          }
+        `}
+        role="navigation"
+        aria-label="Primary Navigation"
+      >
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 gap-4">
+            {/* Left: Logo */}
+            <motion.a
+              href="#home"
+              aria-label="Go to Home"
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveLink("home");
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+                setTimeout(() => {
+                  window.history.replaceState(null, "", "#home");
+                }, 100);
+              }}
+              className="flex items-center gap-2.5 hover:opacity-80 transition-opacity group"
+              whileHover={reduceMotion ? undefined : { scale: 1.05 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.95 }}
+            >
+              <div className="relative">
                 <img
                   src="/1.png"
-                  className="h-8 w-8 rounded-full block dark:hidden"
+                  className="h-9 w-9 rounded-full block dark:hidden transition-transform group-hover:rotate-6"
                   alt="Logo"
                 />
                 <img
                   src="/2.png"
-                  className="h-8 w-8 rounded-full hidden dark:block"
+                  className="h-9 w-9 rounded-full hidden dark:block transition-transform group-hover:rotate-6"
                   alt="Logo (Dark)"
                 />
-                <span className="sm:hidden text-sm font-semibold text-gray-900 dark:text-white">
-                  Vinay
-                </span>
-              </a>
-
-              {/* Center: Desktop links */}
-              <nav
-                className="hidden md:flex flex-1 justify-center"
-                aria-label="Primary Navigation"
-              >
-                <ul className="flex items-center gap-1">{desktopLinks}</ul>
-              </nav>
-
-              {/* Right: controls */}
-              <div className="ml-auto flex items-center gap-1">
-                <button
-                  aria-label="Toggle theme"
-                  onClick={() => setIsDark((d) => !d)}
-                  className="px-3 py-1"
-                  type="button"
-                >
-                  {isDark ? (
-                    <SunIcon className="w-6 h-6 text-yellow-300" />
-                  ) : (
-                    <MoonIcon className="w-6 h-6 text-gray-600" />
-                  )}
-                </button>
-
-                {/* Menu button (mobile only) */}
-                <motion.button
-                  ref={menuButtonRef}
-                  className="md:hidden p-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 hover:bg-black/5 dark:hover:bg-white/10"
-                  onClick={() => setMenuOpen((o) => !o)}
-                  aria-label="Toggle menu"
-                  aria-expanded={menuOpen}
-                  aria-controls="mobile-menu"
-                  type="button"
-                  whileTap={{ scale: 0.96 }}
-                  animate={menuOpen ? { rotate: 90 } : { rotate: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                >
-                  {menuOpen ? (
-                    <XMarkIcon className="h-6 w-6" />
-                  ) : (
-                    <Bars3Icon className="h-6 w-6" />
-                  )}
-                </motion.button>
               </div>
-            </div>
-          </motion.div>
+              <span className="hidden sm:block text-base font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                Vinay Kushwah
+              </span>
+            </motion.a>
 
-          {/* DROPDOWN (absolute under the pill so the pill doesn't grow) */}
-          <AnimatePresence>
-            {menuOpen && (
-              <motion.nav
-                id="mobile-menu"
-                aria-label="Mobile menu"
-                className="absolute left-0 right-0 top-full mt-2 rounded-2xl bg-white/85 dark:bg-gray-900/90 backdrop-blur-xl shadow-xl border border-white/15 p-2 md:hidden overflow-hidden"
-                style={{ originY: 0 }}
-                variants={dropdownVariants(reduceMotion)}
+            {/* Center: Desktop links */}
+            <div className="hidden md:flex flex-1 justify-center items-center">
+              <ul className="flex items-center gap-1">{desktopLinks}</ul>
+            </div>
+
+            {/* Right: controls */}
+            <div className="flex items-center gap-2">
+              <motion.button
+                aria-label="Toggle theme"
+                onClick={() => setIsDark((d) => !d)}
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                type="button"
+                whileHover={reduceMotion ? undefined : { scale: 1.1 }}
+                whileTap={reduceMotion ? undefined : { scale: 0.9 }}
+              >
+                {isDark ? (
+                  <SunIcon className="w-5 h-5 text-yellow-400" />
+                ) : (
+                  <MoonIcon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                )}
+              </motion.button>
+
+              {/* Menu button (mobile only) */}
+              <motion.button
+                ref={menuButtonRef}
+                className="md:hidden p-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                onClick={() => setMenuOpen((o) => !o)}
+                aria-label="Toggle menu"
+                aria-expanded={menuOpen}
+                aria-controls="mobile-menu"
+                type="button"
+                whileTap={{ scale: 0.95 }}
+                animate={menuOpen ? { rotate: 90 } : { rotate: 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              >
+                {menuOpen ? (
+                  <XMarkIcon className="h-6 w-6 text-gray-900 dark:text-white" />
+                ) : (
+                  <Bars3Icon className="h-6 w-6 text-gray-900 dark:text-white" />
+                )}
+              </motion.button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile menu dropdown */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              id="mobile-menu"
+              className="absolute left-0 right-0 top-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-t border-gray-200/50 dark:border-gray-800/50 md:hidden overflow-hidden"
+              style={{ originY: 0 }}
+              variants={dropdownVariants(reduceMotion)}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <motion.ul
+                className="flex flex-col py-2"
+                variants={listVariants(reduceMotion)}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
               >
-                <motion.ul
-                  className="flex flex-col gap-1"
-                  variants={listVariants(reduceMotion)}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                >
-                  {LINKS.map((link) => (
-                    <motion.li key={link} variants={itemVariants(reduceMotion)}>
-                      <a
-                        href={`#${link}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setMenuOpen(false);
-                          setActiveLink(link as LinkKey);
-                          // Small delay to allow menu to close smoothly
-                          setTimeout(() => {
-                            scrollToSection(link);
-                          }, 150);
-                        }}
-                        className="
-                          group block w-full text-base font-medium px-4 py-3 rounded-xl
-                          hover:bg-gray-100/80 dark:hover:bg-white/10
-                          focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500
-                          text-gray-900 dark:text-white text-center transition-all duration-200
-                        "
-                        aria-current={activeLink === link ? "page" : undefined}
-                      >
-                        <span className="inline-block transition-transform duration-200 will-change-transform group-hover:translate-x-0.5">
-                          {linkLabel(link as LinkKey)}
-                        </span>
-                      </a>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </motion.nav>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
+                {LINKS.map((link) => (
+                  <motion.li key={link} variants={itemVariants(reduceMotion)}>
+                    <a
+                      href={`#${link}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMenuOpen(false);
+                        setActiveLink(link as LinkKey);
+                        setTimeout(() => {
+                          scrollToSection(link);
+                        }, 150);
+                      }}
+                      className={`
+                        group block w-full text-base font-medium px-6 py-3
+                        transition-all duration-200
+                        ${
+                          activeLink === link
+                            ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
+                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                        }
+                        focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-inset
+                      `}
+                      aria-current={activeLink === link ? "page" : undefined}
+                    >
+                      <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+                        {linkLabel(link as LinkKey)}
+                      </span>
+                    </a>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
     </>
   );
 };

@@ -3,7 +3,6 @@
 import React, { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import TextScrambler from "./TextScrambler";
-import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import CodeVisual from "./CodeVisual";
 
@@ -38,8 +37,7 @@ const HeroSection: React.FC = () => {
 
   return (
     <>
-      <Navbar />
-      <main id="main" className="w-full mx-auto relative mt-20 sm:mt-24 md:mt-0">
+      <div id="main" className="w-full mx-auto relative">
         {/* Social icons sidebar - positioned by component itself */}
         <SocialIcons />
 
@@ -196,7 +194,7 @@ const HeroSection: React.FC = () => {
             </motion.div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 };

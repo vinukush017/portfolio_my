@@ -5,6 +5,7 @@ import Skills from "./components/Skills";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 import { Helmet } from "react-helmet";
 import GalaxyBackground from "./components/DotBackground";
 import ScrollToTop from "./components/ScrollToTop";
@@ -38,6 +39,7 @@ function App() {
       <div className="relative min-h-screen bg-white text-gray-900 dark:bg-black dark:text-white">
         {/* <SplashCursor /> */}
         <GalaxyBackground />
+        <Navbar />
 
         <main className="relative z-10 scroll-smooth">
           {/* Hero Section */}
