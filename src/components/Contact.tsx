@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwpwglna";
 
@@ -45,13 +45,13 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="py-4 w-[90%] mx-auto" id="contact">
+    <section className="py-8 sm:py-12 md:py-16 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-4xl font-bold text-center mb-10 text-gray-900 dark:text-white"
+        className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
       >
         Contact
       </motion.h2>
@@ -62,53 +62,90 @@ const Contact: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="max-w-3xl mx-auto space-y-4"
+        className="max-w-3xl mx-auto space-y-4 sm:space-y-6 bg-gradient-to-br from-white/80 to-indigo-50/50 dark:from-gray-900/80 dark:to-indigo-900/30 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-indigo-200/30 dark:border-indigo-800/30 shadow-xl"
       >
-        <input
+        <motion.input
           type="text"
           name="name"
-          placeholder="Name"
+          placeholder="Your Name"
           aria-label="Your Name"
-          className="w-full p-3 border rounded bg-gray-100 dark:bg-gray-900 dark:text-white dark:border-gray-700"
+          whileFocus={{ scale: 1.02 }}
+          className="w-full p-3 sm:p-4 border-2 border-indigo-200 dark:border-indigo-800 rounded-lg sm:rounded-xl bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-white focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 text-sm sm:text-base"
           required
         />
-        <input
+        <motion.input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Your Email"
           aria-label="Your Email"
-          className="w-full p-3 border rounded bg-gray-100 dark:bg-gray-900 dark:text-white dark:border-gray-700"
+          whileFocus={{ scale: 1.02 }}
+          className="w-full p-3 sm:p-4 border-2 border-indigo-200 dark:border-indigo-800 rounded-lg sm:rounded-xl bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-white focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 text-sm sm:text-base"
           required
         />
-        <textarea
+        <motion.textarea
           name="message"
-          placeholder="Message"
+          placeholder="Your Message"
           aria-label="Your Message"
-          rows={5}
-          className="w-full p-3 border rounded bg-gray-100 dark:bg-gray-900 dark:text-white dark:border-gray-700"
+          rows={6}
+          whileFocus={{ scale: 1.02 }}
+          className="w-full p-4 border-2 border-indigo-200 dark:border-indigo-800 rounded-xl bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-white focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 resize-none"
           required
         />
 
-        <button
+        <motion.button
           type="submit"
-          className="w-full bg-indigo-600 text-white py-3 rounded hover:bg-indigo-700 transition disabled:opacity-60"
+          whileHover={{ scale: 1.02, y: -2 }}
+          whileTap={{ scale: 0.98 }}
           disabled={loading || submitted}
           aria-disabled={loading || submitted}
+          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:shadow-indigo-500/50 flex items-center justify-center gap-2 text-sm sm:text-base"
         >
-          {loading ? "Sending…" : submitted ? "Message Sent ✔" : "Send Message"}
-        </button>
+          {loading ? (
+            <>
+              <motion.span
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="inline-block"
+              >
+                ⟳
+              </motion.span>
+              Sending…
+            </>
+          ) : submitted ? (
+            <>
+              ✓ Message Sent
+            </>
+          ) : (
+            <>
+              Send Message
+              <span className="text-lg">→</span>
+            </>
+          )}
+        </motion.button>
 
-        {error && (
-          <p className="text-red-600 text-sm mt-2 text-center" role="alert">
-            {error}
-          </p>
-        )}
+        <AnimatePresence>
+          {error && (
+            <motion.p
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="text-red-600 dark:text-red-400 text-sm mt-2 text-center bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800" role="alert"
+            >
+              {error}
+            </motion.p>
+          )}
 
-        {submitted && !error && (
-          <p className="text-green-600 text-sm mt-2 text-center" role="status">
-            Thank you for reaching out! I&apos;ll get back to you soon.
-          </p>
-        )}
+          {submitted && !error && (
+            <motion.p
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="text-green-600 dark:text-green-400 text-sm mt-2 text-center bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800 font-medium" role="status"
+            >
+              ✓ Thank you for reaching out! I&apos;ll get back to you soon.
+            </motion.p>
+          )}
+        </AnimatePresence>
       </motion.form>
     </section>
   );

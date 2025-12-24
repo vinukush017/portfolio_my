@@ -114,32 +114,34 @@ export default function CodeVisual(props: CodeVisualProps) {
       style={{ maxWidth: appliedMaxWidth }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      initial={reduceMotion ? undefined : { y: -6, opacity: 0 }}
-      animate={reduceMotion ? undefined : { y: [0, -6, 0], opacity: 1 }}
+      initial={reduceMotion ? undefined : { opacity: 0, scale: 0.95 }}
+      animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
       transition={{
-        duration: 3.5,
-        repeat: Infinity,
-        repeatDelay: 2,
+        duration: 0.6,
         ease: [0.22, 0.61, 0.36, 1] as const,
       }}
+      whileHover={reduceMotion ? undefined : { scale: 1.02, y: -4 }}
       aria-hidden={false}
     >
       {/* window chrome */}
-      <div className="rounded-t-2xl px-4 py-2 bg-white/80 dark:bg-slate-800/70 border border-white/60 dark:border-slate-700/60 backdrop-blur-sm flex items-center gap-3">
-        <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-rose-400 inline-block shadow-sm" />
-          <span className="w-3 h-3 rounded-full bg-amber-400 inline-block shadow-sm" />
-          <span className="w-3 h-3 rounded-full bg-emerald-400 inline-block shadow-sm" />
+      <div className="rounded-t-xl px-4 py-2.5 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-700 border-b border-gray-200/50 dark:border-slate-600/50 backdrop-blur-sm flex items-center gap-3 shadow-sm">
+        <div className="flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded-full bg-red-400 inline-block shadow-sm hover:bg-red-500 transition-colors" />
+          <span className="w-3 h-3 rounded-full bg-yellow-400 inline-block shadow-sm hover:bg-yellow-500 transition-colors" />
+          <span className="w-3 h-3 rounded-full bg-green-400 inline-block shadow-sm hover:bg-green-500 transition-colors" />
         </div>
-        <div className="ml-2 text-xs text-slate-500 dark:text-slate-400 font-mono select-none">
+        <div className="ml-2 text-xs font-semibold text-gray-600 dark:text-gray-300 font-mono select-none flex items-center gap-2">
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
           Intro.ts
         </div>
       </div>
 
       {/* code card */}
-      <div className="rounded-b-2xl shadow-lg overflow-hidden bg-gradient-to-br from-white/80 to-indigo-50/40 dark:from-slate-900/80 dark:to-slate-800/70 border border-white/60 dark:border-slate-700/60">
+      <div className="rounded-b-xl shadow-2xl overflow-hidden bg-gradient-to-br from-gray-50 via-white to-indigo-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-slate-800/50 border border-gray-200/50 dark:border-slate-700/50 backdrop-blur-sm">
         <div
-          className="p-4 sm:p-5 min-h-[160px] md:min-h-[220px] flex"
+          className="p-4 sm:p-5 min-h-[180px] md:min-h-[240px] flex bg-gradient-to-br from-white/50 to-transparent overflow-hidden"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
@@ -148,27 +150,28 @@ export default function CodeVisual(props: CodeVisualProps) {
           </span>
 
           {/* line numbers */}
-          <div className="flex-shrink-0 pr-3 select-none">
-            <div className="font-mono text-xs leading-6 text-gray-400 dark:text-gray-500">
+          <div className="flex-shrink-0 pr-4 select-none border-r border-gray-200/30 dark:border-slate-700/30">
+            <div className="font-mono text-xs leading-7 text-gray-400 dark:text-gray-600 font-medium">
               {lines.map((_, i) => (
-                <div key={i} className="h-6 leading-6">
-                  {(i + 1).toString().padStart(2, " ")}
+                <div key={i} className="h-7 leading-7 text-right">
+                  {i + 1}
                 </div>
               ))}
             </div>
           </div>
 
           {/* code */}
-          {/* UPDATED: Changed overflow-hidden to overflow-x-auto to allow horizontal scrolling */}
-          <div className="flex-1 min-w-0 overflow-x-auto">
-            <pre className="m-0 text-sm sm:text-base leading-6 font-mono text-slate-800 dark:text-slate-200">
+          <div className="flex-1 min-w-0 overflow-hidden pl-4">
+            <pre className="m-0 text-xs sm:text-sm leading-7 font-mono text-slate-800 dark:text-slate-200">
               {displayed.map((line, i) => {
-                const tokens = simpleTokenize(line);
+                // Truncate long lines to prevent horizontal scroll
+                const maxLineLength = 35;
+                const displayLine = line.length > maxLineLength ? line.substring(0, maxLineLength) + '...' : line;
+                const tokens = simpleTokenize(displayLine);
                 const isCurrent = i === lineIdx;
                 return (
-                  // UPDATED: Removed overflow-hidden to allow scrolling content to be visible
-                  <div key={i} className="h-6">
-                    <code className="whitespace-pre">
+                  <div key={i} className="h-7 overflow-hidden">
+                    <code className="whitespace-pre break-all">
                       {tokens.map((t, idx) => {
                         let cls = "";
                         switch (t.kind) {
@@ -201,10 +204,10 @@ export default function CodeVisual(props: CodeVisualProps) {
                       {/* cursor */}
                       {isCurrent && (
                         <span
-                          className="inline-block align-middle ml-1"
+                          className="inline-block align-middle ml-0.5"
                           aria-hidden="true"
                         >
-                          <span className="block w-[7px] h-4 rounded-sm bg-slate-800 dark:bg-slate-200 animate-blink" />
+                          <span className="block w-[2px] h-5 rounded-sm bg-indigo-600 dark:bg-indigo-400 animate-blink shadow-sm shadow-indigo-500/50" />
                         </span>
                       )}
                     </code>
