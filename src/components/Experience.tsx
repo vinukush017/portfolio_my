@@ -117,102 +117,142 @@ const Experience: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Timeline wrapper */}
-        <ol
-          className="
-            relative mx-auto w-full max-w-5xl
-            before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-px
-            before:left-4 md:before:left-1/2
-            before:bg-gradient-to-b before:from-indigo-300/60 before:to-indigo-500/60
-          "
-        >
-        {EXPERIENCES.map((exp, idx) => {
-          const leftSide = idx % 2 === 0; // alternate on md+
-          return (
-            <motion.li
-              key={`${exp.company}-${exp.title}-${exp.start}`}
-              initial={reduceMotion ? false : { opacity: 0, y: 40 }}
-              whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
-              viewport={{ once: true, amount: 0.25 }}
-              className="relative mb-12 pl-12 md:pl-0"
-            >
-              {/* Timeline dot */}
-              <motion.span
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 + 0.2, type: "spring", stiffness: 200 }}
-                className="
-                  absolute left-4 md:left-1/2 md:-translate-x-1/2
-                  top-20 h-4 w-4 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 shadow-lg
-                  ring-4 ring-white dark:ring-gray-950
-                "
-              />
-              <motion.span
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 + 0.3 }}
-                className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-20 h-4 w-4 rounded-full bg-indigo-400/30 animate-ping"
-              />
+        {/* Modern Card Stack Design */}
+        <div className="relative max-w-5xl mx-auto space-y-6">
+          {EXPERIENCES.map((exp, idx) => {
+            const isPresent = exp.end === null;
+            const gradientConfigs = [
+              { from: "from-indigo-500", via: "via-purple-500", to: "to-pink-500" },
+              { from: "from-blue-500", via: "via-cyan-500", to: "to-teal-500" },
+              { from: "from-purple-500", via: "via-pink-500", to: "to-rose-500" },
+            ];
+            const gradient = gradientConfigs[idx % gradientConfigs.length];
+            const gradientClass = `bg-gradient-to-b ${gradient.from} ${gradient.via} ${gradient.to}`;
+            const gradientBrClass = `bg-gradient-to-br ${gradient.from} ${gradient.via} ${gradient.to}`;
 
-              {/* Card: full width on mobile, alternating on md+ */}
+            return (
               <motion.article
-                whileHover={{ scale: 1.02, y: -4 }}
-                transition={{ duration: 0.3 }}
-                className={[
-                  "mt-0 md:mt-0",
-                  "rounded-lg sm:rounded-xl border border-indigo-200/30 dark:border-indigo-800/30 bg-gradient-to-br from-gray-100/90 to-indigo-50/50 dark:from-gray-900/80 dark:to-indigo-900/30 backdrop-blur-xl p-4 sm:p-5 md:p-6 shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-300",
-                  "md:w-[calc(50%-2.5rem)]", // leave gutter from the center line
-                  leftSide ? "md:mr-auto md:pr-6" : "md:ml-auto md:pl-6",
-                ].join(" ")}
-                aria-label={`${exp.title} at ${exp.company}`}
+                key={`${exp.company}-${exp.title}-${exp.start}`}
+                initial={reduceMotion ? false : { opacity: 0, x: -30 }}
+                whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                whileHover={reduceMotion ? undefined : { y: -8, scale: 1.01 }}
+                className="group relative"
               >
-                <header className="mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
-                    {exp.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    <span className="font-semibold text-gray-800 dark:text-gray-200">{exp.company}</span>{" "}
-                    <span className="mx-1 text-indigo-500">—</span>
-                    <time dateTime={exp.start} className="font-medium">{fmt(exp.start)}</time>
-                    {" – "}
-                    <time dateTime={exp.end ?? ""} className="font-medium">{fmt(exp.end)}</time>
-                    <span className="mx-2 text-indigo-400">•</span>
-                    <span className="text-indigo-600 dark:text-indigo-400 font-medium">
-                      {diffYM(exp.start, exp.end)}
-                    </span>
-                  </p>
-                </header>
+                {/* Gradient Accent Bar */}
+                <div className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl ${gradientClass} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
 
-                <ul className="list-disc list-inside space-y-1.5 text-gray-800 dark:text-gray-300 text-sm">
-                  {exp.description.map((d) => (
-                    <li key={d}>{d}</li>
-                  ))}
-                </ul>
+                {/* Main Card */}
+                <div className="ml-4 sm:ml-6 bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden relative">
+                  {/* Background Pattern */}
+                  <div className={`absolute inset-0 ${gradientBrClass} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                  
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Header Section */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                      <div className="flex-1">
+                        {/* Role Badge */}
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1 + 0.1 }}
+                          className="inline-block mb-3"
+                        >
+                          <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${gradient.from} ${gradient.via} ${gradient.to} text-white shadow-md`}>
+                            {isPresent ? "Current Role" : "Previous Role"}
+                          </span>
+                        </motion.div>
 
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {exp.stack.map((tech, techIdx) => (
-                    <motion.li
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: techIdx * 0.05 }}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                    >
-                      <span className="bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-200 text-xs px-3 py-1 rounded-full font-medium border border-indigo-300/50 dark:border-indigo-700/50 shadow-sm">
-                        {tech}
-                      </span>
-                    </motion.li>
-                  ))}
-                </ul>
+                        <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 transition-all duration-300">
+                          {exp.title}
+                        </h3>
+                        
+                        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                          <span className="font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                            {exp.company}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Date Badge */}
+                      <div className="flex flex-col items-end gap-2">
+                        <div className="text-right">
+                          <div className="text-xs text-gray-500 dark:text-gray-500 mb-1">Duration</div>
+                          <div className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            <time dateTime={exp.start}>{fmt(exp.start)}</time>
+                            <span className="mx-1">—</span>
+                            <time dateTime={exp.end ?? ""}>{fmt(exp.end)}</time>
+                          </div>
+                        </div>
+                        <span className={`px-3 py-1 rounded-lg text-xs font-medium bg-gradient-to-r ${gradient.from} ${gradient.via} ${gradient.to} bg-opacity-10 dark:bg-opacity-20 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700`}>
+                          {diffYM(exp.start, exp.end)}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Achievements List */}
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">
+                        Key Achievements
+                      </h4>
+                      <ul className="space-y-3">
+                        {exp.description.map((achievement, achIdx) => (
+                          <motion.li
+                            key={achIdx}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 + achIdx * 0.05 + 0.2 }}
+                            className="flex items-start gap-3 text-sm sm:text-base text-gray-700 dark:text-gray-300"
+                          >
+                            <div className={`flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2 bg-gradient-to-r ${gradient.from} ${gradient.via} ${gradient.to}`} />
+                            <span className="leading-relaxed">{achievement}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Tech Stack */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">
+                        Technologies Used
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.stack.map((tech, techIdx) => (
+                          <motion.span
+                            key={tech}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 + techIdx * 0.03 + 0.3 }}
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-indigo-500 hover:text-white hover:border-indigo-500 transition-all duration-300 cursor-default"
+                          >
+                            {tech}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Decorative Corner */}
+                  <div className={`absolute top-0 right-0 w-32 h-32 ${gradientBrClass} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-bl-full`} />
+                </div>
+
+                {/* Connection Line (except last) */}
+                {idx < EXPERIENCES.length - 1 && (
+                  <div className="absolute left-2 sm:left-3 top-full w-0.5 h-6 bg-gradient-to-b from-indigo-300/50 to-transparent" />
+                )}
               </motion.article>
-            </motion.li>
-          );
-        })}
-        </ol>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
