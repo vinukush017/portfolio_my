@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import SectionHeader from "./SectionHeader";
 import {
   FaReact,
   FaNodeJs,
@@ -47,15 +48,40 @@ const skillColors: Record<string, { text: string; border: string }> = {
 
 const Skills = () => (
   <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
-    <motion.h2
+    <SectionHeader
+      subtitle="Technical Expertise"
+      title="Skills & Technologies"
+      description="A comprehensive toolkit of modern technologies and frameworks I use to build scalable, performant, and user-friendly applications."
+    />
+
+    {/* Skills Introduction */}
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="mb-12 text-center"
     >
-      Skills
-    </motion.h2>
+      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-6">
+        I specialize in the MERN stack and modern web technologies, with deep expertise in 
+        building responsive frontends, scalable backends, and cloud-based solutions. Each technology 
+        in my toolkit has been battle-tested in production environments.
+      </p>
+      <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+        <span className="px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800">
+          Frontend Development
+        </span>
+        <span className="px-4 py-2 rounded-full bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800">
+          Backend Architecture
+        </span>
+        <span className="px-4 py-2 rounded-full bg-pink-50 dark:bg-pink-900/30 border border-pink-200 dark:border-pink-800">
+          Cloud Services
+        </span>
+        <span className="px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800">
+          Database Design
+        </span>
+      </div>
+    </motion.div>
 
     <motion.div
       className="grid gap-x-3 sm:gap-x-4 gap-y-6 sm:gap-y-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center max-w-7xl mx-auto"
