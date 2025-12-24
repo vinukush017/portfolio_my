@@ -114,7 +114,8 @@ const GalaxyBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-screen h-screen max-w-full max-h-screen overflow-hidden z-0 pointer-events-none"
+      className="fixed inset-0 w-full h-full max-w-full max-h-full overflow-hidden z-0 pointer-events-none"
+      style={{ width: '100vw', height: '100vh', maxWidth: '100vw' }}
     />
   );
 };

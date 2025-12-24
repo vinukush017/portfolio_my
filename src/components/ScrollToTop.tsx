@@ -31,6 +31,10 @@ const ScrollToTop = () => {
           whileHover={{ scale: 1.1, y: -4 }}
           whileTap={{ scale: 0.9 }}
           className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 group"
+          style={{ 
+            bottom: 'calc(1.5rem + env(safe-area-inset-bottom))',
+            right: 'calc(1.5rem + env(safe-area-inset-right))'
+          }}
           aria-label="Scroll to top"
         >
           {/* Main Button Container */}

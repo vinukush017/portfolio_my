@@ -417,17 +417,21 @@ const Navbar: React.FC = () => {
         animate={reduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
         transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
         className={`
-          fixed inset-x-0 top-0 z-50
+          fixed inset-x-0 top-0 z-50 w-full max-w-full
           transition-all duration-300 ease-in-out
           ${scrolled 
             ? "bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg shadow-md border-b border-gray-200/30 dark:border-gray-800/30" 
             : "bg-white/50 dark:bg-gray-900/50 backdrop-blur-md"
           }
+          pt-safe
         `}
+        style={{
+          paddingTop: 'env(safe-area-inset-top)',
+        }}
         role="navigation"
         aria-label="Primary Navigation"
       >
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingLeft: 'max(1rem, env(safe-area-inset-left))', paddingRight: 'max(1rem, env(safe-area-inset-right))' }}>
           <div className="flex items-center justify-between h-14 gap-3">
             {/* Left: Logo */}
             <motion.a

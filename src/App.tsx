@@ -23,7 +23,9 @@ function App() {
           name="description"
           content="Official portfolio of Vinay Kushwah, Full Stack Developer specializing in React.js and Node.js. Explore projects, skills, experience, and contact info."
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="author" content="Vinay Kushwah" />
         <link rel="icon" href="/favicon.ico" />
         <script
@@ -36,12 +38,12 @@ function App() {
 
       <JsonLd />
 
-      <div className="relative min-h-screen bg-white text-gray-900 dark:bg-black dark:text-white">
+      <div className="relative min-h-screen min-h-[100dvh] w-full max-w-full overflow-x-hidden bg-white text-gray-900 dark:bg-black dark:text-white">
         {/* <SplashCursor /> */}
         <GalaxyBackground />
         <Navbar />
 
-        <main className="relative z-10 scroll-smooth">
+        <main className="relative z-10 scroll-smooth w-full max-w-full overflow-x-hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
           {/* Hero Section */}
           <section id="home" className="scroll-mt-28 sm:scroll-mt-32">
             <HeroSection />
