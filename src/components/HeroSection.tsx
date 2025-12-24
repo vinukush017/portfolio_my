@@ -69,7 +69,7 @@ const HeroSection: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.15 }}
-                  className="text-lg sm:text-xl md:text-2xl font-medium mb-3 text-gray-600 dark:text-gray-400"
+                  className="text-lg sm:text-xl md:text-2xl font-medium mb-3 text-gray-700 dark:text-gray-400"
                 >
                   Hi, I'm
                 </motion.p>
@@ -125,11 +125,11 @@ const HeroSection: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-6 leading-relaxed"
+                  className="text-base sm:text-lg text-gray-800 dark:text-gray-400 max-w-2xl mb-6 leading-relaxed"
                 >
-                  I'm a passionate <span className="font-semibold text-indigo-600 dark:text-indigo-400">Full-Stack Developer</span> specializing in building scalable, 
-                  high-performance web applications. With expertise in <span className="font-semibold text-purple-600 dark:text-purple-400">React</span>, <span className="font-semibold text-pink-600 dark:text-pink-400">Next.js</span>, 
-                  <span className="font-semibold text-indigo-600 dark:text-indigo-400">Node.js</span>, and <span className="font-semibold text-purple-600 dark:text-purple-400">TypeScript</span>, I transform ideas into production-ready 
+                  I'm a passionate <span className="font-semibold text-indigo-700 dark:text-indigo-400">Full-Stack Developer</span> specializing in building scalable, 
+                  high-performance web applications. With expertise in <span className="font-semibold text-purple-700 dark:text-purple-400">React</span>, <span className="font-semibold text-pink-700 dark:text-pink-400">Next.js</span>, 
+                  <span className="font-semibold text-indigo-700 dark:text-indigo-400">Node.js</span>, and <span className="font-semibold text-purple-700 dark:text-purple-400">TypeScript</span>, I transform ideas into production-ready 
                   solutions that deliver exceptional user experiences.
                 </motion.p>
 

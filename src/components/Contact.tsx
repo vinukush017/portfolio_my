@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
               <span className="w-1 h-8 bg-gradient-to-b from-indigo-600 to-purple-600 rounded-full" />
               Let's Work Together
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-400 mb-6 leading-relaxed">
               I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out through any of the channels below.
             </p>
 
@@ -160,7 +160,7 @@ const Contact: React.FC = () => {
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Response Time</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-700 dark:text-gray-400">
                   I typically respond within <span className="font-semibold text-indigo-600 dark:text-indigo-400">24 hours</span>. For urgent matters, feel free to reach out via LinkedIn.
                 </p>
               </div>

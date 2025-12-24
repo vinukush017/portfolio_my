@@ -94,7 +94,7 @@ const About: React.FC = () => {
                 <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent mb-1">
                   {years}+
                 </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">Years Experience</div>
+                <div className="text-xs text-gray-700 dark:text-gray-400 font-medium">Years Experience</div>
               </motion.div>
 
               <motion.div
@@ -108,7 +108,7 @@ const About: React.FC = () => {
                 <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-1">
                   15+
                 </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">Technologies</div>
+                <div className="text-xs text-gray-700 dark:text-gray-400 font-medium">Technologies</div>
               </motion.div>
 
               <motion.div
@@ -122,7 +122,7 @@ const About: React.FC = () => {
                 <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 dark:from-pink-400 dark:to-rose-400 bg-clip-text text-transparent mb-1">
                   6+
                 </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">Projects</div>
+                <div className="text-xs text-gray-700 dark:text-gray-400 font-medium">Projects</div>
               </motion.div>
 
               <motion.div
@@ -136,7 +136,7 @@ const About: React.FC = () => {
                 <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent mb-1">
                   Pune
                 </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">Location</div>
+                <div className="text-xs text-gray-700 dark:text-gray-400 font-medium">Location</div>
               </motion.div>
             </div>
           </div>

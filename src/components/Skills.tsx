@@ -76,7 +76,7 @@ const Skills = () => (
       transition={{ duration: 0.6, delay: 0.2 }}
       className="mb-12 text-center"
     >
-      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-6">
+      <p className="text-base sm:text-lg text-gray-700 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-6">
         I specialize in the MERN stack and modern web technologies, with deep expertise in 
         building responsive frontends, scalable backends, and cloud-based solutions. Each technology 
         in my toolkit has been battle-tested in production environments.

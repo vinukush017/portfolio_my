@@ -60,7 +60,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
         >
           {description}
         </motion.p>
