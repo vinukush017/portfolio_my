@@ -420,8 +420,8 @@ const Navbar: React.FC = () => {
           fixed inset-x-0 top-0 z-50
           transition-all duration-300 ease-in-out
           ${scrolled 
-            ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md border-b border-gray-200/50 dark:border-gray-800/50" 
-            : "bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm"
+            ? "bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg shadow-md border-b border-gray-200/30 dark:border-gray-800/30" 
+            : "bg-white/50 dark:bg-gray-900/50 backdrop-blur-md"
           }
         `}
         role="navigation"
