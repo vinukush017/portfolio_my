@@ -20,20 +20,41 @@ const JsonLd: React.FC = () => {
       name: "Freelance / Open Source",
     },
     description:
-      "Vinay Kushwah's portfolio – frontend developer building modern and aesthetic websites with clean UI/UX.",
+      "Full Stack Developer specializing in React.js, Next.js, Node.js, and TypeScript. Building scalable web applications with modern technologies.",
     email: "mailto:kushwah.vinay89@gmail.com",
-    skills: [
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Pune",
+      addressCountry: "IN",
+    },
+    knowsAbout: [
       "React",
+      "Next.js",
       "TypeScript",
-      "Tailwind",
+      "Tailwind CSS",
       "Node.js",
       "Framer Motion",
       "MongoDB",
+      "PostgreSQL",
+      "Full Stack Development",
+      "Web Development",
+    ],
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Framer Motion",
+      "MongoDB",
+      "PostgreSQL",
+      "Prisma",
+      "AWS",
     ],
     contactPoint: {
       "@type": "ContactPoint",
       email: "mailto:kushwah.vinay89@gmail.com",
-      contactType: "Customer Support",
+      contactType: "Professional Inquiry",
       url: "https://vinay-kushwah.vercel.app/#contact",
     },
   };
@@ -45,7 +66,7 @@ const JsonLd: React.FC = () => {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://vinay-kushwah.vercel.app",
+        item: "https://vinay-kushwah.vercel.app/",
       },
       {
         "@type": "ListItem",
@@ -53,8 +74,62 @@ const JsonLd: React.FC = () => {
         name: "Projects",
         item: "https://vinay-kushwah.vercel.app/#projects",
       },
-      // Add more if needed
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "About",
+        item: "https://vinay-kushwah.vercel.app/#about",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Skills",
+        item: "https://vinay-kushwah.vercel.app/#skills",
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        name: "Experience",
+        item: "https://vinay-kushwah.vercel.app/#experience",
+      },
+      {
+        "@type": "ListItem",
+        position: 6,
+        name: "Contact",
+        item: "https://vinay-kushwah.vercel.app/#contact",
+      },
     ],
+  };
+  
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Vinay Kushwah Portfolio",
+    url: "https://vinay-kushwah.vercel.app/",
+    description: "Portfolio website of Vinay Kushwah, Full Stack Developer specializing in React.js, Next.js, Node.js, and TypeScript.",
+    author: {
+      "@type": "Person",
+      name: "Vinay Kushwah",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Vinay Kushwah",
+    },
+    inLanguage: "en-US",
+  };
+  
+  const portfolioSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": "https://vinay-kushwah.vercel.app/#portfolio",
+    name: "Vinay Kushwah Portfolio",
+    description: "A collection of innovative web applications and platforms built by Vinay Kushwah, showcasing expertise in full-stack development, modern frameworks, and user-centric design.",
+    creator: {
+      "@type": "Person",
+      name: "Vinay Kushwah",
+    },
+    url: "https://vinay-kushwah.vercel.app/#projects",
+    inLanguage: "en-US",
   };
 
   const faqSchema = {
@@ -87,6 +162,8 @@ const JsonLd: React.FC = () => {
       <script type="application/ld+json">
         {JSON.stringify(breadcrumbSchema)}
       </script>
+      <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>
+      <script type="application/ld+json">{JSON.stringify(portfolioSchema)}</script>
       <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
     </Helmet>
   );
