@@ -17,17 +17,42 @@ function App() {
     <>
       <Helmet htmlAttributes={{ lang: "en" }}>
         <title>
-          Vinay Kushwah - Full Stack Developer | Portfolio & Projects
+          Vinay Kushwah - Full Stack Developer | React & Node.js Expert | Portfolio
         </title>
         <meta
           name="description"
-          content="Official portfolio of Vinay Kushwah, Full Stack Developer specializing in React.js and Node.js. Explore projects, skills, experience, and contact info."
+          content="Vinay Kushwah - Full Stack Developer specializing in React.js, Next.js, Node.js, and TypeScript. Explore my portfolio, projects, skills, and experience. Based in Pune, India. Available for opportunities."
+        />
+        <meta
+          name="keywords"
+          content="Vinay Kushwah, Full Stack Developer, React Developer, Next.js Developer, Node.js Developer, TypeScript Developer, Web Developer, Portfolio, Pune India, React.js, Next.js, Node.js, TypeScript, MongoDB, PostgreSQL, Tailwind CSS, Framer Motion"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="author" content="Vinay Kushwah" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <link rel="canonical" href="https://vinay-kushwah.vercel.app/" />
         <link rel="icon" href="/favicon.ico" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Vinay Kushwah - Full Stack Developer | React & Node.js Expert" />
+        <meta property="og:description" content="Full Stack Developer specializing in React.js, Next.js, Node.js, and TypeScript. Explore my portfolio, projects, and experience. Based in Pune, India." />
+        <meta property="og:url" content="https://vinay-kushwah.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Vinay Kushwah Portfolio" />
+        <meta property="og:image" content="https://vinay-kushwah.vercel.app/VINAY_LOGO.png" />
+        <meta property="og:image:alt" content="Vinay Kushwah - Full Stack Developer Portfolio" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Vinay Kushwah - Full Stack Developer | React & Node.js Expert" />
+        <meta name="twitter:description" content="Full Stack Developer specializing in React.js, Next.js, Node.js, and TypeScript. Explore my portfolio, projects, and experience." />
+        <meta name="twitter:image" content="https://vinay-kushwah.vercel.app/VINAY_LOGO.png" />
+        <meta name="twitter:site" content="@Vinay__17" />
+        <meta name="twitter:creator" content="@Vinay__17" />
+        
         <script
           defer
           src="https://speed-insights.vercel.app/script.js"
