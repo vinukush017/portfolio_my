@@ -59,8 +59,8 @@ const HeroSection: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="mb-4"
                 >
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 border border-indigo-200/50 dark:border-indigo-800/50 text-sm font-medium text-indigo-700 dark:text-indigo-300">
-                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-indigo-100/80 to-purple-100/80 dark:from-indigo-900/40 dark:to-purple-900/40 backdrop-blur-md border border-indigo-200/60 dark:border-indigo-800/60 text-sm font-semibold text-indigo-700 dark:text-indigo-300 shadow-lg shadow-indigo-500/20 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-300">
+                    <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 animate-pulse shadow-lg shadow-green-500/50" />
                     Available for opportunities
                   </span>
                 </motion.div>
@@ -80,7 +80,7 @@ const HeroSection: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4"
                 >
-                  <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient">
                     Vinay Kushwah
                   </span>
                 </motion.h1>
@@ -106,19 +106,29 @@ const HeroSection: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="flex flex-wrap gap-3 mb-6"
                 >
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 shadow-sm">
-                    <svg className="w-4 h-4 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Pune, India</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 shadow-sm">
-                    <svg className="w-4 h-4 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{years}+ Years Experience</span>
-                  </div>
+                  <motion.div 
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl glass-enhanced border-indigo-200/60 dark:border-indigo-800/60 shadow-md hover:shadow-lg transition-all duration-300 group"
+                  >
+                    <div className="p-1.5 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 shadow-md group-hover:scale-110 transition-transform">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Pune, India</span>
+                  </motion.div>
+                  <motion.div 
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl glass-enhanced border-purple-200/60 dark:border-purple-800/60 shadow-md hover:shadow-lg transition-all duration-300 group"
+                  >
+                    <div className="p-1.5 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 shadow-md group-hover:scale-110 transition-transform">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">{years}+ Years Experience</span>
+                  </motion.div>
                 </motion.div>
 
                 <motion.p
@@ -188,18 +198,21 @@ const HeroSection: React.FC = () => {
                         });
                       }
                     }}
-                    whileHover={{ scale: 1.05, y: -3 }}
+                    whileHover={{ scale: 1.05, y: -4 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group inline-flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl hover:from-indigo-700 hover:to-purple-700 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-indigo-500/50 font-semibold text-base sm:text-lg w-full sm:w-auto"
+                    className="group relative inline-flex items-center justify-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 transition-all duration-300 shadow-premium hover:shadow-premium-lg font-bold text-base sm:text-lg w-full sm:w-auto overflow-hidden"
                   >
-                    View My Projects
-                    <motion.span
-                      className="ml-2 text-xl"
-                      animate={{ x: [0, 4, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      →
-                    </motion.span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                    <span className="relative z-10 flex items-center gap-2">
+                      View My Projects
+                      <motion.span
+                        className="text-xl"
+                        animate={{ x: [0, 4, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        →
+                      </motion.span>
+                    </span>
                   </motion.a>
 
                   {/* Secondary CTA: Resume */}
@@ -208,11 +221,11 @@ const HeroSection: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open resume in a new tab"
-                    whileHover={{ scale: 1.05, y: -3 }}
+                    whileHover={{ scale: 1.05, y: -4 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group inline-flex items-center justify-center border-2 border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 font-semibold bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-base sm:text-lg w-full sm:w-auto shadow-sm hover:shadow-md"
+                    className="group inline-flex items-center justify-center border-2 border-indigo-600/80 dark:border-indigo-400/80 text-indigo-600 dark:text-indigo-400 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/40 dark:hover:to-purple-900/40 hover:border-indigo-500 dark:hover:border-indigo-300 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 font-bold glass-enhanced text-base sm:text-lg w-full sm:w-auto shadow-md hover:shadow-lg hover:shadow-indigo-500/20"
                   >
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     Download Resume
@@ -229,19 +242,28 @@ const HeroSection: React.FC = () => {
               >
                 <div className="relative w-full max-w-lg">
                   {/* Decorative Background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl blur-3xl" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-3xl animate-pulse-slow" />
                   
                   {/* Code Visual Card */}
-                  <div className="relative bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 rounded-2xl p-4 sm:p-6 shadow-xl">
+                  <motion.div 
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="relative glass-enhanced border-indigo-200/60 dark:border-indigo-800/60 rounded-3xl p-5 sm:p-7 shadow-premium hover:shadow-premium-lg transition-all duration-500 overflow-hidden"
+                  >
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 shimmer opacity-0 hover:opacity-100 transition-opacity duration-500" />
+                    
                     <CodeVisual
                       lines={codeLines}
                       speed={22}
                       lineDelay={700}
                       loop={true}
-                      className="w-full rounded-lg"
+                      className="w-full rounded-lg relative z-10"
                       maxWidth={520}
                     />
-                  </div>
+                    
+                    {/* Gradient border glow */}
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 opacity-0 hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl" />
+                  </motion.div>
                 </div>
               </motion.div>
             </motion.div>

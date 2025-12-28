@@ -144,7 +144,7 @@ const Experience: React.FC = () => {
                 <div className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl ${gradientClass} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
 
                 {/* Main Card */}
-                <div className="ml-4 sm:ml-6 bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden relative">
+                <div className="ml-4 sm:ml-6 glass-enhanced border-indigo-200/50 dark:border-indigo-800/50 rounded-3xl p-7 sm:p-9 shadow-premium hover:shadow-premium-lg transition-all duration-500 overflow-hidden relative card-premium">
                   {/* Background Pattern */}
                   <div className={`absolute inset-0 ${gradientBrClass} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
                   

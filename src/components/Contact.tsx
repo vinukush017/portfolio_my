@@ -64,7 +64,7 @@ const Contact: React.FC = () => {
           className="space-y-6"
         >
           {/* Contact Info Card */}
-          <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 rounded-2xl p-6 sm:p-8 shadow-lg">
+          <div className="glass-enhanced border-indigo-200/50 dark:border-indigo-800/50 rounded-3xl p-7 sm:p-9 shadow-premium">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
               <span className="w-1 h-8 bg-gradient-to-b from-indigo-600 to-purple-600 rounded-full" />
               Let's Work Together
@@ -177,7 +177,7 @@ const Contact: React.FC = () => {
         >
           <motion.form
             onSubmit={handleSubmit}
-            className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 rounded-2xl p-6 sm:p-8 shadow-lg space-y-5"
+            className="glass-enhanced border-indigo-200/50 dark:border-indigo-800/50 rounded-3xl p-7 sm:p-9 shadow-premium space-y-6"
           >
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -233,8 +233,10 @@ const Contact: React.FC = () => {
               whileTap={{ scale: 0.98 }}
               disabled={loading || submitted}
               aria-disabled={loading || submitted}
-              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:shadow-indigo-500/50 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white py-5 rounded-2xl font-bold hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-premium hover:shadow-premium-lg flex items-center justify-center gap-2 relative overflow-hidden group"
             >
+              <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+              <span className="relative z-10 flex items-center gap-2">
               {loading ? (
                 <>
                   <motion.span
@@ -261,6 +263,7 @@ const Contact: React.FC = () => {
                   </svg>
                 </>
               )}
+              </span>
             </motion.button>
 
             <AnimatePresence>

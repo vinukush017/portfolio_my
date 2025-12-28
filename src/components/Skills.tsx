@@ -123,13 +123,14 @@ const Skills = () => (
                 >
                   {/* Skill Card */}
                   <div className={`
-                    relative bg-white/60 dark:bg-gray-900/60 backdrop-blur-md 
+                    relative glass-enhanced
                     border ${categoryStyle.border} 
-                    rounded-xl p-4 sm:p-5 
-                    shadow-sm hover:shadow-xl 
-                    transition-all duration-300 
+                    rounded-2xl p-5 sm:p-6 
+                    shadow-md hover:shadow-premium 
+                    transition-all duration-500 
                     overflow-hidden
                     h-full flex flex-col
+                    card-premium
                   `}>
                     {/* Background Gradient */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${categoryStyle.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />

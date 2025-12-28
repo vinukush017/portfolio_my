@@ -52,19 +52,21 @@ const About: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="group relative"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 p-1">
-                <div className="relative h-full w-full rounded-2xl overflow-hidden bg-white dark:bg-gray-900">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-500/30 via-purple-500/30 to-pink-500/30 p-1.5 shadow-premium">
+                <div className="relative h-full w-full rounded-3xl overflow-hidden bg-white dark:bg-gray-900">
                   <motion.img
                     src="/avatar.jpg"
                     alt="Portrait of Vinay Kushwah"
                     className="h-full w-full object-cover"
                     loading="lazy"
                     decoding="async"
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.5 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
               </div>
               
               {/* Floating Badge */}
@@ -73,9 +75,10 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-white dark:bg-gray-900 rounded-full shadow-lg border border-gray-200 dark:border-gray-800"
+                whileHover={{ scale: 1.05, y: -2 }}
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-5 py-2.5 glass-enhanced rounded-full shadow-premium border-indigo-200/60 dark:border-indigo-800/60"
               >
-                <span className="text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                <span className="text-sm font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
                   Full Stack Developer
                 </span>
               </motion.div>
@@ -88,13 +91,13 @@ const About: React.FC = () => {
                 whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                whileHover={{ scale: 1.05, y: -4 }}
-                className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-indigo-200/50 dark:border-indigo-800/50 rounded-xl p-4 text-center shadow-sm hover:shadow-lg transition-all duration-300"
+                whileHover={{ scale: 1.08, y: -6 }}
+                className="glass-enhanced border-indigo-200/60 dark:border-indigo-800/60 rounded-2xl p-5 text-center shadow-md hover:shadow-premium transition-all duration-300 group"
               >
-                <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent mb-1">
+                <div className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform">
                   {years}+
                 </div>
-                <div className="text-xs text-gray-700 dark:text-gray-400 font-medium">Years Experience</div>
+                <div className="text-xs text-gray-700 dark:text-gray-400 font-semibold">Years Experience</div>
               </motion.div>
 
               <motion.div
@@ -149,8 +152,11 @@ const About: React.FC = () => {
               whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+              whileHover={{ y: -4 }}
+              className="glass-enhanced border-indigo-200/50 dark:border-indigo-800/50 rounded-3xl p-7 sm:p-9 shadow-premium hover:shadow-premium-lg transition-all duration-500 relative overflow-hidden"
             >
+              {/* Decorative gradient overlay */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 rounded-full blur-3xl opacity-0 hover:opacity-100 transition-opacity duration-500" />
               <div className="space-y-5">
                 <motion.p
                   initial={reduceMotion ? false : { opacity: 0 }}
@@ -212,7 +218,8 @@ const About: React.FC = () => {
               whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="bg-gradient-to-br from-indigo-50/50 to-purple-50/50 dark:from-indigo-900/20 dark:to-purple-900/20 border border-indigo-200/50 dark:border-indigo-800/50 rounded-2xl p-6 sm:p-8"
+              whileHover={{ y: -4 }}
+              className="bg-gradient-to-br from-indigo-50/60 to-purple-50/60 dark:from-indigo-900/30 dark:to-purple-900/30 border border-indigo-200/60 dark:border-indigo-800/60 rounded-3xl p-7 sm:p-9 shadow-lg hover:shadow-premium transition-all duration-500 backdrop-blur-sm"
             >
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span className="w-1 h-6 bg-gradient-to-b from-indigo-600 to-purple-600 rounded-full" />

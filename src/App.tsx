@@ -63,7 +63,41 @@ function App() {
 
       <JsonLd />
 
-      <div className="relative min-h-screen min-h-[100dvh] w-full max-w-full overflow-x-hidden bg-white text-gray-900 dark:bg-black dark:text-white">
+      <div className="relative min-h-screen min-h-[100dvh] w-full max-w-full overflow-x-hidden bg-gradient-to-br from-white via-indigo-50/20 to-purple-50/20 text-gray-900 dark:from-gray-950 dark:via-indigo-950/30 dark:to-purple-950/30 dark:text-white">
+        {/* Premium Mobile-Optimized Background */}
+        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+          {/* Base Gradient Mesh */}
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/40 via-white to-purple-50/40 dark:from-indigo-950/50 dark:via-gray-950 dark:to-purple-950/50" />
+          
+          {/* Responsive Gradient Orbs - Mobile Optimized */}
+          <div className="absolute top-0 left-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-indigo-400/20 dark:bg-indigo-500/15 rounded-full blur-3xl animate-pulse-slow" 
+               style={{ transform: 'translate(-30%, -30%)' }} />
+          <div className="absolute top-1/3 right-0 w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 bg-purple-400/20 dark:bg-purple-500/15 rounded-full blur-3xl animate-pulse-slow" 
+               style={{ transform: 'translate(30%, -20%)', animationDelay: '1s' }} />
+          <div className="absolute bottom-0 left-1/2 w-60 h-60 sm:w-76 sm:h-76 md:w-88 md:h-88 bg-pink-400/20 dark:bg-pink-500/15 rounded-full blur-3xl animate-pulse-slow" 
+               style={{ transform: 'translate(-50%, 30%)', animationDelay: '2s' }} />
+          
+          {/* Additional Subtle Orbs for Richness */}
+          <div className="absolute top-1/2 left-1/4 w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 bg-blue-400/15 dark:bg-blue-500/10 rounded-full blur-2xl animate-pulse-slow" 
+               style={{ animationDelay: '0.5s' }} />
+          <div className="absolute bottom-1/4 right-1/3 w-44 h-44 sm:w-56 sm:h-56 md:w-68 md:h-68 bg-cyan-400/15 dark:bg-cyan-500/10 rounded-full blur-2xl animate-pulse-slow" 
+               style={{ animationDelay: '1.5s' }} />
+          
+          {/* Premium Grid Pattern Overlay - Subtle (Hidden on mobile for performance) */}
+          <div className="hidden md:block absolute inset-0 opacity-[0.02] dark:opacity-[0.03]" 
+               style={{
+                 backgroundImage: 'radial-gradient(circle, rgb(99, 102, 241) 1px, transparent 1px)',
+                 backgroundSize: '40px 40px',
+               }} />
+          
+          {/* Premium Mesh Pattern - Desktop Only */}
+          <div className="hidden lg:block absolute inset-0 premium-mesh opacity-30 dark:opacity-20" />
+          
+          {/* Shimmer Effect - Desktop Only */}
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" 
+               style={{ backgroundSize: '200% 100%' }} />
+        </div>
+        
         {/* <SplashCursor /> */}
         <GalaxyBackground />
         <Navbar />

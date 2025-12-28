@@ -356,7 +356,7 @@ const Navbar: React.FC = () => {
                 {isActive && (
                   <motion.span
                     layoutId="activeNav"
-                    className="absolute inset-0 rounded-lg z-0 bg-gradient-to-r from-indigo-600 to-purple-600 shadow-md shadow-indigo-500/30"
+                    className="absolute inset-0 rounded-lg z-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg shadow-indigo-500/40"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -420,8 +420,8 @@ const Navbar: React.FC = () => {
           fixed inset-x-0 top-0 z-50 w-full max-w-full
           transition-all duration-300 ease-in-out
           ${scrolled 
-            ? "bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg shadow-md border-b border-gray-200/30 dark:border-gray-800/30" 
-            : "bg-white/50 dark:bg-gray-900/50 backdrop-blur-md"
+            ? "glass-enhanced border-b border-indigo-200/40 dark:border-indigo-800/40 shadow-premium" 
+            : "bg-white/40 dark:bg-gray-900/40 backdrop-blur-md"
           }
           pt-safe
         `}
@@ -464,7 +464,7 @@ const Navbar: React.FC = () => {
                   alt="Logo (Dark)"
                 />
               </div>
-              <span className="hidden sm:block text-sm font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+              <span className="hidden sm:block text-sm font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient">
                 Vinay Kushwah
               </span>
             </motion.a>

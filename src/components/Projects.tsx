@@ -205,8 +205,8 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
         setIsHovering(false);
         setMousePosition({ x: 0, y: 0 });
       }}
-      whileHover={{ y: -8 }}
-      className="w-full mx-auto group h-full flex flex-col bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:border-indigo-300/50 dark:hover:border-indigo-700/50 transition-all duration-300"
+      whileHover={{ y: -12, scale: 1.02 }}
+      className="w-full mx-auto group h-full flex flex-col glass-enhanced border-indigo-200/50 dark:border-indigo-800/50 rounded-2xl overflow-hidden shadow-md hover:shadow-premium hover:border-indigo-400/60 dark:hover:border-indigo-600/60 transition-all duration-500 card-premium"
       aria-label={proj.title}
     >
       {/* Media */}
@@ -264,18 +264,18 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-grow p-4 sm:p-5">
-        <div className="flex items-start justify-between mb-2.5 gap-2">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 flex-1">
+      <div className="flex flex-col flex-grow p-5 sm:p-6 relative z-10">
+        <div className="flex items-start justify-between mb-3 gap-2">
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white tracking-tight group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:via-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-2 flex-1">
             {proj.title}
           </h3>
           <motion.a
             href={proj.link}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.15, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
-            className="flex-shrink-0 p-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+            className="flex-shrink-0 p-2 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 text-white hover:from-indigo-600 hover:to-purple-600 shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
             aria-label={`Visit ${proj.title} (opens in new tab)`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -288,8 +288,8 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
           {proj.description}
         </p>
 
-        <div className="mt-auto pt-1">
-          <ul className="flex flex-wrap gap-1.5">
+        <div className="mt-auto pt-2">
+          <ul className="flex flex-wrap gap-2">
             {proj.stack.slice(0, 4).map((tech, techIndex) => (
               <motion.li
                 key={tech}
@@ -297,15 +297,15 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: techIndex * 0.03 }}
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.1, y: -3 }}
               >
-                <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium border border-gray-200 dark:border-gray-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:border-indigo-300 dark:hover:border-indigo-700 hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors">
+                <span className="text-[10px] sm:text-xs px-3 py-1 rounded-lg bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 font-semibold border border-indigo-200/60 dark:border-indigo-800/60 hover:from-indigo-100 hover:to-purple-100 dark:hover:from-indigo-900/50 dark:hover:to-purple-900/50 hover:border-indigo-400 dark:hover:border-indigo-600 hover:text-indigo-800 dark:hover:text-indigo-200 transition-all duration-300 shadow-sm hover:shadow-md">
                   {tech}
                 </span>
               </motion.li>
             ))}
             {proj.stack.length > 4 && (
-              <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-500 font-medium border border-gray-200 dark:border-gray-700">
+              <span className="text-[10px] sm:text-xs px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-500 font-semibold border border-gray-200 dark:border-gray-700">
                 +{proj.stack.length - 4}
               </span>
             )}
