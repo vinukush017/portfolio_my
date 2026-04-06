@@ -1,122 +1,152 @@
-// components/GalaxyBackground.tsx
-import React, { useEffect, useRef } from "react";
+import { type ISourceOptions } from "@tsparticles/engine";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import { useEffect, useMemo, useState } from "react";
 
 const GalaxyBackground = () => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [init, setInit] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    let stars: Array<{
-      x: number;
-      y: number;
-      radius: number;
-      vx: number;
-      vy: number;
-      opacity: number;
-      twinkle: number;
-    }> = [];
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      
-      // Create stars
-      stars = Array.from({ length: 80 }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5 + 0.5,
-        vx: (Math.random() - 0.5) * 0.1,
-        vy: (Math.random() - 0.5) * 0.1,
-        opacity: Math.random() * 0.5 + 0.3,
-        twinkle: Math.random() * Math.PI * 2,
-      }));
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
     };
 
-    resize();
-    window.addEventListener("resize", resize);
+    // Initial check
+    checkDarkMode();
 
-    const draw = (time: number) => {
-      const isDark = document.documentElement.classList.contains("dark");
-      
-      // Clear with fade effect - much lighter in light mode
-      ctx.fillStyle = isDark 
-        ? "rgba(0, 0, 0, 0.05)" 
-        : "rgba(255, 255, 255, 0.01)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Observer for class changes on html element
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          checkDarkMode();
+        }
+      });
+    });
 
-      // Draw gradient orbs (galaxy-like) - much more subtle in light mode
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-      
-      // Large gradient orb 1
-      const gradient1 = ctx.createRadialGradient(
-        centerX - 200,
-        centerY - 150,
-        0,
-        centerX - 200,
-        centerY - 150,
-        400
-      );
-      gradient1.addColorStop(0, isDark ? "rgba(99, 102, 241, 0.15)" : "rgba(99, 102, 241, 0.03)");
-      gradient1.addColorStop(1, "transparent");
-      ctx.fillStyle = gradient1;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Large gradient orb 2
-      const gradient2 = ctx.createRadialGradient(
-        centerX + 300,
-        centerY + 200,
-        0,
-        centerX + 300,
-        centerY + 200,
-        500
-      );
-      gradient2.addColorStop(0, isDark ? "rgba(147, 51, 234, 0.12)" : "rgba(147, 51, 234, 0.025)");
-      gradient2.addColorStop(1, "transparent");
-      ctx.fillStyle = gradient2;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Large gradient orb 3
-      const gradient3 = ctx.createRadialGradient(
-        centerX,
-        centerY + 300,
-        0,
-        centerX,
-        centerY + 300,
-        450
-      );
-      gradient3.addColorStop(0, isDark ? "rgba(236, 72, 153, 0.1)" : "rgba(236, 72, 153, 0.02)");
-      gradient3.addColorStop(1, "transparent");
-      ctx.fillStyle = gradient3;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Stars removed - only gradient orbs remain
-
-      animationFrameId = requestAnimationFrame(draw);
-    };
-
-    draw(0);
+    observer.observe(document.documentElement, { attributes: true });
 
     return () => {
-      window.removeEventListener("resize", resize);
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
+      observer.disconnect();
     };
   }, []);
 
+  const options: ISourceOptions = useMemo(() => {
+    return {
+      background: {
+        color: {
+          value: "transparent",
+        },
+      },
+      fpsLimit: 120,
+      interactivity: {
+        detectsOn: "window",
+        events: {
+          onClick: {
+            enable: true,
+            mode: "push", // Clicking adds more data nodes
+          },
+          onHover: {
+            enable: true,
+            mode: "grab", // Creates a scanning scanner-network on hover
+          },
+        },
+        modes: {
+          grab: {
+            distance: 250,
+            links: {
+              opacity: isDarkMode ? 0.8 : 0.6,
+              color: isDarkMode ? "#06b6d4" : "#3b82f6", // Cyberpunk cyan or tech blue
+            },
+          },
+          push: {
+            quantity: 3,
+          },
+        },
+      },
+      particles: {
+        color: {
+          value: isDarkMode
+            ? ["#06b6d4", "#8b5cf6", "#3b82f6"] // Neon cyan, purple, blue
+            : ["#3b82f6", "#6366f1", "#94a3b8"], // Strong blue, indigo, slate gray
+        },
+        links: {
+          enable: false, // No permanent lines, only appear during 'grab' hover
+        },
+        move: {
+          direction: "top-right", // Methodical data flow diagonally
+          enable: true,
+          outModes: {
+            default: "out",
+          },
+          random: false, // Ensures they move in perfectly parallel tracks
+          speed: 1.5,
+          straight: true,
+        },
+        number: {
+          density: {
+            enable: true,
+            width: 800,
+          },
+          value: 90, // Balanced density
+        },
+        opacity: {
+          value: { min: 0.1, max: 0.6 },
+        },
+        shape: {
+          type: ["triangle", "circle", "square"], // Mixed geometric tech aesthetic
+        },
+        size: {
+          value: { min: 1, max: 4 },
+        },
+        rotate: {
+          animation: {
+            enable: true,
+            speed: 4,
+            sync: false,
+          },
+          direction: "random",
+          value: { min: 0, max: 360 }, // Shapes slowly spin as they flow
+        },
+      },
+      detectRetina: true,
+    };
+  }, [isDarkMode]);
+
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 w-full h-full max-w-full max-h-full overflow-hidden z-0 pointer-events-none"
-      style={{ width: '100vw', height: '100vh', maxWidth: '100vw' }}
-    />
+    <div className="fixed inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+      {/* Dynamic atmospheric lighting base - Tech aesthetic */}
+      <div
+        className="absolute w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] rounded-full blur-[120px] opacity-20 dark:opacity-10 top-[-20%] left-[-10%]"
+        style={{
+          background: isDarkMode
+            ? "radial-gradient(circle, rgba(6,182,212,0.8) 0%, rgba(0,0,0,0) 70%)" // Cyan for dark mode
+            : "radial-gradient(circle, rgba(59,130,246,0.8) 0%, rgba(0,0,0,0) 70%)", // Blue for light mode
+        }}
+      ></div>
+      <div
+        className="absolute w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] rounded-full blur-[120px] opacity-20 dark:opacity-[0.08] bottom-[-20%] right-[-10%]"
+        style={{
+          background: isDarkMode
+            ? "radial-gradient(circle, rgba(139,92,246,0.8) 0%, rgba(0,0,0,0) 70%)" // Purple
+            : "radial-gradient(circle, rgba(99,102,241,0.8) 0%, rgba(0,0,0,0) 70%)", // Indigo
+        }}
+      ></div>
+
+      {init && (
+        <Particles
+          id="tsparticles"
+          options={options}
+          className="absolute inset-0 w-full h-full"
+        />
+      )}
+    </div>
   );
 };
 

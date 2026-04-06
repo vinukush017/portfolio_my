@@ -330,12 +330,10 @@ const Navbar: React.FC = () => {
                 scrollToSection(link);
               }}
               className={[
-                "relative px-3 py-1.5 text-sm font-medium rounded-lg cursor-pointer transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 group",
+                "relative px-4 py-2 text-sm font-semibold tracking-wide rounded-full cursor-pointer transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 group",
                 isActive
-                  ? "text-white"
-                  : isDark
-                  ? "text-gray-300"
-                  : "text-gray-700",
+                  ? "text-indigo-600 dark:text-cyan-400"
+                  : "text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-cyan-300",
               ].join(" ")}
               whileHover={
                 reduceMotion
@@ -351,12 +349,12 @@ const Navbar: React.FC = () => {
                 {linkLabel(link)}
               </span>
               
-              {/* Active state background */}
+              {/* Active state highlight pill */}
               <AnimatePresence>
                 {isActive && (
                   <motion.span
                     layoutId="activeNav"
-                    className="absolute inset-0 rounded-lg z-0 bg-gradient-to-r from-indigo-600 to-purple-600 shadow-md shadow-indigo-500/30"
+                    className="absolute inset-0 rounded-full z-0 bg-indigo-50/80 dark:bg-cyan-900/20 shadow-sm border border-indigo-100 dark:border-cyan-800/30 backdrop-blur-sm"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -369,10 +367,10 @@ const Navbar: React.FC = () => {
                 )}
               </AnimatePresence>
 
-              {/* Hover state background (only when not active) */}
+              {/* Hover glow effect (only when not active) */}
               {!isActive && (
                 <motion.span
-                  className="absolute inset-0 rounded-lg z-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-0 rounded-full z-0 bg-gradient-to-r from-indigo-400/10 to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   initial={false}
                   whileHover={
                     reduceMotion
@@ -382,14 +380,6 @@ const Navbar: React.FC = () => {
                           scale: 1.02,
                         }
                   }
-                />
-              )}
-
-              {/* Hover glow effect */}
-              {!isActive && (
-                <motion.span
-                  className="absolute inset-0 rounded-lg z-0 bg-gradient-to-r from-indigo-400/10 to-purple-400/10 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={false}
                 />
               )}
             </motion.a>
@@ -410,28 +400,24 @@ const Navbar: React.FC = () => {
         Skip to content
       </a>
 
-      {/* Fixed top navbar */}
+      {/* Floating Pill Navbar */}
       <motion.nav
         ref={wrapperRef}
-        initial={reduceMotion ? false : { y: -20, opacity: 0 }}
+        initial={reduceMotion ? false : { y: -30, opacity: 0 }}
         animate={reduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
-        transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={`
-          fixed inset-x-0 top-0 z-50 w-full max-w-full
-          transition-all duration-300 ease-in-out
+          fixed inset-x-0 top-4 sm:top-6 z-50 mx-auto w-[95%] sm:w-[90%] max-w-7xl mx-auto
+          transition-all duration-500 ease-in-out rounded-2xl sm:rounded-full
           ${scrolled 
-            ? "bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg shadow-md border-b border-gray-200/30 dark:border-gray-800/30" 
-            : "bg-white/50 dark:bg-gray-900/50 backdrop-blur-md"
+            ? "bg-white/60 dark:bg-[#060b14]/70 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-gray-200/50 dark:border-gray-700/50" 
+            : "bg-white/30 dark:bg-[#060b14]/40 backdrop-blur-md border border-white/20 dark:border-gray-700/30 shadow-sm"
           }
-          pt-safe
         `}
-        style={{
-          paddingTop: 'env(safe-area-inset-top)',
-        }}
         role="navigation"
         aria-label="Primary Navigation"
       >
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingLeft: 'max(1rem, env(safe-area-inset-left))', paddingRight: 'max(1rem, env(safe-area-inset-right))' }}>
+        <div className="w-full px-4 sm:px-6">
           <div className="flex items-center justify-between h-14 gap-3">
             {/* Left: Logo */}
             <motion.a
@@ -455,17 +441,17 @@ const Navbar: React.FC = () => {
               <div className="relative">
                 <img
                   src="/1.png"
-                  className="h-8 w-8 rounded-full block dark:hidden transition-transform group-hover:rotate-6"
+                  className="h-8 w-8 rounded-full block dark:hidden transition-transform group-hover:rotate-6 shadow-sm border border-gray-200"
                   alt="Logo"
                 />
                 <img
                   src="/2.png"
-                  className="h-8 w-8 rounded-full hidden dark:block transition-transform group-hover:rotate-6"
+                  className="h-8 w-8 rounded-full hidden dark:block transition-transform group-hover:rotate-6 shadow-[0_0_10px_rgba(34,211,238,0.2)]"
                   alt="Logo (Dark)"
                 />
               </div>
-              <span className="hidden sm:block text-sm font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
-                Vinay Kushwah
+              <span className="hidden sm:block text-[15px] font-extrabold tracking-widest uppercase bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-cyan-400 dark:to-indigo-400 bg-clip-text text-transparent">
+                Vinay
               </span>
             </motion.a>
 
@@ -475,26 +461,26 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Right: controls */}
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               <motion.button
                 aria-label="Toggle theme"
                 onClick={() => setIsDark((d) => !d)}
-                className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800/80 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                 type="button"
                 whileHover={reduceMotion ? undefined : { scale: 1.05 }}
                 whileTap={reduceMotion ? undefined : { scale: 0.9 }}
               >
                 {isDark ? (
-                  <SunIcon className="w-4 h-4 text-yellow-400" />
+                  <SunIcon className="w-5 h-5 text-cyan-400" />
                 ) : (
-                  <MoonIcon className="w-4 h-4 text-gray-700 dark:text-gray-300" />
+                  <MoonIcon className="w-5 h-5 text-indigo-600" />
                 )}
               </motion.button>
 
               {/* Menu button (mobile only) */}
               <motion.button
                 ref={menuButtonRef}
-                className="md:hidden p-1.5 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="md:hidden p-2 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 hover:bg-gray-100 dark:hover:bg-gray-800/80 transition-colors"
                 onClick={() => setMenuOpen((o) => !o)}
                 aria-label="Toggle menu"
                 aria-expanded={menuOpen}
@@ -519,7 +505,7 @@ const Navbar: React.FC = () => {
           {menuOpen && (
             <motion.div
               id="mobile-menu"
-              className="absolute left-0 right-0 top-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-t border-gray-200/50 dark:border-gray-800/50 md:hidden overflow-hidden"
+              className="absolute left-0 right-0 top-[calc(100%+12px)] bg-white/95 dark:bg-[#060b14]/95 backdrop-blur-2xl shadow-xl border border-gray-200/50 dark:border-gray-800/50 md:hidden overflow-hidden rounded-2xl"
               style={{ originY: 0 }}
               variants={dropdownVariants(reduceMotion)}
               initial="hidden"
