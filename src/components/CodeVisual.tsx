@@ -1,6 +1,4 @@
 // components/CodeVisual.tsx
-"use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 

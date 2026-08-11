@@ -44,8 +44,8 @@ A modern, responsive, and aesthetic portfolio website showcasing my work as a Fu
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/vinay-portfolio.git
-   cd vinay-portfolio
+   git clone https://github.com/vinukush017/portfolio_my.git
+   cd portfolio_my
    ```
 
 2. **Install dependencies**
@@ -68,6 +68,12 @@ npm run build
 ```
 
 The production build will be in the `dist` directory.
+
+Run the full type and production-build check before deploying:
+
+```bash
+npm run check
+```
 
 ## 📁 Project Structure
 
@@ -152,10 +158,6 @@ No environment variables required for basic setup.
 - Add/remove projects in `Projects.tsx`
 - Update skills in `Skills.tsx`
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ## 👨‍💻 Author
 
 **Vinay Kushwah**
@@ -173,5 +175,3 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 ⭐ If you like this project, please give it a star on GitHub!
-
-

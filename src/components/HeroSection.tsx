@@ -1,4 +1,3 @@
-"use client";
 import React, { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import TextScrambler from "./TextScrambler";
@@ -36,7 +35,7 @@ const HeroSection: React.FC = () => {
 
   return (
     <>
-      <div id="main" className="w-full max-w-full mx-auto relative overflow-x-hidden">
+      <div className="w-full max-w-full mx-auto relative overflow-x-hidden">
         <SocialIcons />
 
         <section
@@ -89,7 +88,7 @@ const HeroSection: React.FC = () => {
                   </span>
                 </motion.h1>
 
-                <div aria-live="polite" aria-atomic="true" className="mb-8 min-h-[2.5rem] sm:min-h-[3rem] w-full flex justify-center lg:justify-start">
+                <div className="mb-8 min-h-[2.5rem] sm:min-h-[3rem] w-full flex justify-center lg:justify-start">
                   <TextScrambler
                     texts={[
                       "Full-Stack Developer",

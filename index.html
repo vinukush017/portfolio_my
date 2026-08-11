@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
     <!-- iOS Safari Fullscreen Support -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -27,11 +27,6 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
     <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="rating" content="general" />
-    <meta name="distribution" content="global" />
-    <meta name="coverage" content="worldwide" />
-    <meta name="target" content="all" />
 
     <!-- Open Graph Meta Tags (for social sharing) -->
     <meta property="og:title" content="Vinay Kushwah - Full Stack Developer | React & Node.js Expert" />
@@ -44,13 +39,13 @@
     <meta property="og:site_name" content="Vinay Kushwah Portfolio" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content="https://vinay-kushwah.vercel.app/VINAY_LOGO.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="500" />
     <meta property="og:image:alt" content="Vinay Kushwah - Full Stack Developer Portfolio" />
     <meta property="og:image:type" content="image/png" />
     
     <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Vinay Kushwah - Full Stack Developer | React & Node.js Expert" />
     <meta
       name="twitter:description"
@@ -64,79 +59,80 @@
     <link rel="canonical" href="https://vinay-kushwah.vercel.app/" />
     
     <!-- Performance & Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://speed-insights.vercel.app" />
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta
       name="google-site-verification"
       content="DbrrCNtghTk77hYJKKPOp3Ea1KfSFRo3Fansqk25Hkc"
     />
-    <meta http-equiv="Cache-control" content="public, max-age=31536000" />
-    <meta http-equiv="Expires" content="31536000" />
-
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Theme Color for mobile browsers -->
     <meta name="theme-color" content="#4338ca" />
-    <!-- Primary Structured Data - Person Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Vinay Kushwah",
-        "url": "https://vinay-kushwah.vercel.app/",
-        "image": "https://vinay-kushwah.vercel.app/VINAY_LOGO.png",
-        "sameAs": [
-          "https://linkedin.com/in/vinaykushwah017",
-          "https://github.com/vinaykushwah017",
-          "https://x.com/Vinay__17"
-        ],
-        "jobTitle": "Full Stack Developer",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Freelance / Open Source"
-        },
-        "description": "Full Stack Developer specializing in React.js, Next.js, Node.js, and TypeScript. Building scalable web applications with modern technologies.",
-        "email": "mailto:kushwah.vinay89@gmail.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Pune",
-          "addressCountry": "IN"
-        },
-        "knowsAbout": [
-          "React",
-          "Next.js",
-          "Node.js",
-          "TypeScript",
-          "MongoDB",
-          "PostgreSQL",
-          "Tailwind CSS",
-          "Full Stack Development",
-          "Web Development"
-        ]
-      }
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle(
+          "dark",
+          savedTheme ? savedTheme === "dark" : prefersDark
+        );
+      } catch (_) {}
     </script>
-    
-    <!-- WebSite Schema -->
+
+    <!-- Structured data kept in the static document so crawlers receive one consistent source. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Vinay Kushwah Portfolio",
-        "url": "https://vinay-kushwah.vercel.app/",
-        "description": "Portfolio website of Vinay Kushwah, Full Stack Developer specializing in React.js, Next.js, Node.js, and TypeScript.",
-        "author": {
-          "@type": "Person",
-          "name": "Vinay Kushwah"
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://vinay-kushwah.vercel.app/?s={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://vinay-kushwah.vercel.app/#person",
+            "name": "Vinay Kushwah",
+            "url": "https://vinay-kushwah.vercel.app/",
+            "image": "https://vinay-kushwah.vercel.app/VINAY_LOGO.png",
+            "email": "mailto:vinay.kushwah89@gmail.com",
+            "jobTitle": "Full Stack Developer",
+            "sameAs": [
+              "https://www.linkedin.com/in/vinaykushwah017",
+              "https://github.com/vinukush017",
+              "https://x.com/Vinay__17"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Pune",
+              "addressCountry": "IN"
+            },
+            "knowsAbout": [
+              "React",
+              "Next.js",
+              "Node.js",
+              "TypeScript",
+              "MongoDB",
+              "PostgreSQL",
+              "Tailwind CSS"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://vinay-kushwah.vercel.app/#website",
+            "name": "Vinay Kushwah Portfolio",
+            "url": "https://vinay-kushwah.vercel.app/",
+            "inLanguage": "en-US",
+            "author": { "@id": "https://vinay-kushwah.vercel.app/#person" }
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://vinay-kushwah.vercel.app/#portfolio",
+            "name": "Vinay Kushwah Portfolio",
+            "url": "https://vinay-kushwah.vercel.app/#projects",
+            "creator": { "@id": "https://vinay-kushwah.vercel.app/#person" }
+          }
+        ]
       }
     </script>
   </head>

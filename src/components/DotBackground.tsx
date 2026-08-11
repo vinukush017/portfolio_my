@@ -44,14 +44,11 @@ const GalaxyBackground = () => {
           value: "transparent",
         },
       },
-      fpsLimit: 120,
+      fpsLimit: 60,
       interactivity: {
         detectsOn: "window",
         events: {
-          onClick: {
-            enable: true,
-            mode: "push", // Clicking adds more data nodes
-          },
+          onClick: { enable: false, mode: "push" },
           onHover: {
             enable: true,
             mode: "grab", // Creates a scanning scanner-network on hover
@@ -66,7 +63,7 @@ const GalaxyBackground = () => {
             },
           },
           push: {
-            quantity: 3,
+            quantity: 2,
           },
         },
       },
@@ -94,7 +91,7 @@ const GalaxyBackground = () => {
             enable: true,
             width: 800,
           },
-          value: 90, // Balanced density
+          value: 60,
         },
         opacity: {
           value: { min: 0.1, max: 0.6 },

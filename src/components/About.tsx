@@ -55,11 +55,13 @@ const About: React.FC = () => {
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 p-1">
                 <div className="relative h-full w-full rounded-2xl overflow-hidden bg-white dark:bg-gray-900">
                   <motion.img
-                    src="/avatar.jpg"
+                    src="/avatar-optimized.jpg"
                     alt="Portrait of Vinay Kushwah"
                     className="h-full w-full object-cover"
                     loading="lazy"
                     decoding="async"
+                    width={900}
+                    height={1200}
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.5 }}
                   />

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 const CHARACTERS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*";
@@ -21,6 +22,7 @@ const TextScramblerCycler: React.FC<Props> = ({
   const [index, setIndex] = useState(0);
   const frame = useRef(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const reduceMotion = useReducedMotion();
 
   const scramble = (text: string) => {
     setRevealed(false);
@@ -46,28 +48,36 @@ const TextScramblerCycler: React.FC<Props> = ({
   };
 
   useEffect(() => {
+    if (reduceMotion) {
+      setDisplayed(texts[0] ?? "");
+      setRevealed(true);
+      return;
+    }
+
     scramble(texts[index]);
 
     const loop = setInterval(() => {
-      const next = (index + 1) % texts.length;
-      setIndex(next);
-      scramble(texts[next]);
+      setIndex((current) => (current + 1) % texts.length);
     }, interval);
 
     return () => {
       clearInterval(loop);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [index, texts, speed, interval]);
+  }, [index, texts, speed, interval, reduceMotion]);
 
   return (
-    <span
-      className={`${className} transition-colors duration-700 ${
-        revealed ? "text-gradient" : "text-gray-400"
-      } break-words`}
-    >
-      {displayed}
-    </span>
+    <>
+      <span className="sr-only">{texts.join(", ")}</span>
+      <span
+        aria-hidden="true"
+        className={`${className} transition-colors duration-700 ${
+          revealed ? "text-gradient" : "text-gray-400"
+        } break-words`}
+      >
+        {displayed}
+      </span>
+    </>
   );
 };
 

@@ -177,6 +177,7 @@ const Contact: React.FC = () => {
         >
           <motion.form
             onSubmit={handleSubmit}
+            aria-label="Contact Vinay Kushwah"
             className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 rounded-2xl p-6 sm:p-8 shadow-lg space-y-5"
           >
             <div>
@@ -187,6 +188,7 @@ const Contact: React.FC = () => {
                 type="text"
                 id="name"
                 name="name"
+                autoComplete="name"
                 placeholder="John Doe"
                 aria-label="Your Name"
                 whileFocus={{ scale: 1.01 }}
@@ -203,6 +205,8 @@ const Contact: React.FC = () => {
                 type="email"
                 id="email"
                 name="email"
+                autoComplete="email"
+                inputMode="email"
                 placeholder="john@example.com"
                 aria-label="Your Email"
                 whileFocus={{ scale: 1.01 }}
@@ -218,6 +222,8 @@ const Contact: React.FC = () => {
               <motion.textarea
                 id="message"
                 name="message"
+                minLength={20}
+                maxLength={2000}
                 placeholder="Tell me about your project or idea..."
                 aria-label="Your Message"
                 rows={6}
@@ -226,6 +232,15 @@ const Contact: React.FC = () => {
                 required
               />
             </div>
+
+            <input
+              type="text"
+              name="_gotcha"
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
 
             <motion.button
               type="submit"
@@ -241,6 +256,7 @@ const Contact: React.FC = () => {
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                     className="inline-block text-xl"
+                    aria-hidden="true"
                   >
                     ⟳
                   </motion.span>

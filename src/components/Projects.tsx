@@ -133,8 +133,9 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
     margin: "-20% 0px -20% 0px",
     amount: 0.2,
   });
-  const hoverRef = useRef(false);
   const intervalRef = useRef<number | null>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isPageVisible, setIsPageVisible] = useState(!document.hidden);
 
   const next = useCallback(() => {
     setImgIndex((prev) => (prev + 1) % Math.max(proj.image.length, 1));
@@ -152,10 +153,10 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
   useEffect(() => {
     const canPlay =
       isInView &&
-      !hoverRef.current &&
+      !isHovering &&
       !reduceMotion &&
       proj.image.length > 1 &&
-      !document.hidden;
+      isPageVisible;
 
     if (canPlay && intervalRef.current == null) {
       intervalRef.current = window.setInterval(next, 6000);
@@ -170,28 +171,14 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
         intervalRef.current = null;
       }
     };
-  }, [isInView, reduceMotion, proj.image.length, next]);
+  }, [isInView, isHovering, isPageVisible, reduceMotion, proj.image.length, next]);
 
   // Pause when tab hidden/visible
   useEffect(() => {
-    const onVis = () => {
-      // trigger effect above by changing dependency via state update pattern
-      // no-op; visibility is read inside the effect
-    };
+    const onVis = () => setIsPageVisible(!document.hidden);
     document.addEventListener("visibilitychange", onVis);
     return () => document.removeEventListener("visibilitychange", onVis);
   }, []);
-
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setMousePosition({ x: (x / rect.width - 0.5) * 20, y: (y / rect.height - 0.5) * 20 });
-  };
 
   return (
     <motion.article
@@ -203,18 +190,13 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => {
         setIsHovering(false);
-        setMousePosition({ x: 0, y: 0 });
       }}
       whileHover={{ y: -8 }}
       className="w-full mx-auto group h-full flex flex-col bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:border-indigo-300/50 dark:hover:border-indigo-700/50 transition-all duration-300"
       aria-label={proj.title}
     >
       {/* Media */}
-      <div
-        className="relative overflow-hidden bg-gray-100 dark:bg-gray-800"
-        onMouseEnter={() => (hoverRef.current = true)}
-        onMouseLeave={() => (hoverRef.current = false)}
-      >
+      <div className="relative overflow-hidden bg-gray-100 dark:bg-gray-800">
         <div className="aspect-[16/9] w-full overflow-hidden">
           <motion.img
             src={proj.image[imgIndex]}
