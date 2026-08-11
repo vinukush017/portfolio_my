@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface SectionHeaderProps {
   title: string;
@@ -12,22 +12,25 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   subtitle,
   description,
 }) => {
+  const reduceMotion = useReducedMotion();
+  const reveal = reduceMotion ? false : { opacity: 0, y: 16 };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={reveal}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="text-center mb-12 sm:mb-16"
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      className="mb-10 grid gap-5 border-b border-gray-300 pb-8 dark:border-white/10 sm:mb-12 lg:grid-cols-12 lg:items-end"
     >
       {/* Subtitle */}
       {subtitle && (
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
+          initial={reveal}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-sm sm:text-base font-semibold text-indigo-600 dark:text-indigo-400 mb-2 uppercase tracking-wider"
+          transition={{ duration: 0.45, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-indigo-600 dark:text-cyan-400 lg:col-span-3"
         >
           {subtitle}
         </motion.p>
@@ -35,32 +38,23 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 
       {/* Main Title */}
       <motion.h2
-        initial={{ opacity: 0, y: 10 }}
+        initial={reveal}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6"
+        transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        className="font-heading text-4xl font-semibold tracking-[-0.045em] text-gray-950 dark:text-white sm:text-5xl lg:col-span-5"
       >
-        <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
-          {title}
-        </span>
-        <motion.span
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="block h-1 w-24 sm:w-32 mx-auto mt-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-full"
-        />
+        {title}
       </motion.h2>
 
       {/* Description */}
       {description && (
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
+          initial={reveal}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed"
+          transition={{ duration: 0.55, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-xl text-base leading-relaxed text-gray-600 dark:text-gray-400 lg:col-span-4 lg:justify-self-end"
         >
           {description}
         </motion.p>
@@ -70,4 +64,3 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 };
 
 export default SectionHeader;
-

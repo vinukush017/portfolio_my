@@ -104,7 +104,7 @@ const SlideDots = ({
   labelPrefix: string;
 }) => {
   return (
-    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/40 dark:bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
+    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center bg-black/45 dark:bg-black/60 backdrop-blur-sm px-1.5 rounded-full">
       {Array.from({ length: count }).map((_, i) => (
         <button
           key={i}
@@ -112,13 +112,15 @@ const SlideDots = ({
           aria-label={`${labelPrefix} slide ${i + 1}`}
           aria-current={i === active ? "true" : undefined}
           onClick={() => onSelect(i)}
-          className={[
-            "h-1.5 w-1.5 rounded-full transition-all duration-300",
-            i === active 
-              ? "bg-white w-6" 
-              : "bg-white/50 hover:bg-white/70",
-          ].join(" ")}
-        />
+          className="h-11 w-8 inline-flex items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        >
+          <span
+            className={[
+              "block h-1.5 rounded-full transition-all duration-300",
+              i === active ? "bg-white w-5" : "bg-white/50 w-1.5",
+            ].join(" ")}
+          />
+        </button>
       ))}
     </div>
   );
@@ -183,20 +185,20 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
   return (
     <motion.article
       ref={cardRef}
-      initial={{ opacity: 0, y: 30 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
+      transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.2), ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => {
         setIsHovering(false);
       }}
-      whileHover={{ y: -8 }}
-      className="w-full mx-auto group h-full flex flex-col bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:border-indigo-300/50 dark:hover:border-indigo-700/50 transition-all duration-300"
+      whileHover={reduceMotion ? undefined : { y: -4 }}
+      className="group mx-auto flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-none transition-all duration-300 hover:border-gray-400 hover:shadow-[0_20px_50px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-white/20 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
       aria-label={proj.title}
     >
       {/* Media */}
-      <div className="relative overflow-hidden bg-gray-100 dark:bg-gray-800">
+      <div className="relative overflow-hidden border-b border-gray-200 bg-gray-100 dark:border-white/10 dark:bg-gray-900">
         <div className="aspect-[16/9] w-full overflow-hidden">
           <motion.img
             src={proj.image[imgIndex]}
@@ -219,7 +221,7 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
               type="button"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-gray-900 dark:text-white px-2 py-1.5 text-sm opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
+              className="absolute left-2 top-1/2 -translate-y-1/2 h-11 w-11 inline-flex items-center justify-center rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-xl text-gray-900 dark:text-white opacity-100 lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
               aria-label={`Previous ${proj.title} image`}
               onClick={prev}
             >
@@ -229,7 +231,7 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
               type="button"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-gray-900 dark:text-white px-2 py-1.5 text-sm opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
+              className="absolute right-2 top-1/2 -translate-y-1/2 h-11 w-11 inline-flex items-center justify-center rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-xl text-gray-900 dark:text-white opacity-100 lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
               aria-label={`Next ${proj.title} image`}
               onClick={next}
             >
@@ -248,7 +250,7 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
       {/* Content */}
       <div className="flex flex-col flex-grow p-4 sm:p-5">
         <div className="flex items-start justify-between mb-2.5 gap-2">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 flex-1">
+          <h3 className="line-clamp-2 flex-1 font-heading text-lg font-semibold tracking-tight text-gray-950 transition-colors group-hover:text-indigo-600 dark:text-white dark:group-hover:text-cyan-400 sm:text-xl">
             {proj.title}
           </h3>
           <motion.a
@@ -257,16 +259,17 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            className="flex-shrink-0 p-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+            className="inline-flex min-h-10 flex-shrink-0 items-center gap-1.5 rounded-full bg-gray-950 px-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:bg-white dark:text-gray-950"
             aria-label={`Visit ${proj.title} (opens in new tab)`}
           >
+            <span>View</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
           </motion.a>
         </div>
 
-        <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-400 mb-3 leading-relaxed line-clamp-2">
+        <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
           {proj.description}
         </p>
 
@@ -281,13 +284,13 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
                 transition={{ delay: techIndex * 0.03 }}
                 whileHover={{ scale: 1.05, y: -2 }}
               >
-                <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium border border-gray-200 dark:border-gray-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:border-indigo-300 dark:hover:border-indigo-700 hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors">
+                <span className="rounded-md border border-gray-200 bg-gray-50 px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-wide text-gray-600 dark:border-white/10 dark:bg-white/5 dark:text-gray-400 sm:text-xs">
                   {tech}
                 </span>
               </motion.li>
             ))}
             {proj.stack.length > 4 && (
-              <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-500 font-medium border border-gray-200 dark:border-gray-700">
+              <span className="rounded-md border border-gray-200 bg-gray-50 px-2 py-1 font-mono text-[10px] font-medium text-gray-500 dark:border-white/10 dark:bg-white/5 dark:text-gray-500 sm:text-xs">
                 +{proj.stack.length - 4}
               </span>
             )}
@@ -301,29 +304,13 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
 const Projects: React.FC = () => {
   const items = useMemo(() => projects, []);
   return (
-    <section className="py-8 sm:py-12 md:py-16" aria-label="Projects">
+    <section className="py-16 sm:py-20 lg:py-24" aria-label="Projects">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          subtitle="Portfolio"
-          title="Featured Projects"
+          subtitle="01 / Projects"
+          title="Featured projects."
           description="A collection of innovative web applications and platforms I've built, showcasing my expertise in full-stack development, modern frameworks, and user-centric design."
         />
-
-        {/* Projects Introduction */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-12 text-center"
-        >
-          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Each project represents a unique challenge solved with modern technologies, 
-            best practices, and attention to detail. From spiritual platforms to productivity 
-            tools and AI-powered applications, these projects demonstrate my ability to deliver 
-            production-ready solutions that users love.
-          </p>
-        </motion.div>
 
         <div className="grid gap-4 sm:gap-5 lg:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((proj, index) => (
