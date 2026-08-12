@@ -4,6 +4,7 @@ export const SECTION_LINKS = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
+  { id: "blogs", label: "Blogs" },
   { id: "contact", label: "Contact" },
 ] as const;
 

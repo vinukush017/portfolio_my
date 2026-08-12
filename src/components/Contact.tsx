@@ -67,7 +67,7 @@ const Contact: React.FC = () => {
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <SectionHeader
-        subtitle="05 / Contact"
+        subtitle="06 / Contact"
         title="Let’s build something useful."
         description="Have a product idea, an engineering challenge, or a role that could be a fit? Tell me what you are working on."
       />
