@@ -365,7 +365,7 @@ const Navbar = () => {
               transition={{
                 duration: reduceMotion ? 0 : 0.2,
               }}
-              className="max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-gray-200 bg-[#f8f8f4] px-4 pb-6 pt-3 dark:border-white/10 dark:bg-[#0b0d10] lg:hidden"
+              className="h-[calc(100dvh-72px)] overflow-y-auto border-t border-gray-200 bg-[#f8f8f4] px-4 pb-6 pt-3 dark:border-white/10 dark:bg-[#0b0d10] lg:hidden"
             >
               <div className="flex flex-col mx-auto max-w-7xl">
                 {SECTION_LINKS.map(({ id, label }, index) => {
