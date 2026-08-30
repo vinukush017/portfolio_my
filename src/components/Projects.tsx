@@ -1,28 +1,79 @@
-import React, {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  useCallback,
-} from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import React, { useState } from "react";
+import {
+  ArrowUpRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/outline";
+import { motion, useReducedMotion } from "framer-motion";
 import SectionHeader from "./SectionHeader";
 
 type Project = {
   title: string;
+  category: string;
   description: string;
   link: string;
-  image: string[];
+  images: string[];
   stack: string[];
+  highlights: string[];
 };
 
-const RAW_PROJECTS: Project[] = [
+const projects: Project[] = [
+  {
+    title: "My Task Board",
+    category: "Full-stack productivity application",
+    description:
+      "A full-stack task management application designed around practical productivity workflows, with authentication, prioritization, status tracking, filters, due dates, and multiple task views.",
+    link: "https://my-task-board-frontend.vercel.app/",
+    images: [
+      "/projects/my-task-board-app-login.webp",
+      "/projects/my-task-board-frontend-main-white.webp",
+      "/projects/my-task-board-frontend-main-table.webp",
+    ],
+    stack: ["React", "Node.js", "PostgreSQL", "Prisma", "Tailwind CSS"],
+    highlights: [
+      "Authentication",
+      "Board & list views",
+      "Task prioritization",
+      "PostgreSQL data layer",
+    ],
+  },
+  {
+    title: "Car Daddy CRM",
+    category: "Customer management platform",
+    description:
+      "A scalable vehicle registration and customer management platform with secure authentication, cloud storage, and real-time communication integrations.",
+    link: "https://www.cardaddys.co.uk/",
+    images: [],
+    stack: ["React", "Node.js", "MongoDB", "AWS S3", "JWT"],
+    highlights: [
+      "JWT authentication",
+      "AWS S3 integration",
+      "Customer management",
+      "WhatsApp & email integrations",
+    ],
+  },
+  {
+    title: "DropChat AI",
+    category: "AI chatbot platform",
+    description:
+      "An AI chatbot builder that allows users to create document-trained assistants and embed them into external websites using OpenAI-powered conversational workflows.",
+    link: "https://app.dropchat.co/",
+    images: [],
+    stack: ["OpenAI", "React", "Node.js", "MongoDB"],
+    highlights: [
+      "OpenAI integration",
+      "Document training",
+      "Embeddable chatbots",
+      "AI-powered conversations",
+    ],
+  },
   {
     title: "DharmaPath",
+    category: "Content platform",
     description:
-      "A spiritual platform providing bhajans, shlokas, chalisas, and divine knowledge in Hindi. Built with React, Tailwind CSS, and a mobile-first responsive design.",
+      "A Hindi spiritual content platform providing bhajans, shlokas, chalisas, and other devotional knowledge through a clean, responsive, mobile-first interface.",
     link: "https://dharmapath.in",
-    image: [
+    images: [
       "/projects/dharmapath-1.webp",
       "/projects/dharmapath-2.webp",
       "/projects/dharmapath-3.webp",
@@ -32,93 +83,68 @@ const RAW_PROJECTS: Project[] = [
       "/projects/dharmapath-7.webp",
     ],
     stack: ["React", "Tailwind CSS"],
-  },
-  {
-    title: "My Task Board",
-    description:
-      "A full-stack productivity app with auth, task creation, prioritization, status tracking, and board/list views. Category filters, due dates, and fully responsive UI. PostgreSQL + Prisma backend.",
-    link: "https://my-task-board-frontend.vercel.app/",
-    image: [
-      "/projects/my-task-board-app-login.webp",
-      "/projects/my-task-board-frontend-main-white.webp",
-      "/projects/my-task-board-frontend-main-table.webp",
+    highlights: [
+      "Mobile-first design",
+      "Responsive UI",
+      "Hindi content experience",
+      "Reusable React components",
     ],
-    stack: ["React", "Node.js", "PostgreSQL", "Prisma", "Tailwind"],
   },
   {
     title: "FactGully",
+    category: "Fact discovery platform",
     description:
-      "A fact-sharing platform with daily themes in science, history, and myths. Built in React and Vercel.",
+      "A fact-sharing platform that organizes engaging content around daily themes including science, history, myths, and other educational topics.",
     link: "https://fact-gully.vercel.app",
-    image: [
+    images: [
       "/projects/fact-gully.webp",
       "/projects/screencapture-fact-gully-vercel-app-filter.webp",
       "/projects/screencapture-fact-gully-vercel-app-contact.webp",
       "/projects/screencapture-fact-gully-vercel-app.webp",
       "/projects/screencapture-fact-gully-vercel-app-about.webp",
     ],
-    stack: ["React", "Tailwind", "Vercel", "Node.js", "MongoDB"],
-  },
-  {
-    title: "Vinay Kushwah Portfolio",
-    description:
-      "A polished interactive developer portfolio. React, Tailwind, Framer Motion, and a custom canvas-based galaxy background.",
-    link: "https://vinay-kushwah.vercel.app",
-    image: [
-      "/projects/vinay-kushwah.vercel.app_.webp",
-      "/projects/vinay-kushwah.vercel.app_(1).webp",
-      "/projects/vinay-kushwah.vercel.app_(2).webp",
+    stack: ["React", "Node.js", "MongoDB", "Tailwind CSS", "Vercel"],
+    highlights: [
+      "Content filtering",
+      "Responsive interface",
+      "MongoDB integration",
+      "Category-based discovery",
     ],
-    stack: ["React", "Tailwind", "Framer Motion", "Vercel"],
-  },
-  {
-    title: "Car Daddy CRM",
-    description:
-      "Scalable car registration and customer management with JWT auth, S3, and real-time WhatsApp/email integrations.",
-    link: "https://www.cardaddys.co.uk/",
-    image: ["/projects/fact-gully.webp"], // replace when you have real shots
-    stack: ["React", "Node.js", "MongoDB"],
-  },
-  {
-    title: "DropChat AI",
-    description:
-      "AI chatbot builder with OpenAI APIs, document training, and embeddable bots.",
-    link: "https://app.dropchat.co/",
-    image: ["/projects/fact-gully.webp"], // replace when you have real shots
-    stack: ["OpenAI", "React", "MongoDB"],
   },
 ];
 
-// Stable memoized projects
-const projects: Project[] = RAW_PROJECTS;
+type SlideDotsProps = {
+  count: number;
+  active: number;
+  onSelect: (index: number) => void;
+  labelPrefix: string;
+};
 
 const SlideDots = ({
   count,
   active,
   onSelect,
   labelPrefix,
-}: {
-  count: number;
-  active: number;
-  onSelect: (i: number) => void;
-  labelPrefix: string;
-}) => {
+}: SlideDotsProps) => {
+  if (count <= 1) return null;
+
   return (
-    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center bg-black/45 dark:bg-black/60 backdrop-blur-sm px-1.5 rounded-full">
-      {Array.from({ length: count }).map((_, i) => (
+    <div className="absolute flex items-center gap-1 px-2 py-1 -translate-x-1/2 rounded-full bottom-3 left-1/2 bg-black/50 backdrop-blur-md">
+      {Array.from({ length: count }).map((_, index) => (
         <button
-          key={i}
+          key={index}
           type="button"
-          aria-label={`${labelPrefix} slide ${i + 1}`}
-          aria-current={i === active ? "true" : undefined}
-          onClick={() => onSelect(i)}
-          className="h-11 w-8 inline-flex items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          aria-label={`${labelPrefix} screenshot ${index + 1}`}
+          aria-current={index === active ? "true" : undefined}
+          onClick={() => onSelect(index)}
+          className="flex items-center justify-center w-6 rounded-full h-7 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
           <span
-            className={[
-              "block h-1.5 rounded-full transition-all duration-300",
-              i === active ? "bg-white w-5" : "bg-white/50 w-1.5",
-            ].join(" ")}
+            className={`block h-1.5 rounded-full transition-all duration-300 ${
+              index === active
+                ? "w-4 bg-white"
+                : "w-1.5 bg-white/50 hover:bg-white/80"
+            }`}
           />
         </button>
       ))}
@@ -126,175 +152,210 @@ const SlideDots = ({
   );
 };
 
-// Reusable Card with smarter autoplay
-const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
+const ProjectCard = ({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) => {
   const reduceMotion = useReducedMotion();
-  const [imgIndex, setImgIndex] = useState(0);
-  const cardRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(cardRef, {
-    margin: "-20% 0px -20% 0px",
-    amount: 0.2,
-  });
-  const intervalRef = useRef<number | null>(null);
-  const [isHovering, setIsHovering] = useState(false);
-  const [isPageVisible, setIsPageVisible] = useState(!document.hidden);
+  const [imageIndex, setImageIndex] = useState(0);
 
-  const next = useCallback(() => {
-    setImgIndex((prev) => (prev + 1) % Math.max(proj.image.length, 1));
-  }, [proj.image.length]);
+  const hasImages = project.images.length > 0;
+  const hasMultipleImages = project.images.length > 1;
 
-  const prev = useCallback(() => {
-    setImgIndex(
-      (prev) =>
-        (prev - 1 + Math.max(proj.image.length, 1)) %
-        Math.max(proj.image.length, 1)
+  const showPreviousImage = () => {
+    if (!hasImages) return;
+
+    setImageIndex((current) =>
+      current === 0 ? project.images.length - 1 : current - 1,
     );
-  }, [proj.image.length]);
+  };
 
-  // Autoplay: only when in view, not hovered, not reduced motion, page visible
-  useEffect(() => {
-    const canPlay =
-      isInView &&
-      !isHovering &&
-      !reduceMotion &&
-      proj.image.length > 1 &&
-      isPageVisible;
+  const showNextImage = () => {
+    if (!hasImages) return;
 
-    if (canPlay && intervalRef.current == null) {
-      intervalRef.current = window.setInterval(next, 6000);
-    }
-    if (!canPlay && intervalRef.current != null) {
-      window.clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-    return () => {
-      if (intervalRef.current != null) {
-        window.clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, [isInView, isHovering, isPageVisible, reduceMotion, proj.image.length, next]);
-
-  // Pause when tab hidden/visible
-  useEffect(() => {
-    const onVis = () => setIsPageVisible(!document.hidden);
-    document.addEventListener("visibilitychange", onVis);
-    return () => document.removeEventListener("visibilitychange", onVis);
-  }, []);
+    setImageIndex((current) =>
+      current === project.images.length - 1 ? 0 : current + 1,
+    );
+  };
 
   return (
     <motion.article
-      ref={cardRef}
       initial={reduceMotion ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.2), ease: [0.22, 1, 0.36, 1] }}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => {
-        setIsHovering(false);
+      viewport={{
+        once: true,
+        amount: 0.15,
       }}
-      whileHover={reduceMotion ? undefined : { y: -4 }}
-      className="group mx-auto flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-none transition-all duration-300 hover:border-gray-400 hover:shadow-[0_20px_50px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-white/20 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
-      aria-label={proj.title}
+      transition={
+        reduceMotion
+          ? { duration: 0 }
+          : {
+              duration: 0.5,
+              delay: Math.min(index * 0.06, 0.18),
+              ease: [0.22, 1, 0.36, 1],
+            }
+      }
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-[0_24px_60px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-white/20 dark:hover:shadow-[0_24px_60px_rgba(0,0,0,0.28)]"
     >
-      {/* Media */}
-      <div className="relative overflow-hidden border-b border-gray-200 bg-gray-100 dark:border-white/10 dark:bg-gray-900">
-        <div className="aspect-[16/9] w-full overflow-hidden">
-          <motion.img
-            src={proj.image[imgIndex]}
-            alt={`${proj.title} screenshot ${imgIndex + 1}`}
-            className="w-full h-full object-cover"
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
-            animate={{
-              scale: isHovering ? 1.05 : 1,
-            }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      {/* Project media */}
+      <div className="relative overflow-hidden border-b border-gray-200 bg-gray-100 dark:border-white/10 dark:bg-[#0b0d10]">
+        <div className="aspect-[16/10] overflow-hidden">
+          {hasImages ? (
+            <motion.img
+              key={`${project.title}-${imageIndex}`}
+              src={project.images[imageIndex]}
+              alt={`${project.title} screenshot ${imageIndex + 1}`}
+              loading="lazy"
+              decoding="async"
+              initial={reduceMotion ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.25 }}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+            />
+          ) : (
+            <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#f3f4f1] px-8 dark:bg-[#0d1014]">
+              {/* Decorative grid */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 pointer-events-none opacity-60 dark:opacity-20"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to right, rgba(15,23,42,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.07) 1px, transparent 1px)",
+                  backgroundSize: "32px 32px",
+                }}
+              />
+
+              <div
+                aria-hidden="true"
+                className="absolute rounded-full pointer-events-none -right-12 -top-12 h-44 w-44 bg-indigo-400/15 blur-3xl dark:bg-cyan-400/10"
+              />
+
+              <div className="relative text-center">
+                <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-indigo-600 dark:text-cyan-400">
+                  Selected work
+                </p>
+
+                <p className="mt-4 font-heading text-3xl font-semibold tracking-[-0.04em] text-gray-950 dark:text-white sm:text-4xl">
+                  {project.title}
+                </p>
+
+                <p className="max-w-xs mx-auto mt-3 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                  {project.category}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
-        {proj.image.length > 1 && (
+        {hasMultipleImages && (
           <>
-            <motion.button
+            <button
               type="button"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="absolute left-2 top-1/2 -translate-y-1/2 h-11 w-11 inline-flex items-center justify-center rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-xl text-gray-900 dark:text-white opacity-100 lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
-              aria-label={`Previous ${proj.title} image`}
-              onClick={prev}
+              aria-label={`Previous ${project.title} screenshot`}
+              onClick={showPreviousImage}
+              className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 left-3 top-1/2 border-white/20 bg-black/45 backdrop-blur-md hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
             >
-              ‹
-            </motion.button>
-            <motion.button
+              <ChevronLeftIcon className="w-5 h-5" />
+            </button>
+
+            <button
               type="button"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 h-11 w-11 inline-flex items-center justify-center rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-xl text-gray-900 dark:text-white opacity-100 lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100 transition-all duration-300 hover:bg-white dark:hover:bg-gray-800 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
-              aria-label={`Next ${proj.title} image`}
-              onClick={next}
+              aria-label={`Next ${project.title} screenshot`}
+              onClick={showNextImage}
+              className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 right-3 top-1/2 border-white/20 bg-black/45 backdrop-blur-md hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
             >
-              ›
-            </motion.button>
+              <ChevronRightIcon className="w-5 h-5" />
+            </button>
+
             <SlideDots
-              count={proj.image.length}
-              active={imgIndex}
-              onSelect={setImgIndex}
-              labelPrefix={proj.title}
+              count={project.images.length}
+              active={imageIndex}
+              onSelect={setImageIndex}
+              labelPrefix={project.title}
             />
           </>
         )}
       </div>
 
-      {/* Content */}
-      <div className="flex flex-col flex-grow p-4 sm:p-5">
-        <div className="flex items-start justify-between mb-2.5 gap-2">
-          <h3 className="line-clamp-2 flex-1 font-heading text-lg font-semibold tracking-tight text-gray-950 transition-colors group-hover:text-indigo-600 dark:text-white dark:group-hover:text-cyan-400 sm:text-xl">
-            {proj.title}
-          </h3>
-          <motion.a
-            href={proj.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex min-h-10 flex-shrink-0 items-center gap-1.5 rounded-full bg-gray-950 px-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:bg-white dark:text-gray-950"
-            aria-label={`Visit ${proj.title} (opens in new tab)`}
-          >
-            <span>View</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </motion.a>
-        </div>
-
-        <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-          {proj.description}
+      {/* Project content */}
+      <div className="flex flex-col flex-1 p-5 sm:p-6 lg:p-7">
+        {/* Category */}
+        <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-indigo-600 dark:text-cyan-400 sm:text-[11px]">
+          {project.category}
         </p>
 
-        <div className="mt-auto pt-1">
-          <ul className="flex flex-wrap gap-1.5">
-            {proj.stack.slice(0, 4).map((tech, techIndex) => (
-              <motion.li
-                key={tech}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: techIndex * 0.03 }}
-                whileHover={{ scale: 1.05, y: -2 }}
+        {/* Title */}
+        <div className="flex items-start justify-between gap-5 mt-3">
+          <h3 className="font-heading text-2xl font-semibold tracking-[-0.035em] text-gray-950 dark:text-white sm:text-[1.7rem]">
+            {project.title}
+          </h3>
+
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.title} in a new tab`}
+            className="inline-flex items-center justify-center flex-none w-10 h-10 text-gray-700 transition-all border border-gray-200 rounded-full hover:border-gray-950 hover:bg-gray-950 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/15 dark:text-gray-300 dark:hover:border-white dark:hover:bg-white dark:hover:text-gray-950"
+          >
+            <ArrowUpRightIcon className="w-4 h-4" />
+          </a>
+        </div>
+
+        {/* Description */}
+        <p className="mt-4 text-sm leading-7 text-gray-600 dark:text-gray-400 sm:text-[15px]">
+          {project.description}
+        </p>
+
+        {/* Highlights */}
+        <div className="mt-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-gray-400 dark:text-gray-500">
+            Engineering highlights
+          </p>
+
+          <ul className="grid grid-cols-1 gap-2 mt-3 sm:grid-cols-2">
+            {project.highlights.map((highlight) => (
+              <li
+                key={highlight}
+                className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"
               >
-                <span className="rounded-md border border-gray-200 bg-gray-50 px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-wide text-gray-600 dark:border-white/10 dark:bg-white/5 dark:text-gray-400 sm:text-xs">
-                  {tech}
-                </span>
-              </motion.li>
+                <span
+                  aria-hidden="true"
+                  className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-indigo-500 dark:bg-cyan-400"
+                />
+
+                <span>{highlight}</span>
+              </li>
             ))}
-            {proj.stack.length > 4 && (
-              <span className="rounded-md border border-gray-200 bg-gray-50 px-2 py-1 font-mono text-[10px] font-medium text-gray-500 dark:border-white/10 dark:bg-white/5 dark:text-gray-500 sm:text-xs">
-                +{proj.stack.length - 4}
-              </span>
-            )}
           </ul>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-auto pt-7">
+          <div className="pt-5 border-t border-gray-200 dark:border-white/10">
+            <div className="flex flex-wrap gap-2">
+              {project.stack.map((technology) => (
+                <span
+                  key={technology}
+                  className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-mono text-[10px] font-medium text-gray-600 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 sm:text-[11px]"
+                >
+                  {technology}
+                </span>
+              ))}
+            </div>
+
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-5 text-sm font-semibold group/link text-gray-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-white"
+            >
+              View live project
+              <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+            </a>
+          </div>
         </div>
       </div>
     </motion.article>
@@ -302,19 +363,24 @@ const ProjectCard = ({ proj, index }: { proj: Project; index: number }) => {
 };
 
 const Projects: React.FC = () => {
-  const items = useMemo(() => projects, []);
   return (
-    <section className="py-16 sm:py-20 lg:py-24" aria-label="Projects">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          subtitle="01 / Projects"
-          title="Featured projects."
-          description="A collection of innovative web applications and platforms I've built, showcasing my expertise in full-stack development, modern frameworks, and user-centric design."
-        />
+    <section
+      id="projects"
+      aria-labelledby="projects-heading"
+      className="py-16 border-b border-gray-200 dark:border-white/10 sm:py-20 lg:py-28"
+    >
+      <div className="w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div id="projects-heading">
+          <SectionHeader
+            subtitle="01 / Selected Work"
+            title="Projects built around real problems."
+            description="A selection of applications I've built across full-stack development, APIs, cloud integrations, AI, and responsive product experiences."
+          />
+        </div>
 
-        <div className="grid gap-4 sm:gap-5 lg:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((proj, index) => (
-            <ProjectCard key={proj.title} proj={proj} index={index} />
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-7">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
       </div>

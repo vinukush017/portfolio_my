@@ -13,53 +13,61 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   description,
 }) => {
   const reduceMotion = useReducedMotion();
-  const reveal = reduceMotion ? false : { opacity: 0, y: 16 };
+
+  const reveal = (delay = 0) => ({
+    initial: reduceMotion
+      ? false
+      : {
+          opacity: 0,
+          y: 16,
+        },
+
+    whileInView: {
+      opacity: 1,
+      y: 0,
+    },
+
+    viewport: {
+      once: true,
+      amount: 0.2,
+    },
+
+    transition: reduceMotion
+      ? { duration: 0 }
+      : {
+          duration: 0.5,
+          delay,
+          ease: [0.22, 1, 0.36, 1] as const,
+        },
+  });
 
   return (
-    <motion.div
-      initial={reveal}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="mb-10 grid gap-5 border-b border-gray-300 pb-8 dark:border-white/10 sm:mb-12 lg:grid-cols-12 lg:items-end"
-    >
-      {/* Subtitle */}
+    <div className="grid gap-5 pb-8 mb-10 border-b border-gray-300 dark:border-white/10 sm:mb-12 lg:grid-cols-12 lg:items-end">
       {subtitle && (
         <motion.p
-          initial={reveal}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          {...reveal(0)}
           className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-indigo-600 dark:text-cyan-400 lg:col-span-3"
         >
           {subtitle}
         </motion.p>
       )}
 
-      {/* Main Title */}
       <motion.h2
-        initial={reveal}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        {...reveal(0.06)}
         className="font-heading text-4xl font-semibold tracking-[-0.045em] text-gray-950 dark:text-white sm:text-5xl lg:col-span-5"
       >
         {title}
       </motion.h2>
 
-      {/* Description */}
       {description && (
         <motion.p
-          initial={reveal}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+          {...reveal(0.12)}
           className="max-w-xl text-base leading-relaxed text-gray-600 dark:text-gray-400 lg:col-span-4 lg:justify-self-end"
         >
           {description}
         </motion.p>
       )}
-    </motion.div>
+    </div>
   );
 };
 

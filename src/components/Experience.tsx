@@ -1,64 +1,206 @@
 import { motion, useReducedMotion } from "framer-motion";
 import SectionHeader from "./SectionHeader";
 
-const experiences = [
+type ExperienceItem = {
+  company: string;
+  location: string;
+  title: string;
+  period: string;
+  current?: boolean;
+  summary: string;
+  achievements: string[];
+  stack: string[];
+};
+
+const experiences: ExperienceItem[] = [
   {
-    company: "SYMBtechnologies, Noida", title: "Software Engineer (MERN Stack)", period: "Nov 2024 — Present", current: true,
-    achievements: ["Boosted server response speed by 30% with optimized Express.js routes.", "Reduced MongoDB latency by 25% using indexes and aggregation.", "Built scalable React components and Redux state architecture.", "Implemented secure media uploads through AWS S3."],
+    company: "SYMBtechnologies",
+    location: "Noida, India",
+    title: "Software Engineer",
+    period: "Nov 2024 — Present",
+    current: true,
+    summary:
+      "Building and improving production web applications across backend services, frontend interfaces, databases, and cloud integrations.",
+    achievements: [
+      "Optimized Express.js APIs and backend workflows to improve application response times and overall reliability.",
+      "Improved MongoDB query performance through indexing, aggregation pipelines, and more efficient data access patterns.",
+      "Built reusable React components and structured application state for scalable frontend development.",
+      "Implemented secure media upload and storage workflows using AWS S3.",
+    ],
     stack: ["Node.js", "Express.js", "MongoDB", "React", "Redux", "AWS S3"],
   },
   {
-    company: "ARIPRA Infotech, Indore", title: "Full Stack Developer (MERN)", period: "Feb 2022 — May 2024", current: false,
-    achievements: ["Engineered REST APIs that improved application performance by 35%.", "Implemented efficient PostgreSQL queries with Knex.js.", "Reduced bugs by 20% through unit testing and pull-request reviews."],
-    stack: ["Node.js", "React", "Redux", "MongoDB", "Express.js"],
+    company: "ARIPRA Infotech",
+    location: "Indore, India",
+    title: "Full Stack Developer",
+    period: "Feb 2022 — May 2024",
+    summary:
+      "Worked across frontend and backend systems, building APIs, database-driven features, and maintainable product workflows.",
+    achievements: [
+      "Designed and developed REST APIs for application features, integrations, and data-driven workflows.",
+      "Built and optimized PostgreSQL queries using Knex.js for reliable and efficient data access.",
+      "Developed responsive React interfaces and reusable components across multiple product features.",
+      "Improved code quality through testing, pull-request reviews, debugging, and ongoing refactoring.",
+    ],
+    stack: [
+      "Node.js",
+      "Express.js",
+      "React",
+      "Redux",
+      "PostgreSQL",
+      "Knex.js",
+      "MongoDB",
+    ],
   },
   {
-    company: "JERK Trend, Pune", title: "Junior Node.js Developer", period: "Jan 2021 — Feb 2022", current: false,
-    achievements: ["Built a scalable Node.js backend with 20% faster load time.", "Redesigned responsive React interfaces, improving mobile retention by 25%."],
+    company: "JERK Trend",
+    location: "Pune, India",
+    title: "Junior Node.js Developer",
+    period: "Jan 2021 — Feb 2022",
+    summary:
+      "Started my professional engineering journey building backend services and responsive web experiences with the MERN stack.",
+    achievements: [
+      "Built and maintained Node.js and Express.js backend services for production application features.",
+      "Designed REST API endpoints and integrated application data with MongoDB.",
+      "Developed responsive React interfaces with a focus on usability across desktop and mobile devices.",
+      "Worked on debugging, performance improvements, and maintaining existing application functionality.",
+    ],
     stack: ["Node.js", "Express.js", "React", "MongoDB"],
   },
 ];
 
 const Experience = () => {
   const reduceMotion = useReducedMotion();
-  return (
-    <section className="border-b border-gray-200 py-16 dark:border-white/10 sm:py-20 lg:py-24" aria-label="Professional experience">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeader subtitle="04 / Experience" title="Measured work, real outcomes." description="A progression from backend foundations to full-stack product ownership, with improvements measured in speed, reliability, and user impact." />
 
-        <div className="divide-y divide-gray-300 border-y border-gray-300 dark:divide-white/10 dark:border-white/10">
+  const reveal = (index: number) => ({
+    initial: reduceMotion ? false : { opacity: 0, y: 18 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: {
+      once: true,
+      amount: 0.15,
+    },
+    transition: reduceMotion
+      ? { duration: 0 }
+      : {
+          duration: 0.5,
+          delay: Math.min(index * 0.06, 0.15),
+          ease: [0.22, 1, 0.36, 1] as const,
+        },
+  });
+
+  return (
+    <section
+      id="experience"
+      aria-labelledby="experience-heading"
+      className="py-16 border-b border-gray-200 dark:border-white/10 sm:py-20 lg:py-28"
+    >
+      <div className="w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div id="experience-heading">
+          <SectionHeader
+            subtitle="04 / Experience"
+            title="Building production software."
+            description="My experience spans backend systems, APIs, databases, frontend applications, and cloud integrations — with a focus on reliable software that is easier to scale and maintain."
+          />
+        </div>
+
+        <div className="border-gray-300 border-y dark:border-white/10">
           {experiences.map((experience, index) => (
             <motion.article
-              key={experience.company}
-              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="grid gap-6 py-8 lg:grid-cols-12 lg:gap-10 lg:py-10"
+              key={`${experience.company}-${experience.period}`}
+              {...reveal(index)}
+              className="grid py-8 border-b border-gray-300 gap-7 last:border-b-0 dark:border-white/10 sm:py-10 lg:grid-cols-12 lg:gap-10 lg:py-12"
             >
-              <div className="lg:col-span-3">
+              {/* Number + Period */}
+              <div className="lg:col-span-2">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-xs text-indigo-600 dark:text-cyan-400">0{index + 1}</span>
-                  {experience.current && <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-400">Current</span>}
+                  <span className="font-mono text-[11px] font-medium text-indigo-600 dark:text-cyan-400">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  {experience.current && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-400">
+                      <span
+                        aria-hidden="true"
+                        className="h-1.5 w-1.5 rounded-full bg-emerald-500"
+                      />
+                      Current
+                    </span>
+                  )}
                 </div>
-                <p className="mt-4 font-mono text-xs uppercase tracking-[0.12em] text-gray-500">{experience.period}</p>
+
+                <p className="mt-4 font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-gray-500">
+                  {experience.period}
+                </p>
               </div>
 
+              {/* Role information */}
               <div className="lg:col-span-4">
-                <h3 className="font-heading text-2xl font-semibold tracking-tight text-gray-950 dark:text-white">{experience.title}</h3>
-                <p className="mt-2 text-sm font-medium text-gray-600 dark:text-gray-400">{experience.company}</p>
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {experience.stack.map((technology) => <li key={technology} className="rounded-md border border-gray-300 px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-gray-600 dark:border-white/10 dark:text-gray-400">{technology}</li>)}
+                <h3 className="font-heading text-2xl font-semibold tracking-[-0.035em] text-gray-950 dark:text-white sm:text-[1.7rem]">
+                  {experience.title}
+                </h3>
+
+                <div className="flex flex-wrap items-center mt-2 text-sm gap-x-2 gap-y-1">
+                  <p className="font-semibold text-gray-700 dark:text-gray-300">
+                    {experience.company}
+                  </p>
+
+                  <span
+                    aria-hidden="true"
+                    className="hidden text-gray-400 sm:inline"
+                  >
+                    ·
+                  </span>
+
+                  <p className="text-gray-500 dark:text-gray-500">
+                    {experience.location}
+                  </p>
+                </div>
+
+                <p className="max-w-md mt-5 text-sm leading-7 text-gray-600 dark:text-gray-400">
+                  {experience.summary}
+                </p>
+
+                {/* Technology stack */}
+                <div className="mt-6">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-gray-400 dark:text-gray-500">
+                    Technologies
+                  </p>
+
+                  <ul className="flex flex-wrap gap-2 mt-3">
+                    {experience.stack.map((technology) => (
+                      <li
+                        key={technology}
+                        className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-mono text-[10px] font-medium text-gray-600 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 sm:text-[11px]"
+                      >
+                        {technology}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Contributions */}
+              <div className="lg:col-span-6">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-gray-400 dark:text-gray-500">
+                  Selected contributions
+                </p>
+
+                <ul className="mt-4 space-y-4">
+                  {experience.achievements.map((achievement) => (
+                    <li
+                      key={achievement}
+                      className="flex gap-3 text-sm leading-7 text-gray-600 dark:text-gray-300 sm:text-[15px]"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-indigo-600 dark:bg-cyan-400"
+                      />
+
+                      <span>{achievement}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
-
-              <ul className="space-y-3 lg:col-span-5">
-                {experience.achievements.map((achievement) => (
-                  <li key={achievement} className="flex gap-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 sm:text-base">
-                    <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-indigo-600 dark:bg-cyan-400" />
-                    {achievement}
-                  </li>
-                ))}
-              </ul>
             </motion.article>
           ))}
         </div>

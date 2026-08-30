@@ -1,34 +1,44 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+
+  darkMode: "class",
+
   theme: {
     extend: {
-      scrollBehavior: ["responsive"],
       colors: {
-        primary: "#4F46E5", // Indigo-600
-        accent: "#A855F7", // Purple-500
-        bgLight: "#EEF2FF", // Indigo-50
-        bgDark: "#1E293B", // Slate-800
+        accent: {
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+          hover: "rgb(var(--accent-hover) / <alpha-value>)",
+          soft: "rgb(var(--accent-soft) / <alpha-value>)",
+        },
+
+        surface: {
+          DEFAULT: "rgb(var(--surface) / <alpha-value>)",
+          elevated: "rgb(var(--surface-elevated) / <alpha-value>)",
+        },
       },
-      textColor: {
-        gradient: "transparent",
-      },
+
       backgroundImage: {
-        "text-gradient": "linear-gradient(to right, #6366f1, #9333ea, #ec4899)",
+        "text-gradient":
+          "linear-gradient(to right, rgb(var(--accent)), rgb(var(--accent-hover)))",
       },
+
       animation: {
         "spin-slow": "spin 8s linear infinite",
       },
+
       boxShadow: {
-        glow: "0 0 10px rgba(99,102,241,0.8), 0 0 20px rgba(99,102,241,0.4)",
+        glow: "0 0 10px rgb(var(--accent) / 0.35), 0 0 24px rgb(var(--accent) / 0.18)",
       },
+
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui"], // body text
-        heading: ["Space Grotesk", "ui-sans-serif"],   // headings
-        mono: ["JetBrains Mono", "ui-monospace"],      // code
+        sans: ["Inter", "ui-sans-serif", "system-ui"],
+        heading: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
     },
   },
+
   plugins: [],
-  darkMode: "class",
 };

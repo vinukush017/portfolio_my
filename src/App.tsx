@@ -13,44 +13,34 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 function App() {
   return (
     <>
-      <div className="relative min-h-screen min-h-[100dvh] w-full max-w-full overflow-x-hidden bg-[#f8f8f4] text-gray-950 dark:bg-[#0b0d10] dark:text-white">
+      <div className="relative min-h-[100dvh] w-full max-w-full overflow-x-hidden bg-[#f8f8f4] text-gray-950 dark:bg-[#0b0d10] dark:text-white">
         <Navbar />
 
-        <main id="main" tabIndex={-1} className="relative z-10 scroll-smooth w-full max-w-full overflow-x-hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
-          {/* Hero Section */}
-          <div id="home" className="scroll-mt-24">
-            <HeroSection />
-          </div>
+        <main
+          id="main"
+          tabIndex={-1}
+          className="relative z-10 w-full max-w-full overflow-x-hidden"
+        >
+          <HeroSection />
 
-          {/* Static sections (no animation) */}
-          <div id="projects" className="scroll-mt-24">
-            <Projects />
-          </div>
+          <Projects />
 
-          <div id="about" className="scroll-mt-24">
-            <AboutSection />
-          </div>
+          <AboutSection />
 
-          <div id="skills" className="scroll-mt-24">
-            <Skills />
-          </div>
+          <Skills />
 
-          <div id="experience" className="scroll-mt-24">
-            <Experience />
-          </div>
+          <Experience />
 
-          <div id="blogs" className="scroll-mt-24">
-            <Blogs />
-          </div>
+          <Blogs />
 
-          <div id="contact" className="scroll-mt-24">
-            <Contact />
-          </div>
-
-          <Footer />
-          <ScrollToTop />
+          <Contact />
         </main>
+
+        <Footer />
+
+        <ScrollToTop />
       </div>
+
       <SpeedInsights />
     </>
   );

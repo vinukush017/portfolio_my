@@ -1,55 +1,183 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { FaAws, FaCss3Alt, FaGitAlt, FaHtml5, FaJs, FaNodeJs, FaReact } from "react-icons/fa";
-import { SiExpress, SiMongodb, SiNextdotjs, SiPostgresql, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { FaAws, FaGitAlt, FaJs, FaNodeJs, FaReact } from "react-icons/fa";
+import {
+  SiExpress,
+  SiMongodb,
+  SiNextdotjs,
+  SiPostgresql,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
+import { HiOutlineCloud, HiOutlineServerStack } from "react-icons/hi2";
 import SectionHeader from "./SectionHeader";
 
-const groups = [
+type Skill = {
+  name: string;
+  icon: React.ReactNode;
+};
+
+type SkillGroup = {
+  name: string;
+  description: string;
+  items: Skill[];
+};
+
+const groups: SkillGroup[] = [
   {
-    name: "Frontend",
+    name: "Backend",
+    description:
+      "APIs, services, integrations, and server-side application logic.",
     items: [
-      ["React.js", <FaReact />], ["Next.js", <SiNextdotjs />], ["TypeScript", <SiTypescript />],
-      ["JavaScript", <FaJs />], ["HTML", <FaHtml5 />], ["CSS", <FaCss3Alt />], ["Tailwind CSS", <SiTailwindcss />],
+      {
+        name: "Node.js",
+        icon: <FaNodeJs />,
+      },
+      {
+        name: "Express.js",
+        icon: <SiExpress />,
+      },
+      {
+        name: "REST APIs",
+        icon: <HiOutlineServerStack />,
+      },
+      {
+        name: "JavaScript",
+        icon: <FaJs />,
+      },
     ],
   },
-  { name: "Backend", items: [["Node.js", <FaNodeJs />], ["Express.js", <SiExpress />], ["REST APIs", <SiExpress />]] },
-  { name: "Data", items: [["MongoDB", <SiMongodb />], ["PostgreSQL", <SiPostgresql />]] },
-  { name: "Tools", items: [["AWS S3", <FaAws />], ["Git", <FaGitAlt />]] },
-] as const;
+  {
+    name: "Frontend",
+    description:
+      "Responsive product interfaces and maintainable component systems.",
+    items: [
+      {
+        name: "React",
+        icon: <FaReact />,
+      },
+      {
+        name: "TypeScript",
+        icon: <SiTypescript />,
+      },
+      {
+        name: "Next.js",
+        icon: <SiNextdotjs />,
+      },
+      {
+        name: "Tailwind CSS",
+        icon: <SiTailwindcss />,
+      },
+    ],
+  },
+  {
+    name: "Data",
+    description:
+      "Relational and document databases for production applications.",
+    items: [
+      {
+        name: "PostgreSQL",
+        icon: <SiPostgresql />,
+      },
+      {
+        name: "MongoDB",
+        icon: <SiMongodb />,
+      },
+    ],
+  },
+  {
+    name: "Cloud & Tools",
+    description:
+      "Cloud services, deployment workflows, and engineering tooling.",
+    items: [
+      {
+        name: "AWS",
+        icon: <FaAws />,
+      },
+      {
+        name: "Cloud Integrations",
+        icon: <HiOutlineCloud />,
+      },
+      {
+        name: "Git",
+        icon: <FaGitAlt />,
+      },
+    ],
+  },
+];
 
 const Skills = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="border-b border-gray-200 py-16 dark:border-white/10 sm:py-20 lg:py-24">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          subtitle="03 / Expertise"
-          title="Tools for the whole product."
-          description="A practical full-stack toolkit shaped through production work, from interface systems to APIs and cloud infrastructure."
-        />
+    <section
+      id="expertise"
+      aria-labelledby="expertise-heading"
+      className="py-16 border-b border-gray-200 dark:border-white/10 sm:py-20 lg:py-28"
+    >
+      <div className="w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div id="expertise-heading">
+          <SectionHeader
+            subtitle="03 / Expertise"
+            title="Technology with a purpose."
+            description="A practical engineering toolkit shaped by production work across backend systems, web applications, databases, APIs, and cloud integrations."
+          />
+        </div>
 
-        <div className="space-y-10">
+        <div className="border-gray-300 border-y dark:border-white/10">
           {groups.map((group, groupIndex) => (
             <motion.div
               key={group.name}
-              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: groupIndex * 0.05 }}
-              className="grid gap-4 lg:grid-cols-12"
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              transition={
+                reduceMotion
+                  ? { duration: 0 }
+                  : {
+                      duration: 0.5,
+                      delay: Math.min(groupIndex * 0.06, 0.18),
+                      ease: [0.22, 1, 0.36, 1],
+                    }
+              }
+              className="grid gap-6 py-8 border-b border-gray-300 last:border-b-0 dark:border-white/10 sm:py-10 lg:grid-cols-12 lg:gap-10"
             >
-              <div className="flex items-baseline justify-between lg:col-span-3 lg:block">
-                <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-gray-950 dark:text-white">{group.name}</h3>
-                <span className="font-mono text-xs text-gray-500 lg:mt-2 lg:block">{String(group.items.length).padStart(2, "0")}</span>
+              {/* Group information */}
+              <div className="lg:col-span-4">
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-[11px] font-medium text-indigo-600 dark:text-cyan-400">
+                    {String(groupIndex + 1).padStart(2, "0")}
+                  </span>
+
+                  <h3 className="font-heading text-xl font-semibold tracking-[-0.025em] text-gray-950 dark:text-white sm:text-2xl">
+                    {group.name}
+                  </h3>
+                </div>
+
+                <p className="max-w-sm mt-3 text-sm leading-6 text-gray-500 dark:text-gray-400">
+                  {group.description}
+                </p>
               </div>
-              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:col-span-9">
-                {group.items.map(([name, icon]) => (
+
+              {/* Skills */}
+              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:col-span-8 lg:grid-cols-4">
+                {group.items.map((skill) => (
                   <li
-                    key={name}
-                    className="group flex min-h-24 flex-col justify-between rounded-xl border border-gray-300 bg-white p-4 transition-colors hover:border-indigo-500 dark:border-white/10 dark:bg-[#111419] dark:hover:border-cyan-400"
+                    key={skill.name}
+                    className="group/skill flex min-h-28 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-[0_14px_30px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-cyan-400/40 dark:hover:shadow-[0_14px_30px_rgba(0,0,0,0.2)] sm:min-h-32"
                   >
-                    <span className="text-2xl text-gray-500 transition-colors group-hover:text-indigo-600 dark:text-gray-500 dark:group-hover:text-cyan-400">{icon}</span>
-                    <span className="text-sm font-semibold text-gray-950 dark:text-white">{name}</span>
+                    <span
+                      aria-hidden="true"
+                      className="text-2xl text-gray-400 transition-colors duration-300 group-hover/skill:text-indigo-600 dark:text-gray-500 dark:group-hover/skill:text-cyan-400"
+                    >
+                      {skill.icon}
+                    </span>
+
+                    <span className="text-sm font-semibold text-gray-950 dark:text-white">
+                      {skill.name}
+                    </span>
                   </li>
                 ))}
               </ul>

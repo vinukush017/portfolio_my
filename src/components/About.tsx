@@ -1,81 +1,154 @@
-import { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import SectionHeader from "./SectionHeader";
 
 const focusAreas = [
-  "Product-minded engineering",
-  "Scalable frontend architecture",
-  "Reliable APIs and data systems",
-  "Performance and maintainability",
+  "Backend systems & APIs",
+  "Scalable product architecture",
+  "Cloud & third-party integrations",
+  "Performance & maintainability",
 ];
 
 const About = () => {
   const reduceMotion = useReducedMotion();
-  const years = useMemo(() => Math.max(1, new Date().getFullYear() - 2021), []);
+
+  const startYear = 2021;
+  const years = new Date().getFullYear() - startYear;
+
+  const reveal = (delay = 0) => ({
+    initial: reduceMotion ? false : { opacity: 0, y: 16 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: {
+      once: true,
+      amount: 0.2,
+    },
+    transition: reduceMotion
+      ? { duration: 0 }
+      : {
+          duration: 0.5,
+          delay,
+          ease: [0.22, 1, 0.36, 1] as const,
+        },
+  });
+
+  const stats = [
+    {
+      value: `${years}+`,
+      label: "Years of experience",
+    },
+    {
+      value: "Full-stack",
+      label: "Product engineering",
+    },
+    {
+      value: "APIs",
+      label: "Systems & integrations",
+    },
+    {
+      value: "Pune",
+      label: "Based in India",
+    },
+  ];
 
   return (
-    <section className="border-b border-gray-200 py-16 dark:border-white/10 sm:py-20 lg:py-24" aria-label="About Vinay Kushwah">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          subtitle="02 / About"
-          title="Engineering with purpose."
-          description="I connect product thinking with dependable engineering to build software that works for users and businesses."
-        />
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className="py-16 border-b border-gray-200 dark:border-white/10 sm:py-20 lg:py-28"
+    >
+      <div className="w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div id="about-heading">
+          <SectionHeader
+            subtitle="02 / About"
+            title="Engineering with purpose."
+            description="I combine product thinking with dependable engineering to build software that is useful, scalable, and maintainable."
+          />
+        </div>
 
-        <div className="grid gap-8 md:grid-cols-12 md:gap-8 lg:gap-12">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="md:col-span-7"
-          >
-            <p className="font-heading text-2xl font-medium leading-snug tracking-[-0.025em] text-gray-950 dark:text-white sm:text-3xl">
-              I&apos;m Vinay, a full-stack engineer focused on turning complicated requirements into clear, maintainable products.
+        <div className="grid gap-10 md:grid-cols-12 md:gap-8 lg:gap-14">
+          {/* Main content */}
+          <motion.div {...reveal()} className="md:col-span-7">
+            <p className="max-w-3xl font-heading text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-gray-950 dark:text-white sm:text-3xl lg:text-[2rem]">
+              I&apos;m Vinay, a software engineer focused on turning complex
+              requirements into reliable systems and practical digital products.
             </p>
-            <div className="mt-6 grid gap-4 text-base leading-relaxed text-gray-600 dark:text-gray-400 lg:mt-8 lg:grid-cols-2 lg:gap-5">
+
+            <div className="grid gap-5 text-base leading-7 text-gray-600 mt-7 dark:text-gray-400 lg:mt-8 lg:grid-cols-2 lg:gap-8">
               <p>
-                My work spans React interfaces, Node.js services, databases, cloud integrations, and the decisions that hold them together.
+                My work spans backend services, REST APIs, databases, React
+                interfaces, cloud infrastructure, and third-party integrations.
+                I enjoy working across the stack, with a strong focus on
+                building dependable backend systems.
               </p>
+
               <p>
-                I value thoughtful collaboration, measurable improvements, and systems that remain easy to understand after they ship.
+                I care about clear architecture, maintainable code, thoughtful
+                collaboration, and solving the actual product problem rather
+                than simply shipping features.
               </p>
             </div>
 
-            <ul className="mt-10 grid gap-3 sm:grid-cols-2">
-              {focusAreas.map((focus, index) => (
-                <li key={focus} className="flex items-center gap-3 border-t border-gray-300 py-3 text-sm font-medium dark:border-white/10">
-                  <span className="font-mono text-xs text-indigo-600 dark:text-cyan-400">0{index + 1}</span>
-                  {focus}
-                </li>
-              ))}
-            </ul>
+            {/* Focus areas */}
+            <div className="mt-10 lg:mt-12">
+              <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-gray-400 dark:text-gray-500">
+                What I focus on
+              </p>
+
+              <ul className="grid mt-4 gap-x-8 sm:grid-cols-2">
+                {focusAreas.map((focus, index) => (
+                  <li
+                    key={focus}
+                    className="flex items-center gap-3 py-4 text-sm font-medium text-gray-800 transition-colors border-t border-gray-300 group hover:text-indigo-600 dark:border-white/10 dark:text-gray-300 dark:hover:text-cyan-400"
+                  >
+                    <span className="font-mono text-[11px] text-indigo-600 dark:text-cyan-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span>{focus}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
 
+          {/* Stats */}
           <motion.dl
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="grid grid-cols-2 gap-3 md:col-span-5"
+            {...reveal(0.1)}
+            className="grid grid-cols-2 gap-3 md:col-span-5 lg:gap-4"
           >
-            {[
-              [`${years}+`, "Years building products"],
-              ["6+", "Selected projects"],
-              ["15+", "Technologies used"],
-              ["Pune", "Based in India"],
-            ].map(([value, label], index) => (
-              <div
-                key={label}
-                className={`flex min-h-28 flex-col justify-between rounded-2xl border p-4 sm:min-h-32 md:min-h-36 lg:p-5 ${
-                  index === 0
-                    ? "border-indigo-600 bg-indigo-600 text-white dark:border-cyan-400 dark:bg-cyan-400 dark:text-gray-950"
-                    : "border-gray-300 bg-white text-gray-950 dark:border-white/10 dark:bg-[#111419] dark:text-white"
-                }`}
-              >
-                <dt className={`text-xs font-medium uppercase tracking-[0.12em] ${index === 0 ? "opacity-75" : "text-gray-500"}`}>{label}</dt>
-                <dd className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">{value}</dd>
-              </div>
-            ))}
+            {stats.map((stat, index) => {
+              const isPrimary = index === 0;
+
+              return (
+                <div
+                  key={stat.label}
+                  className={`flex min-h-32 flex-col justify-between rounded-2xl border p-4 transition-transform duration-300 hover:-translate-y-1 sm:min-h-36 lg:min-h-40 lg:p-5 ${
+                    isPrimary
+                      ? "border-indigo-600 bg-indigo-600 text-white dark:border-cyan-400 dark:bg-cyan-400 dark:text-gray-950"
+                      : "border-gray-300 bg-white text-gray-950 dark:border-white/10 dark:bg-[#111419] dark:text-white"
+                  }`}
+                >
+                  <dt
+                    className={`text-[10px] font-medium uppercase tracking-[0.14em] sm:text-xs ${
+                      isPrimary
+                        ? "text-white/70 dark:text-gray-950/60"
+                        : "text-gray-500"
+                    }`}
+                  >
+                    {stat.label}
+                  </dt>
+
+                  <dd
+                    className={`font-heading font-semibold tracking-[-0.04em] ${
+                      stat.value.length > 8
+                        ? "text-xl sm:text-2xl"
+                        : "text-3xl sm:text-4xl"
+                    }`}
+                  >
+                    {stat.value}
+                  </dd>
+                </div>
+              );
+            })}
           </motion.dl>
         </div>
       </div>

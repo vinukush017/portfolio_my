@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRightIcon, CheckIcon } from "@heroicons/react/24/outline";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import SectionHeader from "./SectionHeader";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwpwglna";
 
 const contactLinks = [
-  {
-    label: "Email",
-    value: "vinay.kushwah89@gmail.com",
-    href: "mailto:vinay.kushwah89@gmail.com",
-  },
   {
     label: "LinkedIn",
     value: "Connect professionally",
@@ -24,16 +19,37 @@ const contactLinks = [
 ];
 
 const fieldClass =
-  "w-full rounded-xl border border-gray-300 bg-[#f8f8f4] px-4 py-3.5 text-gray-950 outline-none transition placeholder:text-gray-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/15 dark:bg-[#0b0d10] dark:text-white dark:placeholder:text-gray-600";
+  "w-full rounded-xl border border-gray-300 bg-[#f8f8f4] px-4 py-3.5 text-sm text-gray-950 outline-none transition-all placeholder:text-gray-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/15 dark:bg-[#0b0d10] dark:text-white dark:placeholder:text-gray-600 dark:focus:border-cyan-400 dark:focus:ring-cyan-400/10";
 
 const Contact: React.FC = () => {
   const reduceMotion = useReducedMotion();
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const reveal = (delay = 0) => ({
+    initial: reduceMotion ? false : { opacity: 0, y: 18 },
+    whileInView: {
+      opacity: 1,
+      y: 0,
+    },
+    viewport: {
+      once: true,
+      amount: 0.15,
+    },
+    transition: reduceMotion
+      ? { duration: 0 }
+      : {
+          duration: 0.5,
+          delay,
+          ease: [0.22, 1, 0.36, 1] as const,
+        },
+  });
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     setError(null);
     setLoading(true);
 
@@ -43,134 +59,294 @@ const Contact: React.FC = () => {
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        headers: { Accept: "application/json" },
+        headers: {
+          Accept: "application/json",
+        },
         body: formData,
       });
 
-      if (response.ok) {
-        setSubmitted(true);
-        form.reset();
-      } else {
+      if (!response.ok) {
         const data = await response.json().catch(() => null);
+
         const message =
-          (data && (data.error || data.errors?.[0]?.message)) ||
-          "Failed to send your message. Please try again.";
-        setError(message);
+          data?.errors?.[0]?.message ||
+          data?.error ||
+          "I couldn't send your message. Please try again.";
+
+        throw new Error(message);
       }
-    } catch {
-      setError("Network error — please try again or email me directly.");
+
+      form.reset();
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again or email me directly.",
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-      <SectionHeader
-        subtitle="06 / Contact"
-        title="Let’s build something useful."
-        description="Have a product idea, an engineering challenge, or a role that could be a fit? Tell me what you are working on."
-      />
+    <section
+      id="contact"
+      aria-labelledby="contact-heading"
+      className="py-16 sm:py-20 lg:py-28"
+    >
+      <div className="w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div id="contact-heading">
+          <SectionHeader
+            subtitle="06 / Contact"
+            title="Let’s build something useful."
+            description="Have an engineering challenge, product idea, or opportunity that could be a good fit? I'd be happy to hear about it."
+          />
+        </div>
 
-      <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-12 lg:gap-12">
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          className="order-2 lg:order-1 lg:col-span-5"
-        >
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400">
-            Direct contact
-          </p>
-          <a
-            href="mailto:vinay.kushwah89@gmail.com"
-            className="mt-4 block max-w-md break-all text-xl font-semibold tracking-tight text-gray-950 transition hover:text-indigo-600 dark:text-white dark:hover:text-indigo-400 min-[400px]:text-2xl sm:break-words sm:text-3xl"
+        <div className="grid gap-10 mt-10 lg:mt-14 lg:grid-cols-12 lg:gap-14">
+          {/* Contact information */}
+          <motion.div
+            {...reveal()}
+            className="order-2 lg:order-1 lg:col-span-5"
           >
-            vinay.kushwah89<br className="hidden sm:block" />@gmail.com
-          </a>
+            <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400 sm:text-xs">
+              Get in touch
+            </p>
 
-          <div className="mt-10 border-t border-gray-300 dark:border-white/15">
-            {contactLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                className="group grid grid-cols-[1fr_auto] items-center gap-3 border-b border-gray-300 py-4 text-sm dark:border-white/15"
+            <a
+              href="mailto:vinay.kushwah89@gmail.com"
+              className="mt-4 block max-w-md break-all font-heading text-xl font-semibold tracking-[-0.025em] text-gray-950 transition-colors hover:text-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-white dark:hover:text-cyan-400 min-[400px]:text-2xl sm:break-words sm:text-3xl"
+            >
+              vinay.kushwah89
+              <br className="hidden sm:block" />
+              @gmail.com
+            </a>
+
+            <p className="max-w-md mt-5 text-sm leading-7 text-gray-600 dark:text-gray-400">
+              The easiest way to reach me is by email. You can also find me on
+              LinkedIn and GitHub.
+            </p>
+
+            {/* External links */}
+            <div className="mt-10 border-t border-gray-300 dark:border-white/15">
+              {contactLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group grid grid-cols-[1fr_auto] items-center gap-3 border-b border-gray-300 py-5 text-sm transition-colors dark:border-white/15"
+                >
+                  <span className="min-w-0">
+                    <span className="block font-mono text-[10px] uppercase tracking-[0.15em] text-gray-500">
+                      {link.label}
+                    </span>
+
+                    <span className="mt-1.5 block break-words font-medium text-gray-800 transition-colors group-hover:text-indigo-600 dark:text-gray-200 dark:group-hover:text-cyan-400">
+                      {link.value}
+                    </span>
+                  </span>
+
+                  <ArrowUpRightIcon className="h-4 w-4 text-gray-500 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-indigo-600 dark:group-hover:text-cyan-400" />
+                </a>
+              ))}
+            </div>
+
+            {/* Availability */}
+            <div className="flex items-start max-w-md gap-3 mt-8 text-sm leading-6 text-gray-600 dark:text-gray-400">
+              <span
+                aria-hidden="true"
+                className="flex-none w-2 h-2 mt-2 rounded-full bg-emerald-500"
+              />
+
+              <span>
+                Open to discussing interesting engineering opportunities and
+                product challenges.
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Contact form */}
+          <motion.form
+            {...reveal(0.08)}
+            onSubmit={handleSubmit}
+            aria-label="Contact Vinay Kushwah"
+            className="order-1 rounded-3xl border border-gray-300 bg-white p-5 shadow-[0_18px_60px_rgba(15,23,42,0.06)] dark:border-white/15 dark:bg-[#111419] sm:p-8 lg:order-2 lg:col-span-7 lg:p-9"
+          >
+            {/* Form heading */}
+            <div className="flex items-center justify-between pb-5 mb-8 border-b border-gray-200 dark:border-white/10">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-indigo-600 dark:text-cyan-400">
+                  Send a message
+                </p>
+
+                <h3 className="mt-2 font-heading text-xl font-semibold tracking-[-0.025em] text-gray-950 dark:text-white sm:text-2xl">
+                  Start a conversation
+                </h3>
+              </div>
+
+              <span className="hidden font-mono text-[10px] uppercase tracking-[0.14em] text-gray-400 sm:block">
+                MESSAGE / 01
+              </span>
+            </div>
+
+            {/* Name + Email */}
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                htmlFor="name"
               >
-                <span className="min-w-0">
-                  <span className="block font-mono text-[10px] uppercase tracking-wider text-gray-500">{link.label}</span>
-                  <span className="mt-1 block break-words font-medium text-gray-800 transition group-hover:text-indigo-600 dark:text-gray-200 dark:group-hover:text-indigo-400">{link.value}</span>
-                </span>
-                <ArrowUpRightIcon className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
-            ))}
-          </div>
+                Name
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  placeholder="Your name"
+                  required
+                  className={`${fieldClass} mt-2`}
+                />
+              </label>
 
-          <div className="mt-8 flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-            </span>
-            Available for selected projects · Usually replies within 24 hours
-          </div>
-        </motion.div>
+              <label
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                htmlFor="email"
+              >
+                Email
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  inputMode="email"
+                  placeholder="you@company.com"
+                  required
+                  className={`${fieldClass} mt-2`}
+                />
+              </label>
+            </div>
 
-        <motion.form
-          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ delay: 0.08 }}
-          onSubmit={handleSubmit}
-          aria-label="Contact Vinay Kushwah"
-          className="order-1 rounded-2xl border border-gray-300 bg-white p-5 shadow-[0_18px_60px_rgba(15,23,42,0.06)] dark:border-white/15 dark:bg-[#111419] sm:p-8 lg:order-2 lg:col-span-7"
-        >
-          <div className="mb-8 flex items-center justify-between border-b border-gray-200 pb-5 dark:border-white/10">
-            <h3 className="text-xl font-semibold tracking-tight text-gray-950 dark:text-white">
-              Start a conversation
-            </h3>
-            <span className="hidden font-mono text-xs text-gray-400 sm:block">MESSAGE / 01</span>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="name">
-              Name
-              <input className={`${fieldClass} mt-2`} id="name" name="name" autoComplete="name" placeholder="Your name" required />
+            {/* Subject */}
+            <label
+              className="block mt-5 text-sm font-medium text-gray-700 dark:text-gray-300"
+              htmlFor="subject"
+            >
+              Subject
+              <input
+                id="subject"
+                name="subject"
+                type="text"
+                placeholder="What would you like to discuss?"
+                minLength={3}
+                maxLength={120}
+                required
+                className={`${fieldClass} mt-2`}
+              />
             </label>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="email">
-              Email
-              <input className={`${fieldClass} mt-2`} type="email" id="email" name="email" autoComplete="email" inputMode="email" placeholder="you@company.com" required />
+
+            {/* Message */}
+            <label
+              className="block mt-5 text-sm font-medium text-gray-700 dark:text-gray-300"
+              htmlFor="message"
+            >
+              Message
+              <textarea
+                id="message"
+                name="message"
+                minLength={20}
+                maxLength={2000}
+                rows={6}
+                placeholder="Tell me a little about the opportunity, project, or problem you're working on…"
+                required
+                className={`${fieldClass} mt-2 resize-y`}
+              />
             </label>
-          </div>
 
-          <label className="mt-5 block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="message">
-            What can I help with?
-            <textarea className={`${fieldClass} mt-2 resize-y`} id="message" name="message" minLength={20} maxLength={2000} rows={6} placeholder="A short note about the project, timeline, and goals…" required />
-          </label>
+            {/* Formspree honeypot */}
+            <input
+              type="text"
+              name="_gotcha"
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
 
-          <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+            {/* Formspree subject */}
+            <input
+              type="hidden"
+              name="_subject"
+              value="New portfolio contact"
+            />
 
-          <button
-            type="submit"
-            disabled={loading || submitted}
-            className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-gray-950 px-6 text-sm font-semibold text-white transition hover:bg-indigo-600 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-gray-950 dark:hover:bg-indigo-400 sm:w-auto"
-          >
-            {loading ? "Sending…" : submitted ? <><CheckIcon className="h-4 w-4" /> Message sent</> : <>Send message <ArrowUpRightIcon className="h-4 w-4" /></>}
-          </button>
+            {/* Submit */}
+            <div className="flex flex-col items-start gap-4 mt-7 sm:flex-row sm:items-center">
+              <button
+                type="submit"
+                disabled={loading || submitted}
+                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-gray-950 px-6 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-600 hover:shadow-lg disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 dark:bg-white dark:text-gray-950 dark:hover:bg-cyan-400 sm:w-auto"
+              >
+                {loading ? (
+                  "Sending…"
+                ) : submitted ? (
+                  <>
+                    <CheckIcon className="w-4 h-4" />
+                    Message sent
+                  </>
+                ) : (
+                  <>
+                    Send message
+                    <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </>
+                )}
+              </button>
 
-          <AnimatePresence mode="wait">
-            {error && (
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} role="alert" className="mt-4 text-sm text-red-600 dark:text-red-400">
-                {error}
-              </motion.p>
-            )}
-            {submitted && !error && (
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} role="status" className="mt-4 text-sm text-emerald-700 dark:text-emerald-400">
-                Thanks for reaching out. I’ll get back to you soon.
-              </motion.p>
-            )}
-          </AnimatePresence>
-        </motion.form>
+              {!submitted && (
+                <p className="text-xs leading-5 text-gray-500">
+                  Your information is only used to respond to your message.
+                </p>
+              )}
+            </div>
+
+            {/* Form status */}
+            <div aria-live="polite" aria-atomic="true">
+              <AnimatePresence mode="wait">
+                {error && (
+                  <motion.p
+                    key="error"
+                    initial={reduceMotion ? false : { opacity: 0, y: 4 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    exit={{ opacity: 0 }}
+                    role="alert"
+                    className="px-4 py-3 mt-5 text-sm text-red-700 border border-red-200 rounded-xl bg-red-50 dark:border-red-400/20 dark:bg-red-400/10 dark:text-red-400"
+                  >
+                    {error}
+                  </motion.p>
+                )}
+
+                {submitted && !error && (
+                  <motion.p
+                    key="success"
+                    initial={reduceMotion ? false : { opacity: 0, y: 4 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    role="status"
+                    className="px-4 py-3 mt-5 text-sm border rounded-xl border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-400"
+                  >
+                    Thanks for reaching out. I&apos;ll get back to you as soon
+                    as I can.
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.form>
+        </div>
       </div>
     </section>
   );
