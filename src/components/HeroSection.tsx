@@ -28,7 +28,7 @@ const HeroSection = () => {
     <section
       id="home"
       aria-labelledby="hero-title"
-      className="relative overflow-hidden border-b border-gray-200 bg-[#f8f8f4] text-gray-950 dark:border-white/10 dark:bg-[#0b0d10] dark:text-white"
+      className="relative overflow-hidden border-b border-gray-200 bg-[#ffffff] text-gray-950 dark:border-white/10 dark:bg-[#0b0d10] dark:text-white"
     >
       {/* Grid background */}
       <div

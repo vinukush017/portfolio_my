@@ -212,7 +212,7 @@ const Blogs = () => {
                   transition={{
                     duration: reduceMotion ? 0 : 0.25,
                   }}
-                  className="relative flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-gray-200 bg-[#f8f8f4] text-gray-950 shadow-2xl dark:border-white/10 dark:bg-[#0b0d10] dark:text-white sm:max-h-[88dvh] sm:rounded-3xl"
+                  className="relative flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-gray-200 bg-[#ffffff] text-gray-950 shadow-2xl dark:border-white/10 dark:bg-[#0b0d10] dark:text-white sm:max-h-[88dvh] sm:rounded-3xl"
                 >
                   {/* Modal header */}
                   <div className="flex items-start justify-between gap-5 px-5 py-5 border-b border-gray-200 dark:border-white/10 sm:px-8 sm:py-6">

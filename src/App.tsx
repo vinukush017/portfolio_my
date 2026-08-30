@@ -13,7 +13,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 function App() {
   return (
     <>
-      <div className="relative min-h-[100dvh] w-full max-w-full overflow-x-hidden bg-[#f8f8f4] text-gray-950 dark:bg-[#0b0d10] dark:text-white">
+      <div className="relative min-h-[100dvh] w-full max-w-full overflow-x-hidden bg-[#ffffff] text-gray-950 dark:bg-[#0b0d10] dark:text-white">
         <Navbar />
 
         <main

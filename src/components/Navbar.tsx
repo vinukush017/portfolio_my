@@ -184,8 +184,8 @@ const Navbar = () => {
         }
         className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
           scrolled || menuOpen
-            ? "border-gray-200/80 bg-[#f8f8f4]/95 shadow-[0_8px_30px_rgba(15,23,42,0.04)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0b0d10]/95 dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)]"
-            : "border-transparent bg-[#f8f8f4]/80 backdrop-blur-md dark:bg-[#0b0d10]/80"
+            ? "border-gray-200/80 bg-[#ffffff]/95 shadow-[0_8px_30px_rgba(15,23,42,0.04)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0b0d10]/95 dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)]"
+            : "border-transparent bg-[#ffffff]/80 backdrop-blur-md dark:bg-[#0b0d10]/80"
         }`}
       >
         <nav
@@ -365,60 +365,87 @@ const Navbar = () => {
               transition={{
                 duration: reduceMotion ? 0 : 0.2,
               }}
-              className="h-[calc(100dvh-72px)] overflow-y-auto border-t border-gray-200 bg-[#f8f8f4] px-4 pb-6 pt-3 dark:border-white/10 dark:bg-[#0b0d10] lg:hidden"
+              className="h-[calc(100dvh-72px)] overflow-y-auto border-t border-gray-200 bg-[#ffffff] px-4 dark:border-white/10 dark:bg-[#0b0d10] lg:hidden"
             >
-              <div className="flex flex-col mx-auto max-w-7xl">
-                {SECTION_LINKS.map(({ id, label }, index) => {
-                  const active = activeSection === id;
+              <div className="flex flex-col h-full mx-auto max-w-7xl">
+                {/* Navigation links */}
+                <nav aria-label="Mobile navigation" className="flex-1">
+                  {SECTION_LINKS.map(({ id, label }, index) => {
+                    const active = activeSection === id;
 
-                  return (
-                    <motion.a
-                      key={id}
-                      href={`#${id}`}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        navigateTo(id);
-                      }}
-                      aria-current={active ? "location" : undefined}
-                      initial={
-                        reduceMotion
-                          ? false
-                          : {
-                              opacity: 0,
-                              x: -10,
-                            }
-                      }
-                      animate={{
-                        opacity: 1,
-                        x: 0,
-                      }}
-                      transition={{
-                        delay: reduceMotion ? 0 : index * 0.035,
-                      }}
-                      className={`group flex min-h-14 items-center justify-between border-b border-gray-200 text-lg font-semibold transition-colors dark:border-white/10 ${
-                        active
-                          ? "text-indigo-600 dark:text-cyan-400"
-                          : "text-gray-950 hover:text-indigo-600 dark:text-white dark:hover:text-cyan-400"
-                      }`}
+                    return (
+                      <motion.a
+                        key={id}
+                        href={`#${id}`}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          navigateTo(id);
+                        }}
+                        aria-current={active ? "location" : undefined}
+                        initial={
+                          reduceMotion
+                            ? false
+                            : {
+                                opacity: 0,
+                                x: -10,
+                              }
+                        }
+                        animate={{
+                          opacity: 1,
+                          x: 0,
+                        }}
+                        transition={{
+                          delay: reduceMotion ? 0 : index * 0.035,
+                        }}
+                        className={`group flex min-h-16 items-center justify-between border-b border-gray-200 text-xl font-semibold transition-colors dark:border-white/10 ${
+                          active
+                            ? "text-indigo-600 dark:text-cyan-400"
+                            : "text-gray-950 hover:text-indigo-600 dark:text-white dark:hover:text-cyan-400"
+                        }`}
+                      >
+                        <span>{label}</span>
+
+                        <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      </motion.a>
+                    );
+                  })}
+                </nav>
+
+                {/* Mobile bottom area */}
+                <div className="py-6 border-t border-gray-200 dark:border-white/10">
+                  <a
+                    href={RESUME_PATH}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMenuOpen(false)}
+                    className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-gray-950 px-5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-gray-950"
+                  >
+                    View résumé
+                    <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+
+                  <div className="flex items-center justify-center gap-5 mt-5 text-sm text-gray-500 dark:text-gray-400">
+                    <a
+                      href="https://github.com/vinukush017"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors hover:text-indigo-600 dark:hover:text-cyan-400"
                     >
-                      {label}
+                      GitHub
+                    </a>
 
-                      <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </motion.a>
-                  );
-                })}
+                    <span aria-hidden="true">·</span>
 
-                {/* Mobile résumé */}
-                <a
-                  href={RESUME_PATH}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMenuOpen(false)}
-                  className="group mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gray-950 px-5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-gray-950 sm:hidden"
-                >
-                  View résumé
-                  <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </a>
+                    <a
+                      href="https://www.linkedin.com/in/vinaykushwah017"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors hover:text-indigo-600 dark:hover:text-cyan-400"
+                    >
+                      LinkedIn
+                    </a>
+                  </div>
+                </div>
               </div>
             </motion.div>
           )}
