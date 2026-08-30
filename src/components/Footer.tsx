@@ -14,7 +14,7 @@ const Footer = () => {
         paddingBottom: "env(safe-area-inset-bottom)",
       }}
     >
-      <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <div className="section-shell py-12 sm:py-16 lg:py-20">
         {/* Main CTA */}
         <div className="grid gap-8 pb-12 border-b border-white/15 md:grid-cols-12 md:items-end lg:pb-16">
           <div className="md:col-span-8">

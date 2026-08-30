@@ -94,7 +94,7 @@ const Experience = () => {
       aria-labelledby="experience-heading"
       className="py-16 border-b border-gray-200 dark:border-white/10 sm:py-20 lg:py-28"
     >
-      <div className="w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div className="section-shell">
         <div id="experience-heading">
           <SectionHeader
             subtitle="04 / Experience"

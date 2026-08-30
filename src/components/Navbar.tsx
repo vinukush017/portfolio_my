@@ -190,7 +190,7 @@ const Navbar = () => {
       >
         <nav
           aria-label="Primary navigation"
-          className="mx-auto flex h-[72px] w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+          className="section-shell flex h-[72px] items-center justify-between"
         >
           {/* Brand */}
           <a

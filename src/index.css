@@ -43,6 +43,13 @@
   }
 }
 
+@layer components {
+  .section-shell {
+    width: min(85vw, 1400px);
+    margin-inline: auto;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;

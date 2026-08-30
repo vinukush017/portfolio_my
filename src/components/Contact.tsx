@@ -95,7 +95,7 @@ const Contact: React.FC = () => {
       aria-labelledby="contact-heading"
       className="py-16 sm:py-20 lg:py-28"
     >
-      <div className="w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div className="section-shell">
         <div id="contact-heading">
           <SectionHeader
             subtitle="06 / Contact"

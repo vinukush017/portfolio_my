@@ -49,7 +49,7 @@ const HeroSection = () => {
         className="pointer-events-none absolute -right-32 top-20 h-80 w-80 rounded-full bg-indigo-400/20 blur-[120px] dark:bg-cyan-400/10"
       />
 
-      <div className="relative mx-auto grid min-h-[calc(100svh-4rem)] w-full max-w-7xl items-center gap-12 px-4 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-32 md:grid-cols-12 md:gap-8 lg:gap-10 lg:px-8 lg:pb-24 lg:pt-32">
+      <div className="section-shell relative grid min-h-[calc(100svh-4rem)] items-center gap-12 pb-14 pt-28 sm:pb-20 sm:pt-32 md:grid-cols-12 md:gap-8 lg:gap-10 lg:pb-24 lg:pt-32">
         {/* Left content */}
         <div className="md:col-span-7 lg:col-span-7">
           {/* Role */}
