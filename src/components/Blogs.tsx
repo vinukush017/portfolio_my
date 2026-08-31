@@ -64,7 +64,7 @@ const Blogs = () => {
     <section
       id="writing"
       aria-labelledby="writing-heading"
-      className="py-16 border-b border-gray-200 dark:border-white/10 sm:py-20 lg:py-28"
+      className="border-b border-gray-200 bg-[#f7f7f2] py-16 dark:border-white/10 dark:bg-[#0d0f13] sm:py-20 lg:py-28"
     >
       <div className="section-shell">
         <div id="writing-heading">

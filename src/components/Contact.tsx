@@ -19,7 +19,7 @@ const contactLinks = [
 ];
 
 const fieldClass =
-  "w-full rounded-xl border border-gray-300 bg-[#ffffff] px-4 py-3.5 text-sm text-gray-950 outline-none transition-all placeholder:text-gray-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 dark:border-white/15 dark:bg-[#0b0d10] dark:text-white dark:placeholder:text-gray-600 dark:focus:border-cyan-400 dark:focus:ring-cyan-400/10";
+  "w-full rounded-xl border border-gray-300 bg-[#f7f7f2] px-4 py-3.5 text-sm text-gray-950 outline-none transition-all placeholder:text-gray-400 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 dark:border-white/15 dark:bg-[#0b0d10] dark:text-white dark:placeholder:text-gray-600 dark:focus:border-cyan-400 dark:focus:bg-[#0b0d10] dark:focus:ring-cyan-400/10";
 
 const Contact: React.FC = () => {
   const reduceMotion = useReducedMotion();
