@@ -19,7 +19,7 @@ const contactLinks = [
 ];
 
 const fieldClass =
-  "w-full rounded-xl border border-gray-300 bg-[#f7f7f2] px-4 py-3.5 text-sm text-gray-950 outline-none transition-all placeholder:text-gray-400 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 dark:border-white/15 dark:bg-[#0b0d10] dark:text-white dark:placeholder:text-gray-600 dark:focus:border-cyan-400 dark:focus:bg-[#0b0d10] dark:focus:ring-cyan-400/10";
+  "w-full rounded-xl border border-gray-300 bg-[#f7f7f2] px-4 py-3.5 text-sm text-gray-950 outline-none transition-all placeholder:text-gray-400 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/10 dark:border-white/15 dark:bg-[#0b0d10] dark:text-white dark:placeholder:text-gray-600 dark:focus:border-accent-light dark:focus:bg-[#0b0d10] dark:focus:ring-accent/15";
 
 const Contact: React.FC = () => {
   const reduceMotion = useReducedMotion();
@@ -116,7 +116,7 @@ const Contact: React.FC = () => {
 
             <a
               href="mailto:vinay.kushwah89@gmail.com"
-              className="mt-4 block max-w-md break-all font-heading text-xl font-semibold tracking-[-0.025em] text-gray-950 transition-colors hover:text-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-white dark:hover:text-cyan-400 min-[400px]:text-2xl sm:break-words sm:text-3xl"
+              className="mt-4 block max-w-md break-all font-heading text-xl font-semibold tracking-[-0.025em] text-gray-950 transition-colors hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-white dark:hover:text-accent-light min-[400px]:text-2xl sm:break-words sm:text-3xl"
             >
               vinay.kushwah89
               <br className="hidden sm:block" />
@@ -143,12 +143,12 @@ const Contact: React.FC = () => {
                       {link.label}
                     </span>
 
-                    <span className="mt-1.5 block break-words font-medium text-gray-800 transition-colors group-hover:text-indigo-600 dark:text-gray-200 dark:group-hover:text-cyan-400">
+                    <span className="mt-1.5 block break-words font-medium text-gray-800 transition-colors group-hover:text-accent-dark dark:text-gray-200 dark:group-hover:text-accent-light">
                       {link.value}
                     </span>
                   </span>
 
-                  <ArrowUpRightIcon className="h-4 w-4 text-gray-500 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-indigo-600 dark:group-hover:text-cyan-400" />
+                  <ArrowUpRightIcon className="h-4 w-4 text-gray-500 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-dark dark:group-hover:text-accent-light" />
                 </a>
               ))}
             </div>
@@ -177,7 +177,7 @@ const Contact: React.FC = () => {
             {/* Form heading */}
             <div className="flex items-center justify-between pb-5 mb-8 border-b border-gray-200 dark:border-white/10">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-indigo-600 dark:text-cyan-400">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-dark dark:text-accent-light">
                   Send a message
                 </p>
 
@@ -285,7 +285,7 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading || submitted}
-                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-gray-950 px-6 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-600 hover:shadow-lg disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 dark:bg-white dark:text-gray-950 dark:hover:bg-cyan-400 sm:w-auto"
+                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-dark px-6 text-sm font-semibold text-white shadow-md shadow-accent/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/25 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 sm:w-auto"
               >
                 {loading ? (
                   "Sending…"

@@ -27,12 +27,24 @@
 @tailwind utilities;
 
 :root {
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --accent: #a855f7;
+  --accent-light: #c084fc;
+  --accent-dark: #9333ea;
+  --primary-rgb: 99 102 241;
+  --primary-light-rgb: 129 140 248;
+  --primary-dark-rgb: 79 70 229;
+  --accent-rgb: 168 85 247;
+  --accent-light-rgb: 192 132 252;
+  --accent-dark-rgb: 147 51 234;
   --site-background: #f8fafc;
   --site-background-lower: #eef4fb;
   --site-grid: rgba(71, 85, 105, 0.055);
-  --site-glow-primary: rgba(168, 85, 247, 0.12);
-  --site-glow-secondary: rgba(99, 102, 241, 0.08);
-  --site-glow-tertiary: rgba(129, 140, 248, 0.07);
+  --site-glow-primary: rgb(var(--accent-light-rgb) / 0.12);
+  --site-glow-secondary: rgb(var(--accent-rgb) / 0.075);
+  --site-glow-tertiary: rgb(var(--primary-light-rgb) / 0.06);
   --site-text-primary: #0f172a;
   --site-text-muted: #475569;
   --site-text-subtle: #64748b;
@@ -50,9 +62,9 @@
   --site-background: #0f172a;
   --site-background-lower: #1b2740;
   --site-grid: rgba(148, 163, 184, 0.05);
-  --site-glow-primary: rgba(168, 85, 247, 0.17);
-  --site-glow-secondary: rgba(99, 102, 241, 0.12);
-  --site-glow-tertiary: rgba(34, 211, 238, 0.055);
+  --site-glow-primary: rgb(var(--accent-light-rgb) / 0.17);
+  --site-glow-secondary: rgb(var(--accent-rgb) / 0.12);
+  --site-glow-tertiary: rgb(var(--primary-light-rgb) / 0.07);
   --site-text-primary: #f8fafc;
   --site-text-muted: #cbd5e1;
   --site-text-subtle: #94a3b8;
@@ -200,11 +212,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6366f1;
+  background: var(--accent);
 }
 
 *:focus-visible {
-  outline: 2px solid #6366f1;
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 4px;
 }

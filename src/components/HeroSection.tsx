@@ -38,7 +38,7 @@ const HeroSection = () => {
             {...reveal(0.05)}
             className="mb-7 flex flex-wrap items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.18em] text-gray-600 dark:text-gray-400"
           >
-            <span className="text-indigo-600 dark:text-cyan-400">
+            <span className="text-accent-dark dark:text-accent-light">
               Software Engineer
             </span>
 
@@ -55,7 +55,7 @@ const HeroSection = () => {
           >
             I build scalable
             <br />
-            <span className="text-indigo-600 dark:text-cyan-400">
+            <span className="bg-gradient-to-r from-accent to-accent-dark bg-clip-text text-transparent">
               web systems.
             </span>
           </motion.h1>
@@ -103,7 +103,7 @@ const HeroSection = () => {
           >
             <a
               href="#projects"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gray-950 px-6 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-4 dark:bg-white dark:text-gray-950 dark:focus-visible:ring-offset-slate-900"
+              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-dark px-6 text-sm font-semibold text-white shadow-md shadow-accent/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 dark:focus-visible:ring-offset-slate-900"
             >
               View my work
               <ArrowDownRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -113,7 +113,7 @@ const HeroSection = () => {
               href="/Vinay-Kushwah-Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white/40 px-6 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-950 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-gray-500 dark:hover:bg-white/10"
+              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white/40 px-6 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-accent-light/40 dark:hover:bg-white/10"
             >
               View résumé
               <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

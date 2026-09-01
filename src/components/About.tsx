@@ -97,9 +97,9 @@ const About = () => {
                 {focusAreas.map((focus, index) => (
                   <li
                     key={focus}
-                    className="group flex items-center gap-3 border-t border-gray-300 py-4 text-sm font-medium text-gray-800 transition-colors hover:text-indigo-600 dark:border-white/10 dark:text-gray-300 dark:hover:text-cyan-400"
+                    className="group flex items-center gap-3 border-t border-gray-300 py-4 text-sm font-medium text-gray-800 transition-colors hover:text-accent-dark dark:border-white/10 dark:text-gray-300 dark:hover:text-accent-light"
                   >
-                    <span className="font-mono text-[11px] text-indigo-600 dark:text-cyan-400">
+                    <span className="font-mono text-[11px] text-accent-dark dark:text-accent-light">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
@@ -123,14 +123,14 @@ const About = () => {
                   key={stat.label}
                   className={`flex min-h-32 flex-col justify-between rounded-2xl border p-4 transition-transform duration-300 hover:-translate-y-1 sm:min-h-36 lg:min-h-40 lg:p-5 ${
                     isPrimary
-                      ? "border-indigo-600 bg-indigo-600 text-white dark:border-cyan-400 dark:bg-cyan-400 dark:text-gray-950"
+                      ? "border-accent bg-gradient-to-br from-accent to-accent-dark text-white shadow-lg shadow-accent/15"
                       : "border-gray-300 bg-white text-gray-950 dark:border-white/10 dark:bg-[#111419] dark:text-white"
                   }`}
                 >
                   <dt
                     className={`text-[10px] font-medium uppercase tracking-[0.14em] sm:text-xs ${
                       isPrimary
-                        ? "text-white/70 dark:text-gray-950/60"
+                        ? "text-white/75"
                         : "text-gray-500"
                     }`}
                   >

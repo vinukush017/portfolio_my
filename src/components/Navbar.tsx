@@ -251,11 +251,11 @@ const Navbar = () => {
               navigateTo("home");
             }}
             aria-label="Vinay Kushwah — Home"
-            className="inline-flex items-center rounded-md group focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-4 dark:focus-visible:ring-offset-gray-950"
+            className="inline-flex items-center rounded-md group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 dark:focus-visible:ring-offset-gray-950"
           >
             <span className="font-heading text-xl font-bold tracking-[-0.04em] text-gray-950 dark:text-white">
               VK
-              <span className="text-indigo-600 transition-colors group-hover:text-indigo-500 dark:text-cyan-400">
+              <span className="text-accent transition-colors group-hover:text-accent-dark dark:text-accent-light">
                 .
               </span>
             </span>
@@ -275,7 +275,7 @@ const Navbar = () => {
                     navigateTo(id);
                   }}
                   aria-current={active ? "location" : undefined}
-                  className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                  className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                     active
                       ? "text-gray-950 dark:text-white"
                       : "text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
@@ -287,7 +287,7 @@ const Navbar = () => {
                     <motion.span
                       layoutId="active-navigation"
                       aria-hidden="true"
-                      className="absolute inset-x-3 -bottom-[11px] h-0.5 rounded-full bg-indigo-600 dark:bg-cyan-400"
+                      className="absolute inset-x-3 -bottom-[11px] h-0.5 rounded-full bg-accent dark:bg-accent-light"
                       transition={
                         reduceMotion
                           ? { duration: 0 }
@@ -314,7 +314,7 @@ const Navbar = () => {
                 isDark ? "Switch to light theme" : "Switch to dark theme"
               }
               title={isDark ? "Light theme" : "Dark theme"}
-              className="inline-flex items-center justify-center w-10 h-10 text-gray-600 transition-colors rounded-full hover:bg-gray-200/70 hover:text-gray-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white"
+              className="inline-flex items-center justify-center w-10 h-10 text-gray-600 transition-colors rounded-full hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-gray-300 dark:hover:bg-accent/10 dark:hover:text-accent-light"
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -361,7 +361,7 @@ const Navbar = () => {
               href={RESUME_PATH}
               target="_blank"
               rel="noopener noreferrer"
-              className="group hidden h-10 items-center gap-1.5 rounded-full bg-gray-950 px-4 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:bg-white dark:text-gray-950 sm:inline-flex"
+              className="group hidden h-10 items-center gap-1.5 rounded-full bg-gray-950 px-4 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:bg-white dark:text-gray-950 sm:inline-flex"
             >
               Résumé
               <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -377,7 +377,7 @@ const Navbar = () => {
               }
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
-              className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200/90 bg-gray-100/80 text-gray-700 transition-colors hover:border-gray-300 hover:bg-gray-200/80 hover:text-gray-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/10 dark:bg-white/[0.06] dark:text-gray-200 dark:hover:bg-white/10 dark:hover:text-white lg:hidden"
+              className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200/90 bg-gray-100/80 text-gray-700 transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-white/10 dark:bg-white/[0.06] dark:text-gray-200 dark:hover:border-accent-light/30 dark:hover:bg-accent/10 dark:hover:text-accent-light lg:hidden"
             >
               <span className="sr-only">{menuOpen ? "Close" : "Menu"}</span>
               <span aria-hidden="true" className="relative block h-4 w-5">
@@ -405,7 +405,7 @@ const Navbar = () => {
 
           <motion.div
             aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 hidden h-0.5 origin-left bg-indigo-600 dark:bg-cyan-400 lg:block"
+            className="absolute inset-x-0 bottom-0 hidden h-0.5 origin-left bg-accent dark:bg-accent-light lg:block"
             style={{
               scaleX: progress,
             }}
@@ -480,10 +480,10 @@ const Navbar = () => {
                         transition={{
                           delay: reduceMotion ? 0 : index * 0.035,
                         }}
-                        className={`group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                        className={`group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                           active
-                            ? "bg-indigo-50 text-indigo-600 dark:bg-cyan-400/10 dark:text-cyan-400"
-                            : "text-gray-900 hover:bg-gray-100 hover:text-indigo-600 dark:text-white dark:hover:bg-white/[0.06] dark:hover:text-cyan-400"
+                            ? "bg-accent/10 text-accent-dark dark:bg-accent/15 dark:text-accent-light"
+                            : "text-gray-900 hover:bg-accent/10 hover:text-accent-dark dark:text-white dark:hover:bg-accent/10 dark:hover:text-accent-light"
                         }`}
                       >
                         <span>{label}</span>
@@ -501,7 +501,7 @@ const Navbar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setMenuOpen(false)}
-                    className="group inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-gray-950 px-5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:bg-white dark:text-gray-950 dark:focus-visible:ring-offset-[#0b0d10]"
+                    className="group inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-dark px-5 text-sm font-semibold text-white shadow-sm shadow-accent/20 transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
                   >
                     View résumé
                     <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -512,7 +512,7 @@ const Navbar = () => {
                       href="https://github.com/vinukush017"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="transition-colors hover:text-indigo-600 dark:hover:text-cyan-400"
+                      className="transition-colors hover:text-accent-dark dark:hover:text-accent-light"
                     >
                       GitHub
                     </a>
@@ -523,7 +523,7 @@ const Navbar = () => {
                       href="https://www.linkedin.com/in/vinaykushwah017"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="transition-colors hover:text-indigo-600 dark:hover:text-cyan-400"
+                      className="transition-colors hover:text-accent-dark dark:hover:text-accent-light"
                     >
                       LinkedIn
                     </a>

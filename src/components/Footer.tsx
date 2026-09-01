@@ -24,7 +24,7 @@ const Footer = () => {
 
             <h2 className="mt-4 max-w-3xl font-heading text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-6xl">
               Let&apos;s build something
-              <span className="text-indigo-400">
+              <span className="text-accent-light">
                 {" "}
                 worth using.
               </span>
@@ -40,7 +40,7 @@ const Footer = () => {
             <button
               type="button"
               onClick={() => scrollToSection("contact")}
-              className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-gray-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-400 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-4 focus-visible:ring-offset-gray-950 sm:w-auto"
+              className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-gray-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-light hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-4 focus-visible:ring-offset-gray-950 sm:w-auto"
             >
               Start a conversation
 
@@ -60,11 +60,11 @@ const Footer = () => {
               type="button"
               onClick={() => scrollToSection("home")}
               aria-label="Vinay Kushwah — Back to top"
-              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-bold tracking-[-0.04em] text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-bold tracking-[-0.04em] text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
             >
               VK
 
-              <span className="text-indigo-400 transition-colors group-hover:text-cyan-400">
+              <span className="text-accent-light transition-colors group-hover:text-accent">
                 .
               </span>
             </button>
@@ -93,7 +93,7 @@ const Footer = () => {
                     event.preventDefault();
                     scrollToSection(id);
                   }}
-                  className="text-sm text-gray-300 transition-colors rounded-sm hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+                  className="text-sm text-gray-300 transition-colors rounded-sm hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
                 >
                   {label}
                 </a>
@@ -113,7 +113,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Vinay Kushwah on GitHub"
-                className="group inline-flex items-center gap-1.5 rounded-sm text-sm text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+                className="group inline-flex items-center gap-1.5 rounded-sm text-sm text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
               >
                 GitHub
 
@@ -128,7 +128,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Vinay Kushwah on LinkedIn"
-                className="group inline-flex items-center gap-1.5 rounded-sm text-sm text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+                className="group inline-flex items-center gap-1.5 rounded-sm text-sm text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
               >
                 LinkedIn
 
@@ -141,7 +141,7 @@ const Footer = () => {
               <a
                 href="mailto:vinay.kushwah89@gmail.com"
                 aria-label="Email Vinay Kushwah"
-                className="group inline-flex items-center gap-1.5 rounded-sm text-sm text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+                className="group inline-flex items-center gap-1.5 rounded-sm text-sm text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
               >
                 Email
 

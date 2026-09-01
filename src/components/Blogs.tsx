@@ -84,7 +84,7 @@ const Blogs = () => {
               <motion.article
                 key={post.title}
                 {...reveal(index)}
-                className="group flex min-h-[370px] flex-col rounded-3xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-[0_20px_50px_rgba(15,23,42,0.07)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-white/20 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:p-6"
+                className="group flex min-h-[370px] flex-col rounded-3xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_20px_50px_rgba(15,23,42,0.07)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-accent-light/30 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:p-6"
               >
                 {/* Meta */}
                 <div className="flex items-center justify-between gap-4">
@@ -92,13 +92,13 @@ const Blogs = () => {
                     {post.publishedAt ?? "Draft ready"}
                   </p>
 
-                  <span className="inline-flex items-center justify-center w-10 h-10 text-indigo-600 transition-colors border border-gray-200 rounded-full group-hover:border-indigo-200 group-hover:bg-indigo-50 dark:border-white/10 dark:text-cyan-400 dark:group-hover:border-cyan-400/20 dark:group-hover:bg-cyan-400/5">
+                  <span className="inline-flex items-center justify-center w-10 h-10 text-accent-dark transition-colors border border-gray-200 rounded-full group-hover:border-accent/25 group-hover:bg-accent/10 dark:border-white/10 dark:text-accent-light dark:group-hover:border-accent-light/25 dark:group-hover:bg-accent/10">
                     <DocumentTextIcon aria-hidden="true" className="w-5 h-5" />
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="mt-8 font-heading text-2xl font-semibold leading-[1.15] tracking-[-0.035em] text-gray-950 transition-colors group-hover:text-indigo-600 dark:text-white dark:group-hover:text-cyan-400">
+                <h3 className="mt-8 font-heading text-2xl font-semibold leading-[1.15] tracking-[-0.035em] text-gray-950 transition-colors group-hover:text-accent-dark dark:text-white dark:group-hover:text-accent-light">
                   {post.title}
                 </h3>
 
@@ -133,7 +133,7 @@ const Blogs = () => {
                           <button
                             type="button"
                             onClick={() => setActivePost(post)}
-                            className="text-sm font-semibold text-gray-600 transition-colors hover:text-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-gray-300 dark:hover:text-cyan-400"
+                            className="text-sm font-semibold text-gray-600 transition-colors hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-gray-300 dark:hover:text-accent-light"
                           >
                             Preview
                           </button>
@@ -145,7 +145,7 @@ const Blogs = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`Read ${post.title} on Medium`}
-                            className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-gray-950 transition-colors hover:text-indigo-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-white dark:hover:text-cyan-400"
+                            className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-gray-950 transition-colors hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-white dark:hover:text-accent-light"
                           >
                             Read article
                             <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
@@ -217,7 +217,7 @@ const Blogs = () => {
                   {/* Modal header */}
                   <div className="flex items-start justify-between gap-5 px-5 py-5 border-b border-gray-200 dark:border-white/10 sm:px-8 sm:py-6">
                     <div>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-indigo-600 dark:text-cyan-400">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-dark dark:text-accent-light">
                         Article preview
                       </p>
 
@@ -237,7 +237,7 @@ const Blogs = () => {
                       ref={closeButtonRef}
                       type="button"
                       onClick={() => setActivePost(null)}
-                      className="inline-flex items-center justify-center flex-none w-10 h-10 text-gray-700 transition-all border border-gray-300 rounded-full hover:border-gray-950 hover:bg-white hover:text-gray-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/15 dark:text-gray-300 dark:hover:border-white dark:hover:bg-white/5 dark:hover:text-white"
+                      className="inline-flex items-center justify-center flex-none w-10 h-10 text-gray-700 transition-all border border-gray-300 rounded-full hover:border-accent hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-white/15 dark:text-gray-300 dark:hover:border-accent-light dark:hover:bg-accent/10 dark:hover:text-accent-light"
                       aria-label="Close article preview"
                     >
                       <XMarkIcon className="w-5 h-5" />
@@ -283,7 +283,7 @@ const Blogs = () => {
                       )}
 
                       {/* Medium CTA */}
-                      <div className="mt-10 overflow-hidden rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-white p-6 text-center dark:border-cyan-400/20 dark:from-cyan-400/10 dark:to-[#111419] sm:p-8">
+                      <div className="mt-10 overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-br from-accent/10 to-white p-6 text-center dark:border-accent-light/20 dark:from-accent/10 dark:to-[#111419] sm:p-8">
                         <p className="font-heading text-xl font-semibold tracking-[-0.025em] sm:text-2xl">
                           Continue reading the full article.
                         </p>
@@ -298,7 +298,7 @@ const Blogs = () => {
                             href={activePost.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gray-950 px-6 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:bg-white dark:text-gray-950"
+                            className="group mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-dark px-6 text-sm font-semibold text-white shadow-md shadow-accent/20 transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                           >
                             Continue on Medium
                             <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

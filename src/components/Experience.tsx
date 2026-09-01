@@ -113,7 +113,7 @@ const Experience = () => {
               {/* Number + Period */}
               <div className="lg:col-span-2">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[11px] font-medium text-indigo-600 dark:text-cyan-400">
+                  <span className="font-mono text-[11px] font-medium text-accent-dark dark:text-accent-light">
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
@@ -193,7 +193,7 @@ const Experience = () => {
                     >
                       <span
                         aria-hidden="true"
-                        className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-indigo-600 dark:bg-cyan-400"
+                        className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-accent dark:bg-accent-light"
                       />
 
                       <span>{achievement}</span>

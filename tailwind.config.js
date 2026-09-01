@@ -7,10 +7,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        primary: {
+          DEFAULT: "rgb(var(--primary-rgb) / <alpha-value>)",
+          light: "rgb(var(--primary-light-rgb) / <alpha-value>)",
+          dark: "rgb(var(--primary-dark-rgb) / <alpha-value>)",
+        },
+
         accent: {
-          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
-          hover: "rgb(var(--accent-hover) / <alpha-value>)",
-          soft: "rgb(var(--accent-soft) / <alpha-value>)",
+          DEFAULT: "rgb(var(--accent-rgb) / <alpha-value>)",
+          light: "rgb(var(--accent-light-rgb) / <alpha-value>)",
+          dark: "rgb(var(--accent-dark-rgb) / <alpha-value>)",
         },
 
         surface: {
@@ -21,7 +27,7 @@ module.exports = {
 
       backgroundImage: {
         "text-gradient":
-          "linear-gradient(to right, rgb(var(--accent)), rgb(var(--accent-hover)))",
+          "linear-gradient(to right, var(--accent), var(--accent-dark))",
       },
 
       animation: {
@@ -29,7 +35,7 @@ module.exports = {
       },
 
       boxShadow: {
-        glow: "0 0 10px rgb(var(--accent) / 0.35), 0 0 24px rgb(var(--accent) / 0.18)",
+        glow: "0 0 10px rgb(var(--accent-rgb) / 0.35), 0 0 24px rgb(var(--accent-rgb) / 0.18)",
       },
 
       fontFamily: {

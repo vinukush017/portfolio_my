@@ -46,7 +46,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {subtitle && (
         <motion.p
           {...reveal(0)}
-          className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-indigo-600 dark:text-cyan-400 lg:col-span-3"
+          className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent-dark dark:text-accent-light lg:col-span-3"
         >
           {subtitle}
         </motion.p>

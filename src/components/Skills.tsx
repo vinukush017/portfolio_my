@@ -147,7 +147,7 @@ const Skills = () => {
               {/* Group information */}
               <div className="lg:col-span-4">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[11px] font-medium text-indigo-600 dark:text-cyan-400">
+                  <span className="font-mono text-[11px] font-medium text-accent-dark dark:text-accent-light">
                     {String(groupIndex + 1).padStart(2, "0")}
                   </span>
 
@@ -166,11 +166,11 @@ const Skills = () => {
                 {group.items.map((skill) => (
                   <li
                     key={skill.name}
-                    className="group/skill flex min-h-28 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-[0_14px_30px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-cyan-400/40 dark:hover:shadow-[0_14px_30px_rgba(0,0,0,0.2)] sm:min-h-32"
+                    className="group/skill flex min-h-28 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_14px_30px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-accent-light/40 dark:hover:shadow-[0_14px_30px_rgba(0,0,0,0.2)] sm:min-h-32"
                   >
                     <span
                       aria-hidden="true"
-                      className="text-2xl text-gray-400 transition-colors duration-300 group-hover/skill:text-indigo-600 dark:text-gray-500 dark:group-hover/skill:text-cyan-400"
+                      className="text-2xl text-gray-400 transition-colors duration-300 group-hover/skill:text-accent dark:text-gray-500 dark:group-hover/skill:text-accent-light"
                     >
                       {skill.icon}
                     </span>

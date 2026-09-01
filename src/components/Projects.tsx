@@ -198,7 +198,7 @@ const ProjectCard = ({
               ease: [0.22, 1, 0.36, 1],
             }
       }
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-[0_24px_60px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-white/20 dark:hover:shadow-[0_24px_60px_rgba(0,0,0,0.28)]"
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_24px_60px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-accent-light/30 dark:hover:shadow-[0_24px_60px_rgba(0,0,0,0.28)]"
     >
       {/* Project media */}
       <div className="relative overflow-hidden border-b border-gray-200 bg-gray-100 dark:border-white/10 dark:bg-[#0b0d10]">
@@ -230,11 +230,11 @@ const ProjectCard = ({
 
               <div
                 aria-hidden="true"
-                className="absolute rounded-full pointer-events-none -right-12 -top-12 h-44 w-44 bg-indigo-400/15 blur-3xl dark:bg-cyan-400/10"
+                className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-accent-light/15 blur-3xl pointer-events-none dark:bg-accent/10"
               />
 
               <div className="relative text-center">
-                <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-indigo-600 dark:text-cyan-400">
+                <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-accent-dark dark:text-accent-light">
                   Selected work
                 </p>
 
@@ -283,7 +283,7 @@ const ProjectCard = ({
       {/* Project content */}
       <div className="flex flex-col flex-1 p-5 sm:p-6 lg:p-7">
         {/* Category */}
-        <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-indigo-600 dark:text-cyan-400 sm:text-[11px]">
+        <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-accent-dark dark:text-accent-light sm:text-[11px]">
           {project.category}
         </p>
 
@@ -298,7 +298,7 @@ const ProjectCard = ({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Open ${project.title} in a new tab`}
-            className="inline-flex items-center justify-center flex-none w-10 h-10 text-gray-700 transition-all border border-gray-200 rounded-full hover:border-gray-950 hover:bg-gray-950 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/15 dark:text-gray-300 dark:hover:border-white dark:hover:bg-white dark:hover:text-gray-950"
+            className="inline-flex items-center justify-center flex-none w-10 h-10 text-gray-700 transition-all border border-gray-200 rounded-full hover:border-accent hover:bg-accent hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-white/15 dark:text-gray-300 dark:hover:border-accent-light dark:hover:bg-accent dark:hover:text-white"
           >
             <ArrowUpRightIcon className="w-4 h-4" />
           </a>
@@ -323,7 +323,7 @@ const ProjectCard = ({
               >
                 <span
                   aria-hidden="true"
-                  className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-indigo-500 dark:bg-cyan-400"
+                  className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-accent dark:bg-accent-light"
                 />
 
                 <span>{highlight}</span>
@@ -350,7 +350,7 @@ const ProjectCard = ({
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-5 text-sm font-semibold group/link text-gray-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-white"
+              className="inline-flex items-center gap-2 mt-5 text-sm font-semibold group/link text-gray-950 transition-colors hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-white dark:hover:text-accent-light"
             >
               View live project
               <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
