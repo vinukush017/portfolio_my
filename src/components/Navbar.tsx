@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -8,10 +8,8 @@ import {
 } from "framer-motion";
 import {
   ArrowUpRightIcon,
-  Bars3Icon,
   MoonIcon,
   SunIcon,
-  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
   SECTION_LINKS,
@@ -37,6 +35,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<SectionId>("home");
 
+  const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuWasOpen = useRef(false);
 
@@ -108,7 +107,7 @@ const Navbar = () => {
   /*
    * Theme
    */
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
 
     localStorage.setItem("theme", isDark ? "dark" : "light");
@@ -136,6 +135,25 @@ const Navbar = () => {
       if (event.key === "Escape") {
         setMenuOpen(false);
       }
+
+      if (event.key === "Tab" && menuOpen && headerRef.current) {
+        const focusableElements = Array.from(
+          headerRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ),
+        ).filter((element) => element.offsetParent !== null);
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement?.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement?.focus();
+        }
+      }
     };
 
     window.addEventListener("keydown", handleEscape);
@@ -145,6 +163,25 @@ const Navbar = () => {
       window.removeEventListener("keydown", handleEscape);
     };
   }, [menuOpen]);
+
+  useEffect(() => {
+    const closeMenu = () => setMenuOpen(false);
+    const closeMenuAtDesktop = () => {
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener("hashchange", closeMenu);
+    window.addEventListener("popstate", closeMenu);
+    window.addEventListener("resize", closeMenuAtDesktop);
+
+    return () => {
+      window.removeEventListener("hashchange", closeMenu);
+      window.removeEventListener("popstate", closeMenu);
+      window.removeEventListener("resize", closeMenuAtDesktop);
+    };
+  }, []);
 
   const navigateTo = (sectionId: SectionId) => {
     setMenuOpen(false);
@@ -161,7 +198,24 @@ const Navbar = () => {
         Skip to content
       </a>
 
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.button
+            type="button"
+            aria-label="Close navigation menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.2 }}
+            onClick={() => setMenuOpen(false)}
+            tabIndex={-1}
+            className="site-menu-backdrop fixed inset-0 z-40 backdrop-blur-[2px] lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+
       <motion.header
+        ref={headerRef}
         initial={
           reduceMotion
             ? false
@@ -182,15 +236,12 @@ const Navbar = () => {
                 ease: [0.22, 1, 0.36, 1],
               }
         }
-        className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
-          scrolled || menuOpen
-            ? "border-gray-200/80 bg-[#ffffff]/95 shadow-[0_8px_30px_rgba(15,23,42,0.04)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0b0d10]/95 dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)]"
-            : "border-transparent bg-[#ffffff]/80 backdrop-blur-md dark:bg-[#0b0d10]/80"
-        }`}
+        className="pointer-events-none fixed inset-x-3 top-3 z-50 transition-all duration-300 sm:inset-x-4 sm:top-4"
       >
         <nav
           aria-label="Primary navigation"
-          className="section-shell flex h-[72px] items-center justify-between"
+          data-raised={scrolled || menuOpen}
+          className="floating-nav-surface pointer-events-auto relative mx-auto flex h-14 w-full max-w-[1200px] items-center justify-between rounded-2xl border px-4 transition-[background-color,border-color,box-shadow] duration-300 lg:h-16 lg:px-5"
         >
           {/* Brand */}
           <a
@@ -236,7 +287,7 @@ const Navbar = () => {
                     <motion.span
                       layoutId="active-navigation"
                       aria-hidden="true"
-                      className="absolute inset-x-3 -bottom-[18px] h-0.5 rounded-full bg-indigo-600 dark:bg-cyan-400"
+                      className="absolute inset-x-3 -bottom-[11px] h-0.5 rounded-full bg-indigo-600 dark:bg-cyan-400"
                       transition={
                         reduceMotion
                           ? { duration: 0 }
@@ -326,33 +377,58 @@ const Navbar = () => {
               }
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
-              className="inline-flex items-center justify-center w-10 h-10 text-gray-700 transition-colors rounded-full hover:bg-gray-200/70 hover:text-gray-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:text-gray-200 dark:hover:bg-white/10 dark:hover:text-white lg:hidden"
+              className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200/90 bg-gray-100/80 text-gray-700 transition-colors hover:border-gray-300 hover:bg-gray-200/80 hover:text-gray-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/10 dark:bg-white/[0.06] dark:text-gray-200 dark:hover:bg-white/10 dark:hover:text-white lg:hidden"
             >
-              {menuOpen ? (
-                <XMarkIcon className="w-6 h-6" />
-              ) : (
-                <Bars3Icon className="w-6 h-6" />
-              )}
+              <span className="sr-only">{menuOpen ? "Close" : "Menu"}</span>
+              <span aria-hidden="true" className="relative block h-4 w-5">
+                <motion.span
+                  className="absolute left-0 top-1 block h-0.5 w-5 rounded-full bg-current"
+                  animate={
+                    menuOpen
+                      ? { y: 3, rotate: 45 }
+                      : { y: 0, rotate: 0 }
+                  }
+                  transition={{ duration: reduceMotion ? 0 : 0.2 }}
+                />
+                <motion.span
+                  className="absolute bottom-1 left-0 block h-0.5 w-5 rounded-full bg-current"
+                  animate={
+                    menuOpen
+                      ? { y: -3, rotate: -45 }
+                      : { y: 0, rotate: 0 }
+                  }
+                  transition={{ duration: reduceMotion ? 0 : 0.2 }}
+                />
+              </span>
             </button>
           </div>
+
+          <motion.div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 hidden h-0.5 origin-left bg-indigo-600 dark:bg-cyan-400 lg:block"
+            style={{
+              scaleX: progress,
+            }}
+          />
         </nav>
 
         {/* Mobile menu */}
         <AnimatePresence>
           {menuOpen && (
             <motion.div
-              id="mobile-navigation"
               initial={
                 reduceMotion
                   ? { opacity: 0 }
                   : {
                       opacity: 0,
                       y: -8,
+                      scale: 0.98,
                     }
               }
               animate={{
                 opacity: 1,
                 y: 0,
+                scale: 1,
               }}
               exit={
                 reduceMotion
@@ -360,16 +436,23 @@ const Navbar = () => {
                   : {
                       opacity: 0,
                       y: -8,
+                      scale: 0.98,
                     }
               }
               transition={{
-                duration: reduceMotion ? 0 : 0.2,
+                duration: reduceMotion ? 0 : 0.24,
+                ease: [0.22, 1, 0.36, 1],
               }}
-              className="h-[calc(100dvh-72px)] overflow-y-auto border-t border-gray-200 bg-[#ffffff] px-4 dark:border-white/10 dark:bg-[#0b0d10] lg:hidden"
+              data-raised="true"
+              className="floating-nav-surface pointer-events-auto mx-auto mt-2 max-h-[calc(100dvh-5.25rem)] w-full max-w-[1200px] origin-top overflow-y-auto rounded-2xl border p-2 transition-[background-color,border-color,box-shadow] duration-300 lg:hidden"
             >
-              <div className="flex flex-col h-full mx-auto max-w-7xl">
+              <div className="flex flex-col">
                 {/* Navigation links */}
-                <nav aria-label="Mobile navigation" className="flex-1">
+                <nav
+                  id="mobile-navigation"
+                  aria-label="Mobile navigation"
+                  className="flex-1"
+                >
                   {SECTION_LINKS.map(({ id, label }, index) => {
                     const active = activeSection === id;
 
@@ -387,20 +470,20 @@ const Navbar = () => {
                             ? false
                             : {
                                 opacity: 0,
-                                x: -10,
+                                y: -5,
                               }
                         }
                         animate={{
                           opacity: 1,
-                          x: 0,
+                          y: 0,
                         }}
                         transition={{
                           delay: reduceMotion ? 0 : index * 0.035,
                         }}
-                        className={`group flex min-h-16 items-center justify-between border-b border-gray-200 text-xl font-semibold transition-colors dark:border-white/10 ${
+                        className={`group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
                           active
-                            ? "text-indigo-600 dark:text-cyan-400"
-                            : "text-gray-950 hover:text-indigo-600 dark:text-white dark:hover:text-cyan-400"
+                            ? "bg-indigo-50 text-indigo-600 dark:bg-cyan-400/10 dark:text-cyan-400"
+                            : "text-gray-900 hover:bg-gray-100 hover:text-indigo-600 dark:text-white dark:hover:bg-white/[0.06] dark:hover:text-cyan-400"
                         }`}
                       >
                         <span>{label}</span>
@@ -412,19 +495,19 @@ const Navbar = () => {
                 </nav>
 
                 {/* Mobile bottom area */}
-                <div className="py-6 border-t border-gray-200 dark:border-white/10">
+                <div className="mt-2 border-t border-gray-200 px-1 pt-3 dark:border-white/10">
                   <a
                     href={RESUME_PATH}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setMenuOpen(false)}
-                    className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-gray-950 px-5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-gray-950"
+                    className="group inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-gray-950 px-5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:bg-white dark:text-gray-950 dark:focus-visible:ring-offset-[#0b0d10]"
                   >
                     View résumé
                     <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
 
-                  <div className="flex items-center justify-center gap-5 mt-5 text-sm text-gray-500 dark:text-gray-400">
+                  <div className="mt-3 flex items-center justify-center gap-5 pb-1 text-sm text-gray-500 dark:text-gray-400">
                     <a
                       href="https://github.com/vinukush017"
                       target="_blank"
@@ -451,14 +534,6 @@ const Navbar = () => {
           )}
         </AnimatePresence>
 
-        {/* Page progress */}
-        <motion.div
-          aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-indigo-600 dark:bg-cyan-400"
-          style={{
-            scaleX: progress,
-          }}
-        />
       </motion.header>
     </>
   );

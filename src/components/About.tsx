@@ -53,7 +53,7 @@ const About = () => {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="py-16 border-b border-gray-200 dark:border-white/10 sm:py-20 lg:py-28"
+      className="site-divider border-b py-16 sm:py-20 lg:py-28"
     >
       <div className="section-shell">
         <div id="about-heading">
@@ -72,7 +72,7 @@ const About = () => {
               requirements into reliable systems and practical digital products.
             </p>
 
-            <div className="grid gap-5 text-base leading-7 text-gray-600 mt-7 dark:text-gray-400 lg:mt-8 lg:grid-cols-2 lg:gap-8">
+            <div className="mt-7 grid gap-5 text-base leading-7 text-gray-600 dark:text-gray-400 lg:mt-8 lg:grid-cols-2 lg:gap-8">
               <p>
                 My work spans backend services, REST APIs, databases, React
                 interfaces, cloud infrastructure, and third-party integrations.
@@ -97,7 +97,7 @@ const About = () => {
                 {focusAreas.map((focus, index) => (
                   <li
                     key={focus}
-                    className="flex items-center gap-3 py-4 text-sm font-medium text-gray-800 transition-colors border-t border-gray-300 group hover:text-indigo-600 dark:border-white/10 dark:text-gray-300 dark:hover:text-cyan-400"
+                    className="group flex items-center gap-3 border-t border-gray-300 py-4 text-sm font-medium text-gray-800 transition-colors hover:text-indigo-600 dark:border-white/10 dark:text-gray-300 dark:hover:text-cyan-400"
                   >
                     <span className="font-mono text-[11px] text-indigo-600 dark:text-cyan-400">
                       {String(index + 1).padStart(2, "0")}

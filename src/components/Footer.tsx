@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <footer
-      className="text-white bg-gray-950"
+      className="site-footer-surface border-t border-white/10 text-white"
       style={{
         paddingBottom: "env(safe-area-inset-bottom)",
       }}

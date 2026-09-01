@@ -92,7 +92,7 @@ const Experience = () => {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="py-16 border-b border-gray-200 dark:border-white/10 sm:py-20 lg:py-28"
+      className="site-divider border-b py-16 sm:py-20 lg:py-28"
     >
       <div className="section-shell">
         <div id="experience-heading">
@@ -103,12 +103,12 @@ const Experience = () => {
           />
         </div>
 
-        <div className="border-gray-300 border-y dark:border-white/10">
+        <div className="border-y border-gray-300 dark:border-white/10">
           {experiences.map((experience, index) => (
             <motion.article
               key={`${experience.company}-${experience.period}`}
               {...reveal(index)}
-              className="grid py-8 border-b border-gray-300 gap-7 last:border-b-0 dark:border-white/10 sm:py-10 lg:grid-cols-12 lg:gap-10 lg:py-12"
+              className="grid gap-7 border-b border-gray-300 py-8 last:border-b-0 dark:border-white/10 sm:py-10 lg:grid-cols-12 lg:gap-10 lg:py-12"
             >
               {/* Number + Period */}
               <div className="lg:col-span-2">
@@ -128,7 +128,7 @@ const Experience = () => {
                   )}
                 </div>
 
-                <p className="mt-4 font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-gray-500">
+                <p className="mt-4 font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-gray-400">
                   {experience.period}
                 </p>
               </div>
@@ -151,12 +151,12 @@ const Experience = () => {
                     ·
                   </span>
 
-                  <p className="text-gray-500 dark:text-gray-500">
+                  <p className="text-gray-500">
                     {experience.location}
                   </p>
                 </div>
 
-                <p className="max-w-md mt-5 text-sm leading-7 text-gray-600 dark:text-gray-400">
+                <p className="mt-5 max-w-md text-sm leading-7 text-gray-600 dark:text-gray-400">
                   {experience.summary}
                 </p>
 

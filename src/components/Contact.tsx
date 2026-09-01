@@ -123,7 +123,7 @@ const Contact: React.FC = () => {
               @gmail.com
             </a>
 
-            <p className="max-w-md mt-5 text-sm leading-7 text-gray-600 dark:text-gray-400">
+            <p className="mt-5 max-w-md text-sm leading-7 text-gray-600 dark:text-gray-400">
               The easiest way to reach me is by email. You can also find me on
               LinkedIn and GitHub.
             </p>
@@ -154,7 +154,7 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Availability */}
-            <div className="flex items-start max-w-md gap-3 mt-8 text-sm leading-6 text-gray-600 dark:text-gray-400">
+            <div className="mt-8 flex max-w-md items-start gap-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
               <span
                 aria-hidden="true"
                 className="flex-none w-2 h-2 mt-2 rounded-full bg-emerald-500"

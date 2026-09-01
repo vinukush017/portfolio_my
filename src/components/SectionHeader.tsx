@@ -42,7 +42,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   });
 
   return (
-    <div className="grid gap-5 pb-8 mb-10 border-b border-gray-300 dark:border-white/10 sm:mb-12 lg:grid-cols-12 lg:items-end">
+    <div className="site-divider mb-10 grid gap-5 border-b pb-8 sm:mb-12 lg:grid-cols-12 lg:items-end">
       {subtitle && (
         <motion.p
           {...reveal(0)}

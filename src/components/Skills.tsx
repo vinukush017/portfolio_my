@@ -112,7 +112,7 @@ const Skills = () => {
     <section
       id="expertise"
       aria-labelledby="expertise-heading"
-      className="border-b border-gray-200 bg-[#f7f7f2] py-16 dark:border-white/10 dark:bg-[#0d0f13] sm:py-20 lg:py-28"
+      className="site-divider border-b py-16 sm:py-20 lg:py-28"
     >
       <div className="section-shell">
         <div id="expertise-heading">
@@ -123,7 +123,7 @@ const Skills = () => {
           />
         </div>
 
-        <div className="border-gray-300 border-y dark:border-white/10">
+        <div className="border-y border-gray-300 dark:border-white/10">
           {groups.map((group, groupIndex) => (
             <motion.div
               key={group.name}
@@ -142,7 +142,7 @@ const Skills = () => {
                       ease: [0.22, 1, 0.36, 1],
                     }
               }
-              className="grid gap-6 py-8 border-b border-gray-300 last:border-b-0 dark:border-white/10 sm:py-10 lg:grid-cols-12 lg:gap-10"
+              className="grid gap-6 border-b border-gray-300 py-8 last:border-b-0 dark:border-white/10 sm:py-10 lg:grid-cols-12 lg:gap-10"
             >
               {/* Group information */}
               <div className="lg:col-span-4">
@@ -156,7 +156,7 @@ const Skills = () => {
                   </h3>
                 </div>
 
-                <p className="max-w-sm mt-3 text-sm leading-6 text-gray-500 dark:text-gray-400">
+                <p className="mt-3 max-w-sm text-sm leading-6 text-gray-500 dark:text-gray-400">
                   {group.description}
                 </p>
               </div>

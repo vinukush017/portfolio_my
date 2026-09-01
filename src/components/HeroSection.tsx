@@ -28,27 +28,8 @@ const HeroSection = () => {
     <section
       id="home"
       aria-labelledby="hero-title"
-      className="relative overflow-hidden border-b border-gray-200 bg-[#ffffff] text-gray-950 dark:border-white/10 dark:bg-[#0b0d10] dark:text-white"
+      className="site-divider site-text-primary relative overflow-hidden border-b"
     >
-      {/* Grid background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.45] dark:opacity-[0.12]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(15,23,42,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.08) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-          maskImage: "linear-gradient(to bottom, black, transparent 88%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black, transparent 88%)",
-        }}
-      />
-
-      {/* Background glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 top-20 h-80 w-80 rounded-full bg-indigo-400/20 blur-[120px] dark:bg-cyan-400/10"
-      />
-
       <div className="section-shell relative grid min-h-[calc(100svh-4rem)] items-center gap-12 pb-14 pt-28 sm:pb-20 sm:pt-32 md:grid-cols-12 md:gap-8 lg:gap-10 lg:pb-24 lg:pt-32">
         {/* Left content */}
         <div className="md:col-span-7 lg:col-span-7">
@@ -61,7 +42,7 @@ const HeroSection = () => {
               Software Engineer
             </span>
 
-            <span className="w-8 h-px bg-gray-300 dark:bg-gray-700" />
+            <span className="h-px w-8 bg-gray-300 dark:bg-white/20" />
 
             <span>Node.js · TypeScript · React · AWS</span>
           </motion.div>
@@ -82,7 +63,7 @@ const HeroSection = () => {
           {/* Description */}
           <motion.p
             {...reveal(0.2)}
-            className="max-w-2xl text-base leading-relaxed text-gray-600 mt-7 dark:text-gray-300 sm:mt-8 sm:text-lg"
+            className="mt-7 max-w-2xl text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:mt-8 sm:text-lg"
           >
             I&apos;m Vinay Kushwah, a software engineer building reliable
             backend systems, APIs, integrations, and modern web applications
@@ -92,7 +73,7 @@ const HeroSection = () => {
           {/* Mobile profile card */}
           <motion.div
             {...reveal(0.24)}
-            className="flex items-center gap-3 p-3 mt-6 border border-gray-300 rounded-2xl bg-white/70 backdrop-blur-sm dark:border-white/10 dark:bg-white/5 sm:hidden"
+            className="mt-6 flex items-center gap-3 rounded-2xl border border-gray-300 bg-white/70 p-3 backdrop-blur-sm dark:border-white/10 dark:bg-white/5 sm:hidden"
           >
             <img
               src="/avatar-optimized.jpg"
@@ -109,7 +90,7 @@ const HeroSection = () => {
                 Currently
               </p>
 
-              <p className="mt-1 text-sm font-semibold truncate">
+              <p className="mt-1 truncate text-sm font-semibold text-gray-950 dark:text-white">
                 Software Engineer · Pune
               </p>
             </div>
@@ -122,7 +103,7 @@ const HeroSection = () => {
           >
             <a
               href="#projects"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gray-950 px-6 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-4 dark:bg-white dark:text-gray-950 dark:focus-visible:ring-offset-[#0b0d10]"
+              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gray-950 px-6 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-4 dark:bg-white dark:text-gray-950 dark:focus-visible:ring-offset-slate-900"
             >
               View my work
               <ArrowDownRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -132,7 +113,7 @@ const HeroSection = () => {
               href="/Vinay-Kushwah-Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gray-300 px-6 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-950 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-gray-700 dark:text-white dark:hover:border-gray-500 dark:hover:bg-white/5"
+              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white/40 px-6 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-950 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-gray-500 dark:hover:bg-white/10"
             >
               View résumé
               <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -142,7 +123,7 @@ const HeroSection = () => {
           {/* Stats */}
           <motion.dl
             {...reveal(0.38)}
-            className="grid max-w-2xl grid-cols-2 pt-6 mt-10 border-t border-gray-300 gap-x-5 gap-y-6 dark:border-gray-700 sm:mt-12 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3"
+            className="mt-10 grid max-w-2xl grid-cols-2 gap-x-5 gap-y-6 border-t border-gray-300 pt-6 dark:border-gray-700 sm:mt-12 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3"
           >
             <div>
               <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-gray-500">
