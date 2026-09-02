@@ -227,7 +227,7 @@ const Navbar = () => {
         <nav
           aria-label="Primary navigation"
           data-raised={scrolled || menuOpen}
-          className="section-shell floating-nav-surface pointer-events-auto relative flex h-14 items-center justify-between rounded-2xl border px-4 transition-[background-color,border-color,box-shadow] duration-300 lg:h-16 lg:px-5"
+          className="section-shell floating-nav-surface pointer-events-auto relative flex h-14 items-center justify-between rounded-full border px-4 transition-[background-color,border-color,box-shadow] duration-300 lg:h-16 lg:px-5"
         >
           {/* Brand */}
           <a

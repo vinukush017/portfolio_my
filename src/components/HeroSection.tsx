@@ -312,11 +312,10 @@ const HeroSection = () => {
                   ease: [0.22, 1, 0.36, 1],
                 }
           }
-          className="relative mx-auto hidden w-full max-w-[400px] sm:flex sm:flex-col sm:items-center md:col-span-5 md:max-w-none lg:col-span-5 lg:mx-0 lg:ml-auto lg:max-w-[440px]"
+          className="relative mx-auto hidden aspect-square w-full max-w-[320px] sm:block sm:max-w-[360px] md:col-span-5 lg:col-span-5 lg:mx-0 lg:ml-auto lg:max-w-[400px]"
         >
-          <div className="relative aspect-square w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[400px]">
-            {/* Ambient glow behind the circle */}
-            <div
+          {/* Ambient glow behind the circle */}
+          <div
               aria-hidden="true"
               className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/25 via-accent-light/10 to-transparent blur-2xl"
             />
@@ -386,7 +385,6 @@ const HeroSection = () => {
               reduceMotion={!!reduceMotion}
               delay={1.2}
             />
-          </div>
         </motion.div>
       </div>
     </section>
