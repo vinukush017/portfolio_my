@@ -2,16 +2,33 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRightIcon,
-  ArrowUpRightIcon,
+  Bars3Icon,
+  BriefcaseIcon,
+  CodeBracketIcon,
+  EnvelopeIcon,
+  FolderIcon,
   MoonIcon,
+  PencilSquareIcon,
   SunIcon,
+  UserCircleIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
   SECTION_LINKS,
   scrollToSection,
+  type NavigationSectionId,
   type SectionId,
 } from "../config/navigation";
 import CtaButton from "./CtaButton";
+
+const NAV_ICONS: Record<NavigationSectionId, typeof FolderIcon> = {
+  projects: FolderIcon,
+  about: UserCircleIcon,
+  expertise: CodeBracketIcon,
+  experience: BriefcaseIcon,
+  writing: PencilSquareIcon,
+  contact: EnvelopeIcon,
+};
 
 const Navbar = () => {
   const reduceMotion = useReducedMotion();
@@ -334,34 +351,16 @@ const Navbar = () => {
               ref={menuButtonRef}
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
-              aria-label={
-                menuOpen ? "Close navigation menu" : "Open navigation menu"
-              }
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
-              className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200/90 bg-gray-100/80 text-gray-700 transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-white/10 dark:bg-white/[0.06] dark:text-gray-200 dark:hover:border-accent-light/30 dark:hover:bg-accent/10 dark:hover:text-accent-light lg:hidden"
+              className="relative inline-flex items-center justify-center rounded-full p-2.5 text-slate-900 transition-all duration-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 lg:hidden"
             >
-              <span className="sr-only">{menuOpen ? "Close" : "Menu"}</span>
-              <span aria-hidden="true" className="relative block h-4 w-5">
-                <motion.span
-                  className="absolute left-0 top-1 block h-0.5 w-5 rounded-full bg-current"
-                  animate={
-                    menuOpen
-                      ? { y: 3, rotate: 45 }
-                      : { y: 0, rotate: 0 }
-                  }
-                  transition={{ duration: reduceMotion ? 0 : 0.2 }}
-                />
-                <motion.span
-                  className="absolute bottom-1 left-0 block h-0.5 w-5 rounded-full bg-current"
-                  animate={
-                    menuOpen
-                      ? { y: -3, rotate: -45 }
-                      : { y: 0, rotate: 0 }
-                  }
-                  transition={{ duration: reduceMotion ? 0 : 0.2 }}
-                />
-              </span>
+              {menuOpen ? (
+                <XMarkIcon className="h-5 w-5" />
+              ) : (
+                <Bars3Icon className="h-5 w-5" />
+              )}
             </button>
           </div>
         </nav>
@@ -409,6 +408,7 @@ const Navbar = () => {
                 >
                   {SECTION_LINKS.map(({ id, label }, index) => {
                     const active = activeSection === id;
+                    const Icon = NAV_ICONS[id];
 
                     return (
                       <motion.a
@@ -434,15 +434,29 @@ const Navbar = () => {
                         transition={{
                           delay: reduceMotion ? 0 : index * 0.035,
                         }}
-                        className={`group flex min-h-12 items-center justify-between rounded-xl px-3.5 text-base font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                        className={`group flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                           active
-                            ? "bg-accent/10 text-accent-dark dark:bg-accent/15 dark:text-accent-light"
-                            : "text-gray-900 hover:bg-accent/10 hover:text-accent-dark dark:text-white dark:hover:bg-accent/10 dark:hover:text-accent-light"
+                            ? "bg-accent/5 text-accent-dark dark:bg-accent/10 dark:text-accent-light"
+                            : "text-gray-900 hover:bg-accent/5 hover:text-accent-dark dark:text-white dark:hover:bg-accent/10 dark:hover:text-accent-light"
                         }`}
                       >
+                        <Icon
+                          aria-hidden="true"
+                          className={`h-5 w-5 flex-shrink-0 transition-colors duration-300 ${
+                            active
+                              ? "text-accent"
+                              : "text-gray-400 group-hover:text-accent-dark dark:text-gray-500 dark:group-hover:text-accent-light"
+                          }`}
+                        />
+
                         <span>{label}</span>
 
-                        <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                        {active && (
+                          <span
+                            aria-hidden="true"
+                            className="ml-auto h-2 w-2 flex-shrink-0 animate-pulse rounded-full bg-accent"
+                          />
+                        )}
                       </motion.a>
                     );
                   })}
