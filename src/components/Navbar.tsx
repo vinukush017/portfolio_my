@@ -295,51 +295,26 @@ const Navbar = () => {
             {/* Theme toggle */}
             <button
               type="button"
+              role="switch"
+              aria-checked={isDark}
+              aria-label="Toggle dark mode"
               onClick={() => setIsDark((current) => !current)}
-              aria-label={
-                isDark ? "Switch to light theme" : "Switch to dark theme"
-              }
-              title={isDark ? "Light theme" : "Dark theme"}
-              className="inline-flex items-center justify-center w-10 h-10 text-gray-600 transition-colors rounded-full hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-gray-300 dark:hover:bg-accent/10 dark:hover:text-accent-light"
+              className={`relative inline-flex h-6 w-12 shrink-0 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
+                isDark ? "bg-slate-600" : "bg-gray-300/80"
+              }`}
             >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={isDark ? "sun" : "moon"}
-                  initial={
-                    reduceMotion
-                      ? false
-                      : {
-                          opacity: 0,
-                          rotate: -20,
-                          scale: 0.8,
-                        }
-                  }
-                  animate={{
-                    opacity: 1,
-                    rotate: 0,
-                    scale: 1,
-                  }}
-                  exit={
-                    reduceMotion
-                      ? undefined
-                      : {
-                          opacity: 0,
-                          rotate: 20,
-                          scale: 0.8,
-                        }
-                  }
-                  transition={{
-                    duration: reduceMotion ? 0 : 0.15,
-                  }}
-                  className="flex"
-                >
-                  {isDark ? (
-                    <SunIcon className="w-5 h-5" />
-                  ) : (
-                    <MoonIcon className="w-5 h-5" />
-                  )}
-                </motion.span>
-              </AnimatePresence>
+              <span
+                aria-hidden="true"
+                className={`absolute left-0.5 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 ease-out ${
+                  isDark ? "translate-x-6" : "translate-x-0"
+                }`}
+              >
+                {isDark ? (
+                  <MoonIcon className="h-3 w-3 text-slate-600" />
+                ) : (
+                  <SunIcon className="h-3 w-3 text-amber-500" />
+                )}
+              </span>
             </button>
 
             {/* Hire me */}

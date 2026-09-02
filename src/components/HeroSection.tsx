@@ -240,62 +240,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Mobile & tablet circular portrait */}
-          <motion.div
-            {...reveal(0.44)}
-            className="mt-10 flex flex-col items-center gap-4 lg:hidden"
-          >
-            <div className="relative w-[220px] aspect-square sm:w-[280px]">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/25 via-accent-light/10 to-transparent blur-xl"
-              />
-
-              {/* Outer circular text */}
-              <div className="pointer-events-none absolute -inset-7 select-none sm:-inset-8">
-                <CircularText
-                  text={CIRCULAR_TEXT}
-                  size={260}
-                  radius={118}
-                  fontSize={12}
-                  duration={38}
-                  direction="ccw"
-                  reduceMotion={!!reduceMotion}
-                  className="h-full w-full text-accent/80 dark:text-accent-light/70"
-                />
-              </div>
-
-              {/* Solid outer ring */}
-              <div
-                className={`absolute inset-0 rounded-full border-2 border-accent/40 dark:border-accent-light/35 ${reduceMotion ? "" : "animate-spin-slow"
-                  }`}
-              />
-
-              {/* Solid inner ring */}
-              <div
-                className={`absolute inset-4 rounded-full border border-accent-light/40 dark:border-accent-light/45 ${reduceMotion ? "" : "animate-spin-reverse"
-                  }`}
-              />
-
-              {/* Profile image */}
-              <div className="absolute inset-9 overflow-hidden rounded-full shadow-2xl">
-                <img
-                  src="/avatar-optimized.jpg"
-                  alt="Vinay Kushwah, Software Engineer"
-                  width={300}
-                  height={300}
-                  loading="eager"
-                  decoding="async"
-                  className="h-full w-full scale-125 object-cover object-center"
-                />
-              </div>
-            </div>
-
-
-          </motion.div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-gray-500 dark:text-gray-400">
-            Software Engineer · Pune
-          </p>
         </div>
 
         {/* Right image */}
@@ -311,7 +255,7 @@ const HeroSection = () => {
                 ease: [0.22, 1, 0.36, 1],
               }
           }
-          className="relative mx-auto hidden aspect-square w-full max-w-[400px] lg:block lg:col-span-5 lg:mx-0 lg:ml-auto"
+          className="relative mx-auto mt-10 aspect-square w-full max-w-[260px] sm:max-w-[320px] lg:col-span-5 lg:mx-0 lg:ml-auto lg:mt-0 lg:max-w-[400px]"
         >
           {/* Ambient glow behind the circle */}
           <div
@@ -378,7 +322,7 @@ const HeroSection = () => {
           <StatCard
             value="Pune"
             label="Based in India"
-            className="-left-20 top-1/2 -translate-y-1/2 sm:-left-24 lg:-left-28"
+            className="-left-8 top-1/2 -translate-y-1/2 sm:-left-16 lg:-left-28"
             reduceMotion={!!reduceMotion}
             delay={1.2}
           />
