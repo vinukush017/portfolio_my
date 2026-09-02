@@ -31,7 +31,15 @@ module.exports = {
       },
 
       animation: {
-        "spin-slow": "spin 8s linear infinite",
+        "spin-slow": "spin 60s linear infinite",
+        "spin-reverse": "spin-reverse 46s linear infinite",
+      },
+
+      keyframes: {
+        "spin-reverse": {
+          from: { transform: "rotate(360deg)" },
+          to: { transform: "rotate(0deg)" },
+        },
       },
 
       boxShadow: {

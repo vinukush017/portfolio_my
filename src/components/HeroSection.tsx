@@ -1,10 +1,134 @@
 "use client";
 
+import { useId } from "react";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import {
   ArrowDownRightIcon,
   ArrowUpRightIcon,
 } from "@heroicons/react/24/outline";
 import { motion, useReducedMotion } from "framer-motion";
+
+const CIRCULAR_TEXT =
+  "SOFTWARE ENGINEER • NODE.JS • REACT • TYPESCRIPT • AWS • ".repeat(4);
+
+const XIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+const SOCIAL_LINKS = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/vinaykushwah017", Icon: FaLinkedin },
+  { label: "GitHub", href: "https://github.com/vinukush017", Icon: FaGithub },
+  { label: "Instagram", href: "https://www.instagram.com/azad__parinda__17", Icon: FaInstagram },
+  { label: "X (Twitter)", href: "https://x.com/Vinay__17", Icon: XIcon },
+] as const;
+
+const CircularText = ({
+  text,
+  size,
+  radius,
+  fontSize,
+  duration = 46,
+  direction = "cw",
+  reduceMotion,
+  className = "",
+}: {
+  text: string;
+  size: number;
+  radius: number;
+  fontSize: number;
+  duration?: number;
+  direction?: "cw" | "ccw";
+  reduceMotion: boolean;
+  className?: string;
+}) => {
+  const pathId = useId();
+  const cx = size / 2;
+  const cy = size / 2;
+  const d = `M ${cx},${cy - radius} a ${radius},${radius} 0 1,1 -0.01,0 z`;
+  const rotateTo = direction === "ccw" ? -360 : 360;
+
+  return (
+    <motion.svg
+      viewBox={`0 0 ${size} ${size}`}
+      className={className}
+      aria-hidden="true"
+      style={{ transformOrigin: "50% 50%" }}
+      animate={reduceMotion ? undefined : { rotate: rotateTo }}
+      transition={
+        reduceMotion
+          ? undefined
+          : { repeat: Infinity, ease: "linear", duration }
+      }
+    >
+      <defs>
+        <path id={pathId} d={d} />
+      </defs>
+
+      <text
+        fill="currentColor"
+        fontSize={fontSize}
+        letterSpacing="0.22em"
+        fontWeight={700}
+        className="font-mono uppercase"
+      >
+        <textPath href={`#${pathId}`} startOffset="0%">
+          {text}
+        </textPath>
+      </text>
+    </motion.svg>
+  );
+};
+
+const StatCard = ({
+  value,
+  label,
+  className = "",
+  reduceMotion,
+  delay = 0,
+}: {
+  value: string;
+  label: string;
+  className?: string;
+  reduceMotion: boolean;
+  delay?: number;
+}) => (
+  <motion.div
+    animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
+    transition={
+      reduceMotion
+        ? undefined
+        : {
+            duration: 3.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay,
+          }
+    }
+    className={`absolute z-10 flex items-center gap-2.5 rounded-xl border border-gray-200 bg-white/80 p-3 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-gray-950/80 ${className}`}
+  >
+    <span
+      aria-hidden="true"
+      className="h-2 w-2 flex-shrink-0 rounded-full bg-accent dark:bg-accent-light"
+    />
+
+    <div className="min-w-0">
+      <p className="text-sm font-bold leading-none text-gray-950 dark:text-white">
+        {value}
+      </p>
+
+      <p className="mt-1 truncate font-mono text-[10px] uppercase tracking-[0.1em] text-gray-500 dark:text-gray-400">
+        {label}
+      </p>
+    </div>
+  </motion.div>
+);
 
 const HeroSection = () => {
   const reduceMotion = useReducedMotion();
@@ -70,30 +194,62 @@ const HeroSection = () => {
             using Node.js, TypeScript, React, and AWS.
           </motion.p>
 
-          {/* Mobile profile card */}
+          {/* Mobile circular portrait */}
           <motion.div
             {...reveal(0.24)}
-            className="mt-6 flex items-center gap-3 rounded-2xl border border-gray-300 bg-white/70 p-3 backdrop-blur-sm dark:border-white/10 dark:bg-white/5 sm:hidden"
+            className="mt-8 flex flex-col items-center gap-4 sm:hidden"
           >
-            <img
-              src="/avatar-optimized.jpg"
-              alt=""
-              width={56}
-              height={56}
-              loading="eager"
-              decoding="async"
-              className="object-cover h-14 w-14 rounded-xl"
-            />
+            <div className="relative w-[220px] aspect-square">
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/25 via-accent-light/10 to-transparent blur-xl"
+              />
 
-            <div className="min-w-0">
-              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-gray-500">
-                Currently
-              </p>
+              {/* Outer circular text */}
+              <div className="pointer-events-none absolute -inset-5 select-none">
+                <CircularText
+                  text={CIRCULAR_TEXT}
+                  size={260}
+                  radius={118}
+                  fontSize={9}
+                  duration={38}
+                  direction="ccw"
+                  reduceMotion={!!reduceMotion}
+                  className="h-full w-full text-accent/80 dark:text-accent-light/70"
+                />
+              </div>
 
-              <p className="mt-1 truncate text-sm font-semibold text-gray-950 dark:text-white">
-                Software Engineer · Pune
-              </p>
+              {/* Solid outer ring */}
+              <div
+                className={`absolute inset-0 rounded-full border-[6px] border-accent/40 dark:border-accent-light/35 ${
+                  reduceMotion ? "" : "animate-spin-slow"
+                }`}
+              />
+
+              {/* Solid inner ring */}
+              <div
+                className={`absolute inset-2 rounded-full border-[5px] border-accent-light/40 dark:border-accent-light/45 ${
+                  reduceMotion ? "" : "animate-spin-reverse"
+                }`}
+              />
+
+              {/* Profile image */}
+              <div className="absolute inset-4 overflow-hidden rounded-full shadow-2xl">
+                <img
+                  src="/avatar-optimized.jpg"
+                  alt="Vinay Kushwah, Software Engineer"
+                  width={300}
+                  height={300}
+                  loading="eager"
+                  decoding="async"
+                  className="h-full w-full scale-125 object-cover object-center"
+                />
+              </div>
             </div>
+
+            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-gray-500 dark:text-gray-400">
+              Software Engineer · Pune
+            </p>
           </motion.div>
 
           {/* CTA buttons */}
@@ -120,41 +276,27 @@ const HeroSection = () => {
             </a>
           </motion.div>
 
-          {/* Stats */}
-          <motion.dl
-            {...reveal(0.38)}
-            className="mt-10 grid max-w-2xl grid-cols-2 gap-x-5 gap-y-6 border-t border-gray-300 pt-6 dark:border-gray-700 sm:mt-12 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3"
-          >
-            <div>
-              <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-gray-500">
-                Experience
-              </dt>
+          {/* Social links */}
+          <motion.div {...reveal(0.38)} className="mt-8 sm:mt-10">
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
+              Follow me
+            </p>
 
-              <dd className="mt-1.5 text-sm font-semibold sm:text-base">
-                {years}+ years
-              </dd>
+            <div className="mt-3 flex items-center gap-1.5">
+              {SOCIAL_LINKS.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="group flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-gray-400 dark:hover:bg-accent-light/10 dark:hover:text-accent-light"
+                >
+                  <Icon className="h-[18px] w-[18px] transition-transform duration-200 group-hover:scale-110" />
+                </a>
+              ))}
             </div>
-
-            <div>
-              <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-gray-500">
-                Based in
-              </dt>
-
-              <dd className="mt-1.5 text-sm font-semibold sm:text-base">
-                Pune, India
-              </dd>
-            </div>
-
-            <div className="col-span-2 sm:col-span-1 md:col-span-2 lg:col-span-1">
-              <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-gray-500">
-                Core stack
-              </dt>
-
-              <dd className="mt-1.5 text-sm font-semibold sm:text-base">
-                Node.js · TypeScript · React
-              </dd>
-            </div>
-          </motion.dl>
+          </motion.div>
         </div>
 
         {/* Right image */}
@@ -170,47 +312,80 @@ const HeroSection = () => {
                   ease: [0.22, 1, 0.36, 1],
                 }
           }
-          className="relative mx-auto hidden w-full max-w-[430px] sm:block md:col-span-5 md:max-w-none lg:col-span-5 lg:mx-0 lg:ml-auto lg:max-w-[430px]"
+          className="relative mx-auto hidden w-full max-w-[400px] sm:flex sm:flex-col sm:items-center md:col-span-5 md:max-w-none lg:col-span-5 lg:mx-0 lg:ml-auto lg:max-w-[440px]"
         >
-          {/* Main portrait */}
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-gray-300 bg-gray-200 shadow-[0_24px_60px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-gray-900 dark:shadow-[0_24px_60px_rgba(0,0,0,0.35)] lg:rounded-[2rem]">
-            <img
-              src="/avatar-optimized.jpg"
-              alt="Vinay Kushwah, Software Engineer"
-              width={900}
-              height={1200}
-              fetchPriority="high"
-              decoding="async"
-              className="object-cover object-center w-full h-full"
-            />
-
-            {/* Image overlay */}
+          <div className="relative aspect-square w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[400px]">
+            {/* Ambient glow behind the circle */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-gray-950/70 via-gray-950/5 to-transparent"
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/25 via-accent-light/10 to-transparent blur-2xl"
             />
 
-            {/* Image content */}
-            <div className="absolute inset-x-0 bottom-0 p-5 text-white lg:p-8">
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/65">
-                Focus
-              </p>
-
-              <p className="mt-2 text-xl font-semibold tracking-tight font-heading lg:text-2xl">
-                Backend systems · APIs · Cloud
-              </p>
+            {/* Outer circular text */}
+            <div className="pointer-events-none absolute -inset-7 select-none lg:-inset-9">
+              <CircularText
+                text={CIRCULAR_TEXT}
+                size={480}
+                radius={222}
+                fontSize={16}
+                duration={54}
+                direction="ccw"
+                reduceMotion={!!reduceMotion}
+                className="h-full w-full text-accent/80 dark:text-accent-light/70"
+              />
             </div>
-          </div>
 
-          {/* Current role floating card */}
-          <div className="absolute p-3 border border-gray-200 shadow-xl -left-4 top-8 rounded-xl bg-white/95 backdrop-blur-md dark:border-white/10 dark:bg-gray-950/90 lg:-left-12 lg:top-10 lg:rounded-2xl lg:p-4">
-            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-gray-500">
-              Current role
-            </p>
+            {/* Solid outer ring */}
+            <div
+              className={`absolute inset-0 rounded-full border-[6px] border-accent/35 dark:border-accent-light/30 ${
+                reduceMotion ? "" : "animate-spin-slow"
+              }`}
+            />
 
-            <p className="mt-1 text-sm font-semibold text-gray-950 dark:text-white">
-              Software Engineer
-            </p>
+            {/* Solid inner ring */}
+            <div
+              className={`absolute inset-5 rounded-full border-[5px] border-accent-light/35 dark:border-accent-light/45 ${
+                reduceMotion ? "" : "animate-spin-reverse"
+              }`}
+            />
+
+            {/* Profile image */}
+            <div className="absolute inset-9 overflow-hidden rounded-full shadow-2xl">
+              <img
+                src="/avatar-optimized.jpg"
+                alt="Vinay Kushwah, Software Engineer"
+                width={520}
+                height={520}
+                fetchPriority="high"
+                decoding="async"
+                className="w-full h-full scale-125 object-cover object-center"
+              />
+            </div>
+
+            {/* Floating info cards */}
+            <StatCard
+              value={`${years}+`}
+              label="Years experience"
+              className="-top-3 -right-3 lg:-right-6 lg:-top-5"
+              reduceMotion={!!reduceMotion}
+              delay={0}
+            />
+
+            <StatCard
+              value="5+"
+              label="Projects shipped"
+              className="-bottom-3 -left-3 lg:-bottom-5 lg:-left-8"
+              reduceMotion={!!reduceMotion}
+              delay={0.6}
+            />
+
+            <StatCard
+              value="Pune"
+              label="Based in India"
+              className="-left-20 top-1/2 -translate-y-1/2 sm:-left-24 lg:-left-28"
+              reduceMotion={!!reduceMotion}
+              delay={1.2}
+            />
           </div>
         </motion.div>
       </div>
