@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
-  ArrowUpRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  type MotionValue,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import SectionHeader from "./SectionHeader";
+import CtaButton from "./CtaButton";
 
 type Project = {
   title: string;
@@ -155,15 +161,21 @@ const SlideDots = ({
 const ProjectCard = ({
   project,
   index,
+  total,
+  scrollYProgress,
 }: {
   project: Project;
   index: number;
+  total: number;
+  scrollYProgress: MotionValue<number>;
 }) => {
   const reduceMotion = useReducedMotion();
   const [imageIndex, setImageIndex] = useState(0);
 
   const hasImages = project.images.length > 0;
   const hasMultipleImages = project.images.length > 1;
+  const number = String(index + 1).padStart(2, "0");
+  const isLast = index === total - 1;
 
   const showPreviousImage = () => {
     if (!hasImages) return;
@@ -181,128 +193,148 @@ const ProjectCard = ({
     );
   };
 
+  // Scroll-driven "receding into the stack" effect: as scroll progress moves
+  // through this card's slice of the stack (i.e. the next card scrolls up
+  // and begins covering it), this card eases back very slightly. The last
+  // card has nothing stacking on top of it, so it never recedes.
+  const segment = 1 / total;
+  const rangeStart = index * segment;
+  const rangeEnd = Math.min(rangeStart + segment, 1);
+
+  const stackScale = useTransform(
+    scrollYProgress,
+    [rangeStart, rangeEnd],
+    [1, isLast ? 1 : 0.95],
+  );
+  const stackOpacity = useTransform(
+    scrollYProgress,
+    [rangeStart, rangeEnd],
+    [1, isLast ? 1 : 0.88],
+  );
+
   return (
-    <motion.article
-      initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{
-        once: true,
-        amount: 0.15,
-      }}
-      transition={
-        reduceMotion
-          ? { duration: 0 }
-          : {
-              duration: 0.5,
-              delay: Math.min(index * 0.06, 0.18),
-              ease: [0.22, 1, 0.36, 1],
-            }
+    <div
+      style={
+        {
+          "--i": index,
+          zIndex: index + 1,
+        } as React.CSSProperties
       }
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_24px_60px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-accent-light/30 dark:hover:shadow-[0_24px_60px_rgba(0,0,0,0.28)]"
+      className="sticky top-[calc(4.5rem+var(--i)*0.85rem)] pb-5 lg:top-[calc(6rem+var(--i)*2rem)] lg:pb-8"
     >
+      <motion.article
+        initial={reduceMotion ? false : { y: 24 }}
+        whileInView={{ y: 0 }}
+        viewport={{
+          once: true,
+          amount: 0.15,
+        }}
+        transition={
+          reduceMotion
+            ? { duration: 0 }
+            : {
+                duration: 0.5,
+                ease: [0.22, 1, 0.36, 1],
+              }
+        }
+        style={
+          reduceMotion
+            ? undefined
+            : { scale: stackScale, opacity: stackOpacity }
+        }
+        className="group relative grid grid-cols-1 gap-6 overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] transition-colors duration-300 hover:border-accent/35 dark:border-white/10 dark:bg-[#111419] dark:hover:border-accent-light/30 sm:p-7 lg:grid-cols-2 lg:items-center lg:gap-10 lg:p-9"
+      >
+      {/* Decorative project number */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-4 left-4 select-none font-heading text-[6rem] font-bold leading-none text-accent/[0.06] sm:text-[8rem] lg:-top-8 lg:left-6 lg:text-[9rem] dark:text-accent-light/[0.06]"
+      >
+        {number}
+      </span>
+
       {/* Project media */}
-      <div className="relative overflow-hidden border-b border-gray-200 bg-gray-100 dark:border-white/10 dark:bg-[#0b0d10]">
-        <div className="aspect-[16/10] overflow-hidden">
-          {hasImages ? (
-            <motion.img
-              key={`${project.title}-${imageIndex}`}
-              src={project.images[imageIndex]}
-              alt={`${project.title} screenshot ${imageIndex + 1}`}
-              loading="lazy"
-              decoding="async"
-              initial={reduceMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.25 }}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
-            />
-          ) : (
-            <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#f3f4f1] px-8 dark:bg-[#0d1014]">
-              {/* Decorative grid */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 pointer-events-none opacity-60 dark:opacity-20"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(to right, rgba(15,23,42,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.07) 1px, transparent 1px)",
-                  backgroundSize: "32px 32px",
-                }}
+      <div className="relative order-1 lg:order-2">
+        <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 dark:border-white/10 dark:bg-[#0b0d10]">
+          <div className="aspect-[16/11] overflow-hidden">
+            {hasImages ? (
+              <motion.img
+                key={`${project.title}-${imageIndex}`}
+                src={project.images[imageIndex]}
+                alt={`${project.title} screenshot ${imageIndex + 1}`}
+                loading="lazy"
+                decoding="async"
+                initial={reduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.25 }}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
+            ) : (
+              <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#f3f4f1] px-8 dark:bg-[#0d1014]">
+                <div
+                  aria-hidden="true"
+                  className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-accent-light/15 blur-3xl pointer-events-none dark:bg-accent/10"
+                />
 
-              <div
-                aria-hidden="true"
-                className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-accent-light/15 blur-3xl pointer-events-none dark:bg-accent/10"
-              />
+                <div className="relative text-center">
+                  <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-accent-dark dark:text-accent-light">
+                    Selected work
+                  </p>
 
-              <div className="relative text-center">
-                <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-accent-dark dark:text-accent-light">
-                  Selected work
-                </p>
+                  <p className="mt-4 font-heading text-3xl font-semibold tracking-[-0.04em] text-gray-950 dark:text-white sm:text-4xl">
+                    {project.title}
+                  </p>
 
-                <p className="mt-4 font-heading text-3xl font-semibold tracking-[-0.04em] text-gray-950 dark:text-white sm:text-4xl">
-                  {project.title}
-                </p>
-
-                <p className="max-w-xs mx-auto mt-3 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                  {project.category}
-                </p>
+                  <p className="max-w-xs mx-auto mt-3 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    {project.category}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
+          </div>
+
+          {hasMultipleImages && (
+            <>
+              <button
+                type="button"
+                aria-label={`Previous ${project.title} screenshot`}
+                onClick={showPreviousImage}
+                className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 left-3 top-1/2 border-white/20 bg-black/45 backdrop-blur-md hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
+              >
+                <ChevronLeftIcon className="w-5 h-5" />
+              </button>
+
+              <button
+                type="button"
+                aria-label={`Next ${project.title} screenshot`}
+                onClick={showNextImage}
+                className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 right-3 top-1/2 border-white/20 bg-black/45 backdrop-blur-md hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
+              >
+                <ChevronRightIcon className="w-5 h-5" />
+              </button>
+
+              <SlideDots
+                count={project.images.length}
+                active={imageIndex}
+                onSelect={setImageIndex}
+                labelPrefix={project.title}
+              />
+            </>
           )}
         </div>
-
-        {hasMultipleImages && (
-          <>
-            <button
-              type="button"
-              aria-label={`Previous ${project.title} screenshot`}
-              onClick={showPreviousImage}
-              className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 left-3 top-1/2 border-white/20 bg-black/45 backdrop-blur-md hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
-            >
-              <ChevronLeftIcon className="w-5 h-5" />
-            </button>
-
-            <button
-              type="button"
-              aria-label={`Next ${project.title} screenshot`}
-              onClick={showNextImage}
-              className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 right-3 top-1/2 border-white/20 bg-black/45 backdrop-blur-md hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
-            >
-              <ChevronRightIcon className="w-5 h-5" />
-            </button>
-
-            <SlideDots
-              count={project.images.length}
-              active={imageIndex}
-              onSelect={setImageIndex}
-              labelPrefix={project.title}
-            />
-          </>
-        )}
       </div>
 
-      {/* Project content */}
-      <div className="flex flex-col flex-1 p-5 sm:p-6 lg:p-7">
-        {/* Category */}
+      {/* Project information */}
+      <div className="relative z-10 order-2 lg:order-1">
+        {/* Metadata */}
         <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-accent-dark dark:text-accent-light sm:text-[11px]">
-          {project.category}
+          {project.category} <span aria-hidden="true">&middot;</span>{" "}
+          {project.stack[0]}
         </p>
 
         {/* Title */}
-        <div className="flex items-start justify-between gap-5 mt-3">
-          <h3 className="font-heading text-2xl font-semibold tracking-[-0.035em] text-gray-950 dark:text-white sm:text-[1.7rem]">
-            {project.title}
-          </h3>
-
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Open ${project.title} in a new tab`}
-            className="inline-flex items-center justify-center flex-none w-10 h-10 text-gray-700 transition-all border border-gray-200 rounded-full hover:border-accent hover:bg-accent hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-white/15 dark:text-gray-300 dark:hover:border-accent-light dark:hover:bg-accent dark:hover:text-white"
-          >
-            <ArrowUpRightIcon className="w-4 h-4" />
-          </a>
-        </div>
+        <h3 className="mt-3 font-heading text-2xl font-semibold tracking-[-0.035em] text-gray-950 transition-colors dark:text-white sm:text-[1.75rem]">
+          {project.title}
+        </h3>
 
         {/* Description */}
         <p className="mt-4 text-sm leading-7 text-gray-600 dark:text-gray-400 sm:text-[15px]">
@@ -310,59 +342,57 @@ const ProjectCard = ({
         </p>
 
         {/* Highlights */}
-        <div className="mt-6">
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-gray-400 dark:text-gray-500">
-            Engineering highlights
-          </p>
+        <ul className="grid grid-cols-1 gap-2 mt-5 sm:grid-cols-2">
+          {project.highlights.map((highlight) => (
+            <li
+              key={highlight}
+              className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"
+            >
+              <span
+                aria-hidden="true"
+                className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-accent dark:bg-accent-light"
+              />
 
-          <ul className="grid grid-cols-1 gap-2 mt-3 sm:grid-cols-2">
-            {project.highlights.map((highlight) => (
-              <li
-                key={highlight}
-                className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"
-              >
-                <span
-                  aria-hidden="true"
-                  className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-accent dark:bg-accent-light"
-                />
+              <span>{highlight}</span>
+            </li>
+          ))}
+        </ul>
 
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
+        {/* Technologies */}
+        <div className="flex flex-wrap gap-2 mt-6">
+          {project.stack.map((technology) => (
+            <span
+              key={technology}
+              className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-mono text-[10px] font-medium text-gray-600 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 sm:text-[11px]"
+            >
+              {technology}
+            </span>
+          ))}
         </div>
 
-        {/* Footer */}
-        <div className="mt-auto pt-7">
-          <div className="pt-5 border-t border-gray-200 dark:border-white/10">
-            <div className="flex flex-wrap gap-2">
-              {project.stack.map((technology) => (
-                <span
-                  key={technology}
-                  className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-mono text-[10px] font-medium text-gray-600 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 sm:text-[11px]"
-                >
-                  {technology}
-                </span>
-              ))}
-            </div>
-
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-5 text-sm font-semibold group/link text-gray-950 transition-colors hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-white dark:hover:text-accent-light"
-            >
-              View live project
-              <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
-            </a>
-          </div>
+        {/* Actions */}
+        <div className="mt-7">
+          <CtaButton href={project.link} external variant="primary" className="inline-flex">
+            View Live Project
+          </CtaButton>
         </div>
       </div>
-    </motion.article>
+      </motion.article>
+    </div>
   );
 };
 
 const Projects: React.FC = () => {
+  const stackRef = useRef<HTMLDivElement>(null);
+
+  // A single scroll progress (0 → 1) spanning the whole stack, used to drive
+  // each card's subtle "receding into the stack" scale/opacity as the next
+  // card scrolls up and covers it.
+  const { scrollYProgress } = useScroll({
+    target: stackRef,
+    offset: ["start start", "end end"],
+  });
+
   return (
     <section
       id="projects"
@@ -375,9 +405,9 @@ const Projects: React.FC = () => {
             subtitle="01 / Selected Work"
             title={
               <>
-                Projects Built {" "}
+                Projects Built{" "}
                 <span className="text-accent-dark dark:text-accent-light">
-                Around Real Problems
+                  Around Real Problems
                 </span>
                 .
               </>
@@ -386,9 +416,15 @@ const Projects: React.FC = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-7">
+        <div ref={stackRef} className="relative">
           {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={index}
+              total={projects.length}
+              scrollYProgress={scrollYProgress}
+            />
           ))}
         </div>
       </div>
