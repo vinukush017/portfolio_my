@@ -1,11 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-} from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowUpRightIcon,
   MoonIcon,
@@ -38,14 +32,6 @@ const Navbar = () => {
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuWasOpen = useRef(false);
-
-  const { scrollYProgress } = useScroll();
-
-  const progress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 24,
-    mass: 0.25,
-  });
 
   /*
    * Navbar background
@@ -277,7 +263,7 @@ const Navbar = () => {
                   aria-current={active ? "location" : undefined}
                   className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                     active
-                      ? "text-gray-950 dark:text-white"
+                      ? "text-accent dark:text-accent-light"
                       : "text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
                   }`}
                 >
@@ -402,14 +388,6 @@ const Navbar = () => {
               </span>
             </button>
           </div>
-
-          <motion.div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 hidden h-0.5 origin-left bg-accent dark:bg-accent-light lg:block"
-            style={{
-              scaleX: progress,
-            }}
-          />
         </nav>
 
         {/* Mobile menu */}

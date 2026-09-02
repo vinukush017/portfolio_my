@@ -105,7 +105,7 @@ const HeroSection = () => {
               href="#projects"
               className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-dark px-6 text-sm font-semibold text-white shadow-md shadow-accent/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 dark:focus-visible:ring-offset-slate-900"
             >
-              View my work
+              View My Work
               <ArrowDownRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
             </a>
 
@@ -115,7 +115,7 @@ const HeroSection = () => {
               rel="noopener noreferrer"
               className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white/40 px-6 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-accent-light/40 dark:hover:bg-white/10"
             >
-              View résumé
+              View Résumé
               <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
           </motion.div>
