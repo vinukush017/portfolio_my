@@ -1,4 +1,10 @@
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  BriefcaseIcon,
+  Square3Stack3DIcon,
+  PuzzlePieceIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/outline";
 import SectionHeader from "./SectionHeader";
 
 const focusAreas = [
@@ -34,18 +40,26 @@ const About = () => {
     {
       value: `${years}+`,
       label: "Years of experience",
+      meta: `Since ${startYear}`,
+      Icon: BriefcaseIcon,
     },
     {
       value: "Full-stack",
       label: "Product engineering",
+      meta: "React · Node.js",
+      Icon: Square3Stack3DIcon,
     },
     {
       value: "APIs",
       label: "Systems & integrations",
+      meta: "REST · AWS",
+      Icon: PuzzlePieceIcon,
     },
     {
       value: "Pune",
       label: "Based in India",
+      meta: "UTC +5:30",
+      Icon: MapPinIcon,
     },
   ];
 
@@ -113,39 +127,67 @@ const About = () => {
           {/* Stats */}
           <motion.dl
             {...reveal(0.1)}
-            className="grid grid-cols-2 gap-3 md:col-span-5 lg:gap-4"
+            className="grid grid-cols-2 gap-4 md:col-span-5 lg:gap-5"
           >
             {stats.map((stat, index) => {
               const isPrimary = index === 0;
+              const Icon = stat.Icon;
 
               return (
                 <div
                   key={stat.label}
-                  className={`flex min-h-32 flex-col justify-between rounded-2xl border p-4 transition-transform duration-300 hover:-translate-y-1 sm:min-h-36 lg:min-h-40 lg:p-5 ${
+                  className={`group flex min-h-36 flex-col justify-between rounded-2xl border p-4 transition-all duration-300 hover:-translate-y-1 sm:min-h-40 lg:min-h-44 lg:p-5 ${
                     isPrimary
-                      ? "border-accent bg-gradient-to-br from-accent to-accent-dark text-white shadow-lg shadow-accent/15"
-                      : "border-gray-300 bg-white text-gray-950 dark:border-white/10 dark:bg-[#111419] dark:text-white"
+                      ? "border-accent-dark/40 bg-gradient-to-br from-accent to-accent-dark text-white shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/25"
+                      : "border-gray-200 bg-white text-gray-950 shadow-sm hover:border-accent/40 hover:shadow-md dark:border-white/10 dark:bg-[#111419] dark:text-white"
                   }`}
                 >
-                  <dt
-                    className={`text-[10px] font-medium uppercase tracking-[0.14em] sm:text-xs ${
-                      isPrimary
-                        ? "text-white/75"
-                        : "text-gray-500"
-                    }`}
-                  >
-                    {stat.label}
-                  </dt>
+                  <div>
+                    <Icon
+                      aria-hidden="true"
+                      className={`h-5 w-5 transition-transform duration-300 group-hover:scale-105 ${
+                        isPrimary
+                          ? "text-white/80"
+                          : "text-accent-dark dark:text-accent-light"
+                      }`}
+                    />
 
-                  <dd
-                    className={`font-heading font-semibold tracking-[-0.04em] ${
-                      stat.value.length > 8
-                        ? "text-xl sm:text-2xl"
-                        : "text-3xl sm:text-4xl"
-                    }`}
-                  >
-                    {stat.value}
-                  </dd>
+                    <dt
+                      className={`mt-3 font-mono text-[10px] font-medium uppercase tracking-[0.14em] sm:text-[11px] ${
+                        isPrimary ? "text-white/70" : "text-gray-500"
+                      }`}
+                    >
+                      {stat.label}
+                    </dt>
+                  </div>
+
+                  <div>
+                    <dd
+                      className={`font-heading font-semibold tracking-[-0.04em] ${
+                        stat.value.length > 8
+                          ? "text-xl sm:text-2xl"
+                          : "text-3xl sm:text-4xl"
+                      }`}
+                    >
+                      {stat.value}
+                    </dd>
+
+                    <div
+                      className={`mt-3 flex items-center gap-2 border-t pt-3 text-[11px] font-medium ${
+                        isPrimary
+                          ? "border-white/20 text-white/70"
+                          : "border-gray-200 text-gray-500 dark:border-white/10 dark:text-gray-500"
+                      }`}
+                    >
+                      <span
+                        className={`h-1 w-1 rounded-full ${
+                          isPrimary ? "bg-white/70" : "bg-accent dark:bg-accent-light"
+                        }`}
+                      />
+
+                      {stat.meta}
+                    </div>
+                  </div>
                 </div>
               );
             })}

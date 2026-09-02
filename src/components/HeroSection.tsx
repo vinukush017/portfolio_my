@@ -189,9 +189,13 @@ const HeroSection = () => {
             {...reveal(0.2)}
             className="mt-7 max-w-2xl text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:mt-8 sm:text-lg"
           >
-            I&apos;m Vinay Kushwah, a software engineer building reliable
-            backend systems, APIs, integrations, and modern web applications
-            using Node.js, TypeScript, React, and AWS.
+            I&apos;m{" "}
+            <span className="font-bold text-accent-dark dark:text-accent-light">
+              Vinay Kushwah
+            </span>
+            , a software engineer building reliable backend systems, APIs,
+            integrations, and modern web applications using Node.js,
+            TypeScript, React, and AWS.
           </motion.p>
 
           {/* Mobile circular portrait */}

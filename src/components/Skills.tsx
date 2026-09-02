@@ -123,7 +123,7 @@ const Skills = () => {
           />
         </div>
 
-        <div className="border-y border-gray-300 dark:border-white/10">
+        <div className="-mt-4 sm:-mt-6">
           {groups.map((group, groupIndex) => (
             <motion.div
               key={group.name}
@@ -142,7 +142,7 @@ const Skills = () => {
                       ease: [0.22, 1, 0.36, 1],
                     }
               }
-              className="grid gap-6 border-b border-gray-300 py-8 last:border-b-0 dark:border-white/10 sm:py-10 lg:grid-cols-12 lg:gap-10"
+              className="grid gap-6 border-b border-gray-300 pb-8 pt-8 first:pt-6 last:border-b-0 dark:border-white/10 sm:pb-10 sm:pt-10 sm:first:pt-8 lg:grid-cols-12 lg:gap-10"
             >
               {/* Group information */}
               <div className="lg:col-span-4">
@@ -162,15 +162,15 @@ const Skills = () => {
               </div>
 
               {/* Skills */}
-              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:col-span-8 lg:grid-cols-4">
+              <ul className="flex flex-wrap gap-3 lg:col-span-8">
                 {group.items.map((skill) => (
                   <li
                     key={skill.name}
-                    className="group/skill flex min-h-28 flex-col justify-between rounded-2xl border border-gray-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_14px_30px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-accent-light/40 dark:hover:shadow-[0_14px_30px_rgba(0,0,0,0.2)] sm:min-h-32"
+                    className="group/skill flex min-w-[45%] flex-1 items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-[0_8px_20px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-accent-light/40 dark:hover:shadow-[0_8px_20px_rgba(0,0,0,0.2)] sm:min-w-[180px] sm:flex-none lg:min-w-[190px]"
                   >
                     <span
                       aria-hidden="true"
-                      className="text-2xl text-gray-400 transition-colors duration-300 group-hover/skill:text-accent dark:text-gray-500 dark:group-hover/skill:text-accent-light"
+                      className="flex-shrink-0 text-xl text-gray-400 transition-colors duration-300 group-hover/skill:text-accent dark:text-gray-500 dark:group-hover/skill:text-accent-light"
                     >
                       {skill.icon}
                     </span>
