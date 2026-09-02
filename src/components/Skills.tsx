@@ -118,7 +118,15 @@ const Skills = () => {
         <div id="expertise-heading">
           <SectionHeader
             subtitle="03 / Expertise"
-            title="Technology with a purpose."
+            title={
+              <>
+                Technology With a{" "}
+                <span className="text-accent-dark dark:text-accent-light">
+                  Purpose
+                </span>
+                .
+              </>
+            }
             description="A practical engineering toolkit shaped by production work across backend systems, web applications, databases, APIs, and cloud integrations."
           />
         </div>
@@ -137,10 +145,10 @@ const Skills = () => {
                 reduceMotion
                   ? { duration: 0 }
                   : {
-                      duration: 0.5,
-                      delay: Math.min(groupIndex * 0.06, 0.18),
-                      ease: [0.22, 1, 0.36, 1],
-                    }
+                    duration: 0.5,
+                    delay: Math.min(groupIndex * 0.06, 0.18),
+                    ease: [0.22, 1, 0.36, 1],
+                  }
               }
               className="grid gap-6 border-b border-gray-300 pb-8 pt-8 first:pt-6 last:border-b-0 dark:border-white/10 sm:pb-10 sm:pt-10 sm:first:pt-8 lg:grid-cols-12 lg:gap-10"
             >

@@ -373,7 +373,15 @@ const Projects: React.FC = () => {
         <div id="projects-heading">
           <SectionHeader
             subtitle="01 / Selected Work"
-            title="Projects built around real problems."
+            title={
+              <>
+                Projects Built {" "}
+                <span className="text-accent-dark dark:text-accent-light">
+                Around Real Problems
+                </span>
+                .
+              </>
+            }
             description="A selection of applications I've built across full-stack development, APIs, cloud integrations, AI, and responsive product experiences."
           />
         </div>

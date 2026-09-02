@@ -70,7 +70,14 @@ const Blogs = () => {
         <div id="writing-heading">
           <SectionHeader
             subtitle="05 / Writing"
-            title="Writing about the work."
+            title={
+              <>
+                <span className="text-accent-dark dark:text-accent-light">
+                  Writing
+                </span>{" "}
+                About The Things I've Worked On.
+              </>
+            }
             description="Practical notes on JavaScript, backend systems, frontend architecture, and lessons learned while building production software."
           />
         </div>

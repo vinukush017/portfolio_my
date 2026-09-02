@@ -2,7 +2,7 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 interface SectionHeaderProps {
-  title: string;
+  title: React.ReactNode;
   subtitle?: string;
   description?: string;
 }

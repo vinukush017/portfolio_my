@@ -73,7 +73,14 @@ const About = () => {
         <div id="about-heading">
           <SectionHeader
             subtitle="02 / About"
-            title="Engineering with purpose."
+            title={
+              <>
+                <span className="text-accent-dark dark:text-accent-light">
+                  Engineering
+                </span>{" "}
+                With Purpose.
+              </>
+            }
             description="I combine product thinking with dependable engineering to build software that is useful, scalable, and maintainable."
           />
         </div>

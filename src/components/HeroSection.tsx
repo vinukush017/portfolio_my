@@ -175,10 +175,10 @@ const HeroSection = () => {
             {...reveal(0.12)}
             className="max-w-5xl font-heading text-[clamp(2.75rem,13vw,3.5rem)] font-semibold leading-[0.96] tracking-[-0.055em] sm:text-6xl md:text-[3.25rem] lg:text-7xl"
           >
-            I build scalable
+            I Build Scalable
             <br />
             <span className="bg-gradient-to-r from-accent to-accent-dark bg-clip-text text-transparent">
-              web systems.
+              Web Systems.
             </span>
           </motion.h1>
 

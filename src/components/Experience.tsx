@@ -98,7 +98,15 @@ const Experience = () => {
         <div id="experience-heading">
           <SectionHeader
             subtitle="04 / Experience"
-            title="Building production software."
+            title={
+              <>
+                Building{" "}
+                <span className="text-accent-dark dark:text-accent-light">
+                  Production
+                </span>{" "}
+                Software.
+              </>
+            }
             description="My experience spans backend systems, APIs, databases, frontend applications, and cloud integrations — with a focus on reliable software that is easier to scale and maintain."
           />
         </div>

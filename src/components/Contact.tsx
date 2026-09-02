@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { ArrowUpRightIcon, CheckIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowUpRightIcon,
+  ChatBubbleLeftIcon,
+  CheckIcon,
+  EnvelopeIcon,
+  PaperAirplaneIcon,
+  TagIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import SectionHeader from "./SectionHeader";
 
@@ -19,7 +27,10 @@ const contactLinks = [
 ];
 
 const fieldClass =
-  "w-full rounded-xl border border-gray-300 bg-[#f7f7f2] px-4 py-3.5 text-sm text-gray-950 outline-none transition-all placeholder:text-gray-400 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/10 dark:border-white/15 dark:bg-[#0b0d10] dark:text-white dark:placeholder:text-gray-600 dark:focus:border-accent-light dark:focus:bg-[#0b0d10] dark:focus:ring-accent/15";
+  "peer w-full rounded-xl border border-slate-200 bg-slate-50 py-3.5 pl-12 pr-4 text-sm text-slate-800 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/10 dark:border-slate-700 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-accent-light dark:focus:bg-slate-800/50 dark:focus:ring-accent/15";
+
+const fieldIconClass =
+  "pointer-events-none absolute left-4 h-5 w-5 text-slate-400 transition-colors duration-300 peer-focus:text-accent dark:text-slate-500 dark:peer-focus:text-accent-light";
 
 const Contact: React.FC = () => {
   const reduceMotion = useReducedMotion();
@@ -99,7 +110,15 @@ const Contact: React.FC = () => {
         <div id="contact-heading">
           <SectionHeader
             subtitle="06 / Contact"
-            title="Let’s build something useful."
+            title={
+              <>
+                Let&rsquo;s Build Something{" "}
+                <span className="text-accent-dark dark:text-accent-light">
+                  Useful
+                </span>
+                .
+              </>
+            }
             description="Have an engineering challenge, product idea, or opportunity that could be a good fit? I'd be happy to hear about it."
           />
         </div>
@@ -198,15 +217,21 @@ const Contact: React.FC = () => {
                 htmlFor="name"
               >
                 Name
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  placeholder="Your name"
-                  required
-                  className={`${fieldClass} mt-2`}
-                />
+                <div className="relative mt-2">
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    placeholder="Your name"
+                    required
+                    className={fieldClass}
+                  />
+                  <UserIcon
+                    aria-hidden="true"
+                    className={`${fieldIconClass} top-1/2 -translate-y-1/2`}
+                  />
+                </div>
               </label>
 
               <label
@@ -214,16 +239,22 @@ const Contact: React.FC = () => {
                 htmlFor="email"
               >
                 Email
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  inputMode="email"
-                  placeholder="you@company.com"
-                  required
-                  className={`${fieldClass} mt-2`}
-                />
+                <div className="relative mt-2">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    placeholder="you@company.com"
+                    required
+                    className={fieldClass}
+                  />
+                  <EnvelopeIcon
+                    aria-hidden="true"
+                    className={`${fieldIconClass} top-1/2 -translate-y-1/2`}
+                  />
+                </div>
               </label>
             </div>
 
@@ -233,16 +264,22 @@ const Contact: React.FC = () => {
               htmlFor="subject"
             >
               Subject
-              <input
-                id="subject"
-                name="subject"
-                type="text"
-                placeholder="What would you like to discuss?"
-                minLength={3}
-                maxLength={120}
-                required
-                className={`${fieldClass} mt-2`}
-              />
+              <div className="relative mt-2">
+                <input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  placeholder="What would you like to discuss?"
+                  minLength={3}
+                  maxLength={120}
+                  required
+                  className={fieldClass}
+                />
+                <TagIcon
+                  aria-hidden="true"
+                  className={`${fieldIconClass} top-1/2 -translate-y-1/2`}
+                />
+              </div>
             </label>
 
             {/* Message */}
@@ -251,16 +288,19 @@ const Contact: React.FC = () => {
               htmlFor="message"
             >
               Message
-              <textarea
-                id="message"
-                name="message"
-                minLength={20}
-                maxLength={2000}
-                rows={6}
-                placeholder="Tell me a little about the opportunity, project, or problem you're working on…"
-                required
-                className={`${fieldClass} mt-2 resize-y`}
-              />
+              <div className="relative mt-2">
+                <textarea
+                  id="message"
+                  name="message"
+                  minLength={20}
+                  maxLength={2000}
+                  rows={6}
+                  placeholder="Tell me a little about the opportunity, project, or problem you're working on…"
+                  required
+                  className={`${fieldClass} resize-y`}
+                />
+                <ChatBubbleLeftIcon aria-hidden="true" className={`${fieldIconClass} top-4`} />
+              </div>
             </label>
 
             {/* Formspree honeypot */}
@@ -285,19 +325,23 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading || submitted}
-                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-dark px-6 text-sm font-semibold text-white shadow-md shadow-accent/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/25 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 sm:w-auto"
+                className="group inline-flex h-10 w-full items-center justify-center gap-2.5 rounded-full bg-accent pl-5 pr-1.5 text-sm font-semibold text-white shadow-sm shadow-accent/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-dark hover:shadow-md hover:shadow-accent/30 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 disabled:hover:bg-accent sm:w-auto"
               >
                 {loading ? (
                   "Sending…"
                 ) : submitted ? (
                   <>
-                    <CheckIcon className="w-4 h-4" />
                     Message sent
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
+                      <CheckIcon className="h-4 w-4" />
+                    </span>
                   </>
                 ) : (
                   <>
                     Send message
-                    <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
+                      <PaperAirplaneIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
                   </>
                 )}
               </button>
