@@ -60,7 +60,7 @@ const Footer = () => {
               type="button"
               onClick={() => scrollToSection("home")}
               aria-label="Vinay Kushwah — Back to top"
-              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-bold tracking-[-0.04em] text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-bold tracking-[-0.04em] text-accent-light transition-colors group-hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
             >
               VK
 
@@ -155,8 +155,12 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-3 border-t border-white/15 pt-6 font-mono text-[10px] uppercase tracking-[0.14em] text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:text-[11px]">
-          <p>© {currentYear} Vinay Kushwah</p>
+        <div className="flex flex-col gap-3 border-t border-white/15 pt-6 font-mono text-xs uppercase tracking-[0.14em] text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+          <p>
+            © {currentYear}{" "}
+            <span className="text-accent-light">Vinay Kushwah</span>. All
+            rights reserved.
+          </p>
 
           <p>Designed &amp; built with React + TypeScript</p>
         </div>
