@@ -2,11 +2,9 @@
 
 import { useId } from "react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import {
-  ArrowDownRightIcon,
-  ArrowUpRightIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import { motion, useReducedMotion } from "framer-motion";
+import CtaButton from "./CtaButton";
 
 const CIRCULAR_TEXT =
   "SOFTWARE ENGINEER • NODE.JS • REACT • TYPESCRIPT • AWS • ".repeat(4);
@@ -105,11 +103,11 @@ const StatCard = ({
       reduceMotion
         ? undefined
         : {
-            duration: 3.2,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay,
-          }
+          duration: 3.2,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay,
+        }
     }
     className={`absolute z-10 flex items-center gap-2.5 rounded-xl border border-gray-200 bg-white/80 p-3 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-gray-950/80 ${className}`}
   >
@@ -142,10 +140,10 @@ const HeroSection = () => {
     transition: reduceMotion
       ? { duration: 0 }
       : {
-          duration: 0.5,
-          delay,
-          ease: [0.22, 1, 0.36, 1] as const,
-        },
+        duration: 0.5,
+        delay,
+        ease: [0.22, 1, 0.36, 1] as const,
+      },
   });
 
   return (
@@ -154,9 +152,9 @@ const HeroSection = () => {
       aria-labelledby="hero-title"
       className="site-divider site-text-primary relative overflow-hidden border-b"
     >
-      <div className="section-shell relative grid min-h-[calc(100svh-4rem)] items-center gap-12 pb-14 pt-28 sm:pb-20 sm:pt-32 md:grid-cols-12 md:gap-8 lg:gap-10 lg:pb-24 lg:pt-32">
+      <div className="section-shell relative grid min-h-[calc(100svh-4rem)] items-center gap-12 pb-14 pt-28 sm:pb-20 sm:pt-32 lg:grid-cols-12 lg:gap-10 lg:pb-24 lg:pt-32">
         {/* Left content */}
-        <div className="md:col-span-7 lg:col-span-7">
+        <div className="lg:col-span-6">
           {/* Role */}
           <motion.div
             {...reveal(0.05)}
@@ -175,7 +173,7 @@ const HeroSection = () => {
           <motion.h1
             id="hero-title"
             {...reveal(0.12)}
-            className="max-w-5xl font-heading text-[clamp(2.75rem,13vw,3.5rem)] font-semibold leading-[0.96] tracking-[-0.055em] sm:text-6xl md:text-[3.25rem] lg:text-[5.25rem] xl:text-8xl"
+            className="max-w-5xl font-heading text-[clamp(2.75rem,13vw,3.5rem)] font-semibold leading-[0.96] tracking-[-0.055em] sm:text-6xl md:text-[3.25rem] lg:text-7xl"
           >
             I build scalable
             <br />
@@ -198,76 +196,14 @@ const HeroSection = () => {
             TypeScript, React, and AWS.
           </motion.p>
 
-          {/* Mobile circular portrait */}
-          <motion.div
-            {...reveal(0.24)}
-            className="mt-8 flex flex-col items-center gap-4 sm:hidden"
-          >
-            <div className="relative w-[220px] aspect-square">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/25 via-accent-light/10 to-transparent blur-xl"
-              />
-
-              {/* Outer circular text */}
-              <div className="pointer-events-none absolute -inset-5 select-none">
-                <CircularText
-                  text={CIRCULAR_TEXT}
-                  size={260}
-                  radius={118}
-                  fontSize={9}
-                  duration={38}
-                  direction="ccw"
-                  reduceMotion={!!reduceMotion}
-                  className="h-full w-full text-accent/80 dark:text-accent-light/70"
-                />
-              </div>
-
-              {/* Solid outer ring */}
-              <div
-                className={`absolute inset-0 rounded-full border-[6px] border-accent/40 dark:border-accent-light/35 ${
-                  reduceMotion ? "" : "animate-spin-slow"
-                }`}
-              />
-
-              {/* Solid inner ring */}
-              <div
-                className={`absolute inset-2 rounded-full border-[5px] border-accent-light/40 dark:border-accent-light/45 ${
-                  reduceMotion ? "" : "animate-spin-reverse"
-                }`}
-              />
-
-              {/* Profile image */}
-              <div className="absolute inset-4 overflow-hidden rounded-full shadow-2xl">
-                <img
-                  src="/avatar-optimized.jpg"
-                  alt="Vinay Kushwah, Software Engineer"
-                  width={300}
-                  height={300}
-                  loading="eager"
-                  decoding="async"
-                  className="h-full w-full scale-125 object-cover object-center"
-                />
-              </div>
-            </div>
-
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-gray-500 dark:text-gray-400">
-              Software Engineer · Pune
-            </p>
-          </motion.div>
-
           {/* CTA buttons */}
           <motion.div
             {...reveal(0.3)}
-            className="flex flex-col gap-3 mt-7 sm:mt-8 sm:flex-row sm:items-center md:flex-col md:items-stretch lg:flex-row lg:items-center"
+            className="flex flex-wrap items-center gap-3 mt-7 sm:mt-8"
           >
-            <a
-              href="#projects"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-dark px-6 text-sm font-semibold text-white shadow-md shadow-accent/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 dark:focus-visible:ring-offset-slate-900"
-            >
-              View My Work
-              <ArrowDownRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
-            </a>
+            <CtaButton href="#projects" variant="primary" className="inline-flex">
+              View Work
+            </CtaButton>
 
             <a
               href="/Vinay-Kushwah-Resume.pdf"
@@ -275,8 +211,10 @@ const HeroSection = () => {
               rel="noopener noreferrer"
               className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white/40 px-6 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-accent-light/40 dark:hover:bg-white/10"
             >
-              View Résumé
-              <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              Download CV
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-400 transition-colors duration-200 group-hover:border-accent dark:border-gray-600 dark:group-hover:border-accent-light">
+                <ArrowDownIcon className="h-4 w-4 transition-transform duration-200  group-hover:translate-y-0.5" />
+              </span>
             </a>
           </motion.div>
 
@@ -301,6 +239,63 @@ const HeroSection = () => {
               ))}
             </div>
           </motion.div>
+
+          {/* Mobile & tablet circular portrait */}
+          <motion.div
+            {...reveal(0.44)}
+            className="mt-10 flex flex-col items-center gap-4 lg:hidden"
+          >
+            <div className="relative w-[220px] aspect-square sm:w-[280px]">
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/25 via-accent-light/10 to-transparent blur-xl"
+              />
+
+              {/* Outer circular text */}
+              <div className="pointer-events-none absolute -inset-7 select-none sm:-inset-8">
+                <CircularText
+                  text={CIRCULAR_TEXT}
+                  size={260}
+                  radius={118}
+                  fontSize={12}
+                  duration={38}
+                  direction="ccw"
+                  reduceMotion={!!reduceMotion}
+                  className="h-full w-full text-accent/80 dark:text-accent-light/70"
+                />
+              </div>
+
+              {/* Solid outer ring */}
+              <div
+                className={`absolute inset-0 rounded-full border-2 border-accent/40 dark:border-accent-light/35 ${reduceMotion ? "" : "animate-spin-slow"
+                  }`}
+              />
+
+              {/* Solid inner ring */}
+              <div
+                className={`absolute inset-4 rounded-full border border-accent-light/40 dark:border-accent-light/45 ${reduceMotion ? "" : "animate-spin-reverse"
+                  }`}
+              />
+
+              {/* Profile image */}
+              <div className="absolute inset-9 overflow-hidden rounded-full shadow-2xl">
+                <img
+                  src="/avatar-optimized.jpg"
+                  alt="Vinay Kushwah, Software Engineer"
+                  width={300}
+                  height={300}
+                  loading="eager"
+                  decoding="async"
+                  className="h-full w-full scale-125 object-cover object-center"
+                />
+              </div>
+            </div>
+
+
+          </motion.div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-gray-500 dark:text-gray-400">
+            Software Engineer · Pune
+          </p>
         </div>
 
         {/* Right image */}
@@ -311,84 +306,82 @@ const HeroSection = () => {
             reduceMotion
               ? { duration: 0 }
               : {
-                  duration: 0.65,
-                  delay: 0.2,
-                  ease: [0.22, 1, 0.36, 1],
-                }
+                duration: 0.65,
+                delay: 0.2,
+                ease: [0.22, 1, 0.36, 1],
+              }
           }
-          className="relative mx-auto hidden aspect-square w-full max-w-[320px] sm:block sm:max-w-[360px] md:col-span-5 lg:col-span-5 lg:mx-0 lg:ml-auto lg:max-w-[400px]"
+          className="relative mx-auto hidden aspect-square w-full max-w-[400px] lg:block lg:col-span-5 lg:mx-0 lg:ml-auto"
         >
           {/* Ambient glow behind the circle */}
           <div
-              aria-hidden="true"
-              className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/25 via-accent-light/10 to-transparent blur-2xl"
+            aria-hidden="true"
+            className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/25 via-accent-light/10 to-transparent blur-2xl"
+          />
+
+          {/* Outer circular text */}
+          <div className="pointer-events-none absolute -inset-7 select-none lg:-inset-8">
+            <CircularText
+              text={CIRCULAR_TEXT}
+              size={480}
+              radius={222}
+              fontSize={20}
+              duration={54}
+              direction="ccw"
+              reduceMotion={!!reduceMotion}
+              className="h-full w-full text-accent/80 dark:text-accent-light/70"
             />
+          </div>
 
-            {/* Outer circular text */}
-            <div className="pointer-events-none absolute -inset-7 select-none lg:-inset-9">
-              <CircularText
-                text={CIRCULAR_TEXT}
-                size={480}
-                radius={222}
-                fontSize={16}
-                duration={54}
-                direction="ccw"
-                reduceMotion={!!reduceMotion}
-                className="h-full w-full text-accent/80 dark:text-accent-light/70"
-              />
-            </div>
-
-            {/* Solid outer ring */}
-            <div
-              className={`absolute inset-0 rounded-full border-[6px] border-accent/35 dark:border-accent-light/30 ${
-                reduceMotion ? "" : "animate-spin-slow"
+          {/* Solid outer ring */}
+          <div
+            className={`absolute inset-0 rounded-full border-2 border-accent/35 dark:border-accent-light/30 ${reduceMotion ? "" : "animate-spin-slow"
               }`}
-            />
+          />
 
-            {/* Solid inner ring */}
-            <div
-              className={`absolute inset-5 rounded-full border-[5px] border-accent-light/35 dark:border-accent-light/45 ${
-                reduceMotion ? "" : "animate-spin-reverse"
+          {/* Solid inner ring */}
+          <div
+            className={`absolute inset-5 rounded-full border border-accent-light/35 dark:border-accent-light/45 ${reduceMotion ? "" : "animate-spin-reverse"
               }`}
-            />
+          />
 
-            {/* Profile image */}
-            <div className="absolute inset-9 overflow-hidden rounded-full shadow-2xl">
-              <img
-                src="/avatar-optimized.jpg"
-                alt="Vinay Kushwah, Software Engineer"
-                width={520}
-                height={520}
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-full scale-125 object-cover object-center"
-              />
-            </div>
-
-            {/* Floating info cards */}
-            <StatCard
-              value={`${years}+`}
-              label="Years experience"
-              className="-top-3 -right-3 lg:-right-6 lg:-top-5"
-              reduceMotion={!!reduceMotion}
-              delay={0}
+          {/* Profile image */}
+          <div className="absolute inset-9 overflow-hidden rounded-full shadow-2xl">
+            <img
+              src="/avatar-optimized.jpg"
+              alt="Vinay Kushwah, Software Engineer"
+              width={520}
+              height={520}
+              fetchPriority="high"
+              decoding="async"
+              className="w-full h-full scale-125 object-cover object-center"
             />
+          </div>
 
-            <StatCard
-              value="5+"
-              label="Projects shipped"
-              className="-bottom-3 -left-3 lg:-bottom-5 lg:-left-8"
-              reduceMotion={!!reduceMotion}
-              delay={0.6}
-            />
+          {/* Floating info cards */}
+          <StatCard
+            value={`${years}+`}
+            label="Years experience"
+            className="-top-3 -right-3 lg:-right-6 lg:-top-5"
+            reduceMotion={!!reduceMotion}
+            delay={0}
+          />
 
-            <StatCard
-              value="Pune"
-              label="Based in India"
-              className="-left-20 top-1/2 -translate-y-1/2 sm:-left-24 lg:-left-28"
-              reduceMotion={!!reduceMotion}
-              delay={1.2}
-            />
+          <StatCard
+            value="5+"
+            label="Projects shipped"
+            className="-bottom-3 -left-3 lg:-bottom-5 lg:-left-8"
+            reduceMotion={!!reduceMotion}
+            delay={0.6}
+          />
+
+          <StatCard
+            value="Pune"
+            label="Based in India"
+            className="-left-20 top-1/2 -translate-y-1/2 sm:-left-24 lg:-left-28"
+            reduceMotion={!!reduceMotion}
+            delay={1.2}
+          />
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
+  ArrowRightIcon,
   ArrowUpRightIcon,
   MoonIcon,
   SunIcon,
@@ -10,8 +11,7 @@ import {
   scrollToSection,
   type SectionId,
 } from "../config/navigation";
-
-const RESUME_PATH = "/Vinay_Kushwah_Resume_2025.pdf";
+import CtaButton from "./CtaButton";
 
 const Navbar = () => {
   const reduceMotion = useReducedMotion();
@@ -342,16 +342,17 @@ const Navbar = () => {
               </AnimatePresence>
             </button>
 
-            {/* Resume */}
-            <a
-              href={RESUME_PATH}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group hidden h-10 items-center gap-1.5 rounded-full bg-gray-950 px-4 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:bg-white dark:text-gray-950 sm:inline-flex"
+            {/* Hire me */}
+            <CtaButton
+              href="#contact"
+              onClick={(event) => {
+                event.preventDefault();
+                navigateTo("contact");
+              }}
+              className="hidden sm:inline-flex"
             >
-              Résumé
-              <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
+              Hire Me
+            </CtaButton>
 
             {/* Mobile menu */}
             <button
@@ -475,14 +476,16 @@ const Navbar = () => {
                 {/* Mobile bottom area */}
                 <div className="mt-2 border-t border-gray-200 px-1 pt-3 dark:border-white/10">
                   <a
-                    href={RESUME_PATH}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMenuOpen(false)}
+                    href="#contact"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setMenuOpen(false);
+                      navigateTo("contact");
+                    }}
                     className="group inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-dark px-5 text-sm font-semibold text-white shadow-sm shadow-accent/20 transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
                   >
-                    View résumé
-                    <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    Hire Me
+                    <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </a>
 
                   <div className="mt-3 flex items-center justify-center gap-5 pb-1 text-sm text-gray-500 dark:text-gray-400">
