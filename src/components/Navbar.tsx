@@ -1,7 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
-  ArrowRightIcon,
   Bars3Icon,
   BriefcaseIcon,
   CodeBracketIcon,
@@ -13,6 +12,7 @@ import {
   UserCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import {
   SECTION_LINKS,
   scrollToSection,
@@ -464,26 +464,26 @@ const Navbar = () => {
 
                 {/* Mobile bottom area */}
                 <div className="mt-2 border-t border-gray-200 px-1 pt-3 dark:border-white/10">
-                  <a
+                  <CtaButton
                     href="#contact"
                     onClick={(event) => {
                       event.preventDefault();
                       setMenuOpen(false);
                       navigateTo("contact");
                     }}
-                    className="group inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-dark px-5 text-sm font-semibold text-white shadow-sm shadow-accent/20 transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
+                    className="flex w-full justify-center"
                   >
                     Hire Me
-                    <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                  </a>
+                  </CtaButton>
 
                   <div className="mt-3 flex items-center justify-center gap-5 pb-1 text-sm text-gray-500 dark:text-gray-400">
                     <a
                       href="https://github.com/vinukush017"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="transition-colors hover:text-accent-dark dark:hover:text-accent-light"
+                      className="inline-flex items-center gap-1.5 transition-colors hover:text-accent-dark dark:hover:text-accent-light"
                     >
+                      <FaGithub className="h-4 w-4" />
                       GitHub
                     </a>
 
@@ -493,8 +493,9 @@ const Navbar = () => {
                       href="https://www.linkedin.com/in/vinaykushwah017"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="transition-colors hover:text-accent-dark dark:hover:text-accent-light"
+                      className="inline-flex items-center gap-1.5 transition-colors hover:text-accent-dark dark:hover:text-accent-light"
                     >
+                      <FaLinkedin className="h-4 w-4" />
                       LinkedIn
                     </a>
                   </div>
