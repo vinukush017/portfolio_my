@@ -241,7 +241,7 @@ const Navbar = () => {
         <nav
           aria-label="Primary navigation"
           data-raised={scrolled || menuOpen}
-          className="floating-nav-surface pointer-events-auto relative mx-auto flex h-14 w-full max-w-[1200px] items-center justify-between rounded-2xl border px-4 transition-[background-color,border-color,box-shadow] duration-300 lg:h-16 lg:px-5"
+          className="section-shell floating-nav-surface pointer-events-auto relative flex h-14 items-center justify-between rounded-2xl border px-4 transition-[background-color,border-color,box-shadow] duration-300 lg:h-16 lg:px-5"
         >
           {/* Brand */}
           <a
@@ -444,7 +444,7 @@ const Navbar = () => {
                 ease: [0.22, 1, 0.36, 1],
               }}
               data-raised="true"
-              className="floating-nav-surface pointer-events-auto mx-auto mt-2 max-h-[calc(100dvh-5.25rem)] w-full max-w-[1200px] origin-top overflow-y-auto rounded-2xl border p-2 transition-[background-color,border-color,box-shadow] duration-300 lg:hidden"
+              className="section-shell floating-nav-surface pointer-events-auto mt-2 max-h-[calc(100dvh-5.25rem)] origin-top overflow-y-auto rounded-2xl border p-2 transition-[background-color,border-color,box-shadow] duration-300 lg:hidden"
             >
               <div className="flex flex-col">
                 {/* Navigation links */}
