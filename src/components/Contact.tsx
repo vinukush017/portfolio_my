@@ -113,7 +113,7 @@ const Contact: React.FC = () => {
             title={
               <>
                 Let&rsquo;s Build Something{" "}
-                <span className="text-accent-dark dark:text-accent-light">
+                <span className="site-text-muted">
                   Useful
                 </span>
                 .
@@ -127,7 +127,7 @@ const Contact: React.FC = () => {
           {/* Contact information */}
           <motion.div
             {...reveal()}
-            className="order-2 lg:order-1 lg:col-span-5"
+            className="contact-info order-2 lg:order-1 lg:col-span-5"
           >
             <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-gray-500 dark:text-slate-300 sm:text-xs">
               A good conversation starts here
@@ -196,7 +196,7 @@ const Contact: React.FC = () => {
             {/* Form heading */}
             <div className="flex items-center justify-between pb-5 mb-8 border-b border-gray-200 dark:border-white/20">
               <div>
-                <p className="font-sans text-xs uppercase tracking-[0.1em] text-accent-dark dark:text-accent-light">
+                <p className="font-sans text-xs uppercase tracking-[0.1em] site-text-muted">
                   Send a message
                 </p>
 

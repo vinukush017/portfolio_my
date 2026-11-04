@@ -75,7 +75,7 @@ const About = () => {
             subtitle="02 / About"
             title={
               <>
-                <span className="text-accent-dark dark:text-accent-light">
+                <span className="site-text-muted">
                   Engineering
                 </span>{" "}
                 With Purpose.
@@ -120,7 +120,7 @@ const About = () => {
                     key={focus}
                     className="group flex items-center gap-3 border-t border-gray-300 py-4 text-sm font-medium text-gray-800 transition-colors hover:text-accent-dark dark:border-white/20 dark:text-gray-300 dark:hover:text-accent-light"
                   >
-                    <span className="font-sans text-xs text-accent-dark dark:text-accent-light">
+                    <span className="font-sans text-xs site-text-muted">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
@@ -145,7 +145,7 @@ const About = () => {
                   key={stat.label}
                   className={`group flex min-h-36 flex-col justify-between rounded-2xl border p-4 transition-all duration-300 hover:-translate-y-1 sm:min-h-40 lg:min-h-44 lg:p-5 ${
                     isPrimary
-                      ? "border-accent/40 bg-gradient-to-br from-accent/15 to-accent/5 site-text-primary shadow-lg shadow-accent/10 hover:border-accent/60"
+                      ? "site-divider bg-surface site-text-primary shadow-sm hover:border-accent/30"
                       : "border-gray-200 bg-white text-gray-950 shadow-sm hover:border-accent/40 hover:shadow-md dark:border-white/20 dark:bg-surface dark:text-white"
                   }`}
                 >
@@ -154,8 +154,8 @@ const About = () => {
                       aria-hidden="true"
                       className={`h-5 w-5 transition-transform duration-300 group-hover:scale-105 ${
                         isPrimary
-                          ? "text-accent-dark dark:text-accent"
-                          : "text-accent-dark dark:text-accent-light"
+                          ? "site-text-muted"
+                          : "site-text-muted"
                       }`}
                     />
 
@@ -188,7 +188,7 @@ const About = () => {
                     >
                       <span
                         className={`h-1 w-1 rounded-full ${
-                          isPrimary ? "bg-accent" : "bg-accent dark:bg-accent-light"
+                          isPrimary ? "bg-slate-400" : "bg-slate-400 dark:bg-slate-500"
                         }`}
                       />
 

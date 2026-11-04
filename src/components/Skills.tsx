@@ -121,7 +121,7 @@ const Skills = () => {
             title={
               <>
                 Technology With a{" "}
-                <span className="text-accent-dark dark:text-accent-light">
+                <span className="site-text-muted">
                   Purpose
                 </span>
                 .
@@ -155,7 +155,7 @@ const Skills = () => {
               {/* Group information */}
               <div className="expertise-heading">
                 <div className="flex items-center gap-3">
-                  <span className="font-sans text-xs font-medium text-accent-dark dark:text-accent-light">
+                  <span className="font-sans text-xs font-medium site-text-muted">
                     {String(groupIndex + 1).padStart(2, "0")}
                   </span>
 

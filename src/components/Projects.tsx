@@ -210,7 +210,7 @@ const ProjectCard = ({
           <div className="project-preview-bar" aria-hidden="true">
             <span className="project-window-dots"><i /><i /><i /></span>
             <span>{new URL(project.link).hostname}</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
           </div>
           <div className="aspect-[16/11] overflow-hidden sm:aspect-[16/10]">
             {hasImages ? (
@@ -228,7 +228,7 @@ const ProjectCard = ({
             ) : (
               <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#f3f4f1] px-8 dark:bg-surface">
                 <div className="relative text-center">
-                  <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-accent-dark dark:text-accent-light">
+                  <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] site-text-muted">
                     Selected work
                   </p>
 
@@ -278,7 +278,7 @@ const ProjectCard = ({
       {/* Project information */}
       <div className="project-information relative z-10 order-2 lg:order-1">
         {/* Metadata */}
-        <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-accent-dark dark:text-accent-light sm:text-xs">
+        <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] site-text-muted sm:text-xs">
           <span className="mr-3 font-mono site-text-subtle">{number}</span>{project.category}
         </p>
 
@@ -301,7 +301,7 @@ const ProjectCard = ({
             >
               <span
                 aria-hidden="true"
-                className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-accent dark:bg-accent-light"
+                className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-slate-400 dark:bg-slate-500"
               />
 
               <span>{highlight}</span>
@@ -347,7 +347,7 @@ const Projects: React.FC = () => {
             title={
               <>
                 Projects Built{" "}
-                <span className="text-accent-dark dark:text-accent-light">
+                <span className="site-text-muted">
                   Around Real Problems
                 </span>
                 .

@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <footer
-      className="site-footer-surface border-t border-white/10 text-white"
+      className="site-footer-surface accent-footer border-t"
       style={{
         paddingBottom: "env(safe-area-inset-bottom)",
       }}
@@ -24,7 +24,7 @@ const Footer = () => {
 
             <h2 className="mt-4 max-w-3xl font-heading type-section">
               Let&apos;s build something
-              <span className="text-accent-light">
+              <span className="text-white">
                 {" "}
                 worth using.
               </span>
@@ -40,7 +40,7 @@ const Footer = () => {
             <button
               type="button"
               onClick={() => scrollToSection("contact")}
-              className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-gray-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-light hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-4 focus-visible:ring-offset-gray-950 sm:w-auto"
+              className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-gray-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-200 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-4 focus-visible:ring-offset-gray-950 sm:w-auto"
             >
               Start a conversation
 
@@ -60,11 +60,11 @@ const Footer = () => {
               type="button"
               onClick={() => scrollToSection("home")}
               aria-label="Vinay Kushwah — Back to top"
-              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-semibold tracking-[-0.04em] text-accent-light transition-colors group-hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-semibold tracking-[-0.04em] text-white transition-colors group-hover:text-slate-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
             >
               VK
 
-              <span className="text-accent-light transition-colors group-hover:text-accent">
+              <span className="text-white transition-colors group-hover:text-slate-300">
                 .
               </span>
             </button>
@@ -158,7 +158,7 @@ const Footer = () => {
         <div className="flex flex-col gap-3 border-t border-white/15 pt-6 font-sans text-xs tracking-[0.02em] text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
           <p>
             © {currentYear}{" "}
-            <span className="text-accent-light">Vinay Kushwah</span>. All
+            <span className="text-white">Vinay Kushwah</span>. All
             rights reserved.
           </p>
 

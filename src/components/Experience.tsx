@@ -101,7 +101,7 @@ const Experience = () => {
             title={
               <>
                 Building{" "}
-                <span className="text-accent-dark dark:text-accent-light">
+                <span className="site-text-muted">
                   Production
                 </span>{" "}
                 Software.
@@ -121,7 +121,7 @@ const Experience = () => {
               {/* Number + Period */}
               <div className="lg:col-span-2">
                 <div className="flex items-center gap-3">
-                  <span className="font-sans text-xs font-medium text-accent-dark dark:text-accent-light">
+                  <span className="font-sans text-xs font-medium site-text-muted">
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
@@ -201,7 +201,7 @@ const Experience = () => {
                     >
                       <span
                         aria-hidden="true"
-                        className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-accent dark:bg-accent-light"
+                        className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-slate-400 dark:bg-slate-500"
                       />
 
                       <span>{achievement}</span>

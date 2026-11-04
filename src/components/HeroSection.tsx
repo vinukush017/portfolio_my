@@ -116,7 +116,7 @@ const HeroSection = () => {
             {...reveal(0.05)}
             className="mb-7 flex flex-wrap items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.12em] text-gray-600 dark:text-slate-300"
           >
-            <span className="text-accent-dark dark:text-accent-light">
+            <span className="site-text-muted">
               Software Engineer
             </span>
 
@@ -144,7 +144,7 @@ const HeroSection = () => {
             className="mt-7 max-w-[60ch] type-intro text-gray-600 dark:text-gray-300 sm:mt-8"
           >
             I&apos;m{" "}
-            <span className="font-semibold text-accent-dark dark:text-accent-light">
+            <span className="font-semibold site-text-primary">
               Vinay Kushwah
             </span>
             , a software engineer building reliable backend systems,
@@ -223,24 +223,24 @@ const HeroSection = () => {
               duration={54}
               direction="ccw"
               reduceMotion={!!reduceMotion}
-              className="h-full w-full text-accent-dark dark:text-accent/80"
+              className="h-full w-full site-text-subtle"
             />
           </div>
 
           {/* Solid outer ring */}
           <div
-            className={`absolute inset-0 rounded-full border-2 border-accent/35 dark:border-accent/60  ${reduceMotion ? "" : "animate-spin-slow"
+            className={`absolute inset-0 rounded-full border-2 site-divider  ${reduceMotion ? "" : "animate-spin-slow"
               }`}
           />
 
           {/* Solid inner ring */}
           <div
-            className={`absolute inset-5 rounded-full border border-accent-light/35 dark:border-accent-light/45 ${reduceMotion ? "" : "animate-spin-reverse"
+            className={`absolute inset-5 rounded-full border site-divider ${reduceMotion ? "" : "animate-spin-reverse"
               }`}
           />
 
           {/* Profile image */}
-          <div className="absolute inset-9 overflow-hidden rounded-full border border-accent/25 shadow-sm">
+          <div className="absolute inset-9 overflow-hidden rounded-full border site-divider shadow-sm">
             <img
               src="/avatar-optimized.jpg"
               alt="Vinay Kushwah, Software Engineer"
@@ -265,7 +265,7 @@ const HeroSection = () => {
             <dt>Projects shipped</dt>
           </div>
           <div className="hero-fact hero-fact-location">
-            <MapPinIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-accent-dark dark:text-accent-light" />
+            <MapPinIcon aria-hidden="true" className="h-4 w-4 shrink-0 site-text-muted" />
             <div>
               <dd>Pune, India</dd>
               <dt>Based in</dt>

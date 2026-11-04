@@ -72,7 +72,7 @@ const Blogs = () => {
             subtitle="05 / Writing"
             title={
               <>
-                <span className="text-accent-dark dark:text-accent-light">
+                <span className="site-text-muted">
                   Writing
                 </span>{" "}
                 About The Things I've Worked On.
@@ -224,7 +224,7 @@ const Blogs = () => {
                   {/* Modal header */}
                   <div className="flex items-start justify-between gap-5 px-5 py-5 border-b border-gray-200 dark:border-white/20 sm:px-8 sm:py-6">
                     <div>
-                      <p className="font-sans text-xs uppercase tracking-[0.12em] text-accent-dark dark:text-accent-light">
+                      <p className="font-sans text-xs uppercase tracking-[0.12em] site-text-muted">
                         Article preview
                       </p>
 
@@ -290,7 +290,7 @@ const Blogs = () => {
                       )}
 
                       {/* Medium CTA */}
-                      <div className="mt-10 overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-br from-accent/10 to-white p-6 text-center dark:border-accent-light/20 dark:from-accent/10 dark:to-surface sm:p-8">
+                      <div className="mt-10 overflow-hidden rounded-2xl border site-divider bg-surface p-6 text-center dark:border-white/20 sm:p-8">
                         <p className="font-heading text-xl font-semibold tracking-[-0.025em] sm:text-2xl">
                           Continue reading the full article.
                         </p>

@@ -46,7 +46,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {subtitle && (
         <motion.p
           {...reveal(0)}
-          className="flex items-center gap-3 before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent font-mono text-xs font-medium uppercase tracking-[0.12em] text-accent-dark dark:text-accent-light lg:col-span-12"
+          className="flex items-center gap-3 before:h-1.5 before:w-1.5 before:rounded-full before:bg-slate-400 dark:before:bg-slate-500 font-mono text-xs font-medium uppercase tracking-[0.12em] site-text-muted lg:col-span-12"
         >
           {subtitle}
         </motion.p>

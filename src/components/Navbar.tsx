@@ -237,7 +237,7 @@ const Navbar = () => {
             aria-label="Vinay Kushwah — Home"
             className="inline-flex items-center rounded-md group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 dark:focus-visible:ring-offset-gray-950"
           >
-            <span className="font-heading text-xl font-semibold tracking-[-0.04em] text-accent-dark transition-colors group-hover:text-accent dark:text-accent-light">
+            <span className="font-heading text-xl font-semibold tracking-[-0.04em] site-text-primary transition-colors group-hover:text-accent">
               VK
               <span className="text-accent transition-colors group-hover:text-accent-dark dark:text-accent-light">
                 .
