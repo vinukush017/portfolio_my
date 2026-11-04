@@ -132,7 +132,7 @@ const SlideDots = ({
   if (count <= 1) return null;
 
   return (
-    <div className="absolute flex items-center gap-0 px-1 py-0 -translate-x-1/2 rounded-full bottom-3 left-1/2 bg-black/50 ">
+    <div className="absolute flex items-center gap-0 px-1 py-0 -translate-x-1/2 rounded-full bottom-3 left-1/2 bg-[var(--site-background)] ">
       {Array.from({ length: count }).map((_, index) => (
         <button
           key={index}
@@ -140,13 +140,13 @@ const SlideDots = ({
           aria-label={`${labelPrefix} screenshot ${index + 1}`}
           aria-current={index === active ? "true" : undefined}
           onClick={() => onSelect(index)}
-          className="flex items-center justify-center w-8 rounded-full h-11 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="flex items-center justify-center w-8 rounded-full h-11 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           <span
             className={`block h-1.5 rounded-full transition-all duration-300 ${
               index === active
-                ? "w-4 bg-white"
-                : "w-1.5 bg-white/50 hover:bg-white/80"
+                ? "w-4 bg-accent"
+                : "w-1.5 bg-accent/30 hover:bg-accent/60"
             }`}
           />
         </button>
@@ -202,15 +202,23 @@ const ProjectCard = ({
                 ease: [0.22, 1, 0.36, 1],
               }
         }
-        className="project-card group"
+        className="project-card group overflow-hidden"
       >
+      {/* Decorative project number, restored from the original card design. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-4 left-4 select-none font-heading text-[6rem] font-semibold leading-none text-theme-accent opacity-[0.06] sm:text-[8rem] lg:-top-8 lg:left-6 lg:text-[9rem]"
+      >
+        {number}
+      </span>
+
       {/* Project media */}
       <div className="project-media relative order-1 lg:order-2">
-        <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 dark:border-white/20 dark:bg-surface">
+        <div className="relative overflow-hidden rounded-2xl border site-divider bg-surface">
           <div className="project-preview-bar" aria-hidden="true">
             <span className="project-window-dots"><i /><i /><i /></span>
             <span>{new URL(project.link).hostname}</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
           </div>
           <div className="aspect-[16/11] overflow-hidden sm:aspect-[16/10]">
             {hasImages ? (
@@ -226,17 +234,17 @@ const ProjectCard = ({
                 className="h-full w-full object-cover object-top"
               />
             ) : (
-              <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#f3f4f1] px-8 dark:bg-surface">
+              <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-surface px-8">
                 <div className="relative text-center">
                   <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] site-text-muted">
                     Selected work
                   </p>
 
-                  <p className="mt-4 font-heading text-3xl font-semibold tracking-[-0.04em] text-gray-950 dark:text-white sm:text-4xl">
+                  <p className="mt-4 font-heading text-3xl font-semibold tracking-[-0.04em] site-text-primary sm:text-4xl">
                     {project.title}
                   </p>
 
-                  <p className="max-w-xs mx-auto mt-3 type-body text-gray-500 dark:text-slate-300">
+                  <p className="max-w-xs mx-auto mt-3 type-body site-text-muted">
                     {project.category}
                   </p>
                 </div>
@@ -250,7 +258,7 @@ const ProjectCard = ({
                 type="button"
                 aria-label={`Previous ${project.title} screenshot`}
                 onClick={showPreviousImage}
-                className="absolute inline-flex items-center justify-center w-11 h-11 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 left-3 top-1/2 border-white/20 bg-black/45  hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100"
+                className="absolute inline-flex items-center justify-center w-11 h-11 text-theme-accent transition-all -translate-y-1/2 border rounded-full opacity-100 left-3 top-1/2 border-accent/30 bg-[var(--site-background)] hover:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100"
               >
                 <ChevronLeftIcon className="w-5 h-5" />
               </button>
@@ -259,7 +267,7 @@ const ProjectCard = ({
                 type="button"
                 aria-label={`Next ${project.title} screenshot`}
                 onClick={showNextImage}
-                className="absolute inline-flex items-center justify-center w-11 h-11 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 right-3 top-1/2 border-white/20 bg-black/45  hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100"
+                className="absolute inline-flex items-center justify-center w-11 h-11 text-theme-accent transition-all -translate-y-1/2 border rounded-full opacity-100 right-3 top-1/2 border-accent/30 bg-[var(--site-background)] hover:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100"
               >
                 <ChevronRightIcon className="w-5 h-5" />
               </button>
@@ -283,12 +291,12 @@ const ProjectCard = ({
         </p>
 
         {/* Title */}
-        <h3 className="mt-3 font-heading type-card-title text-gray-950 transition-colors dark:text-white ">
+        <h3 className="mt-3 font-heading type-card-title site-text-primary transition-colors ">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="mt-4 type-body text-gray-600 dark:text-slate-300 ">
+        <p className="mt-4 type-body site-text-muted ">
           {project.description}
         </p>
 
@@ -297,11 +305,11 @@ const ProjectCard = ({
           {project.highlights.map((highlight) => (
             <li
               key={highlight}
-              className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"
+              className="flex items-start gap-2 text-sm site-text-muted"
             >
               <span
                 aria-hidden="true"
-                className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-slate-400 dark:bg-slate-500"
+                className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-accent"
               />
 
               <span>{highlight}</span>
@@ -314,7 +322,7 @@ const ProjectCard = ({
           {project.stack.map((technology) => (
             <span
               key={technology}
-              className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-sans text-xs font-medium text-gray-600 dark:border-white/20 dark:bg-white/[0.03] dark:text-slate-300 sm:text-xs"
+              className="rounded-full border site-divider bg-surface-elevated px-2.5 py-1 font-sans text-xs font-medium site-text-muted sm:text-xs"
             >
               {technology}
             </span>

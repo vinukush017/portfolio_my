@@ -220,7 +220,7 @@ const Navbar = () => {
                 ease: [0.22, 1, 0.36, 1],
               }
         }
-        className="pointer-events-none fixed inset-x-3 top-3 z-50 transition-all duration-300 sm:inset-x-4 sm:top-4"
+        className="site-header pointer-events-none fixed inset-x-3 top-3 z-50 transition-all duration-300 sm:inset-x-4 sm:top-4"
       >
         <nav
           aria-label="Primary navigation"
@@ -312,7 +312,7 @@ const Navbar = () => {
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
-              className="relative inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-900 transition-all duration-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 lg:hidden"
+              className="nav-menu-toggle relative inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-900 transition-all duration-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 lg:hidden"
             >
               {menuOpen ? (
                 <XMarkIcon className="h-5 w-5" />

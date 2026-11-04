@@ -7,6 +7,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        "theme-secondary": "var(--theme-secondary)",
+        "theme-accent": "var(--theme-accent)",
         primary: {
           DEFAULT: "rgb(var(--primary-rgb) / <alpha-value>)",
           light: "rgb(var(--primary-light-rgb) / <alpha-value>)",

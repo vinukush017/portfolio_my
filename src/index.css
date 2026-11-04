@@ -27,6 +27,9 @@
 @tailwind utilities;
 
 :root {
+  --theme-secondary: var(--site-text-primary);
+  --theme-accent: var(--accent);
+  --theme-on-accent: var(--site-on-accent);
   color-scheme: light;
   --primary: #0f766e;
   --primary-light: #14b8a6;
@@ -560,7 +563,7 @@ p.type-body { max-width: 65ch; }
 :root { --contact-accent-band: 100px; --hero-surface-share: 0%; --project-main-share: 0%; }
 #contact { background: linear-gradient(to top, var(--accent) 0 var(--contact-accent-band), var(--site-background) var(--contact-accent-band)); }
 #home { background: linear-gradient(to bottom, rgb(var(--surface)) 0 var(--hero-surface-share), var(--site-background) var(--hero-surface-share)); }
-.project-card { background: linear-gradient(to right, var(--site-background) 0 var(--project-main-share), rgb(var(--surface)) var(--project-main-share)); }
+.project-card { background: rgb(var(--surface)); }
 :root:not(.dark) .expertise-card { background: rgb(var(--surface)); }
 @media (max-width: 1023px) {
   #about { background: var(--site-background); }
@@ -589,21 +592,24 @@ p.type-body { max-width: 65ch; }
 
 /* Ocean Pink pairs ocean-blue actions with pink highlights in both appearances. */
 :root[data-palette="cobalt-pink"] {
+  --theme-secondary: #007ba7;
+  --theme-accent: var(--accent);
+  --theme-on-accent: var(--site-background);
   --primary: #007ba7;
   --primary-rgb: 0 123 167;
   --primary-light: #0099cc;
   --primary-light-rgb: 0 153 204;
   --primary-dark: #006487;
   --primary-dark-rgb: 0 100 135;
-  --accent: #007ba7;
-  --accent-rgb: 0 123 167;
-  --accent-light: #007ba7;
-  --accent-light-rgb: 0 123 167;
-  --accent-dark: #006487;
-  --accent-dark-rgb: 0 100 135;
+  --accent: #ff2d95;
+  --accent-rgb: 255 45 149;
+  --accent-light: #ff2d95;
+  --accent-light-rgb: 255 45 149;
+  --accent-dark: #c91870;
+  --accent-dark-rgb: 201 24 112;
   --palette-pink: #ff2d95;
   --palette-pink-ink: #c91870;
-  --site-on-accent: #ffffff;
+  --site-on-accent: #0a0a0a;
   --site-background: #f7f9fc;
   --surface: 255 255 255;
   --surface-elevated: 237 242 247;
@@ -621,8 +627,8 @@ p.type-body { max-width: 65ch; }
 :root[data-palette="cobalt-pink"].dark {
   --primary-light: #5ac8ed;
   --primary-light-rgb: 90 200 237;
-  --accent-light: #5ac8ed;
-  --accent-light-rgb: 90 200 237;
+  --accent-light: #ff2d95;
+  --accent-light-rgb: 255 45 149;
   --palette-pink-ink: #ff2d95;
   --site-background: #0a0a0a;
   --surface: 23 23 23;
@@ -638,10 +644,6 @@ p.type-body { max-width: 65ch; }
   --site-glow-2: rgb(255 45 149 / 0.09);
 }
 
-:root[data-palette="cobalt-pink"] #home h1 span {
-  background-image: linear-gradient(to right, var(--accent-light), var(--palette-pink-ink));
-}
-
 :root[data-palette="cobalt-pink"] .section-heading::after {
   background: var(--palette-pink);
 }
@@ -650,8 +652,17 @@ p.type-body { max-width: 65ch; }
   background: linear-gradient(135deg, #007ba7, #ff2d95);
 }
 
+.site-canvas .primary-action,
+.site-canvas .primary-action:hover {
+  background-color: var(--theme-accent);
+  color: var(--theme-on-accent);
+}
+
 /* Ivory Yellow uses deeper gold for readable text on warm light surfaces. */
 :root[data-palette="ivory-yellow"] {
+  --theme-secondary: #f5f3ef;
+  --theme-accent: var(--accent);
+  --theme-on-accent: var(--site-background);
   --primary: #806400;
   --primary-rgb: 128 100 0;
   --primary-light: #957500;
@@ -723,4 +734,55 @@ p.type-body { max-width: 65ch; }
 
 .theme-palette-card[data-palette="ivory-yellow"] .theme-preview-copy b {
   background: #ffc900;
+}
+
+/* Navbar and hero color refinements; original geometry and effects are preserved. */
+:root[data-palette="ivory-yellow"] .site-header .floating-nav-surface {
+  background-color: var(--site-background);
+  border-color: var(--site-divider);
+}
+:root[data-palette="ivory-yellow"] .nav-menu-toggle {
+  background-color: rgb(var(--surface-elevated));
+  color: var(--site-text-primary);
+}
+:root[data-palette="ivory-yellow"] .nav-menu-toggle:hover {
+  background-color: rgb(var(--accent-rgb) / 0.12);
+}
+:root[data-palette="ivory-yellow"] .hero-role,
+:root[data-palette="ivory-yellow"] #home .type-intro,
+:root[data-palette="ivory-yellow"] .hero-socials p,
+:root[data-palette="ivory-yellow"] .hero-socials a {
+  color: var(--site-text-muted);
+}
+:root[data-palette="ivory-yellow"] .hero-role > span:nth-child(2) {
+  background-color: var(--site-divider);
+}
+:root[data-palette="ivory-yellow"] .hero-resume,
+:root[data-palette="ivory-yellow"] .hero-resume > span {
+  border-color: var(--site-divider);
+  color: var(--site-text-primary);
+}
+:root[data-palette="ivory-yellow"] .hero-resume {
+  background-color: rgb(var(--surface) / 0.4);
+}
+:root[data-palette="ivory-yellow"] .hero-resume:hover {
+  background-color: rgb(var(--surface));
+  border-color: var(--accent);
+}
+:root[data-palette="ivory-yellow"] .hero-socials a:hover {
+  color: var(--accent-light);
+}
+
+/* Work actions share the palette's neutral text and accent interaction colors. */
+#projects .project-information a:not(.primary-action) {
+  color: var(--site-text-primary);
+  border-color: var(--site-divider);
+  background-color: transparent;
+}
+#projects .project-information a:not(.primary-action):hover {
+  border-color: var(--theme-accent);
+  background-color: rgb(var(--surface-elevated));
+}
+#projects .project-information a:not(.primary-action) > span {
+  background-color: rgb(var(--surface-elevated));
 }

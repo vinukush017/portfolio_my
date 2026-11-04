@@ -114,7 +114,7 @@ const HeroSection = () => {
           {/* Role */}
           <motion.div
             {...reveal(0.05)}
-            className="mb-7 flex flex-wrap items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.12em] text-gray-600 dark:text-slate-300"
+            className="hero-role mb-7 flex flex-wrap items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.12em] text-gray-600 dark:text-slate-300"
           >
             <span className="site-text-muted">
               Software Engineer
@@ -129,11 +129,11 @@ const HeroSection = () => {
           <motion.h1
             id="hero-title"
             {...reveal(0.12)}
-            className="max-w-5xl font-heading type-hero"
+            className="max-w-5xl font-heading type-hero text-theme-secondary"
           >
             I Build Scalable
             <br />
-            <span className="bg-gradient-to-r from-accent-dark to-accent bg-clip-text text-transparent dark:from-accent-light dark:to-accent-dark">
+            <span className="text-theme-accent">
               Web Systems.
             </span>
           </motion.h1>
@@ -144,7 +144,7 @@ const HeroSection = () => {
             className="mt-7 max-w-[60ch] type-intro text-gray-600 dark:text-gray-300 sm:mt-8"
           >
             I&apos;m{" "}
-            <span className="font-semibold site-text-primary">
+            <span className="hero-name font-semibold text-theme-secondary">
               Vinay Kushwah
             </span>
             , a software engineer building reliable backend systems,
@@ -164,7 +164,7 @@ const HeroSection = () => {
               href="/Vinay_Kushwah_Resume_2025.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white/40 px-6 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-accent-light/40 dark:hover:bg-white/10"
+              className="hero-resume group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white/40 px-6 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-accent-light/40 dark:hover:bg-white/10"
             >
               Download CV
               <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-400 transition-colors duration-200 group-hover:border-accent dark:border-gray-600 dark:group-hover:border-accent-light">
@@ -174,7 +174,7 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Social links */}
-          <motion.div {...reveal(0.38)} className="mt-8 sm:mt-10">
+          <motion.div {...reveal(0.38)} className="hero-socials mt-8 sm:mt-10">
             <p className="font-mono text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-300">
               Follow me
             </p>
@@ -229,13 +229,13 @@ const HeroSection = () => {
 
           {/* Solid outer ring */}
           <div
-            className={`absolute inset-0 rounded-full border-2 site-divider  ${reduceMotion ? "" : "animate-spin-slow"
+            className={`absolute inset-0 rounded-full border-2 border-accent ${reduceMotion ? "" : "animate-spin-slow"
               }`}
           />
 
           {/* Solid inner ring */}
           <div
-            className={`absolute inset-5 rounded-full border site-divider ${reduceMotion ? "" : "animate-spin-reverse"
+            className={`absolute inset-5 rounded-full border border-accent/40 ${reduceMotion ? "" : "animate-spin-reverse"
               }`}
           />
 
