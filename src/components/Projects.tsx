@@ -25,7 +25,7 @@ const projects: Project[] = [
     title: "My Task Board",
     category: "Full-stack productivity application",
     description:
-      "A focused workspace for organizing tasks, setting priorities, and switching between board and list views.",
+      "A task workspace that brings priorities, board views, and list views together, built with React, a Node.js backend, and a PostgreSQL data layer.",
     link: "https://my-task-board-frontend.vercel.app/",
     images: [
       "/projects/my-task-board-frontend-main-white.webp",
@@ -44,7 +44,7 @@ const projects: Project[] = [
     title: "Car Daddy CRM",
     category: "Customer management platform",
     description:
-      "Vehicle registration and customer management, connected through secure access, cloud storage, and communication tools.",
+      "A vehicle and customer management platform combining JWT authentication, AWS S3 storage, and WhatsApp and email integrations.",
     link: "https://www.cardaddys.co.uk/",
     images: [],
     stack: ["React", "Node.js", "MongoDB", "AWS S3", "JWT"],
@@ -59,7 +59,7 @@ const projects: Project[] = [
     title: "DropChat AI",
     category: "AI chatbot platform",
     description:
-      "Create document-trained AI assistants and embed conversational support directly into a website.",
+      "A platform for turning documents into AI assistants, combining OpenAI integration with chatbot embedding for websites.",
     link: "https://app.dropchat.co/",
     images: [],
     stack: ["OpenAI", "React", "Node.js", "MongoDB"],
@@ -74,7 +74,7 @@ const projects: Project[] = [
     title: "DharmaPath",
     category: "Content platform",
     description:
-      "A mobile-first home for Hindi devotional content, from bhajans and shlokas to chalisas.",
+      "A Hindi devotional content platform organized around bhajans, shlokas, and chalisas, with a mobile-first React interface and reusable components.",
     link: "https://dharmapath.in",
     images: [
       "/projects/dharmapath-1.webp",
@@ -97,7 +97,7 @@ const projects: Project[] = [
     title: "FactGully",
     category: "Fact discovery platform",
     description:
-      "Discover science, history, and everyday curiosities through themed collections and simple content filters.",
+      "A discovery platform for science, history, and everyday facts, with themed collections, content filtering, and a MongoDB-backed application.",
     link: "https://fact-gully.vercel.app",
     images: [
       "/projects/fact-gully.webp",
@@ -361,7 +361,7 @@ const Projects: React.FC = () => {
                 .
               </>
             }
-            description="A selection of applications I've built across full-stack development, APIs, cloud integrations, AI, and responsive product experiences."
+            description="Selected applications showing my work with data-backed interfaces, authentication, cloud storage, and AI integrations."
           />
         </div>
 

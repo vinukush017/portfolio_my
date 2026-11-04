@@ -20,11 +20,11 @@ const experiences: ExperienceItem[] = [
     period: "Nov 2024 — Present",
     current: true,
     summary:
-      "Building and improving production web applications across backend services, frontend interfaces, databases, and cloud integrations.",
+      "Working across Node.js services, MongoDB, React interfaces, and AWS S3 in production web applications.",
     achievements: [
-      "Optimized Express.js APIs and backend workflows to improve application response times and overall reliability.",
-      "Improved MongoDB query performance through indexing, aggregation pipelines, and more efficient data access patterns.",
-      "Built reusable React components and structured application state for scalable frontend development.",
+      "Optimized Express.js request handling and backend workflows to address response-time and reliability issues.",
+      "Tuned MongoDB data access using indexes, aggregation pipelines, and query changes.",
+      "Built reusable React components and organized application state with Redux.",
       "Implemented secure media upload and storage workflows using AWS S3.",
     ],
     stack: ["Node.js", "Express.js", "MongoDB", "React", "Redux", "AWS S3"],
@@ -35,12 +35,12 @@ const experiences: ExperienceItem[] = [
     title: "Full Stack Developer",
     period: "Feb 2022 — May 2024",
     summary:
-      "Worked across frontend and backend systems, building APIs, database-driven features, and maintainable product workflows.",
+      "Developed product features across Express.js APIs, PostgreSQL data access, and React interfaces.",
     achievements: [
-      "Designed and developed REST APIs for application features, integrations, and data-driven workflows.",
-      "Built and optimized PostgreSQL queries using Knex.js for reliable and efficient data access.",
-      "Developed responsive React interfaces and reusable components across multiple product features.",
-      "Improved code quality through testing, pull-request reviews, debugging, and ongoing refactoring.",
+      "Implemented REST endpoints for product features and third-party integrations.",
+      "Built and optimized PostgreSQL queries with Knex.js.",
+      "Developed responsive React interfaces and shared components for product features.",
+      "Contributed tests, reviewed pull requests, and debugged and refactored existing features.",
     ],
     stack: [
       "Node.js",
@@ -58,7 +58,7 @@ const experiences: ExperienceItem[] = [
     title: "Junior Node.js Developer",
     period: "Jan 2021 — Feb 2022",
     summary:
-      "Started my professional engineering journey building backend services and responsive web experiences with the MERN stack.",
+      "Started with Node.js and Express.js backend development, MongoDB integration, and React interfaces.",
     achievements: [
       "Built and maintained Node.js and Express.js backend services for production application features.",
       "Designed REST API endpoints and integrated application data with MongoDB.",
@@ -107,7 +107,7 @@ const Experience = () => {
                 Software.
               </>
             }
-            description="My experience spans backend systems, APIs, databases, frontend applications, and cloud integrations — with a focus on reliable software that is easier to scale and maintain."
+            description="My roles since 2021, from Node.js backend development to work across production APIs, databases, and React applications."
           />
         </div>
 

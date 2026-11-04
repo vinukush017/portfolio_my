@@ -75,10 +75,10 @@ const Blogs = () => {
                 <span className="heading-accent">
                   Writing
                 </span>{" "}
-                About The Things I've Worked On.
+                On JavaScript and React.
               </>
             }
-            description="Practical notes on JavaScript, backend systems, frontend architecture, and lessons learned while building production software."
+            description="Guides to JavaScript fundamentals and React application structure, with examples you can work through."
           />
         </div>
 
@@ -96,7 +96,7 @@ const Blogs = () => {
                 {/* Meta */}
                 <div className="flex items-center justify-between gap-4">
                   <p className="font-sans text-xs uppercase tracking-[0.1em] site-text-subtle sm:text-xs">
-                    {post.publishedAt ?? "Draft ready"}
+                    {post.publishedAt ?? (isPublished ? "Published on Medium" : "Coming soon")}
                   </p>
 
                   <span className="inline-flex items-center justify-center w-10 h-10 text-theme-accent transition-colors border site-divider rounded-full group-hover:border-accent/25 group-hover:bg-accent/10  dark:group-hover:border-accent-light/25 dark:group-hover:bg-accent/10">

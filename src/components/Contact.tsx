@@ -119,7 +119,7 @@ const Contact: React.FC = () => {
                 .
               </>
             }
-            description="Have an engineering challenge, product idea, or opportunity that could be a good fit? I'd be happy to hear about it."
+            description="Looking for a backend or full-stack engineer? I'm open to discussing roles and product work involving Node.js, React, databases, and integrations."
           />
         </div>
 
@@ -180,8 +180,8 @@ const Contact: React.FC = () => {
               />
 
               <span>
-                Open to discussing interesting engineering opportunities and
-                product challenges.
+                Based in Pune, India · UTC +5:30. Include the role or project
+                context when you get in touch.
               </span>
             </div>
           </motion.div>
@@ -295,7 +295,7 @@ const Contact: React.FC = () => {
                   minLength={20}
                   maxLength={2000}
                   rows={6}
-                  placeholder="Tell me a little about the opportunity, project, or problem you're working on…"
+                  placeholder="Share the role or project, what you need help with, and any relevant timeline…"
                   required
                   className={`${fieldClass} resize-y`}
                 />

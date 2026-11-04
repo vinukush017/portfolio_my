@@ -9,7 +9,7 @@ import SectionHeader from "./SectionHeader";
 
 const focusAreas = [
   "Backend systems & APIs",
-  "Scalable product architecture",
+  "Application structure & reusable components",
   "Cloud & third-party integrations",
   "Performance & maintainability",
 ];
@@ -81,7 +81,7 @@ const About = () => {
                 <span className="heading-accent">With Purpose.</span>
               </>
             }
-            description="I combine product thinking with dependable engineering to build software that is useful, scalable, and maintainable."
+            description="From database queries to user interfaces, I focus on how the pieces work together to solve a product problem."
           />
         </div>
 
@@ -89,22 +89,23 @@ const About = () => {
           {/* Main content */}
           <motion.div {...reveal()} className="md:col-span-7">
             <p className="max-w-3xl font-heading text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-theme-heading sm:text-3xl lg:text-[2rem]">
-              I&apos;m Vinay, a software engineer focused on turning complex
-              requirements into reliable systems and practical digital products.
+              I work across the stack, with backend engineering at the center
+              of my practice.
             </p>
 
             <div className="mt-7 grid gap-5 type-body site-text-muted lg:mt-8 lg:grid-cols-2 lg:gap-8">
               <p>
-                My work spans backend services, REST APIs, databases, React
-                interfaces, cloud infrastructure, and third-party integrations.
-                I enjoy working across the stack, with a strong focus on
-                building dependable backend systems.
+                Since 2021, my work has included Node.js services, MongoDB and
+                PostgreSQL data layers, React interfaces, and AWS S3 storage.
+                Working across these layers helps me connect application
+                behavior to the code and data behind it.
               </p>
 
               <p>
-                I care about clear architecture, maintainable code, thoughtful
-                collaboration, and solving the actual product problem rather
-                than simply shipping features.
+                My performance work has included MongoDB indexing, aggregation
+                pipelines, and query optimization. I also value reusable
+                components, code reviews, and tests that help a team keep
+                changing a product with confidence.
               </p>
             </div>
 

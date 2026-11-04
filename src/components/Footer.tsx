@@ -31,8 +31,7 @@ const Footer = () => {
             </h2>
 
             <p className="max-w-xl mt-5 type-body site-text-muted sm:text-base">
-              I&apos;m interested in meaningful engineering challenges,
-              product ideas, and opportunities to build reliable software.
+              Have a role or project in mind? Tell me what you&apos;re building.
             </p>
           </div>
 
@@ -70,8 +69,8 @@ const Footer = () => {
             </button>
 
             <p className="max-w-sm mt-4 type-body site-text-muted">
-              Software engineer building reliable backend systems, APIs,
-              integrations, and modern web applications from Pune, India.
+              Backend-focused software engineer working with Node.js, React,
+              and databases. Based in Pune, India.
             </p>
           </div>
 

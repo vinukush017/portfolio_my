@@ -26,7 +26,7 @@ const groups: SkillGroup[] = [
   {
     name: "Backend",
     description:
-      "APIs, services, integrations, and server-side application logic.",
+      "REST API design, authentication, and backend workflows with Node.js and Express.",
     items: [
       {
         name: "Node.js",
@@ -49,7 +49,7 @@ const groups: SkillGroup[] = [
   {
     name: "Frontend",
     description:
-      "Responsive product interfaces and maintainable component systems.",
+      "Responsive React interfaces, reusable components, and application state management.",
     items: [
       {
         name: "React",
@@ -72,7 +72,7 @@ const groups: SkillGroup[] = [
   {
     name: "Data",
     description:
-      "Relational and document databases for production applications.",
+      "PostgreSQL queries, MongoDB indexing, and aggregation pipelines.",
     items: [
       {
         name: "PostgreSQL",
@@ -87,7 +87,7 @@ const groups: SkillGroup[] = [
   {
     name: "Cloud & Tools",
     description:
-      "Cloud services, deployment workflows, and engineering tooling.",
+      "AWS S3 storage, third-party integrations, and Git-based collaboration.",
     items: [
       {
         name: "AWS",
@@ -127,7 +127,7 @@ const Skills = () => {
                 .
               </>
             }
-            description="A practical engineering toolkit shaped by production work across backend systems, web applications, databases, APIs, and cloud integrations."
+            description="The tools I use and the engineering problems I work on with them."
           />
         </div>
 

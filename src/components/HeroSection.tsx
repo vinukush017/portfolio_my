@@ -147,8 +147,9 @@ const HeroSection = () => {
             <span className="hero-name font-semibold text-theme-accent">
               Vinay Kushwah
             </span>
-            , a software engineer building reliable backend systems,
-            thoughtful integrations, and modern web applications.
+            , a software engineer focused on Node.js backends, APIs, and
+            database performance, with experience building React interfaces
+            and cloud integrations.
           </motion.p>
 
           {/* CTA buttons */}
