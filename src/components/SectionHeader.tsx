@@ -54,7 +54,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 
       <motion.h2
         {...reveal(0.06)}
-        className="font-heading type-section text-gray-950 dark:text-white lg:col-span-7"
+        className="font-heading type-section text-theme-heading lg:col-span-7"
       >
         {title}
       </motion.h2>

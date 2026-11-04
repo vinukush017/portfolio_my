@@ -75,10 +75,10 @@ const About = () => {
             subtitle="02 / About"
             title={
               <>
-                <span className="site-text-muted">
+                <span>
                   Engineering
                 </span>{" "}
-                With Purpose.
+                <span className="heading-accent">With Purpose.</span>
               </>
             }
             description="I combine product thinking with dependable engineering to build software that is useful, scalable, and maintainable."
@@ -120,7 +120,7 @@ const About = () => {
                     key={focus}
                     className="group flex items-center gap-3 border-t border-gray-300 py-4 text-sm font-medium text-gray-800 transition-colors hover:text-accent-dark dark:border-white/20 dark:text-gray-300 dark:hover:text-accent-light"
                   >
-                    <span className="font-sans text-xs site-text-muted">
+                    <span className="font-sans text-xs text-theme-accent">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
@@ -152,11 +152,7 @@ const About = () => {
                   <div>
                     <Icon
                       aria-hidden="true"
-                      className={`h-5 w-5 transition-transform duration-300 group-hover:scale-105 ${
-                        isPrimary
-                          ? "site-text-muted"
-                          : "site-text-muted"
-                      }`}
+                      className="h-5 w-5 text-theme-accent transition-transform duration-300 group-hover:scale-105"
                     />
 
                     <dt
@@ -170,7 +166,7 @@ const About = () => {
 
                   <div>
                     <dd
-                      className={`font-heading font-semibold tracking-[-0.04em] ${
+                      className={`font-heading font-semibold tracking-[-0.04em] text-theme-secondary ${
                         stat.value.length > 8
                           ? "text-xl sm:text-2xl"
                           : "text-3xl sm:text-4xl"

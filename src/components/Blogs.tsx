@@ -72,7 +72,7 @@ const Blogs = () => {
             subtitle="05 / Writing"
             title={
               <>
-                <span className="site-text-muted">
+                <span className="heading-accent">
                   Writing
                 </span>{" "}
                 About The Things I've Worked On.

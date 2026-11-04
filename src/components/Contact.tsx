@@ -113,7 +113,7 @@ const Contact: React.FC = () => {
             title={
               <>
                 Let&rsquo;s Build Something{" "}
-                <span className="site-text-muted">
+                <span className="heading-accent">
                   Useful
                 </span>
                 .

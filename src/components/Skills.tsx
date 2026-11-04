@@ -121,7 +121,7 @@ const Skills = () => {
             title={
               <>
                 Technology With a{" "}
-                <span className="site-text-muted">
+                <span className="heading-accent">
                   Purpose
                 </span>
                 .

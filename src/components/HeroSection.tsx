@@ -129,7 +129,7 @@ const HeroSection = () => {
           <motion.h1
             id="hero-title"
             {...reveal(0.12)}
-            className="max-w-5xl font-heading type-hero text-theme-secondary"
+            className="max-w-5xl font-heading type-hero text-theme-heading"
           >
             I Build Scalable
             <br />
@@ -141,10 +141,10 @@ const HeroSection = () => {
           {/* Description */}
           <motion.p
             {...reveal(0.2)}
-            className="mt-7 max-w-[60ch] type-intro text-gray-600 dark:text-gray-300 sm:mt-8"
+            className="hero-intro mt-7 max-w-[60ch] type-intro sm:mt-8"
           >
             I&apos;m{" "}
-            <span className="hero-name font-semibold text-theme-secondary">
+            <span className="hero-name font-semibold text-theme-accent">
               Vinay Kushwah
             </span>
             , a software engineer building reliable backend systems,
@@ -223,7 +223,7 @@ const HeroSection = () => {
               duration={54}
               direction="ccw"
               reduceMotion={!!reduceMotion}
-              className="h-full w-full site-text-subtle"
+              className="h-full w-full text-theme-accent"
             />
           </div>
 

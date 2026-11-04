@@ -355,7 +355,7 @@ const Projects: React.FC = () => {
             title={
               <>
                 Projects Built{" "}
-                <span className="site-text-muted">
+                <span className="heading-accent">
                   Around Real Problems
                 </span>
                 .

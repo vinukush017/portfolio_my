@@ -1,9 +1,10 @@
 import { type CSSProperties, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { AdjustmentsHorizontalIcon, ChevronDownIcon, XMarkIcon, CheckIcon } from "@heroicons/react/24/outline";
+import { AdjustmentsHorizontalIcon, ChevronDownIcon, MoonIcon, SunIcon, XMarkIcon, CheckIcon } from "@heroicons/react/24/outline";
 
 const palettes = [
-  { id: "ivory-yellow", name: "Ivory Yellow", swatch: "#ffc900", night: "#08090b", text: "#f5f3ef" },
-  { id: "cobalt-pink", name: "Ocean Pink", swatch: "#ff2d95", night: "#0a0a0a", text: "#f7f9fc" },
+  { id: "ivory-yellow", name: "Ivory Yellow", swatch: "#ffc900", background: "#08090b", text: "#f5f3ef", dark: true },
+  { id: "cobalt-pink", name: "Ocean Pink", swatch: "#ff2d95", background: "#0a0a0a", text: "#f7f9fc", dark: true },
+  { id: "navy-red", name: "Royal Blue", swatch: "#bb232b", background: "#ffffff", text: "#20309a", dark: false },
 ] as const;
 
 export default function ThemeSettings() {
@@ -14,18 +15,29 @@ export default function ThemeSettings() {
   });
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const isDark = palettes.find(({ id }) => id === palette)?.dark ?? true;
+  const lastDarkPalette = useRef<"ivory-yellow" | "cobalt-pink">((() => {
+    if (palette !== "navy-red") return palette;
+    try {
+      return localStorage.getItem("darkPalette") === "cobalt-pink" ? "cobalt-pink" : "ivory-yellow";
+    } catch { return "ivory-yellow"; }
+  })());
 
   useLayoutEffect(() => {
     const root = document.documentElement;
-    root.classList.add("dark");
+    root.classList.toggle("dark", isDark);
     root.dataset.palette = palette;
     const background = getComputedStyle(root).getPropertyValue("--site-background").trim();
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", background);
     try {
-      localStorage.setItem("theme", "dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
       localStorage.setItem("palette", palette);
+      if (palette !== "navy-red") {
+        lastDarkPalette.current = palette;
+        localStorage.setItem("darkPalette", palette);
+      }
     } catch { /* Theme controls also work when browser storage is unavailable. */ }
-  }, [palette]);
+  }, [palette, isDark]);
 
   useEffect(() => {
     if (!open) return;
@@ -77,14 +89,42 @@ export default function ThemeSettings() {
             </button>
           </div>
 
+          <div className="theme-appearance">
+            <div className="theme-appearance-copy">
+              <span className="theme-field-label">Appearance</span>
+              <span className="theme-current-mode">{isDark ? "After hours" : "Daylight"}</span>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={isDark}
+              aria-label="Dark mode"
+              onClick={() => {
+                if (palette !== "navy-red") lastDarkPalette.current = palette;
+                setPalette(isDark ? "navy-red" : lastDarkPalette.current);
+              }}
+              className="theme-mode-switch"
+            >
+              <span aria-hidden="true" className="theme-mode-symbols">
+                <SunIcon className="theme-switch-sun" />
+                <MoonIcon className="theme-switch-moon" />
+              </span>
+              <span aria-hidden="true" className="theme-switch-thumb">
+                <SunIcon className="theme-thumb-sun" />
+                <MoonIcon className="theme-thumb-moon" />
+              </span>
+              <span className="sr-only">{isDark ? "Dark" : "Light"}</span>
+            </button>
+          </div>
+
           <fieldset className="theme-palette-field">
             <legend className="theme-field-label">Pick your palette</legend>
             <div className="theme-palette-grid">
-              {palettes.map(({ id, name, swatch, night, text }) => (
+              {palettes.filter(({ dark }) => dark === isDark).map(({ id, name, swatch, background, text }) => (
                 <button
                   type="button" key={id} data-palette={id} aria-pressed={palette === id}
                   onClick={() => setPalette(id)} className="theme-palette-card"
-                  style={{ "--preview-bg": night, "--preview-accent": swatch, "--preview-ink": text } as CSSProperties}
+                  style={{ "--preview-bg": background, "--preview-accent": swatch, "--preview-ink": text } as CSSProperties}
                 >
                   <span aria-hidden="true" className="theme-preview">
                     <span className="theme-preview-nav"><i /><i /><i /></span>

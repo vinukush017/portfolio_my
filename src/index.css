@@ -27,6 +27,8 @@
 @tailwind utilities;
 
 :root {
+  --theme-intro-text: #000000;
+  --theme-heading: var(--theme-secondary);
   --theme-secondary: var(--site-text-primary);
   --theme-accent: var(--accent);
   --theme-on-accent: var(--site-on-accent);
@@ -64,6 +66,8 @@
 }
 
 .dark {
+  --theme-intro-text: #ffffff;
+  --theme-heading: #ffffff;
   color-scheme: dark;
   --primary: #36f2ce;
   --primary-light: #91ffe7;
@@ -749,7 +753,6 @@ p.type-body { max-width: 65ch; }
   background-color: rgb(var(--accent-rgb) / 0.12);
 }
 :root[data-palette="ivory-yellow"] .hero-role,
-:root[data-palette="ivory-yellow"] #home .type-intro,
 :root[data-palette="ivory-yellow"] .hero-socials p,
 :root[data-palette="ivory-yellow"] .hero-socials a {
   color: var(--site-text-muted);
@@ -773,11 +776,11 @@ p.type-body { max-width: 65ch; }
   color: var(--accent-light);
 }
 
-/* Work actions share the palette's neutral text and accent interaction colors. */
+/* Secondary work actions use accent text across every palette. */
 #projects .project-information a:not(.primary-action) {
-  color: var(--site-text-primary);
+  color: var(--theme-accent);
   border-color: var(--site-divider);
-  background-color: transparent;
+  background-color: var(--site-background);
 }
 #projects .project-information a:not(.primary-action):hover {
   border-color: var(--theme-accent);
@@ -785,4 +788,55 @@ p.type-body { max-width: 65ch; }
 }
 #projects .project-information a:not(.primary-action) > span {
   background-color: rgb(var(--surface-elevated));
+}
+
+/* Royal Blue: white primary background, royal blue secondary, red accent. */
+:root[data-palette="navy-red"] {
+  color-scheme: light;
+  --theme-intro-text: #414655;
+  --site-background: #ffffff;
+  --theme-secondary: #20309a;
+  --theme-accent: #bb232b;
+  --theme-on-accent: var(--site-background);
+  --primary: var(--site-background);
+  --primary-rgb: 255 255 255;
+  --primary-light: var(--site-background);
+  --primary-light-rgb: 255 255 255;
+  --primary-dark: var(--site-background);
+  --primary-dark-rgb: 255 255 255;
+  --accent: var(--theme-accent);
+  --accent-rgb: 187 35 43;
+  --accent-light: var(--theme-accent);
+  --accent-light-rgb: 187 35 43;
+  --accent-dark: var(--theme-accent);
+  --accent-dark-rgb: 187 35 43;
+  --site-on-accent: var(--site-background);
+  --surface: 255 255 255;
+  --surface-elevated: 244 245 250;
+  --site-text-primary: var(--theme-secondary);
+  --site-text-muted: #535d81;
+  --site-text-subtle: #626b8b;
+  --site-divider: rgb(32 48 154 / 0.16);
+  --site-nav-surface: var(--site-background);
+  --site-nav-surface-raised: var(--site-background);
+  --site-nav-border: var(--site-divider);
+  --site-nav-shadow: 0 8px 28px rgb(32 48 154 / 0.06);
+  --site-nav-shadow-raised: 0 10px 32px rgb(32 48 154 / 0.1);
+  --site-backdrop: rgb(32 48 154 / 0.2);
+  --site-footer-surface: var(--theme-secondary);
+  --site-glow-1: transparent;
+  --site-glow-2: transparent;
+  --site-glow-3: transparent;
+}
+
+.section-heading .type-section .heading-accent {
+  color: var(--theme-accent);
+}
+
+#home .hero-intro {
+  color: var(--theme-intro-text);
+}
+
+:root[data-palette="navy-red"] #hero-title {
+  color: #252936;
 }

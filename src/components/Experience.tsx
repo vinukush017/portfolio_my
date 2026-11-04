@@ -101,7 +101,7 @@ const Experience = () => {
             title={
               <>
                 Building{" "}
-                <span className="site-text-muted">
+                <span className="heading-accent">
                   Production
                 </span>{" "}
                 Software.
