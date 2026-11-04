@@ -586,3 +586,141 @@ p.type-body { max-width: 65ch; }
   :root[data-palette="orange"]:not(.dark) { --contact-accent-band: 113.7px; --project-main-share: 9.5%; }
   :root[data-palette="coral"]:not(.dark), :root[data-palette="blue"]:not(.dark) { --contact-accent-band: 106.6px; --project-main-share: 9.5%; }
 }
+
+/* Ocean Pink pairs ocean-blue actions with pink highlights in both appearances. */
+:root[data-palette="cobalt-pink"] {
+  --primary: #007ba7;
+  --primary-rgb: 0 123 167;
+  --primary-light: #0099cc;
+  --primary-light-rgb: 0 153 204;
+  --primary-dark: #006487;
+  --primary-dark-rgb: 0 100 135;
+  --accent: #007ba7;
+  --accent-rgb: 0 123 167;
+  --accent-light: #007ba7;
+  --accent-light-rgb: 0 123 167;
+  --accent-dark: #006487;
+  --accent-dark-rgb: 0 100 135;
+  --palette-pink: #ff2d95;
+  --palette-pink-ink: #c91870;
+  --site-on-accent: #ffffff;
+  --site-background: #f7f9fc;
+  --surface: 255 255 255;
+  --surface-elevated: 237 242 247;
+  --site-text-primary: #0a0a0a;
+  --site-text-muted: #596579;
+  --site-text-subtle: #596579;
+  --site-divider: #e2e8f0;
+  --site-nav-surface: rgb(255 255 255 / 0.9);
+  --site-nav-surface-raised: rgb(255 255 255 / 0.98);
+  --site-nav-border: #e2e8f0;
+  --site-footer-surface: #0a0a0a;
+  --site-glow-2: rgb(255 45 149 / 0.06);
+}
+
+:root[data-palette="cobalt-pink"].dark {
+  --primary-light: #5ac8ed;
+  --primary-light-rgb: 90 200 237;
+  --accent-light: #5ac8ed;
+  --accent-light-rgb: 90 200 237;
+  --palette-pink-ink: #ff2d95;
+  --site-background: #0a0a0a;
+  --surface: 23 23 23;
+  --surface-elevated: 35 35 35;
+  --site-text-primary: #f7f9fc;
+  --site-text-muted: #b0b8c5;
+  --site-text-subtle: #b0b8c5;
+  --site-divider: #353535;
+  --site-nav-surface: rgb(23 23 23 / 0.92);
+  --site-nav-surface-raised: rgb(23 23 23 / 0.98);
+  --site-nav-border: #353535;
+  --site-backdrop: rgb(0 0 0 / 0.65);
+  --site-glow-2: rgb(255 45 149 / 0.09);
+}
+
+:root[data-palette="cobalt-pink"] #home h1 span {
+  background-image: linear-gradient(to right, var(--accent-light), var(--palette-pink-ink));
+}
+
+:root[data-palette="cobalt-pink"] .section-heading::after {
+  background: var(--palette-pink);
+}
+
+.theme-palette-card[data-palette="cobalt-pink"] .theme-preview-orbit i {
+  background: linear-gradient(135deg, #007ba7, #ff2d95);
+}
+
+/* Ivory Yellow uses deeper gold for readable text on warm light surfaces. */
+:root[data-palette="ivory-yellow"] {
+  --primary: #806400;
+  --primary-rgb: 128 100 0;
+  --primary-light: #957500;
+  --primary-light-rgb: 149 117 0;
+  --primary-dark: #665000;
+  --primary-dark-rgb: 102 80 0;
+  --accent: #806400;
+  --accent-rgb: 128 100 0;
+  --accent-light: #806400;
+  --accent-light-rgb: 128 100 0;
+  --accent-dark: #665000;
+  --accent-dark-rgb: 102 80 0;
+  --palette-yellow: #ffc900;
+  --site-on-accent: #08090b;
+  --site-background: #f5f3ef;
+  --surface: 255 255 255;
+  --surface-elevated: 234 231 224;
+  --site-text-primary: #08090b;
+  --site-text-muted: #5f5b52;
+  --site-text-subtle: #6b665c;
+  --site-divider: #d8d3c9;
+  --site-nav-surface: rgb(255 255 255 / 0.9);
+  --site-nav-surface-raised: rgb(255 255 255 / 0.98);
+  --site-nav-border: #d8d3c9;
+  --site-footer-surface: #08090b;
+}
+
+:root[data-palette="ivory-yellow"].dark {
+  --primary: #ffc900;
+  --primary-rgb: 255 201 0;
+  --primary-light: #ffdf66;
+  --primary-light-rgb: 255 223 102;
+  --primary-dark: #e6b500;
+  --primary-dark-rgb: 230 181 0;
+  --accent: #ffc900;
+  --accent-rgb: 255 201 0;
+  --accent-light: #ffdf66;
+  --accent-light-rgb: 255 223 102;
+  --accent-dark: #e6b500;
+  --accent-dark-rgb: 230 181 0;
+  --site-background: #08090b;
+  --surface: 23 24 27;
+  --surface-elevated: 35 36 40;
+  --site-text-primary: #f5f3ef;
+  --site-text-muted: #bcb8af;
+  --site-text-subtle: #bcb8af;
+  --site-divider: #363639;
+  --site-nav-surface: rgb(23 24 27 / 0.92);
+  --site-nav-surface-raised: rgb(23 24 27 / 0.98);
+  --site-nav-border: #363639;
+  --site-backdrop: rgb(8 9 11 / 0.65);
+}
+
+:root[data-palette="ivory-yellow"] :is(.bg-accent, .contact-info, .accent-footer) {
+  background-color: var(--palette-yellow);
+}
+
+:root[data-palette="ivory-yellow"] .bg-accent:hover {
+  background-color: #e6b500;
+}
+
+:root[data-palette="ivory-yellow"] #contact {
+  background: linear-gradient(to top, var(--palette-yellow) 0 var(--contact-accent-band), var(--site-background) var(--contact-accent-band));
+}
+
+:root[data-palette="ivory-yellow"] .section-heading::after {
+  background: var(--palette-yellow);
+}
+
+.theme-palette-card[data-palette="ivory-yellow"] .theme-preview-copy b {
+  background: #ffc900;
+}

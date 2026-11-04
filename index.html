@@ -79,7 +79,7 @@
         const savedTheme = localStorage.getItem("theme");
         const palette = localStorage.getItem("palette");
         document.documentElement.classList.toggle("dark", savedTheme !== "light");
-        if (["mint", "orange", "coral", "blue"].includes(palette)) {
+        if (["mint", "orange", "coral", "blue", "cobalt-pink", "ivory-yellow"].includes(palette)) {
           document.documentElement.dataset.palette = palette;
         }
       } catch (_) {}

@@ -2,6 +2,8 @@ import { type CSSProperties, useEffect, useLayoutEffect, useRef, useState } from
 import { AdjustmentsHorizontalIcon, ChevronDownIcon, MoonIcon, SunIcon, XMarkIcon, CheckIcon } from "@heroicons/react/24/outline";
 
 const palettes = [
+  { id: "ivory-yellow", name: "Ivory Yellow", swatch: "#ffc900", night: "#08090b", day: "#f5f3ef", ink: "#806400" },
+  { id: "cobalt-pink", name: "Ocean Pink", swatch: "#ff2d95", night: "#0a0a0a", day: "#f7f9fc", ink: "#007ba7" },
   { id: "mint", name: "Midnight Mint", swatch: "#36f2ce", night: "#070e1b", day: "#f5f8fa", ink: "#0f766e" },
   { id: "orange", name: "Charcoal Orange", swatch: "#ff8547", night: "#101014", day: "#faf7f2", ink: "#c04413" },
   { id: "coral", name: "Indigo Coral", swatch: "#ff738a", night: "#101127", day: "#faf6fb", ink: "#bd3158" },
@@ -108,7 +110,7 @@ export default function ThemeSettings() {
             <div className="theme-palette-grid">
               {palettes.map(({ id, name, swatch, night, day, ink }) => (
                 <button
-                  type="button" key={id} aria-pressed={palette === id}
+                  type="button" key={id} data-palette={id} aria-pressed={palette === id}
                   onClick={() => setPalette(id)} className="theme-palette-card"
                   style={{ "--preview-bg": isDark ? night : day, "--preview-accent": isDark ? swatch : ink, "--preview-ink": isDark ? "#f1f5f9" : "#152034" } as CSSProperties}
                 >
