@@ -18,11 +18,11 @@ const Footer = () => {
         {/* Main CTA */}
         <div className="grid gap-8 pb-12 border-b border-white/15 md:grid-cols-12 md:items-end lg:pb-16">
           <div className="md:col-span-8">
-            <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-gray-500 sm:text-xs">
+            <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-gray-500 sm:text-xs">
               Have something interesting in mind?
             </p>
 
-            <h2 className="mt-4 max-w-3xl font-heading text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl lg:text-6xl">
+            <h2 className="mt-4 max-w-3xl font-heading type-section">
               Let&apos;s build something
               <span className="text-accent-light">
                 {" "}
@@ -30,7 +30,7 @@ const Footer = () => {
               </span>
             </h2>
 
-            <p className="max-w-xl mt-5 text-sm leading-7 text-gray-400 sm:text-base">
+            <p className="max-w-xl mt-5 type-body text-gray-400 sm:text-base">
               I&apos;m interested in meaningful engineering challenges,
               product ideas, and opportunities to build reliable software.
             </p>
@@ -60,7 +60,7 @@ const Footer = () => {
               type="button"
               onClick={() => scrollToSection("home")}
               aria-label="Vinay Kushwah — Back to top"
-              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-bold tracking-[-0.04em] text-accent-light transition-colors group-hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-semibold tracking-[-0.04em] text-accent-light transition-colors group-hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
             >
               VK
 
@@ -69,7 +69,7 @@ const Footer = () => {
               </span>
             </button>
 
-            <p className="max-w-sm mt-4 text-sm leading-7 text-gray-400">
+            <p className="max-w-sm mt-4 type-body text-gray-400">
               Software engineer building reliable backend systems, APIs,
               integrations, and modern web applications from Pune, India.
             </p>
@@ -80,7 +80,7 @@ const Footer = () => {
             aria-label="Footer navigation"
             className="md:col-span-4"
           >
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-gray-500 sm:text-xs">
+            <p className="mb-4 font-sans text-xs uppercase tracking-[0.1em] text-gray-500 sm:text-xs">
               Navigate
             </p>
 
@@ -103,7 +103,7 @@ const Footer = () => {
 
           {/* External links */}
           <div className="md:col-span-3">
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-gray-500 sm:text-xs">
+            <p className="mb-4 font-sans text-xs uppercase tracking-[0.1em] text-gray-500 sm:text-xs">
               Elsewhere
             </p>
 
@@ -155,7 +155,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-3 border-t border-white/15 pt-6 font-mono text-xs uppercase tracking-[0.14em] text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+        <div className="flex flex-col gap-3 border-t border-white/15 pt-6 font-sans text-xs uppercase tracking-[0.14em] text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
           <p>
             © {currentYear}{" "}
             <span className="text-accent-light">Vinay Kushwah</span>. All

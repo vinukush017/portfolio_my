@@ -150,21 +150,21 @@ const Skills = () => {
                     ease: [0.22, 1, 0.36, 1],
                   }
               }
-              className="grid gap-6 border-b border-gray-300 pb-8 pt-8 first:pt-6 last:border-b-0 dark:border-white/10 sm:pb-10 sm:pt-10 sm:first:pt-8 lg:grid-cols-12 lg:gap-10"
+              className="grid gap-6 border-b border-gray-300 pb-8 pt-8 first:pt-6 last:border-b-0 dark:border-white/20 sm:pb-10 sm:pt-10 sm:first:pt-8 lg:grid-cols-12 lg:gap-10"
             >
               {/* Group information */}
               <div className="lg:col-span-4">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[11px] font-medium text-accent-dark dark:text-accent-light">
+                  <span className="font-sans text-xs font-medium text-accent-dark dark:text-accent-light">
                     {String(groupIndex + 1).padStart(2, "0")}
                   </span>
 
-                  <h3 className="font-heading text-xl font-semibold tracking-[-0.025em] text-gray-950 dark:text-white sm:text-2xl">
+                  <h3 className="font-heading type-card-title text-gray-950 dark:text-white">
                     {group.name}
                   </h3>
                 </div>
 
-                <p className="mt-3 max-w-sm text-sm leading-6 text-gray-500 dark:text-gray-400">
+                <p className="mt-3 max-w-sm type-body text-gray-500 dark:text-slate-300">
                   {group.description}
                 </p>
               </div>
@@ -174,11 +174,11 @@ const Skills = () => {
                 {group.items.map((skill) => (
                   <li
                     key={skill.name}
-                    className="group/skill flex min-w-[45%] flex-1 items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-[0_8px_20px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-surface dark:hover:border-accent-light/40 dark:hover:shadow-[0_8px_20px_rgba(0,0,0,0.2)] sm:min-w-[180px] sm:flex-none lg:min-w-[190px]"
+                    className="group/skill flex min-w-[45%] flex-1 items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-[0_8px_20px_rgba(15,23,42,0.06)] dark:border-white/20 dark:bg-surface dark:hover:border-accent-light/40 dark:hover:shadow-[0_8px_20px_rgba(0,0,0,0.2)] sm:min-w-[180px] sm:flex-none lg:min-w-[190px]"
                   >
                     <span
                       aria-hidden="true"
-                      className="flex-shrink-0 text-xl text-gray-400 transition-colors duration-300 group-hover/skill:text-accent dark:text-gray-500 dark:group-hover/skill:text-accent-light"
+                      className="flex-shrink-0 text-xl text-gray-400 transition-colors duration-300 group-hover/skill:text-accent dark:text-slate-400 dark:group-hover/skill:text-accent-light"
                     >
                       {skill.icon}
                     </span>

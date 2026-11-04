@@ -27,7 +27,7 @@ const contactLinks = [
 ];
 
 const fieldClass =
-  "peer w-full rounded-xl border border-slate-200 bg-slate-50 py-3.5 pl-12 pr-4 text-sm text-slate-800 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/10 dark:border-slate-700 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-accent-light dark:focus:bg-slate-800/50 dark:focus:ring-accent/15";
+  "peer w-full rounded-xl border border-slate-200 bg-slate-50 py-3.5 pl-12 pr-4 text-base text-slate-800 outline-none transition-all duration-300 placeholder:text-slate-400 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/10 dark:border-slate-700 dark:bg-slate-800/50 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-accent-light dark:focus:bg-slate-800/50 dark:focus:ring-accent/15";
 
 const fieldIconClass =
   "pointer-events-none absolute left-4 h-5 w-5 text-slate-400 transition-colors duration-300 peer-focus:text-accent dark:text-slate-500 dark:peer-focus:text-accent-light";
@@ -129,7 +129,7 @@ const Contact: React.FC = () => {
             {...reveal()}
             className="order-2 lg:order-1 lg:col-span-5"
           >
-            <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400 sm:text-xs">
+            <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-gray-500 dark:text-slate-300 sm:text-xs">
               Get in touch
             </p>
 
@@ -142,7 +142,7 @@ const Contact: React.FC = () => {
               @gmail.com
             </a>
 
-            <p className="mt-5 max-w-md text-sm leading-7 text-gray-600 dark:text-gray-400">
+            <p className="mt-5 max-w-md type-body text-gray-600 dark:text-slate-300">
               The easiest way to reach me is by email. You can also find me on
               LinkedIn and GitHub.
             </p>
@@ -158,7 +158,7 @@ const Contact: React.FC = () => {
                   className="group grid grid-cols-[1fr_auto] items-center gap-3 border-b border-gray-300 py-5 text-sm transition-colors dark:border-white/15"
                 >
                   <span className="min-w-0">
-                    <span className="block font-mono text-[10px] uppercase tracking-[0.15em] text-gray-500">
+                    <span className="block font-sans text-xs uppercase tracking-[0.15em] text-gray-500">
                       {link.label}
                     </span>
 
@@ -173,7 +173,7 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Availability */}
-            <div className="mt-8 flex max-w-md items-start gap-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
+            <div className="mt-8 flex max-w-md items-start gap-3 type-body text-gray-600 dark:text-slate-300">
               <span
                 aria-hidden="true"
                 className="flex-none w-2 h-2 mt-2 rounded-full bg-emerald-500"
@@ -194,18 +194,18 @@ const Contact: React.FC = () => {
             className="order-1 rounded-3xl border border-gray-300 bg-white p-5 shadow-[0_18px_60px_rgba(15,23,42,0.06)] dark:border-white/15 dark:bg-surface sm:p-8 lg:order-2 lg:col-span-7 lg:p-9"
           >
             {/* Form heading */}
-            <div className="flex items-center justify-between pb-5 mb-8 border-b border-gray-200 dark:border-white/10">
+            <div className="flex items-center justify-between pb-5 mb-8 border-b border-gray-200 dark:border-white/20">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-dark dark:text-accent-light">
+                <p className="font-sans text-xs uppercase tracking-[0.1em] text-accent-dark dark:text-accent-light">
                   Send a message
                 </p>
 
-                <h3 className="mt-2 font-heading text-xl font-semibold tracking-[-0.025em] text-gray-950 dark:text-white sm:text-2xl">
+                <h3 className="mt-2 font-heading type-card-title text-gray-950 dark:text-white">
                   Start a conversation
                 </h3>
               </div>
 
-              <span className="hidden font-mono text-[10px] uppercase tracking-[0.14em] text-gray-400 sm:block">
+              <span className="hidden font-sans text-xs uppercase tracking-[0.14em] text-gray-400 sm:block">
                 MESSAGE / 01
               </span>
             </div>

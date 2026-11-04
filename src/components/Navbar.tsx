@@ -193,7 +193,7 @@ const Navbar = () => {
             transition={{ duration: reduceMotion ? 0 : 0.2 }}
             onClick={() => setMenuOpen(false)}
             tabIndex={-1}
-            className="site-menu-backdrop fixed inset-0 z-40 backdrop-blur-[2px] lg:hidden"
+            className="site-menu-backdrop fixed inset-0 z-40  lg:hidden"
           />
         )}
       </AnimatePresence>
@@ -237,7 +237,7 @@ const Navbar = () => {
             aria-label="Vinay Kushwah — Home"
             className="inline-flex items-center rounded-md group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 dark:focus-visible:ring-offset-gray-950"
           >
-            <span className="font-heading text-xl font-bold tracking-[-0.04em] text-accent-dark transition-colors group-hover:text-accent dark:text-accent-light">
+            <span className="font-heading text-xl font-semibold tracking-[-0.04em] text-accent-dark transition-colors group-hover:text-accent dark:text-accent-light">
               VK
               <span className="text-accent transition-colors group-hover:text-accent-dark dark:text-accent-light">
                 .
@@ -262,7 +262,7 @@ const Navbar = () => {
                   className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                     active
                       ? "text-accent dark:text-accent-light"
-                      : "text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
+                      : "text-gray-500 hover:text-gray-950 dark:text-slate-300 dark:hover:text-white"
                   }`}
                 >
                   {label}
@@ -403,7 +403,7 @@ const Navbar = () => {
                           className={`h-5 w-5 flex-shrink-0 transition-colors duration-300 ${
                             active
                               ? "text-accent"
-                              : "text-gray-400 group-hover:text-accent-dark dark:text-gray-500 dark:group-hover:text-accent-light"
+                              : "text-gray-400 group-hover:text-accent-dark dark:text-slate-400 dark:group-hover:text-accent-light"
                           }`}
                         />
 
@@ -421,7 +421,7 @@ const Navbar = () => {
                 </nav>
 
                 {/* Mobile bottom area */}
-                <div className="mt-2 border-t border-gray-200 px-1 pt-3 dark:border-white/10">
+                <div className="mt-2 border-t border-gray-200 px-1 pt-3 dark:border-white/20">
                   <CtaButton
                     href="#contact"
                     onClick={(event) => {
@@ -434,7 +434,7 @@ const Navbar = () => {
                     Hire Me
                   </CtaButton>
 
-                  <div className="mt-3 flex items-center justify-center gap-5 pb-1 text-sm text-gray-500 dark:text-gray-400">
+                  <div className="mt-3 flex items-center justify-center gap-5 pb-1 text-sm text-gray-500 dark:text-slate-300">
                     <a
                       href="https://github.com/vinukush017"
                       target="_blank"

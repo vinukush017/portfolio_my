@@ -93,7 +93,7 @@ const About = () => {
               requirements into reliable systems and practical digital products.
             </p>
 
-            <div className="mt-7 grid gap-5 text-base leading-7 text-gray-600 dark:text-gray-400 lg:mt-8 lg:grid-cols-2 lg:gap-8">
+            <div className="mt-7 grid gap-5 type-body text-gray-600 dark:text-slate-300 lg:mt-8 lg:grid-cols-2 lg:gap-8">
               <p>
                 My work spans backend services, REST APIs, databases, React
                 interfaces, cloud infrastructure, and third-party integrations.
@@ -110,7 +110,7 @@ const About = () => {
 
             {/* Focus areas */}
             <div className="mt-10 lg:mt-12">
-              <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-gray-400 dark:text-gray-500">
+              <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-gray-400 dark:text-slate-400">
                 What I focus on
               </p>
 
@@ -118,9 +118,9 @@ const About = () => {
                 {focusAreas.map((focus, index) => (
                   <li
                     key={focus}
-                    className="group flex items-center gap-3 border-t border-gray-300 py-4 text-sm font-medium text-gray-800 transition-colors hover:text-accent-dark dark:border-white/10 dark:text-gray-300 dark:hover:text-accent-light"
+                    className="group flex items-center gap-3 border-t border-gray-300 py-4 text-sm font-medium text-gray-800 transition-colors hover:text-accent-dark dark:border-white/20 dark:text-gray-300 dark:hover:text-accent-light"
                   >
-                    <span className="font-mono text-[11px] text-accent-dark dark:text-accent-light">
+                    <span className="font-sans text-xs text-accent-dark dark:text-accent-light">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
@@ -146,7 +146,7 @@ const About = () => {
                   className={`group flex min-h-36 flex-col justify-between rounded-2xl border p-4 transition-all duration-300 hover:-translate-y-1 sm:min-h-40 lg:min-h-44 lg:p-5 ${
                     isPrimary
                       ? "border-accent/40 bg-gradient-to-br from-accent/15 to-accent/5 site-text-primary shadow-lg shadow-accent/10 hover:border-accent/60"
-                      : "border-gray-200 bg-white text-gray-950 shadow-sm hover:border-accent/40 hover:shadow-md dark:border-white/10 dark:bg-surface dark:text-white"
+                      : "border-gray-200 bg-white text-gray-950 shadow-sm hover:border-accent/40 hover:shadow-md dark:border-white/20 dark:bg-surface dark:text-white"
                   }`}
                 >
                   <div>
@@ -160,7 +160,7 @@ const About = () => {
                     />
 
                     <dt
-                      className={`mt-3 font-mono text-[10px] font-medium uppercase tracking-[0.14em] sm:text-[11px] ${
+                      className={`mt-3 font-sans text-xs font-medium uppercase tracking-[0.14em] sm:text-xs ${
                         isPrimary ? "site-text-muted" : "text-gray-500"
                       }`}
                     >
@@ -180,10 +180,10 @@ const About = () => {
                     </dd>
 
                     <div
-                      className={`mt-3 flex items-center gap-2 border-t pt-3 text-[11px] font-medium ${
+                      className={`mt-3 flex items-center gap-2 border-t pt-3 text-xs font-medium ${
                         isPrimary
                           ? "site-divider site-text-muted"
-                          : "border-gray-200 text-gray-500 dark:border-white/10 dark:text-gray-500"
+                          : "border-gray-200 text-gray-500 dark:border-white/20 dark:text-slate-400"
                       }`}
                     >
                       <span

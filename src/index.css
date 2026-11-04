@@ -50,7 +50,7 @@
   --site-text-primary: #0b1220;
   --site-text-muted: #475569;
   --site-text-subtle: #64748b;
-  --site-divider: rgba(100, 116, 139, 0.22);
+  --site-divider: rgba(71, 85, 105, 0.28);
   --site-nav-surface: rgba(255, 255, 255, 0.9);
   --site-nav-surface-raised: rgba(255, 255, 255, 0.96);
   --site-nav-border: rgba(100, 116, 139, 0.16);
@@ -84,7 +84,7 @@
   --site-text-primary: #f1f5f9;
   --site-text-muted: #a8b5c7;
   --site-text-subtle: #a8b5c7;
-  --site-divider: rgba(168, 181, 199, 0.14);
+  --site-divider: rgba(168, 181, 199, 0.24);
   --site-nav-surface: rgba(24, 36, 56, 0.92);
   --site-nav-surface-raised: rgba(24, 36, 56, 0.98);
   --site-nav-border: rgba(168, 181, 199, 0.14);
@@ -154,20 +154,6 @@ body {
   transition: background-color 400ms ease, color 400ms ease;
 }
 
-.site-canvas::before {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  pointer-events: none;
-  content: "";
-  background:
-    radial-gradient(ellipse 60rem 40rem at 15% 0%, var(--site-glow-1), transparent 65%),
-    radial-gradient(ellipse 55rem 45rem at 100% 20%, var(--site-glow-2), transparent 60%),
-    radial-gradient(ellipse 65rem 50rem at 50% 100%, var(--site-glow-3), transparent 65%);
-  opacity: 1;
-  transition: opacity 400ms ease;
-  will-change: opacity;
-}
 
 .site-text-primary {
   color: var(--site-text-primary);
@@ -187,14 +173,13 @@ body {
 
 .floating-nav-surface {
   border-color: var(--site-nav-border);
-  background: var(--site-nav-surface);
+  background: rgb(var(--surface));
   box-shadow: var(--site-nav-shadow);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+
 }
 
 .floating-nav-surface[data-raised="true"] {
-  background: var(--site-nav-surface-raised);
+  background: rgb(var(--surface));
   box-shadow: var(--site-nav-shadow-raised);
 }
 
@@ -427,10 +412,38 @@ body {
 .theme-palette-card[aria-pressed="true"] .theme-card-check { border-color: var(--preview-accent); background: var(--preview-accent); color: var(--preview-bg); }
 .theme-panel-footer { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 18px -18px 0; padding: 13px 12px; border-top: 1px solid var(--site-divider); font-size: 10px; color: var(--site-text-subtle); background: rgb(0 0 0 / 0.025); }
 .theme-saved-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
-@keyframes theme-panel-in { from { opacity: 0; transform: translateY(-5px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes theme-panel-in { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 @media (min-width: 640px) {
   .theme-settings-panel { left: auto; right: 0; width: 348px; padding: 24px 22px 0; }
   .theme-preview { height: 96px; }
   .theme-card-caption { font-size: 11px; }
   .theme-panel-footer { margin-inline: -22px; }
 }
+
+/* Shared typography scale: Space Grotesk headings, Inter reading and controls. */
+body { font-size: 16px; line-height: 1.65; }
+.type-hero { font-size: clamp(2rem, 11.3vw, 2.75rem); font-weight: 600; line-height: 1.06; letter-spacing: -0.03em; }
+.type-section { font-size: 2rem; font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; text-wrap: balance; }
+.type-card-title { font-size: 1.375rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.03em; text-wrap: balance; }
+.type-body { font-size: 1rem; font-weight: 400; line-height: 1.65; }
+.type-intro { font-size: 1.0625rem; font-weight: 400; line-height: 1.65; }
+.theme-eyebrow { font-size: 12px; letter-spacing: 0.06em; }
+.theme-mode-symbols, .theme-switch-thumb { line-height: 1; }
+.theme-appearance-copy .theme-field-label, .theme-field-label, .theme-card-caption, .theme-panel-footer { font-size: 12px; }
+@media (min-width: 768px) {
+  .type-hero { font-size: 4rem; }
+  .type-section { font-size: 2.5rem; }
+  .type-card-title { font-size: 1.5rem; }
+  .type-intro { font-size: 1.125rem; }
+}
+@media (min-width: 1024px) {
+  .type-section { font-size: 3rem; }
+  .type-card-title { font-size: 1.75rem; }
+  .type-body { font-size: 1.0625rem; }
+  .type-intro { font-size: 1.25rem; }
+}
+@media (min-width: 1280px) {
+  .type-hero { font-size: 5rem; }
+}
+
+p.type-body { max-width: 65ch; }

@@ -109,7 +109,7 @@ const StatCard = ({
           delay,
         }
     }
-    className={`absolute z-10 flex items-center gap-2.5 rounded-xl border border-gray-200 bg-white/80 p-3 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-surface/95 ${className}`}
+    className={`absolute z-10 flex items-center gap-2.5 rounded-xl border border-gray-200 bg-white p-3 shadow-sm dark:border-white/20 dark:bg-surface ${className}`}
   >
     <span
       aria-hidden="true"
@@ -117,11 +117,11 @@ const StatCard = ({
     />
 
     <div className="min-w-0">
-      <p className="text-sm font-bold leading-none text-gray-950 dark:text-white">
+      <p className="text-sm font-semibold leading-none text-gray-950 dark:text-white">
         {value}
       </p>
 
-      <p className="mt-1 truncate font-mono text-[10px] uppercase tracking-[0.1em] text-gray-500 dark:text-gray-400">
+      <p className="mt-1 truncate font-mono text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-300">
         {label}
       </p>
     </div>
@@ -158,7 +158,7 @@ const HeroSection = () => {
           {/* Role */}
           <motion.div
             {...reveal(0.05)}
-            className="mb-7 flex flex-wrap items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.18em] text-gray-600 dark:text-gray-400"
+            className="mb-7 flex flex-wrap items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.12em] text-gray-600 dark:text-slate-300"
           >
             <span className="text-accent-dark dark:text-accent-light">
               Software Engineer
@@ -173,7 +173,7 @@ const HeroSection = () => {
           <motion.h1
             id="hero-title"
             {...reveal(0.12)}
-            className="max-w-5xl font-heading text-[clamp(2.75rem,13vw,3.5rem)] font-semibold leading-[0.96] tracking-[-0.055em] sm:text-6xl md:text-[3.25rem] lg:text-7xl"
+            className="max-w-5xl font-heading type-hero"
           >
             I Build Scalable
             <br />
@@ -185,10 +185,10 @@ const HeroSection = () => {
           {/* Description */}
           <motion.p
             {...reveal(0.2)}
-            className="mt-7 max-w-2xl text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:mt-8 sm:text-lg"
+            className="mt-7 max-w-[60ch] type-intro text-gray-600 dark:text-gray-300 sm:mt-8"
           >
             I&apos;m{" "}
-            <span className="font-bold text-accent-dark dark:text-accent-light">
+            <span className="font-semibold text-accent-dark dark:text-accent-light">
               Vinay Kushwah
             </span>
             , a software engineer building reliable backend systems, APIs,
@@ -220,7 +220,7 @@ const HeroSection = () => {
 
           {/* Social links */}
           <motion.div {...reveal(0.38)} className="mt-8 sm:mt-10">
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
+            <p className="font-mono text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-300">
               Follow me
             </p>
 
@@ -232,7 +232,7 @@ const HeroSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="group flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-gray-400 dark:hover:bg-accent-light/10 dark:hover:text-accent-light"
+                  className="group flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-slate-300 dark:hover:bg-accent-light/10 dark:hover:text-accent-light"
                 >
                   <Icon className="h-[18px] w-[18px] transition-transform duration-200 group-hover:scale-110" />
                 </a>
@@ -257,12 +257,6 @@ const HeroSection = () => {
           }
           className="relative mx-auto mt-10 aspect-square w-full max-w-[260px] sm:max-w-[320px] lg:col-span-5 lg:mx-0 lg:ml-auto lg:mt-0 lg:max-w-[400px]"
         >
-          {/* Ambient glow behind the circle */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/30 via-accent-light/15 to-transparent blur-2xl"
-          />
-
           {/* Outer circular text */}
           <div className="pointer-events-none absolute -inset-7 select-none lg:-inset-8">
             <CircularText
@@ -279,7 +273,7 @@ const HeroSection = () => {
 
           {/* Solid outer ring */}
           <div
-            className={`absolute inset-0 rounded-full border-2 border-accent/35 dark:border-accent/60 dark:shadow-[0_0_45px_rgb(var(--accent-rgb)/0.16)] ${reduceMotion ? "" : "animate-spin-slow"
+            className={`absolute inset-0 rounded-full border-2 border-accent/35 dark:border-accent/60  ${reduceMotion ? "" : "animate-spin-slow"
               }`}
           />
 
@@ -290,7 +284,7 @@ const HeroSection = () => {
           />
 
           {/* Profile image */}
-          <div className="absolute inset-9 overflow-hidden rounded-full shadow-2xl">
+          <div className="absolute inset-9 overflow-hidden rounded-full border border-accent/25 shadow-sm">
             <img
               src="/avatar-optimized.jpg"
               alt="Vinay Kushwah, Software Engineer"
@@ -298,7 +292,7 @@ const HeroSection = () => {
               height={520}
               fetchPriority="high"
               decoding="async"
-              className="w-full h-full scale-125 object-cover object-center"
+              className="w-full h-full object-cover object-center"
             />
           </div>
 

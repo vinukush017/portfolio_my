@@ -91,26 +91,26 @@ const Blogs = () => {
               <motion.article
                 key={post.title}
                 {...reveal(index)}
-                className="group flex min-h-[370px] flex-col rounded-3xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_20px_50px_rgba(15,23,42,0.07)] dark:border-white/10 dark:bg-surface dark:hover:border-accent-light/30 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:p-6"
+                className="group flex min-h-[370px] flex-col rounded-3xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_20px_50px_rgba(15,23,42,0.07)] dark:border-white/20 dark:bg-surface dark:hover:border-accent-light/30 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:p-6"
               >
                 {/* Meta */}
                 <div className="flex items-center justify-between gap-4">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-gray-500 sm:text-[11px]">
+                  <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-500 sm:text-xs">
                     {post.publishedAt ?? "Draft ready"}
                   </p>
 
-                  <span className="inline-flex items-center justify-center w-10 h-10 text-accent-dark transition-colors border border-gray-200 rounded-full group-hover:border-accent/25 group-hover:bg-accent/10 dark:border-white/10 dark:text-accent-light dark:group-hover:border-accent-light/25 dark:group-hover:bg-accent/10">
+                  <span className="inline-flex items-center justify-center w-10 h-10 text-accent-dark transition-colors border border-gray-200 rounded-full group-hover:border-accent/25 group-hover:bg-accent/10 dark:border-white/20 dark:text-accent-light dark:group-hover:border-accent-light/25 dark:group-hover:bg-accent/10">
                     <DocumentTextIcon aria-hidden="true" className="w-5 h-5" />
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="mt-8 font-heading text-2xl font-semibold leading-[1.15] tracking-[-0.035em] text-gray-950 transition-colors group-hover:text-accent-dark dark:text-white dark:group-hover:text-accent-light">
+                <h3 className="mt-8 font-heading type-card-title text-gray-950 transition-colors group-hover:text-accent-dark dark:text-white dark:group-hover:text-accent-light">
                   {post.title}
                 </h3>
 
                 {/* Excerpt */}
-                <p className="mt-4 text-sm leading-7 text-gray-600 dark:text-gray-400">
+                <p className="mt-4 type-body text-gray-600 dark:text-slate-300">
                   {post.excerpt}
                 </p>
 
@@ -122,7 +122,7 @@ const Blogs = () => {
                   {post.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-mono text-[10px] font-medium text-gray-600 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400"
+                      className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-sans text-xs font-medium text-gray-600 dark:border-white/20 dark:bg-white/[0.03] dark:text-slate-300"
                     >
                       {tag}
                     </li>
@@ -131,7 +131,7 @@ const Blogs = () => {
 
                 {/* Footer */}
                 <div className="mt-auto pt-7">
-                  <div className="pt-5 border-t border-gray-200 dark:border-white/10">
+                  <div className="pt-5 border-t border-gray-200 dark:border-white/20">
                     <div className="flex items-center justify-between gap-4">
                       <p className="text-xs text-gray-500">{post.readTime}</p>
 
@@ -177,7 +177,7 @@ const Blogs = () => {
           <AnimatePresence>
             {activePost?.previewId && (
               <motion.div
-                className="fixed inset-0 z-[100] flex items-end justify-center bg-gray-950/70 backdrop-blur-sm sm:items-center sm:p-6"
+                className="fixed inset-0 z-[100] flex items-end justify-center bg-gray-950/70  sm:items-center sm:p-6"
                 initial={reduceMotion ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -219,12 +219,12 @@ const Blogs = () => {
                   transition={{
                     duration: reduceMotion ? 0 : 0.25,
                   }}
-                  className="relative flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-gray-200 bg-[#ffffff] text-gray-950 shadow-2xl dark:border-white/10 dark:bg-surface dark:text-white sm:max-h-[88dvh] sm:rounded-3xl"
+                  className="relative flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-gray-200 bg-[#ffffff] text-gray-950 shadow-2xl dark:border-white/20 dark:bg-surface dark:text-white sm:max-h-[88dvh] sm:rounded-3xl"
                 >
                   {/* Modal header */}
-                  <div className="flex items-start justify-between gap-5 px-5 py-5 border-b border-gray-200 dark:border-white/10 sm:px-8 sm:py-6">
+                  <div className="flex items-start justify-between gap-5 px-5 py-5 border-b border-gray-200 dark:border-white/20 sm:px-8 sm:py-6">
                     <div>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-dark dark:text-accent-light">
+                      <p className="font-sans text-xs uppercase tracking-[0.12em] text-accent-dark dark:text-accent-light">
                         Article preview
                       </p>
 
@@ -295,7 +295,7 @@ const Blogs = () => {
                           Continue reading the full article.
                         </p>
 
-                        <p className="max-w-lg mx-auto mt-3 text-sm leading-7 text-gray-600 dark:text-gray-400">
+                        <p className="max-w-lg mx-auto mt-3 type-body text-gray-600 dark:text-slate-300">
                           Read the complete explanation, practical examples, and
                           deeper technical notes on Medium.
                         </p>

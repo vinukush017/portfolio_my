@@ -111,22 +111,22 @@ const Experience = () => {
           />
         </div>
 
-        <div className="border-y border-gray-300 dark:border-white/10">
+        <div className="border-y border-gray-300 dark:border-white/20">
           {experiences.map((experience, index) => (
             <motion.article
               key={`${experience.company}-${experience.period}`}
               {...reveal(index)}
-              className="grid gap-7 border-b border-gray-300 py-8 last:border-b-0 dark:border-white/10 sm:py-10 lg:grid-cols-12 lg:gap-10 lg:py-12"
+              className="grid gap-7 border-b border-gray-300 py-8 last:border-b-0 dark:border-white/20 sm:py-10 lg:grid-cols-12 lg:gap-10 lg:py-12"
             >
               {/* Number + Period */}
               <div className="lg:col-span-2">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[11px] font-medium text-accent-dark dark:text-accent-light">
+                  <span className="font-sans text-xs font-medium text-accent-dark dark:text-accent-light">
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
                   {experience.current && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-400">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-400">
                       <span
                         aria-hidden="true"
                         className="h-1.5 w-1.5 rounded-full bg-emerald-500"
@@ -136,14 +136,14 @@ const Experience = () => {
                   )}
                 </div>
 
-                <p className="mt-4 font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-gray-400">
+                <p className="mt-4 font-sans text-xs uppercase leading-relaxed tracking-[0.12em] text-gray-400">
                   {experience.period}
                 </p>
               </div>
 
               {/* Role information */}
               <div className="lg:col-span-4">
-                <h3 className="font-heading text-2xl font-semibold tracking-[-0.035em] text-gray-950 dark:text-white sm:text-[1.7rem]">
+                <h3 className="font-heading type-card-title text-gray-950 dark:text-white ">
                   {experience.title}
                 </h3>
 
@@ -164,13 +164,13 @@ const Experience = () => {
                   </p>
                 </div>
 
-                <p className="mt-5 max-w-md text-sm leading-7 text-gray-600 dark:text-gray-400">
+                <p className="mt-5 max-w-md type-body text-gray-600 dark:text-slate-300">
                   {experience.summary}
                 </p>
 
                 {/* Technology stack */}
                 <div className="mt-6">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-gray-400 dark:text-gray-500">
+                  <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-400 dark:text-slate-400">
                     Technologies
                   </p>
 
@@ -178,7 +178,7 @@ const Experience = () => {
                     {experience.stack.map((technology) => (
                       <li
                         key={technology}
-                        className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-mono text-[10px] font-medium text-gray-600 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 sm:text-[11px]"
+                        className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-sans text-xs font-medium text-gray-600 dark:border-white/20 dark:bg-white/[0.03] dark:text-slate-300 sm:text-xs"
                       >
                         {technology}
                       </li>
@@ -189,7 +189,7 @@ const Experience = () => {
 
               {/* Contributions */}
               <div className="lg:col-span-6">
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-gray-400 dark:text-gray-500">
+                <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-400 dark:text-slate-400">
                   Selected contributions
                 </p>
 
@@ -197,7 +197,7 @@ const Experience = () => {
                   {experience.achievements.map((achievement) => (
                     <li
                       key={achievement}
-                      className="flex gap-3 text-sm leading-7 text-gray-600 dark:text-gray-300 sm:text-[15px]"
+                      className="flex gap-3 type-body text-gray-600 dark:text-gray-300 "
                     >
                       <span
                         aria-hidden="true"

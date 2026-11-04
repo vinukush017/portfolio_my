@@ -46,7 +46,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {subtitle && (
         <motion.p
           {...reveal(0)}
-          className="flex items-center gap-3 before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent before:shadow-glow font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent-dark dark:text-accent-light lg:col-span-3"
+          className="flex items-center gap-3 before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent font-mono text-xs font-medium uppercase tracking-[0.12em] text-accent-dark dark:text-accent-light lg:col-span-3"
         >
           {subtitle}
         </motion.p>
@@ -54,7 +54,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 
       <motion.h2
         {...reveal(0.06)}
-        className="font-heading text-4xl font-semibold tracking-[-0.045em] text-gray-950 dark:text-white sm:text-5xl lg:col-span-5"
+        className="font-heading type-section text-gray-950 dark:text-white lg:col-span-5"
       >
         {title}
       </motion.h2>
@@ -62,7 +62,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {description && (
         <motion.p
           {...reveal(0.12)}
-          className="max-w-xl text-base leading-relaxed text-gray-600 dark:text-gray-400 lg:col-span-4 lg:justify-self-end"
+          className="max-w-[60ch] type-body text-gray-600 dark:text-slate-300 lg:col-span-4 lg:justify-self-end"
         >
           {description}
         </motion.p>

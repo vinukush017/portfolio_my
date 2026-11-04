@@ -1,14 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
 import {
   motion,
-  type MotionValue,
   useReducedMotion,
-  useScroll,
-  useTransform,
 } from "framer-motion";
 import SectionHeader from "./SectionHeader";
 import CtaButton from "./CtaButton";
@@ -135,7 +132,7 @@ const SlideDots = ({
   if (count <= 1) return null;
 
   return (
-    <div className="absolute flex items-center gap-1 px-2 py-1 -translate-x-1/2 rounded-full bottom-3 left-1/2 bg-black/50 backdrop-blur-md">
+    <div className="absolute flex items-center gap-1 px-2 py-1 -translate-x-1/2 rounded-full bottom-3 left-1/2 bg-black/50 ">
       {Array.from({ length: count }).map((_, index) => (
         <button
           key={index}
@@ -161,13 +158,9 @@ const SlideDots = ({
 const ProjectCard = ({
   project,
   index,
-  total,
-  scrollYProgress,
 }: {
   project: Project;
   index: number;
-  total: number;
-  scrollYProgress: MotionValue<number>;
 }) => {
   const reduceMotion = useReducedMotion();
   const [imageIndex, setImageIndex] = useState(0);
@@ -175,7 +168,6 @@ const ProjectCard = ({
   const hasImages = project.images.length > 0;
   const hasMultipleImages = project.images.length > 1;
   const number = String(index + 1).padStart(2, "0");
-  const isLast = index === total - 1;
 
   const showPreviousImage = () => {
     if (!hasImages) return;
@@ -192,25 +184,6 @@ const ProjectCard = ({
       current === project.images.length - 1 ? 0 : current + 1,
     );
   };
-
-  // Scroll-driven "receding into the stack" effect: as scroll progress moves
-  // through this card's slice of the stack (i.e. the next card scrolls up
-  // and begins covering it), this card eases back very slightly. The last
-  // card has nothing stacking on top of it, so it never recedes.
-  const segment = 1 / total;
-  const rangeStart = index * segment;
-  const rangeEnd = Math.min(rangeStart + segment, 1);
-
-  const stackScale = useTransform(
-    scrollYProgress,
-    [rangeStart, rangeEnd],
-    [1, isLast ? 1 : 0.95],
-  );
-  const stackOpacity = useTransform(
-    scrollYProgress,
-    [rangeStart, rangeEnd],
-    [1, isLast ? 1 : 0.88],
-  );
 
   return (
     <div
@@ -237,24 +210,19 @@ const ProjectCard = ({
                 ease: [0.22, 1, 0.36, 1],
               }
         }
-        style={
-          reduceMotion
-            ? undefined
-            : { scale: stackScale, opacity: stackOpacity }
-        }
-        className="group relative grid grid-cols-1 gap-6 overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] transition-colors duration-300 hover:border-accent/35 dark:border-white/10 dark:bg-surface dark:hover:border-accent-light/30 sm:p-7 lg:grid-cols-2 lg:items-center lg:gap-10 lg:p-9"
+        className="group relative grid grid-cols-1 gap-6 overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] transition-colors duration-300 hover:border-accent/35 dark:border-white/20 dark:bg-surface dark:hover:border-accent-light/30 sm:p-7 lg:grid-cols-2 lg:items-center lg:gap-10 lg:p-9"
       >
       {/* Decorative project number */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -top-4 left-4 select-none font-heading text-[6rem] font-bold leading-none text-accent/[0.06] sm:text-[8rem] lg:-top-8 lg:left-6 lg:text-[9rem] dark:text-accent-light/[0.06]"
+        className="pointer-events-none absolute -top-4 left-4 select-none font-heading text-[6rem] font-semibold leading-none text-accent/[0.06] sm:text-[8rem] lg:-top-8 lg:left-6 lg:text-[9rem] dark:text-accent-light/[0.06]"
       >
         {number}
       </span>
 
       {/* Project media */}
       <div className="relative order-1 lg:order-2">
-        <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 dark:border-white/10 dark:bg-surface">
+        <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 dark:border-white/20 dark:bg-surface">
           <div className="aspect-[16/11] overflow-hidden">
             {hasImages ? (
               <motion.img
@@ -266,17 +234,12 @@ const ProjectCard = ({
                 initial={reduceMotion ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.25 }}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                className="h-full w-full object-cover"
               />
             ) : (
               <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#f3f4f1] px-8 dark:bg-surface">
-                <div
-                  aria-hidden="true"
-                  className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-accent-light/15 blur-3xl pointer-events-none dark:bg-accent/10"
-                />
-
                 <div className="relative text-center">
-                  <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-accent-dark dark:text-accent-light">
+                  <p className="font-sans text-xs font-medium uppercase tracking-[0.2em] text-accent-dark dark:text-accent-light">
                     Selected work
                   </p>
 
@@ -284,7 +247,7 @@ const ProjectCard = ({
                     {project.title}
                   </p>
 
-                  <p className="max-w-xs mx-auto mt-3 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                  <p className="max-w-xs mx-auto mt-3 type-body text-gray-500 dark:text-slate-300">
                     {project.category}
                   </p>
                 </div>
@@ -298,7 +261,7 @@ const ProjectCard = ({
                 type="button"
                 aria-label={`Previous ${project.title} screenshot`}
                 onClick={showPreviousImage}
-                className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 left-3 top-1/2 border-white/20 bg-black/45 backdrop-blur-md hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
+                className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 left-3 top-1/2 border-white/20 bg-black/45  hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
               >
                 <ChevronLeftIcon className="w-5 h-5" />
               </button>
@@ -307,7 +270,7 @@ const ProjectCard = ({
                 type="button"
                 aria-label={`Next ${project.title} screenshot`}
                 onClick={showNextImage}
-                className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 right-3 top-1/2 border-white/20 bg-black/45 backdrop-blur-md hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
+                className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 right-3 top-1/2 border-white/20 bg-black/45  hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
               >
                 <ChevronRightIcon className="w-5 h-5" />
               </button>
@@ -326,18 +289,18 @@ const ProjectCard = ({
       {/* Project information */}
       <div className="relative z-10 order-2 lg:order-1">
         {/* Metadata */}
-        <p className="font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-accent-dark dark:text-accent-light sm:text-[11px]">
+        <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-accent-dark dark:text-accent-light sm:text-xs">
           {project.category} <span aria-hidden="true">&middot;</span>{" "}
           {project.stack[0]}
         </p>
 
         {/* Title */}
-        <h3 className="mt-3 font-heading text-2xl font-semibold tracking-[-0.035em] text-gray-950 transition-colors dark:text-white sm:text-[1.75rem]">
+        <h3 className="mt-3 font-heading type-card-title text-gray-950 transition-colors dark:text-white ">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="mt-4 text-sm leading-7 text-gray-600 dark:text-gray-400 sm:text-[15px]">
+        <p className="mt-4 type-body text-gray-600 dark:text-slate-300 ">
           {project.description}
         </p>
 
@@ -363,7 +326,7 @@ const ProjectCard = ({
           {project.stack.map((technology) => (
             <span
               key={technology}
-              className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-mono text-[10px] font-medium text-gray-600 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 sm:text-[11px]"
+              className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-sans text-xs font-medium text-gray-600 dark:border-white/20 dark:bg-white/[0.03] dark:text-slate-300 sm:text-xs"
             >
               {technology}
             </span>
@@ -383,16 +346,6 @@ const ProjectCard = ({
 };
 
 const Projects: React.FC = () => {
-  const stackRef = useRef<HTMLDivElement>(null);
-
-  // A single scroll progress (0 → 1) spanning the whole stack, used to drive
-  // each card's subtle "receding into the stack" scale/opacity as the next
-  // card scrolls up and covers it.
-  const { scrollYProgress } = useScroll({
-    target: stackRef,
-    offset: ["start start", "end end"],
-  });
-
   return (
     <section
       id="projects"
@@ -416,14 +369,12 @@ const Projects: React.FC = () => {
           />
         </div>
 
-        <div ref={stackRef} className="relative">
+        <div className="relative">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.title}
               project={project}
               index={index}
-              total={projects.length}
-              scrollYProgress={scrollYProgress}
             />
           ))}
         </div>
