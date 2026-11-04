@@ -114,13 +114,13 @@ const HeroSection = () => {
           {/* Role */}
           <motion.div
             {...reveal(0.05)}
-            className="hero-role mb-7 flex flex-wrap items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.12em] text-gray-600 dark:text-slate-300"
+            className="hero-role mb-7 flex flex-wrap items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.12em] site-text-muted"
           >
             <span className="site-text-muted">
               Software Engineer
             </span>
 
-            <span className="h-px w-8 bg-gray-300 dark:bg-white/20" />
+            <span className="h-px w-8 bg-[var(--site-divider)]" />
 
             <span>Node.js · TypeScript · React · AWS</span>
           </motion.div>
@@ -164,10 +164,10 @@ const HeroSection = () => {
               href="/Vinay_Kushwah_Resume_2025.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="hero-resume group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white/40 px-6 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-accent-light/40 dark:hover:bg-white/10"
+              className="hero-resume group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border site-divider bg-surface/40 px-6 text-sm font-semibold site-text-primary transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent "
             >
               Download CV
-              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-400 transition-colors duration-200 group-hover:border-accent dark:border-gray-600 dark:group-hover:border-accent-light">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border site-divider transition-colors duration-200 group-hover:border-accent ">
                 <ArrowDownIcon className="h-4 w-4 transition-transform duration-200  group-hover:translate-y-0.5" />
               </span>
             </a>
@@ -175,7 +175,7 @@ const HeroSection = () => {
 
           {/* Social links */}
           <motion.div {...reveal(0.38)} className="hero-socials mt-8 sm:mt-10">
-            <p className="font-mono text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-300">
+            <p className="font-mono text-xs uppercase tracking-[0.1em] site-text-subtle">
               Follow me
             </p>
 
@@ -187,7 +187,7 @@ const HeroSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="group flex h-11 w-11 items-center justify-center rounded-full text-gray-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-slate-300 dark:hover:bg-accent-light/10 dark:hover:text-accent-light"
+                  className="group flex h-11 w-11 items-center justify-center rounded-full site-text-muted transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent "
                 >
                   <Icon className="h-[18px] w-[18px] transition-transform duration-200 group-hover:scale-110" />
                 </a>
@@ -229,13 +229,13 @@ const HeroSection = () => {
 
           {/* Solid outer ring */}
           <div
-            className={`absolute inset-0 rounded-full border-2 border-accent ${reduceMotion ? "" : "animate-spin-slow"
+            className={`absolute inset-0 rounded-full border-2 border-accent/35 ${reduceMotion ? "" : "animate-spin-slow"
               }`}
           />
 
           {/* Solid inner ring */}
           <div
-            className={`absolute inset-5 rounded-full border border-accent/40 ${reduceMotion ? "" : "animate-spin-reverse"
+            className={`absolute inset-5 rounded-full border border-accent/15 ${reduceMotion ? "" : "animate-spin-reverse"
               }`}
           />
 

@@ -884,3 +884,9 @@ p.type-body { max-width: 65ch; }
 .theme-footer .type-section .footer-heading-accent {
   color: var(--theme-accent);
 }
+
+/* Neutral links keep their palette text color until interaction. */
+#home .hero-socials a:hover,
+.site-header a:not(.primary-action):hover {
+  color: var(--theme-accent);
+}

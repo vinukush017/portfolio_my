@@ -88,12 +88,12 @@ const About = () => {
         <div className="grid gap-10 md:grid-cols-12 md:gap-8 lg:gap-14">
           {/* Main content */}
           <motion.div {...reveal()} className="md:col-span-7">
-            <p className="max-w-3xl font-heading text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-gray-950 dark:text-white sm:text-3xl lg:text-[2rem]">
+            <p className="max-w-3xl font-heading text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-theme-heading sm:text-3xl lg:text-[2rem]">
               I&apos;m Vinay, a software engineer focused on turning complex
               requirements into reliable systems and practical digital products.
             </p>
 
-            <div className="mt-7 grid gap-5 type-body text-gray-600 dark:text-slate-300 lg:mt-8 lg:grid-cols-2 lg:gap-8">
+            <div className="mt-7 grid gap-5 type-body site-text-muted lg:mt-8 lg:grid-cols-2 lg:gap-8">
               <p>
                 My work spans backend services, REST APIs, databases, React
                 interfaces, cloud infrastructure, and third-party integrations.
@@ -110,7 +110,7 @@ const About = () => {
 
             {/* Focus areas */}
             <div className="mt-10 lg:mt-12">
-              <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-gray-500 dark:text-slate-400">
+              <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] site-text-subtle">
                 What I focus on
               </p>
 
@@ -118,7 +118,7 @@ const About = () => {
                 {focusAreas.map((focus, index) => (
                   <li
                     key={focus}
-                    className="group flex items-center gap-3 border-t border-gray-300 py-4 text-sm font-medium text-gray-800 transition-colors hover:text-accent-dark dark:border-white/20 dark:text-gray-300 dark:hover:text-accent-light"
+                    className="group flex items-center gap-3 border-t site-divider py-4 text-sm font-medium site-text-primary transition-colors hover:text-accent-dark "
                   >
                     <span className="font-sans text-xs text-theme-accent">
                       {String(index + 1).padStart(2, "0")}
@@ -146,7 +146,7 @@ const About = () => {
                   className={`group flex min-h-36 flex-col justify-between rounded-2xl border p-4 transition-all duration-300 hover:-translate-y-1 sm:min-h-40 lg:min-h-44 lg:p-5 ${
                     isPrimary
                       ? "site-divider bg-surface site-text-primary shadow-sm hover:border-accent/30"
-                      : "border-gray-200 bg-white text-gray-950 shadow-sm hover:border-accent/40 hover:shadow-md dark:border-white/20 dark:bg-surface dark:text-white"
+                      : "site-divider bg-surface site-text-primary shadow-sm hover:border-accent/40 hover:shadow-md "
                   }`}
                 >
                   <div>
@@ -157,7 +157,7 @@ const About = () => {
 
                     <dt
                       className={`mt-3 font-sans text-xs font-medium uppercase tracking-[0.14em] sm:text-xs ${
-                        isPrimary ? "site-text-muted" : "text-gray-500 dark:text-slate-400"
+                        isPrimary ? "site-text-muted" : "site-text-subtle"
                       }`}
                     >
                       {stat.label}
@@ -179,12 +179,12 @@ const About = () => {
                       className={`mt-3 flex items-center gap-2 border-t pt-3 text-xs font-medium ${
                         isPrimary
                           ? "site-divider site-text-muted"
-                          : "border-gray-200 text-gray-500 dark:border-white/20 dark:text-slate-400"
+                          : "site-divider site-text-subtle"
                       }`}
                     >
                       <span
                         className={`h-1 w-1 rounded-full ${
-                          isPrimary ? "bg-slate-400" : "bg-slate-400 dark:bg-slate-500"
+                          isPrimary ? "bg-[var(--site-text-subtle)]" : "bg-[var(--site-text-subtle)]"
                         }`}
                       />
 

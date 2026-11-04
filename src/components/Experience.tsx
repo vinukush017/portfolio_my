@@ -202,7 +202,7 @@ const Experience = () => {
                     >
                       <span
                         aria-hidden="true"
-                        className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-accent/60"
+                        className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-[var(--site-text-subtle)] opacity-60"
                       />
 
                       <span>{achievement}</span>

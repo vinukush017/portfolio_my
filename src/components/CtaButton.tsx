@@ -16,13 +16,13 @@ const variantClasses = {
   primary:
     "primary-action bg-accent site-on-accent shadow-sm hover:bg-accent-dark hover:shadow-md",
   secondary:
-    "border border-gray-300 bg-white/40 text-gray-900 hover:border-accent/40 hover:bg-white dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-accent-light/40 dark:hover:bg-white/10",
+    "border site-divider bg-surface/40 site-text-primary hover:border-accent/40 hover:bg-surface",
 };
 
 const circleClasses = {
   primary: "bg-[var(--site-background)] text-theme-accent",
   secondary:
-    "bg-gray-900/5 group-hover:bg-accent/10 dark:bg-white/10 dark:group-hover:bg-accent-light/15",
+    "bg-surface-elevated group-hover:bg-accent/10",
 };
 
 const CtaButton = ({

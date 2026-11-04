@@ -105,7 +105,7 @@ const Blogs = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="mt-8 font-heading type-card-title text-theme-heading transition-colors group-hover:text-theme-accent">
+                <h3 className="mt-8 font-heading type-card-title text-theme-heading transition-colors">
                   {post.title}
                 </h3>
 
@@ -244,7 +244,7 @@ const Blogs = () => {
                       ref={closeButtonRef}
                       type="button"
                       onClick={() => setActivePost(null)}
-                      className="inline-flex items-center justify-center flex-none w-10 h-10 site-text-muted transition-all border site-divider rounded-full hover:border-accent hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-white/15 dark:text-gray-300 dark:hover:border-accent-light dark:hover:bg-accent/10 dark:hover:text-accent-light"
+                      className="inline-flex items-center justify-center flex-none w-10 h-10 site-text-muted transition-all border site-divider rounded-full hover:border-accent hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent "
                       aria-label="Close article preview"
                     >
                       <XMarkIcon className="w-5 h-5" />
@@ -290,7 +290,7 @@ const Blogs = () => {
                       )}
 
                       {/* Medium CTA */}
-                      <div className="mt-10 overflow-hidden rounded-2xl border site-divider bg-surface p-6 text-center dark:border-white/20 sm:p-8">
+                      <div className="mt-10 overflow-hidden rounded-2xl border site-divider bg-surface p-6 text-center sm:p-8">
                         <p className="font-heading text-xl font-semibold tracking-[-0.025em] sm:text-2xl">
                           Continue reading the full article.
                         </p>
