@@ -174,7 +174,7 @@ const Skills = () => {
                 {group.items.map((skill) => (
                   <li
                     key={skill.name}
-                    className="group/skill flex min-w-[45%] flex-1 items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-[0_8px_20px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-accent-light/40 dark:hover:shadow-[0_8px_20px_rgba(0,0,0,0.2)] sm:min-w-[180px] sm:flex-none lg:min-w-[190px]"
+                    className="group/skill flex min-w-[45%] flex-1 items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-[0_8px_20px_rgba(15,23,42,0.06)] dark:border-white/10 dark:bg-surface dark:hover:border-accent-light/40 dark:hover:shadow-[0_8px_20px_rgba(0,0,0,0.2)] sm:min-w-[180px] sm:flex-none lg:min-w-[190px]"
                   >
                     <span
                       aria-hidden="true"

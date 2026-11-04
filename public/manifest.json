@@ -4,8 +4,8 @@
   "description": "Official portfolio of Vinay Kushwah — Full Stack Developer.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4338ca",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

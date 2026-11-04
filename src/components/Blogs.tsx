@@ -91,7 +91,7 @@ const Blogs = () => {
               <motion.article
                 key={post.title}
                 {...reveal(index)}
-                className="group flex min-h-[370px] flex-col rounded-3xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_20px_50px_rgba(15,23,42,0.07)] dark:border-white/10 dark:bg-[#111419] dark:hover:border-accent-light/30 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:p-6"
+                className="group flex min-h-[370px] flex-col rounded-3xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_20px_50px_rgba(15,23,42,0.07)] dark:border-white/10 dark:bg-surface dark:hover:border-accent-light/30 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:p-6"
               >
                 {/* Meta */}
                 <div className="flex items-center justify-between gap-4">
@@ -219,7 +219,7 @@ const Blogs = () => {
                   transition={{
                     duration: reduceMotion ? 0 : 0.25,
                   }}
-                  className="relative flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-gray-200 bg-[#ffffff] text-gray-950 shadow-2xl dark:border-white/10 dark:bg-[#0b0d10] dark:text-white sm:max-h-[88dvh] sm:rounded-3xl"
+                  className="relative flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-gray-200 bg-[#ffffff] text-gray-950 shadow-2xl dark:border-white/10 dark:bg-surface dark:text-white sm:max-h-[88dvh] sm:rounded-3xl"
                 >
                   {/* Modal header */}
                   <div className="flex items-start justify-between gap-5 px-5 py-5 border-b border-gray-200 dark:border-white/10 sm:px-8 sm:py-6">
@@ -290,7 +290,7 @@ const Blogs = () => {
                       )}
 
                       {/* Medium CTA */}
-                      <div className="mt-10 overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-br from-accent/10 to-white p-6 text-center dark:border-accent-light/20 dark:from-accent/10 dark:to-[#111419] sm:p-8">
+                      <div className="mt-10 overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-br from-accent/10 to-white p-6 text-center dark:border-accent-light/20 dark:from-accent/10 dark:to-surface sm:p-8">
                         <p className="font-heading text-xl font-semibold tracking-[-0.025em] sm:text-2xl">
                           Continue reading the full article.
                         </p>
@@ -305,7 +305,7 @@ const Blogs = () => {
                             href={activePost.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-dark px-6 text-sm font-semibold text-white shadow-md shadow-accent/20 transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                            className="group mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-dark px-6 text-sm font-semibold site-on-accent shadow-md shadow-accent/20 transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                           >
                             Continue on Medium
                             <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

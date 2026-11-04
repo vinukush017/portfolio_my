@@ -109,7 +109,7 @@ const StatCard = ({
           delay,
         }
     }
-    className={`absolute z-10 flex items-center gap-2.5 rounded-xl border border-gray-200 bg-white/80 p-3 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-gray-950/80 ${className}`}
+    className={`absolute z-10 flex items-center gap-2.5 rounded-xl border border-gray-200 bg-white/80 p-3 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-surface/95 ${className}`}
   >
     <span
       aria-hidden="true"
@@ -177,7 +177,7 @@ const HeroSection = () => {
           >
             I Build Scalable
             <br />
-            <span className="bg-gradient-to-r from-accent to-accent-dark bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-accent-dark to-accent bg-clip-text text-transparent dark:from-accent-light dark:to-accent-dark">
               Web Systems.
             </span>
           </motion.h1>
@@ -260,7 +260,7 @@ const HeroSection = () => {
           {/* Ambient glow behind the circle */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/25 via-accent-light/10 to-transparent blur-2xl"
+            className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/30 via-accent-light/15 to-transparent blur-2xl"
           />
 
           {/* Outer circular text */}
@@ -273,13 +273,13 @@ const HeroSection = () => {
               duration={54}
               direction="ccw"
               reduceMotion={!!reduceMotion}
-              className="h-full w-full text-accent/80 dark:text-accent-light/70"
+              className="h-full w-full text-accent-dark dark:text-accent/80"
             />
           </div>
 
           {/* Solid outer ring */}
           <div
-            className={`absolute inset-0 rounded-full border-2 border-accent/35 dark:border-accent-light/30 ${reduceMotion ? "" : "animate-spin-slow"
+            className={`absolute inset-0 rounded-full border-2 border-accent/35 dark:border-accent/60 dark:shadow-[0_0_45px_rgb(var(--accent-rgb)/0.16)] ${reduceMotion ? "" : "animate-spin-slow"
               }`}
           />
 

@@ -191,7 +191,7 @@ const Contact: React.FC = () => {
             {...reveal(0.08)}
             onSubmit={handleSubmit}
             aria-label="Contact Vinay Kushwah"
-            className="order-1 rounded-3xl border border-gray-300 bg-white p-5 shadow-[0_18px_60px_rgba(15,23,42,0.06)] dark:border-white/15 dark:bg-[#111419] sm:p-8 lg:order-2 lg:col-span-7 lg:p-9"
+            className="order-1 rounded-3xl border border-gray-300 bg-white p-5 shadow-[0_18px_60px_rgba(15,23,42,0.06)] dark:border-white/15 dark:bg-surface sm:p-8 lg:order-2 lg:col-span-7 lg:p-9"
           >
             {/* Form heading */}
             <div className="flex items-center justify-between pb-5 mb-8 border-b border-gray-200 dark:border-white/10">
@@ -325,7 +325,7 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading || submitted}
-                className="group inline-flex h-10 w-full items-center justify-center gap-2.5 rounded-full bg-accent pl-5 pr-1.5 text-sm font-semibold text-white shadow-sm shadow-accent/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-dark hover:shadow-md hover:shadow-accent/30 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 disabled:hover:bg-accent sm:w-auto"
+                className="group inline-flex h-10 w-full items-center justify-center gap-2.5 rounded-full bg-accent pl-5 pr-1.5 text-sm font-semibold site-on-accent shadow-sm shadow-accent/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-dark hover:shadow-md hover:shadow-accent/30 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 disabled:hover:bg-accent sm:w-auto"
               >
                 {loading ? (
                   "Sending…"

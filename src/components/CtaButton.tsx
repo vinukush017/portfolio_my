@@ -14,7 +14,7 @@ const baseClasses =
 
 const variantClasses = {
   primary:
-    "bg-accent text-white shadow-sm shadow-accent/30 hover:bg-accent-dark hover:shadow-md hover:shadow-accent/30",
+    "bg-accent site-on-accent shadow-[0_6px_24px_rgb(var(--accent-rgb)/0.25)] hover:bg-accent-dark hover:shadow-[0_8px_32px_rgb(var(--accent-rgb)/0.4)]",
   secondary:
     "border border-gray-300 bg-white/40 text-gray-900 hover:border-accent/40 hover:bg-white dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-accent-light/40 dark:hover:bg-white/10",
 };

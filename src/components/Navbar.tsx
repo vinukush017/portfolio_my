@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   Bars3Icon,
@@ -6,9 +6,7 @@ import {
   CodeBracketIcon,
   EnvelopeIcon,
   FolderIcon,
-  MoonIcon,
   PencilSquareIcon,
-  SunIcon,
   UserCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
@@ -20,6 +18,7 @@ import {
   type SectionId,
 } from "../config/navigation";
 import CtaButton from "./CtaButton";
+import ThemeSettings from "./ThemeSettings";
 
 const NAV_ICONS: Record<NavigationSectionId, typeof FolderIcon> = {
   projects: FolderIcon,
@@ -32,15 +31,6 @@ const NAV_ICONS: Record<NavigationSectionId, typeof FolderIcon> = {
 
 const Navbar = () => {
   const reduceMotion = useReducedMotion();
-
-  const [isDark, setIsDark] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme === "dark") return true;
-    if (savedTheme === "light") return false;
-
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -108,15 +98,6 @@ const Navbar = () => {
   }, []);
 
   /*
-   * Theme
-   */
-  useLayoutEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  }, [isDark]);
-
-  /*
    * Mobile navigation
    */
   useEffect(() => {
@@ -142,7 +123,7 @@ const Navbar = () => {
       if (event.key === "Tab" && menuOpen && headerRef.current) {
         const focusableElements = Array.from(
           headerRef.current.querySelectorAll<HTMLElement>(
-            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+            'a[href], button:not([disabled]), input:checked, [tabindex]:not([tabindex="-1"])',
           ),
         ).filter((element) => element.offsetParent !== null);
 
@@ -244,7 +225,7 @@ const Navbar = () => {
         <nav
           aria-label="Primary navigation"
           data-raised={scrolled || menuOpen}
-          className="section-shell floating-nav-surface pointer-events-auto relative flex h-14 items-center justify-between rounded-full border px-4 transition-[background-color,border-color,box-shadow] duration-300 lg:h-16 lg:px-5"
+          className="section-shell floating-nav-surface pointer-events-auto relative z-20 flex h-16 items-center justify-between rounded-full border px-2.5 sm:px-4 transition-[background-color,border-color,box-shadow] duration-300 lg:h-16 lg:px-5"
         >
           {/* Brand */}
           <a
@@ -308,31 +289,8 @@ const Navbar = () => {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2">
-            {/* Theme toggle */}
-            <button
-              type="button"
-              role="switch"
-              aria-checked={isDark}
-              aria-label="Toggle dark mode"
-              onClick={() => setIsDark((current) => !current)}
-              className={`relative inline-flex h-6 w-12 shrink-0 items-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
-                isDark ? "bg-slate-600" : "bg-gray-300/80"
-              }`}
-            >
-              <span
-                aria-hidden="true"
-                className={`absolute left-0.5 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 ease-out ${
-                  isDark ? "translate-x-6" : "translate-x-0"
-                }`}
-              >
-                {isDark ? (
-                  <MoonIcon className="h-3 w-3 text-slate-600" />
-                ) : (
-                  <SunIcon className="h-3 w-3 text-amber-500" />
-                )}
-              </span>
-            </button>
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+            <ThemeSettings />
 
             {/* Hire me */}
             <CtaButton
@@ -354,7 +312,7 @@ const Navbar = () => {
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
-              className="relative inline-flex items-center justify-center rounded-full p-2.5 text-slate-900 transition-all duration-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 lg:hidden"
+              className="relative inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-900 transition-all duration-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 lg:hidden"
             >
               {menuOpen ? (
                 <XMarkIcon className="h-5 w-5" />

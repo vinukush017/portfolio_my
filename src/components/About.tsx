@@ -145,8 +145,8 @@ const About = () => {
                   key={stat.label}
                   className={`group flex min-h-36 flex-col justify-between rounded-2xl border p-4 transition-all duration-300 hover:-translate-y-1 sm:min-h-40 lg:min-h-44 lg:p-5 ${
                     isPrimary
-                      ? "border-accent-dark/40 bg-gradient-to-br from-accent to-accent-dark text-white shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/25"
-                      : "border-gray-200 bg-white text-gray-950 shadow-sm hover:border-accent/40 hover:shadow-md dark:border-white/10 dark:bg-[#111419] dark:text-white"
+                      ? "border-accent/40 bg-gradient-to-br from-accent/15 to-accent/5 site-text-primary shadow-lg shadow-accent/10 hover:border-accent/60"
+                      : "border-gray-200 bg-white text-gray-950 shadow-sm hover:border-accent/40 hover:shadow-md dark:border-white/10 dark:bg-surface dark:text-white"
                   }`}
                 >
                   <div>
@@ -154,14 +154,14 @@ const About = () => {
                       aria-hidden="true"
                       className={`h-5 w-5 transition-transform duration-300 group-hover:scale-105 ${
                         isPrimary
-                          ? "text-white/80"
+                          ? "text-accent-dark dark:text-accent"
                           : "text-accent-dark dark:text-accent-light"
                       }`}
                     />
 
                     <dt
                       className={`mt-3 font-mono text-[10px] font-medium uppercase tracking-[0.14em] sm:text-[11px] ${
-                        isPrimary ? "text-white/70" : "text-gray-500"
+                        isPrimary ? "site-text-muted" : "text-gray-500"
                       }`}
                     >
                       {stat.label}
@@ -182,13 +182,13 @@ const About = () => {
                     <div
                       className={`mt-3 flex items-center gap-2 border-t pt-3 text-[11px] font-medium ${
                         isPrimary
-                          ? "border-white/20 text-white/70"
+                          ? "site-divider site-text-muted"
                           : "border-gray-200 text-gray-500 dark:border-white/10 dark:text-gray-500"
                       }`}
                     >
                       <span
                         className={`h-1 w-1 rounded-full ${
-                          isPrimary ? "bg-white/70" : "bg-accent dark:bg-accent-light"
+                          isPrimary ? "bg-accent" : "bg-accent dark:bg-accent-light"
                         }`}
                       />
 

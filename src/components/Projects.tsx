@@ -242,7 +242,7 @@ const ProjectCard = ({
             ? undefined
             : { scale: stackScale, opacity: stackOpacity }
         }
-        className="group relative grid grid-cols-1 gap-6 overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] transition-colors duration-300 hover:border-accent/35 dark:border-white/10 dark:bg-[#111419] dark:hover:border-accent-light/30 sm:p-7 lg:grid-cols-2 lg:items-center lg:gap-10 lg:p-9"
+        className="group relative grid grid-cols-1 gap-6 overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] transition-colors duration-300 hover:border-accent/35 dark:border-white/10 dark:bg-surface dark:hover:border-accent-light/30 sm:p-7 lg:grid-cols-2 lg:items-center lg:gap-10 lg:p-9"
       >
       {/* Decorative project number */}
       <span
@@ -254,7 +254,7 @@ const ProjectCard = ({
 
       {/* Project media */}
       <div className="relative order-1 lg:order-2">
-        <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 dark:border-white/10 dark:bg-[#0b0d10]">
+        <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 dark:border-white/10 dark:bg-surface">
           <div className="aspect-[16/11] overflow-hidden">
             {hasImages ? (
               <motion.img
@@ -269,7 +269,7 @@ const ProjectCard = ({
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
             ) : (
-              <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#f3f4f1] px-8 dark:bg-[#0d1014]">
+              <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#f3f4f1] px-8 dark:bg-surface">
                 <div
                   aria-hidden="true"
                   className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-accent-light/15 blur-3xl pointer-events-none dark:bg-accent/10"

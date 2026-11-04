@@ -72,15 +72,16 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Theme Color for mobile browsers -->
-    <meta name="theme-color" content="#4338ca" />
+    <meta name="theme-color" content="#0b1220" />
     <script>
+      document.documentElement.classList.add("dark");
       try {
         const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.classList.toggle(
-          "dark",
-          savedTheme ? savedTheme === "dark" : prefersDark
-        );
+        const palette = localStorage.getItem("palette");
+        document.documentElement.classList.toggle("dark", savedTheme !== "light");
+        if (["mint", "orange", "coral", "blue"].includes(palette)) {
+          document.documentElement.dataset.palette = palette;
+        }
       } catch (_) {}
     </script>
 
