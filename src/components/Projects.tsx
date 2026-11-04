@@ -132,7 +132,7 @@ const SlideDots = ({
   if (count <= 1) return null;
 
   return (
-    <div className="absolute flex items-center gap-1 px-2 py-1 -translate-x-1/2 rounded-full bottom-3 left-1/2 bg-black/50 ">
+    <div className="absolute flex items-center gap-0 px-1 py-0 -translate-x-1/2 rounded-full bottom-3 left-1/2 bg-black/50 ">
       {Array.from({ length: count }).map((_, index) => (
         <button
           key={index}
@@ -140,7 +140,7 @@ const SlideDots = ({
           aria-label={`${labelPrefix} screenshot ${index + 1}`}
           aria-current={index === active ? "true" : undefined}
           onClick={() => onSelect(index)}
-          className="flex items-center justify-center w-6 rounded-full h-7 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          className="flex items-center justify-center w-8 rounded-full h-11 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
           <span
             className={`block h-1.5 rounded-full transition-all duration-300 ${

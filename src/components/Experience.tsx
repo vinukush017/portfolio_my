@@ -111,12 +111,12 @@ const Experience = () => {
           />
         </div>
 
-        <div className="border-y border-gray-300 dark:border-white/20">
+        <div className="experience-timeline">
           {experiences.map((experience, index) => (
             <motion.article
               key={`${experience.company}-${experience.period}`}
               {...reveal(index)}
-              className="grid gap-7 border-b border-gray-300 py-8 last:border-b-0 dark:border-white/20 sm:py-10 lg:grid-cols-12 lg:gap-10 lg:py-12"
+              className="experience-entry grid gap-7 lg:grid-cols-12 lg:gap-10"
             >
               {/* Number + Period */}
               <div className="lg:col-span-2">
@@ -136,7 +136,7 @@ const Experience = () => {
                   )}
                 </div>
 
-                <p className="mt-4 font-sans text-xs uppercase leading-relaxed tracking-[0.12em] text-gray-400">
+                <p className="mt-4 font-sans text-xs uppercase leading-relaxed tracking-[0.12em] text-gray-500 dark:text-slate-400">
                   {experience.period}
                 </p>
               </div>
@@ -154,12 +154,12 @@ const Experience = () => {
 
                   <span
                     aria-hidden="true"
-                    className="hidden text-gray-400 sm:inline"
+                    className="hidden text-gray-500 dark:text-slate-400 sm:inline"
                   >
                     ·
                   </span>
 
-                  <p className="text-gray-500">
+                  <p className="text-gray-500 dark:text-slate-400">
                     {experience.location}
                   </p>
                 </div>
@@ -170,7 +170,7 @@ const Experience = () => {
 
                 {/* Technology stack */}
                 <div className="mt-6">
-                  <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-400 dark:text-slate-400">
+                  <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-400">
                     Technologies
                   </p>
 
@@ -189,7 +189,7 @@ const Experience = () => {
 
               {/* Contributions */}
               <div className="lg:col-span-6">
-                <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-400 dark:text-slate-400">
+                <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-400">
                   Selected contributions
                 </p>
 

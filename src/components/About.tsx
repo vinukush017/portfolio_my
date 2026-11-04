@@ -110,7 +110,7 @@ const About = () => {
 
             {/* Focus areas */}
             <div className="mt-10 lg:mt-12">
-              <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-gray-400 dark:text-slate-400">
+              <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-gray-500 dark:text-slate-400">
                 What I focus on
               </p>
 
@@ -161,7 +161,7 @@ const About = () => {
 
                     <dt
                       className={`mt-3 font-sans text-xs font-medium uppercase tracking-[0.14em] sm:text-xs ${
-                        isPrimary ? "site-text-muted" : "text-gray-500"
+                        isPrimary ? "site-text-muted" : "text-gray-500 dark:text-slate-400"
                       }`}
                     >
                       {stat.label}

@@ -18,7 +18,7 @@ const Footer = () => {
         {/* Main CTA */}
         <div className="grid gap-8 pb-12 border-b border-white/15 md:grid-cols-12 md:items-end lg:pb-16">
           <div className="md:col-span-8">
-            <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-gray-500 sm:text-xs">
+            <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-slate-400 sm:text-xs">
               Have something interesting in mind?
             </p>
 
@@ -60,7 +60,7 @@ const Footer = () => {
               type="button"
               onClick={() => scrollToSection("home")}
               aria-label="Vinay Kushwah — Back to top"
-              className="signature-mark group inline-flex items-center gap-1 rounded-md font-heading text-xl font-semibold tracking-[-0.04em] text-accent-light transition-colors group-hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-semibold tracking-[-0.04em] text-accent-light transition-colors group-hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
             >
               VK
 
@@ -80,7 +80,7 @@ const Footer = () => {
             aria-label="Footer navigation"
             className="md:col-span-4"
           >
-            <p className="mb-4 font-sans text-xs uppercase tracking-[0.1em] text-gray-500 sm:text-xs">
+            <p className="mb-4 font-sans text-xs uppercase tracking-[0.1em] text-slate-400 sm:text-xs">
               Navigate
             </p>
 
@@ -103,7 +103,7 @@ const Footer = () => {
 
           {/* External links */}
           <div className="md:col-span-3">
-            <p className="mb-4 font-sans text-xs uppercase tracking-[0.1em] text-gray-500 sm:text-xs">
+            <p className="mb-4 font-sans text-xs uppercase tracking-[0.1em] text-slate-400 sm:text-xs">
               Elsewhere
             </p>
 
@@ -155,7 +155,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-3 border-t border-white/15 pt-6 font-sans text-xs uppercase tracking-[0.14em] text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+        <div className="flex flex-col gap-3 border-t border-white/15 pt-6 font-sans text-xs tracking-[0.02em] text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
           <p>
             © {currentYear}{" "}
             <span className="text-accent-light">Vinay Kushwah</span>. All

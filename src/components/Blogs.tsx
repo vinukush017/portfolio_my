@@ -95,7 +95,7 @@ const Blogs = () => {
               >
                 {/* Meta */}
                 <div className="flex items-center justify-between gap-4">
-                  <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-500 sm:text-xs">
+                  <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-400 sm:text-xs">
                     {post.publishedAt ?? "Draft ready"}
                   </p>
 
@@ -133,7 +133,7 @@ const Blogs = () => {
                 <div className="mt-auto pt-7">
                   <div className="pt-5 border-t border-gray-200 dark:border-white/20">
                     <div className="flex items-center justify-between gap-4">
-                      <p className="text-xs text-gray-500">{post.readTime}</p>
+                      <p className="text-xs text-gray-500 dark:text-slate-400">{post.readTime}</p>
 
                       <div className="flex items-center gap-4">
                         {hasPreview && (
@@ -158,7 +158,7 @@ const Blogs = () => {
                             <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
                           </a>
                         ) : (
-                          <span className="text-sm font-semibold text-gray-400">
+                          <span className="text-sm font-semibold text-gray-500 dark:text-slate-400">
                             Coming soon
                           </span>
                         )}

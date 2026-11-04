@@ -259,9 +259,9 @@ const Navbar = () => {
                     navigateTo(id);
                   }}
                   aria-current={active ? "location" : undefined}
-                  className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                  className={`relative rounded-full px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                     active
-                      ? "text-accent dark:text-accent-light"
+                      ? "bg-accent/10 text-accent-dark dark:text-accent-light"
                       : "text-gray-500 hover:text-gray-950 dark:text-slate-300 dark:hover:text-white"
                   }`}
                 >

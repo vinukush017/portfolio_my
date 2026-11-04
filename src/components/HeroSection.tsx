@@ -2,12 +2,12 @@
 
 import { useId } from "react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import { ArrowDownIcon } from "@heroicons/react/24/outline";
+import { ArrowDownIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { motion, useReducedMotion } from "framer-motion";
 import CtaButton from "./CtaButton";
 
 const CIRCULAR_TEXT =
-  "SOFTWARE ENGINEER • NODE.JS • REACT • TYPESCRIPT • AWS • ".repeat(4);
+  "SOFTWARE ENGINEER • NODE.JS • REACT • TYPESCRIPT • AWS • ".repeat(2);
 
 const XIcon = ({ className }: { className?: string }) => (
   <svg
@@ -73,7 +73,7 @@ const CircularText = ({
         fill="currentColor"
         fontSize={fontSize}
         letterSpacing="0.22em"
-        fontWeight={700}
+        fontWeight={500}
         className="font-mono uppercase"
       >
         <textPath href={`#${pathId}`} startOffset="0%">
@@ -83,50 +83,6 @@ const CircularText = ({
     </motion.svg>
   );
 };
-
-const StatCard = ({
-  value,
-  label,
-  className = "",
-  reduceMotion,
-  delay = 0,
-}: {
-  value: string;
-  label: string;
-  className?: string;
-  reduceMotion: boolean;
-  delay?: number;
-}) => (
-  <motion.div
-    animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
-    transition={
-      reduceMotion
-        ? undefined
-        : {
-          duration: 3.2,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay,
-        }
-    }
-    className={`absolute z-10 flex items-center gap-2.5 rounded-xl border border-gray-200 bg-white p-3 shadow-sm dark:border-white/20 dark:bg-surface ${className}`}
-  >
-    <span
-      aria-hidden="true"
-      className="h-2 w-2 flex-shrink-0 rounded-full bg-accent dark:bg-accent-light"
-    />
-
-    <div className="min-w-0">
-      <p className="text-sm font-semibold leading-none text-gray-950 dark:text-white">
-        {value}
-      </p>
-
-      <p className="mt-1 truncate font-mono text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-300">
-        {label}
-      </p>
-    </div>
-  </motion.div>
-);
 
 const HeroSection = () => {
   const reduceMotion = useReducedMotion();
@@ -152,7 +108,7 @@ const HeroSection = () => {
       aria-labelledby="hero-title"
       className="site-divider site-text-primary relative overflow-hidden border-b"
     >
-      <div className="section-shell relative grid min-h-[calc(100svh-4rem)] items-center gap-12 pb-14 pt-28 sm:pb-20 sm:pt-32 lg:grid-cols-12 lg:gap-10 lg:pb-24 lg:pt-32">
+      <div className="section-shell hero-layout relative grid min-h-[calc(100svh-4rem)] items-center gap-12 pb-14 pt-28 sm:pb-20 sm:pt-32 lg:grid-cols-12 lg:gap-10 lg:pb-24 lg:pt-32">
         {/* Left content */}
         <div className="lg:col-span-6">
           {/* Role */}
@@ -191,9 +147,8 @@ const HeroSection = () => {
             <span className="font-semibold text-accent-dark dark:text-accent-light">
               Vinay Kushwah
             </span>
-            , a software engineer building reliable backend systems, APIs,
-            integrations, and modern web applications using Node.js,
-            TypeScript, React, and AWS.
+            , a software engineer building reliable backend systems,
+            thoughtful integrations, and modern web applications.
           </motion.p>
 
           {/* CTA buttons */}
@@ -206,7 +161,7 @@ const HeroSection = () => {
             </CtaButton>
 
             <a
-              href="/Vinay-Kushwah-Resume.pdf"
+              href="/Vinay_Kushwah_Resume_2025.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white/40 px-6 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-gray-700 dark:bg-white/[0.04] dark:text-white dark:hover:border-accent-light/40 dark:hover:bg-white/10"
@@ -232,7 +187,7 @@ const HeroSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="group flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-slate-300 dark:hover:bg-accent-light/10 dark:hover:text-accent-light"
+                  className="group flex h-11 w-11 items-center justify-center rounded-full text-gray-600 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-slate-300 dark:hover:bg-accent-light/10 dark:hover:text-accent-light"
                 >
                   <Icon className="h-[18px] w-[18px] transition-transform duration-200 group-hover:scale-110" />
                 </a>
@@ -255,15 +210,16 @@ const HeroSection = () => {
                 ease: [0.22, 1, 0.36, 1],
               }
           }
-          className="relative mx-auto mt-10 aspect-square w-full max-w-[260px] sm:max-w-[320px] lg:col-span-5 lg:mx-0 lg:ml-auto lg:mt-0 lg:max-w-[400px]"
+          className="hero-portrait relative mx-auto mt-4 w-full max-w-[400px] lg:col-span-5 lg:mx-0 lg:ml-auto lg:mt-0"
         >
+          <div className="relative mx-auto aspect-square w-[calc(100%-3.5rem)] max-w-[320px] lg:w-[calc(100%-2rem)] lg:max-w-none">
           {/* Outer circular text */}
           <div className="pointer-events-none absolute -inset-7 select-none lg:-inset-8">
             <CircularText
               text={CIRCULAR_TEXT}
               size={480}
               radius={222}
-              fontSize={20}
+              fontSize={16}
               duration={54}
               direction="ccw"
               reduceMotion={!!reduceMotion}
@@ -296,31 +252,26 @@ const HeroSection = () => {
             />
           </div>
 
-          {/* Floating info cards */}
-          <StatCard
-            value={`${years}+`}
-            label="Years experience"
-            className="-top-3 -right-3 lg:-right-6 lg:-top-5"
-            reduceMotion={!!reduceMotion}
-            delay={0}
-          />
-
-          <StatCard
-            value="5+"
-            label="Projects shipped"
-            className="-bottom-3 -left-3 lg:-bottom-5 lg:-left-8"
-            reduceMotion={!!reduceMotion}
-            delay={0.6}
-          />
-
-          <StatCard
-            value="Pune"
-            label="Based in India"
-            className="-left-8 top-1/2 -translate-y-1/2 sm:-left-16 lg:-left-28"
-            reduceMotion={!!reduceMotion}
-            delay={1.2}
-          />
+          </div>
         </motion.div>
+
+        <motion.dl {...reveal(0.42)} className="hero-facts lg:col-span-12" aria-label="At a glance">
+          <div className="hero-fact">
+            <dd className="hero-fact-value">{years}<span>+</span></dd>
+            <dt>Years experience</dt>
+          </div>
+          <div className="hero-fact">
+            <dd className="hero-fact-value">5<span>+</span></dd>
+            <dt>Projects shipped</dt>
+          </div>
+          <div className="hero-fact hero-fact-location">
+            <MapPinIcon aria-hidden="true" className="h-4 w-4 shrink-0 text-accent-dark dark:text-accent-light" />
+            <div>
+              <dd>Pune, India</dd>
+              <dt>Based in</dt>
+            </div>
+          </div>
+        </motion.dl>
       </div>
     </section>
   );

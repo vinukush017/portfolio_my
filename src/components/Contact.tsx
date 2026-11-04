@@ -130,12 +130,12 @@ const Contact: React.FC = () => {
             className="order-2 lg:order-1 lg:col-span-5"
           >
             <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-gray-500 dark:text-slate-300 sm:text-xs">
-              Get in touch
+              A good conversation starts here
             </p>
 
             <a
               href="mailto:vinay.kushwah89@gmail.com"
-              className="mt-4 block max-w-md break-all font-heading text-xl font-semibold tracking-[-0.025em] text-gray-950 transition-colors hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-white dark:hover:text-accent-light min-[400px]:text-2xl sm:break-words sm:text-3xl"
+              className="contact-email mt-4 block max-w-md font-heading text-xl font-semibold tracking-[-0.025em] text-gray-950 transition-colors hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-white dark:hover:text-accent-light min-[400px]:text-2xl sm:break-words sm:text-3xl"
             >
               vinay.kushwah89
               <br className="hidden sm:block" />
@@ -158,7 +158,7 @@ const Contact: React.FC = () => {
                   className="group grid grid-cols-[1fr_auto] items-center gap-3 border-b border-gray-300 py-5 text-sm transition-colors dark:border-white/15"
                 >
                   <span className="min-w-0">
-                    <span className="block font-sans text-xs uppercase tracking-[0.15em] text-gray-500">
+                    <span className="block font-sans text-xs uppercase tracking-[0.15em] text-gray-500 dark:text-slate-400">
                       {link.label}
                     </span>
 
@@ -167,7 +167,7 @@ const Contact: React.FC = () => {
                     </span>
                   </span>
 
-                  <ArrowUpRightIcon className="h-4 w-4 text-gray-500 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-dark dark:group-hover:text-accent-light" />
+                  <ArrowUpRightIcon className="h-4 w-4 text-gray-500 dark:text-slate-400 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-dark dark:group-hover:text-accent-light" />
                 </a>
               ))}
             </div>
@@ -191,7 +191,7 @@ const Contact: React.FC = () => {
             {...reveal(0.08)}
             onSubmit={handleSubmit}
             aria-label="Contact Vinay Kushwah"
-            className="order-1 rounded-3xl border border-gray-300 bg-white p-5 shadow-[0_18px_60px_rgba(15,23,42,0.06)] dark:border-white/15 dark:bg-surface sm:p-8 lg:order-2 lg:col-span-7 lg:p-9"
+            className="contact-panel order-1 rounded-3xl border border-gray-300 bg-white p-5 dark:border-white/15 dark:bg-surface sm:p-8 lg:order-2 lg:col-span-7 lg:p-9"
           >
             {/* Form heading */}
             <div className="flex items-center justify-between pb-5 mb-8 border-b border-gray-200 dark:border-white/20">
@@ -205,7 +205,7 @@ const Contact: React.FC = () => {
                 </h3>
               </div>
 
-              <span className="hidden font-sans text-xs uppercase tracking-[0.14em] text-gray-400 sm:block">
+              <span className="hidden font-sans text-xs uppercase tracking-[0.14em] text-gray-500 dark:text-slate-400 sm:block">
                 MESSAGE / 01
               </span>
             </div>
@@ -347,7 +347,7 @@ const Contact: React.FC = () => {
               </button>
 
               {!submitted && (
-                <p className="text-xs leading-5 text-gray-500">
+                <p className="text-xs leading-5 text-gray-500 dark:text-slate-400">
                   Your information is only used to respond to your message.
                 </p>
               )}
