@@ -104,7 +104,7 @@ const Contact: React.FC = () => {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="py-16 sm:py-20 lg:py-28"
+      className="py-20 sm:py-24 lg:py-32"
     >
       <div className="section-shell">
         <div id="contact-heading">
@@ -325,7 +325,7 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading || submitted}
-                className="group inline-flex h-10 w-full items-center justify-center gap-2.5 rounded-full bg-accent pl-5 pr-1.5 text-sm font-semibold site-on-accent shadow-sm shadow-accent/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-dark hover:shadow-md hover:shadow-accent/30 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 disabled:hover:bg-accent sm:w-auto"
+                className="group inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-full bg-accent pl-5 pr-1.5 text-sm font-semibold site-on-accent shadow-sm shadow-accent/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-dark hover:shadow-md hover:shadow-accent/30 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60 disabled:hover:bg-accent sm:w-auto"
               >
                 {loading ? (
                   "Sending…"

@@ -25,11 +25,11 @@ const projects: Project[] = [
     title: "My Task Board",
     category: "Full-stack productivity application",
     description:
-      "A full-stack task management application designed around practical productivity workflows, with authentication, prioritization, status tracking, filters, due dates, and multiple task views.",
+      "A focused workspace for organizing tasks, setting priorities, and switching between board and list views.",
     link: "https://my-task-board-frontend.vercel.app/",
     images: [
-      "/projects/my-task-board-app-login.webp",
       "/projects/my-task-board-frontend-main-white.webp",
+      "/projects/my-task-board-app-login.webp",
       "/projects/my-task-board-frontend-main-table.webp",
     ],
     stack: ["React", "Node.js", "PostgreSQL", "Prisma", "Tailwind CSS"],
@@ -44,7 +44,7 @@ const projects: Project[] = [
     title: "Car Daddy CRM",
     category: "Customer management platform",
     description:
-      "A scalable vehicle registration and customer management platform with secure authentication, cloud storage, and real-time communication integrations.",
+      "Vehicle registration and customer management, connected through secure access, cloud storage, and communication tools.",
     link: "https://www.cardaddys.co.uk/",
     images: [],
     stack: ["React", "Node.js", "MongoDB", "AWS S3", "JWT"],
@@ -59,7 +59,7 @@ const projects: Project[] = [
     title: "DropChat AI",
     category: "AI chatbot platform",
     description:
-      "An AI chatbot builder that allows users to create document-trained assistants and embed them into external websites using OpenAI-powered conversational workflows.",
+      "Create document-trained AI assistants and embed conversational support directly into a website.",
     link: "https://app.dropchat.co/",
     images: [],
     stack: ["OpenAI", "React", "Node.js", "MongoDB"],
@@ -74,7 +74,7 @@ const projects: Project[] = [
     title: "DharmaPath",
     category: "Content platform",
     description:
-      "A Hindi spiritual content platform providing bhajans, shlokas, chalisas, and other devotional knowledge through a clean, responsive, mobile-first interface.",
+      "A mobile-first home for Hindi devotional content, from bhajans and shlokas to chalisas.",
     link: "https://dharmapath.in",
     images: [
       "/projects/dharmapath-1.webp",
@@ -97,7 +97,7 @@ const projects: Project[] = [
     title: "FactGully",
     category: "Fact discovery platform",
     description:
-      "A fact-sharing platform that organizes engaging content around daily themes including science, history, myths, and other educational topics.",
+      "Discover science, history, and everyday curiosities through themed collections and simple content filters.",
     link: "https://fact-gully.vercel.app",
     images: [
       "/projects/fact-gully.webp",
@@ -186,15 +186,7 @@ const ProjectCard = ({
   };
 
   return (
-    <div
-      style={
-        {
-          "--i": index,
-          zIndex: index + 1,
-        } as React.CSSProperties
-      }
-      className="sticky top-[calc(4.5rem+var(--i)*0.85rem)] pb-5 lg:top-[calc(6rem+var(--i)*2rem)] lg:pb-8"
-    >
+    <div className="project-entry">
       <motion.article
         initial={reduceMotion ? false : { y: 24 }}
         whileInView={{ y: 0 }}
@@ -210,20 +202,17 @@ const ProjectCard = ({
                 ease: [0.22, 1, 0.36, 1],
               }
         }
-        className="group relative grid grid-cols-1 gap-6 overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] transition-colors duration-300 hover:border-accent/35 dark:border-white/20 dark:bg-surface dark:hover:border-accent-light/30 sm:p-7 lg:grid-cols-2 lg:items-center lg:gap-10 lg:p-9"
+        className="project-card group"
       >
-      {/* Decorative project number */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-4 left-4 select-none font-heading text-[6rem] font-semibold leading-none text-accent/[0.06] sm:text-[8rem] lg:-top-8 lg:left-6 lg:text-[9rem] dark:text-accent-light/[0.06]"
-      >
-        {number}
-      </span>
-
       {/* Project media */}
-      <div className="relative order-1 lg:order-2">
+      <div className="project-media relative order-1 lg:order-2">
         <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 dark:border-white/20 dark:bg-surface">
-          <div className="aspect-[16/11] overflow-hidden">
+          <div className="project-preview-bar" aria-hidden="true">
+            <span className="project-window-dots"><i /><i /><i /></span>
+            <span>{new URL(project.link).hostname}</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+          </div>
+          <div className="aspect-[16/11] overflow-hidden sm:aspect-[16/10]">
             {hasImages ? (
               <motion.img
                 key={`${project.title}-${imageIndex}`}
@@ -234,7 +223,7 @@ const ProjectCard = ({
                 initial={reduceMotion ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.25 }}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover object-top"
               />
             ) : (
               <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#f3f4f1] px-8 dark:bg-surface">
@@ -261,7 +250,7 @@ const ProjectCard = ({
                 type="button"
                 aria-label={`Previous ${project.title} screenshot`}
                 onClick={showPreviousImage}
-                className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 left-3 top-1/2 border-white/20 bg-black/45  hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
+                className="absolute inline-flex items-center justify-center w-11 h-11 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 left-3 top-1/2 border-white/20 bg-black/45  hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100"
               >
                 <ChevronLeftIcon className="w-5 h-5" />
               </button>
@@ -270,7 +259,7 @@ const ProjectCard = ({
                 type="button"
                 aria-label={`Next ${project.title} screenshot`}
                 onClick={showNextImage}
-                className="absolute inline-flex items-center justify-center w-10 h-10 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 right-3 top-1/2 border-white/20 bg-black/45  hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100"
+                className="absolute inline-flex items-center justify-center w-11 h-11 text-white transition-all -translate-y-1/2 border rounded-full opacity-100 right-3 top-1/2 border-white/20 bg-black/45  hover:bg-black/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-white lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100"
               >
                 <ChevronRightIcon className="w-5 h-5" />
               </button>
@@ -287,11 +276,10 @@ const ProjectCard = ({
       </div>
 
       {/* Project information */}
-      <div className="relative z-10 order-2 lg:order-1">
+      <div className="project-information relative z-10 order-2 lg:order-1">
         {/* Metadata */}
         <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-accent-dark dark:text-accent-light sm:text-xs">
-          {project.category} <span aria-hidden="true">&middot;</span>{" "}
-          {project.stack[0]}
+          <span className="mr-3 font-mono site-text-subtle">{number}</span>{project.category}
         </p>
 
         {/* Title */}
@@ -305,7 +293,7 @@ const ProjectCard = ({
         </p>
 
         {/* Highlights */}
-        <ul className="grid grid-cols-1 gap-2 mt-5 sm:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-2 mt-5 min-[480px]:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
           {project.highlights.map((highlight) => (
             <li
               key={highlight}
@@ -335,7 +323,7 @@ const ProjectCard = ({
 
         {/* Actions */}
         <div className="mt-7">
-          <CtaButton href={project.link} external variant="primary" className="inline-flex">
+          <CtaButton href={project.link} external variant={index === 0 ? "primary" : "secondary"} className="inline-flex">
             View Live Project
           </CtaButton>
         </div>
@@ -350,7 +338,7 @@ const Projects: React.FC = () => {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="site-divider border-b py-16 sm:py-20 lg:py-28"
+      className="site-divider border-b py-20 sm:py-24 lg:py-32"
     >
       <div className="section-shell">
         <div id="projects-heading">
@@ -369,7 +357,7 @@ const Projects: React.FC = () => {
           />
         </div>
 
-        <div className="relative">
+        <div className="project-list">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.title}

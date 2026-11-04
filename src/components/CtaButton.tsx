@@ -10,7 +10,7 @@ type CtaButtonProps = {
 } & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "onClick">;
 
 const baseClasses =
-  "group h-10 items-center gap-2.5 rounded-full pl-5 pr-1.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+  "group min-h-12 items-center gap-2.5 rounded-full pl-5 pr-1.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--site-background)]";
 
 const variantClasses = {
   primary:

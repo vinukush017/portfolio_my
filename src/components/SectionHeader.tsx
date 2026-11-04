@@ -42,11 +42,11 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   });
 
   return (
-    <div className="site-divider mb-10 grid gap-5 border-b pb-8 sm:mb-12 lg:grid-cols-12 lg:items-end">
+    <div className="site-divider mb-10 grid gap-5 border-b pb-8 sm:mb-14 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-5 lg:items-end">
       {subtitle && (
         <motion.p
           {...reveal(0)}
-          className="flex items-center gap-3 before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent font-mono text-xs font-medium uppercase tracking-[0.12em] text-accent-dark dark:text-accent-light lg:col-span-3"
+          className="flex items-center gap-3 before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent font-mono text-xs font-medium uppercase tracking-[0.12em] text-accent-dark dark:text-accent-light lg:col-span-12"
         >
           {subtitle}
         </motion.p>
@@ -54,7 +54,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 
       <motion.h2
         {...reveal(0.06)}
-        className="font-heading type-section text-gray-950 dark:text-white lg:col-span-5"
+        className="font-heading type-section text-gray-950 dark:text-white lg:col-span-7"
       >
         {title}
       </motion.h2>
@@ -62,7 +62,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {description && (
         <motion.p
           {...reveal(0.12)}
-          className="max-w-[60ch] type-body text-gray-600 dark:text-slate-300 lg:col-span-4 lg:justify-self-end"
+          className="max-w-[60ch] type-body text-gray-600 dark:text-slate-300 lg:col-span-5 lg:justify-self-end"
         >
           {description}
         </motion.p>

@@ -60,7 +60,7 @@ const Footer = () => {
               type="button"
               onClick={() => scrollToSection("home")}
               aria-label="Vinay Kushwah — Back to top"
-              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-semibold tracking-[-0.04em] text-accent-light transition-colors group-hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+              className="signature-mark group inline-flex items-center gap-1 rounded-md font-heading text-xl font-semibold tracking-[-0.04em] text-accent-light transition-colors group-hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
             >
               VK
 

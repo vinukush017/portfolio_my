@@ -447,3 +447,25 @@ body { font-size: 16px; line-height: 1.65; }
 }
 
 p.type-body { max-width: 65ch; }
+
+/* Selected work: generous media, compact editorial details. */
+.project-list { display: grid; gap: 28px; }
+.project-card { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 18px; border: 1px solid var(--site-divider); border-radius: 24px; background: rgb(var(--surface)); transition: border-color 180ms ease; }
+.project-card:hover { border-color: rgb(var(--accent-rgb) / 0.4); }
+.project-information { min-width: 0; padding: 0 4px 6px; }
+.project-media { min-width: 0; }
+.project-preview-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 36px; padding: 8px 12px; border-bottom: 1px solid var(--site-divider); background: rgb(var(--surface)); color: var(--site-text-subtle); font-size: 10px; letter-spacing: 0.015em; }
+.project-preview-bar > span:nth-child(2) { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.project-window-dots { display: flex; gap: 4px; flex-shrink: 0; }
+.project-window-dots i { width: 4px; height: 4px; border-radius: 50%; background: var(--site-text-subtle); opacity: 0.45; }
+.signature-mark { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border: 1px solid rgb(var(--accent-rgb) / 0.25); border-radius: 14px; background: rgb(var(--accent-rgb) / 0.045); }
+@media (min-width: 640px) {
+  .project-list { gap: 36px; }
+  .project-card { padding: 28px; gap: 32px; border-radius: 28px; }
+  .project-preview-bar { font-size: 12px; }
+}
+@media (min-width: 1024px) {
+  .project-list { gap: 48px; }
+  .project-card { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; padding: 32px; gap: 36px; }
+  .project-information { padding: 8px 0; }
+}

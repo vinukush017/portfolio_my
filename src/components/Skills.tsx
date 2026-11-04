@@ -112,7 +112,7 @@ const Skills = () => {
     <section
       id="expertise"
       aria-labelledby="expertise-heading"
-      className="site-divider border-b py-16 sm:py-20 lg:py-28"
+      className="site-divider border-b py-20 sm:py-24 lg:py-32"
     >
       <div className="section-shell">
         <div id="expertise-heading">
