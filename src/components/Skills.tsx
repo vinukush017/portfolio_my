@@ -155,16 +155,16 @@ const Skills = () => {
               {/* Group information */}
               <div className="expertise-heading">
                 <div className="flex items-center gap-3">
-                  <span className="font-sans text-xs font-medium site-text-muted">
+                  <span className="font-sans text-xs font-medium text-theme-accent">
                     {String(groupIndex + 1).padStart(2, "0")}
                   </span>
 
-                  <h3 className="font-heading type-card-title text-gray-950 dark:text-white">
+                  <h3 className="font-heading type-card-title text-theme-heading">
                     {group.name}
                   </h3>
                 </div>
 
-                <p className="mt-3 max-w-sm type-body text-gray-500 dark:text-slate-300">
+                <p className="mt-3 max-w-sm type-body site-text-muted">
                   {group.description}
                 </p>
               </div>

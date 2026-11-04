@@ -91,26 +91,26 @@ const Blogs = () => {
               <motion.article
                 key={post.title}
                 {...reveal(index)}
-                className="group flex min-h-[370px] flex-col rounded-3xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_20px_50px_rgba(15,23,42,0.07)] dark:border-white/20 dark:bg-surface dark:hover:border-accent-light/30 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:p-6"
+                className="group flex min-h-[370px] flex-col rounded-3xl border site-divider bg-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-[0_20px_50px_rgba(15,23,42,0.07)]  dark:hover:border-accent-light/30 dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:p-6"
               >
                 {/* Meta */}
                 <div className="flex items-center justify-between gap-4">
-                  <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-400 sm:text-xs">
+                  <p className="font-sans text-xs uppercase tracking-[0.1em] site-text-subtle sm:text-xs">
                     {post.publishedAt ?? "Draft ready"}
                   </p>
 
-                  <span className="inline-flex items-center justify-center w-10 h-10 text-accent-dark transition-colors border border-gray-200 rounded-full group-hover:border-accent/25 group-hover:bg-accent/10 dark:border-white/20 dark:text-accent-light dark:group-hover:border-accent-light/25 dark:group-hover:bg-accent/10">
+                  <span className="inline-flex items-center justify-center w-10 h-10 text-theme-accent transition-colors border site-divider rounded-full group-hover:border-accent/25 group-hover:bg-accent/10  dark:group-hover:border-accent-light/25 dark:group-hover:bg-accent/10">
                     <DocumentTextIcon aria-hidden="true" className="w-5 h-5" />
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="mt-8 font-heading type-card-title text-gray-950 transition-colors group-hover:text-accent-dark dark:text-white dark:group-hover:text-accent-light">
+                <h3 className="mt-8 font-heading type-card-title text-theme-heading transition-colors group-hover:text-theme-accent">
                   {post.title}
                 </h3>
 
                 {/* Excerpt */}
-                <p className="mt-4 type-body text-gray-600 dark:text-slate-300">
+                <p className="mt-4 type-body site-text-muted">
                   {post.excerpt}
                 </p>
 
@@ -122,7 +122,7 @@ const Blogs = () => {
                   {post.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-sans text-xs font-medium text-gray-600 dark:border-white/20 dark:bg-white/[0.03] dark:text-slate-300"
+                      className="rounded-full border site-divider bg-surface-elevated px-2.5 py-1 font-sans text-xs font-medium site-text-muted"
                     >
                       {tag}
                     </li>
@@ -131,16 +131,16 @@ const Blogs = () => {
 
                 {/* Footer */}
                 <div className="mt-auto pt-7">
-                  <div className="pt-5 border-t border-gray-200 dark:border-white/20">
+                  <div className="pt-5 border-t site-divider">
                     <div className="flex items-center justify-between gap-4">
-                      <p className="text-xs text-gray-500 dark:text-slate-400">{post.readTime}</p>
+                      <p className="text-xs site-text-subtle">{post.readTime}</p>
 
                       <div className="flex items-center gap-4">
                         {hasPreview && (
                           <button
                             type="button"
                             onClick={() => setActivePost(post)}
-                            className="text-sm font-semibold text-gray-600 transition-colors hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-gray-300 dark:hover:text-accent-light"
+                            className="text-sm font-semibold text-theme-accent transition-colors hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-accent "
                           >
                             Preview
                           </button>
@@ -152,13 +152,13 @@ const Blogs = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`Read ${post.title} on Medium`}
-                            className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-gray-950 transition-colors hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-white dark:hover:text-accent-light"
+                            className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-theme-accent transition-colors hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-accent "
                           >
                             Read article
                             <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
                           </a>
                         ) : (
-                          <span className="text-sm font-semibold text-gray-500 dark:text-slate-400">
+                          <span className="text-sm font-semibold site-text-subtle">
                             Coming soon
                           </span>
                         )}
@@ -177,7 +177,7 @@ const Blogs = () => {
           <AnimatePresence>
             {activePost?.previewId && (
               <motion.div
-                className="fixed inset-0 z-[100] flex items-end justify-center bg-gray-950/70  sm:items-center sm:p-6"
+                className="fixed inset-0 z-[100] flex items-end justify-center bg-[var(--site-backdrop)]  sm:items-center sm:p-6"
                 initial={reduceMotion ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -219,10 +219,10 @@ const Blogs = () => {
                   transition={{
                     duration: reduceMotion ? 0 : 0.25,
                   }}
-                  className="relative flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-gray-200 bg-[#ffffff] text-gray-950 shadow-2xl dark:border-white/20 dark:bg-surface dark:text-white sm:max-h-[88dvh] sm:rounded-3xl"
+                  className="relative flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border site-divider bg-surface site-text-primary shadow-2xl sm:max-h-[88dvh] sm:rounded-3xl"
                 >
                   {/* Modal header */}
-                  <div className="flex items-start justify-between gap-5 px-5 py-5 border-b border-gray-200 dark:border-white/20 sm:px-8 sm:py-6">
+                  <div className="flex items-start justify-between gap-5 px-5 py-5 border-b site-divider sm:px-8 sm:py-6">
                     <div>
                       <p className="font-sans text-xs uppercase tracking-[0.12em] site-text-muted">
                         Article preview
@@ -230,7 +230,7 @@ const Blogs = () => {
 
                       <h3
                         id="blog-preview-title"
-                        className="mt-2 max-w-2xl font-heading text-2xl font-semibold leading-tight tracking-[-0.03em] sm:text-3xl"
+                        className="text-theme-heading mt-2 max-w-2xl font-heading text-2xl font-semibold leading-tight tracking-[-0.03em] sm:text-3xl"
                       >
                         {activePost.title}
                       </h3>
@@ -244,7 +244,7 @@ const Blogs = () => {
                       ref={closeButtonRef}
                       type="button"
                       onClick={() => setActivePost(null)}
-                      className="inline-flex items-center justify-center flex-none w-10 h-10 text-gray-700 transition-all border border-gray-300 rounded-full hover:border-accent hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-white/15 dark:text-gray-300 dark:hover:border-accent-light dark:hover:bg-accent/10 dark:hover:text-accent-light"
+                      className="inline-flex items-center justify-center flex-none w-10 h-10 site-text-muted transition-all border site-divider rounded-full hover:border-accent hover:bg-accent/10 hover:text-accent-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-white/15 dark:text-gray-300 dark:hover:border-accent-light dark:hover:bg-accent/10 dark:hover:text-accent-light"
                       aria-label="Close article preview"
                     >
                       <XMarkIcon className="w-5 h-5" />
@@ -260,7 +260,7 @@ const Blogs = () => {
                             return (
                               <h4
                                 key={index}
-                                className="mb-3 mt-8 font-heading text-xl font-semibold tracking-[-0.025em] first:mt-0"
+                                className="text-theme-heading mb-3 mt-8 font-heading text-xl font-semibold tracking-[-0.025em] first:mt-0"
                               >
                                 {block.content}
                               </h4>
@@ -271,7 +271,7 @@ const Blogs = () => {
                             return (
                               <pre
                                 key={index}
-                                className="p-4 my-6 overflow-x-auto font-mono text-sm leading-6 text-gray-100 break-words whitespace-pre-wrap border rounded-2xl border-white/10 bg-gray-950 sm:p-5"
+                                className="p-4 my-6 overflow-x-auto font-mono text-sm leading-6 site-text-primary break-words whitespace-pre-wrap border rounded-2xl site-divider bg-surface-elevated sm:p-5"
                               >
                                 <code>{block.content}</code>
                               </pre>
@@ -281,7 +281,7 @@ const Blogs = () => {
                           return (
                             <p
                               key={index}
-                              className="mb-5 text-base leading-8 text-gray-700 dark:text-gray-300"
+                              className="mb-5 text-base leading-8 site-text-muted"
                             >
                               {block.content}
                             </p>
@@ -295,7 +295,7 @@ const Blogs = () => {
                           Continue reading the full article.
                         </p>
 
-                        <p className="max-w-lg mx-auto mt-3 type-body text-gray-600 dark:text-slate-300">
+                        <p className="max-w-lg mx-auto mt-3 type-body site-text-muted">
                           Read the complete explanation, practical examples, and
                           deeper technical notes on Medium.
                         </p>

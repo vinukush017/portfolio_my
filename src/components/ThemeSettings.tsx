@@ -5,6 +5,7 @@ const palettes = [
   { id: "ivory-yellow", name: "Ivory Yellow", swatch: "#ffc900", background: "#08090b", text: "#f5f3ef", dark: true },
   { id: "cobalt-pink", name: "Ocean Pink", swatch: "#ff2d95", background: "#0a0a0a", text: "#f7f9fc", dark: true },
   { id: "navy-red", name: "Royal Blue", swatch: "#bb232b", background: "#ffffff", text: "#20309a", dark: false },
+  { id: "stone-lime", name: "Stone Teal", swatch: "#007f73", background: "#f3f2ee", text: "#0b0b0c", dark: false },
 ] as const;
 
 export default function ThemeSettings() {
@@ -16,12 +17,17 @@ export default function ThemeSettings() {
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const isDark = palettes.find(({ id }) => id === palette)?.dark ?? true;
-  const lastDarkPalette = useRef<"ivory-yellow" | "cobalt-pink">((() => {
-    if (palette !== "navy-red") return palette;
+  type PaletteId = typeof palettes[number]["id"];
+  const rememberedPalette = (dark: boolean): PaletteId => {
+    if (isDark === dark) return palette;
     try {
-      return localStorage.getItem("darkPalette") === "cobalt-pink" ? "cobalt-pink" : "ivory-yellow";
-    } catch { return "ivory-yellow"; }
-  })());
+      const saved = localStorage.getItem(dark ? "darkPalette" : "lightPalette");
+      return palettes.find((item) => item.id === saved && item.dark === dark)?.id
+        || (dark ? "ivory-yellow" : "navy-red");
+    } catch { return dark ? "ivory-yellow" : "navy-red"; }
+  };
+  const lastDarkPalette = useRef(rememberedPalette(true));
+  const lastLightPalette = useRef(rememberedPalette(false));
 
   useLayoutEffect(() => {
     const root = document.documentElement;
@@ -32,9 +38,12 @@ export default function ThemeSettings() {
     try {
       localStorage.setItem("theme", isDark ? "dark" : "light");
       localStorage.setItem("palette", palette);
-      if (palette !== "navy-red") {
+      if (isDark) {
         lastDarkPalette.current = palette;
         localStorage.setItem("darkPalette", palette);
+      } else {
+        lastLightPalette.current = palette;
+        localStorage.setItem("lightPalette", palette);
       }
     } catch { /* Theme controls also work when browser storage is unavailable. */ }
   }, [palette, isDark]);
@@ -100,8 +109,9 @@ export default function ThemeSettings() {
               aria-checked={isDark}
               aria-label="Dark mode"
               onClick={() => {
-                if (palette !== "navy-red") lastDarkPalette.current = palette;
-                setPalette(isDark ? "navy-red" : lastDarkPalette.current);
+                if (isDark) lastDarkPalette.current = palette;
+                else lastLightPalette.current = palette;
+                setPalette(isDark ? lastLightPalette.current : lastDarkPalette.current);
               }}
               className="theme-mode-switch"
             >

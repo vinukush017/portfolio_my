@@ -77,9 +77,9 @@
       document.documentElement.classList.add("dark");
       try {
         const palette = localStorage.getItem("palette");
-        if (["cobalt-pink", "ivory-yellow", "navy-red"].includes(palette)) {
+        if (["cobalt-pink", "ivory-yellow", "navy-red", "stone-lime"].includes(palette)) {
           document.documentElement.dataset.palette = palette;
-          document.documentElement.classList.toggle("dark", palette !== "navy-red");
+          document.documentElement.classList.toggle("dark", !["navy-red", "stone-lime"].includes(palette));
         }
       } catch (_) {}
     </script>

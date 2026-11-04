@@ -9,28 +9,28 @@ const Footer = () => {
 
   return (
     <footer
-      className="site-footer-surface accent-footer border-t"
+      className="theme-footer site-divider border-t"
       style={{
         paddingBottom: "env(safe-area-inset-bottom)",
       }}
     >
       <div className="section-shell py-12 sm:py-16 lg:py-20">
         {/* Main CTA */}
-        <div className="grid gap-8 pb-12 border-b border-white/15 md:grid-cols-12 md:items-end lg:pb-16">
+        <div className="grid gap-8 pb-12 border-b site-divider md:grid-cols-12 md:items-end lg:pb-16">
           <div className="md:col-span-8">
-            <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] text-slate-400 sm:text-xs">
+            <p className="font-sans text-xs font-medium uppercase tracking-[0.12em] site-text-subtle sm:text-xs">
               Have something interesting in mind?
             </p>
 
-            <h2 className="mt-4 max-w-3xl font-heading type-section">
+            <h2 className="mt-4 max-w-3xl font-heading type-section text-theme-heading">
               Let&apos;s build something
-              <span className="text-white">
+              <span className="footer-heading-accent">
                 {" "}
                 worth using.
               </span>
             </h2>
 
-            <p className="max-w-xl mt-5 type-body text-gray-400 sm:text-base">
+            <p className="max-w-xl mt-5 type-body site-text-muted sm:text-base">
               I&apos;m interested in meaningful engineering challenges,
               product ideas, and opportunities to build reliable software.
             </p>
@@ -40,7 +40,7 @@ const Footer = () => {
             <button
               type="button"
               onClick={() => scrollToSection("contact")}
-              className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-gray-950 transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-200 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-4 focus-visible:ring-offset-gray-950 sm:w-auto"
+              className="primary-action group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[var(--theme-accent)] px-6 text-sm font-semibold text-[var(--theme-on-accent)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-accent/10 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--site-background)] sm:w-auto"
             >
               Start a conversation
 
@@ -60,16 +60,16 @@ const Footer = () => {
               type="button"
               onClick={() => scrollToSection("home")}
               aria-label="Vinay Kushwah — Back to top"
-              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-semibold tracking-[-0.04em] text-white transition-colors group-hover:text-slate-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+              className="group inline-flex items-center gap-1 rounded-md font-heading text-xl font-semibold tracking-[-0.04em] site-text-primary transition-colors group-hover:text-theme-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
             >
               VK
 
-              <span className="text-white transition-colors group-hover:text-slate-300">
+              <span className="text-theme-accent transition-colors">
                 .
               </span>
             </button>
 
-            <p className="max-w-sm mt-4 type-body text-gray-400">
+            <p className="max-w-sm mt-4 type-body site-text-muted">
               Software engineer building reliable backend systems, APIs,
               integrations, and modern web applications from Pune, India.
             </p>
@@ -80,7 +80,7 @@ const Footer = () => {
             aria-label="Footer navigation"
             className="md:col-span-4"
           >
-            <p className="mb-4 font-sans text-xs uppercase tracking-[0.1em] text-slate-400 sm:text-xs">
+            <p className="mb-4 font-sans text-xs uppercase tracking-[0.1em] site-text-subtle sm:text-xs">
               Navigate
             </p>
 
@@ -93,7 +93,7 @@ const Footer = () => {
                     event.preventDefault();
                     scrollToSection(id);
                   }}
-                  className="text-sm text-gray-300 transition-colors rounded-sm hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+                  className="text-sm site-text-primary transition-colors rounded-sm hover:text-theme-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
                 >
                   {label}
                 </a>
@@ -103,7 +103,7 @@ const Footer = () => {
 
           {/* External links */}
           <div className="md:col-span-3">
-            <p className="mb-4 font-sans text-xs uppercase tracking-[0.1em] text-slate-400 sm:text-xs">
+            <p className="mb-4 font-sans text-xs uppercase tracking-[0.1em] site-text-subtle sm:text-xs">
               Elsewhere
             </p>
 
@@ -113,7 +113,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Vinay Kushwah on GitHub"
-                className="group inline-flex items-center gap-1.5 rounded-sm text-sm text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+                className="group inline-flex items-center gap-1.5 rounded-sm text-sm site-text-primary transition-colors hover:text-theme-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
               >
                 GitHub
 
@@ -128,7 +128,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Vinay Kushwah on LinkedIn"
-                className="group inline-flex items-center gap-1.5 rounded-sm text-sm text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+                className="group inline-flex items-center gap-1.5 rounded-sm text-sm site-text-primary transition-colors hover:text-theme-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
               >
                 LinkedIn
 
@@ -141,7 +141,7 @@ const Footer = () => {
               <a
                 href="mailto:vinay.kushwah89@gmail.com"
                 aria-label="Email Vinay Kushwah"
-                className="group inline-flex items-center gap-1.5 rounded-sm text-sm text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
+                className="group inline-flex items-center gap-1.5 rounded-sm text-sm site-text-primary transition-colors hover:text-theme-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-light"
               >
                 Email
 
@@ -155,10 +155,10 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-3 border-t border-white/15 pt-6 font-sans text-xs tracking-[0.02em] text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+        <div className="flex flex-col gap-3 border-t site-divider pt-6 font-sans text-xs tracking-[0.02em] site-text-subtle sm:flex-row sm:items-center sm:justify-between sm:text-sm">
           <p>
             © {currentYear}{" "}
-            <span className="text-white">Vinay Kushwah</span>. All
+            <span className="site-text-primary">Vinay Kushwah</span>. All
             rights reserved.
           </p>
 

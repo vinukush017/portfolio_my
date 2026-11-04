@@ -116,61 +116,62 @@ const Experience = () => {
             <motion.article
               key={`${experience.company}-${experience.period}`}
               {...reveal(index)}
+              data-current={experience.current || undefined}
               className="experience-entry grid gap-7 lg:grid-cols-12 lg:gap-10"
             >
               {/* Number + Period */}
               <div className="lg:col-span-2">
                 <div className="flex items-center gap-3">
-                  <span className="font-sans text-xs font-medium site-text-muted">
+                  <span className="font-sans text-xs font-medium text-theme-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
                   {experience.current && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-400">
+                    <span className="experience-current inline-flex items-center gap-1.5 rounded-full border border-accent/25 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-theme-accent">
                       <span
                         aria-hidden="true"
-                        className="h-1.5 w-1.5 rounded-full bg-emerald-500"
+                        className="h-1.5 w-1.5 rounded-full bg-accent"
                       />
                       Current
                     </span>
                   )}
                 </div>
 
-                <p className="mt-4 font-sans text-xs uppercase leading-relaxed tracking-[0.12em] text-gray-500 dark:text-slate-400">
+                <p className="mt-4 font-sans text-xs uppercase leading-relaxed tracking-[0.12em] site-text-subtle">
                   {experience.period}
                 </p>
               </div>
 
               {/* Role information */}
               <div className="lg:col-span-4">
-                <h3 className="font-heading type-card-title text-gray-950 dark:text-white ">
+                <h3 className="font-heading type-card-title text-theme-heading ">
                   {experience.title}
                 </h3>
 
                 <div className="flex flex-wrap items-center mt-2 text-sm gap-x-2 gap-y-1">
-                  <p className="font-semibold text-gray-700 dark:text-gray-300">
+                  <p className="font-semibold site-text-primary">
                     {experience.company}
                   </p>
 
                   <span
                     aria-hidden="true"
-                    className="hidden text-gray-500 dark:text-slate-400 sm:inline"
+                    className="hidden site-text-subtle sm:inline"
                   >
                     ·
                   </span>
 
-                  <p className="text-gray-500 dark:text-slate-400">
+                  <p className="site-text-subtle">
                     {experience.location}
                   </p>
                 </div>
 
-                <p className="mt-5 max-w-md type-body text-gray-600 dark:text-slate-300">
+                <p className="mt-5 max-w-md type-body site-text-muted">
                   {experience.summary}
                 </p>
 
                 {/* Technology stack */}
                 <div className="mt-6">
-                  <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-400">
+                  <p className="font-sans text-xs uppercase tracking-[0.1em] site-text-subtle">
                     Technologies
                   </p>
 
@@ -178,7 +179,7 @@ const Experience = () => {
                     {experience.stack.map((technology) => (
                       <li
                         key={technology}
-                        className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 font-sans text-xs font-medium text-gray-600 dark:border-white/20 dark:bg-white/[0.03] dark:text-slate-300 sm:text-xs"
+                        className="rounded-full border site-divider bg-surface-elevated px-2.5 py-1 font-sans text-xs font-medium site-text-muted sm:text-xs"
                       >
                         {technology}
                       </li>
@@ -189,7 +190,7 @@ const Experience = () => {
 
               {/* Contributions */}
               <div className="lg:col-span-6">
-                <p className="font-sans text-xs uppercase tracking-[0.1em] text-gray-500 dark:text-slate-400">
+                <p className="font-sans text-xs uppercase tracking-[0.1em] site-text-subtle">
                   Selected contributions
                 </p>
 
@@ -197,11 +198,11 @@ const Experience = () => {
                   {experience.achievements.map((achievement) => (
                     <li
                       key={achievement}
-                      className="flex gap-3 type-body text-gray-600 dark:text-gray-300 "
+                      className="flex gap-3 type-body site-text-muted "
                     >
                       <span
                         aria-hidden="true"
-                        className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-slate-400 dark:bg-slate-500"
+                        className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-accent/60"
                       />
 
                       <span>{achievement}</span>
